@@ -3,7 +3,7 @@
 namespace app\models\blocks;
 
 use app\components\MainController;
-use app\controllers\ApartmentController;
+use app\controllers\ProjectController;
 use app\controllers\BlockController;
 use app\models\Block;
 use Yii;

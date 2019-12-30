@@ -3,7 +3,7 @@
 namespace app\models;
 
 use app\components\MainController;
-use app\controllers\ApartmentController;
+use app\controllers\ProjectController;
 use app\models\blocks\Contact;
 use app\models\blocks\OtherUnits;
 use app\models\blocks\RelatedProjects;
@@ -37,7 +37,7 @@ use yii\web\View;
  * @property string ar_location_two
  * @property int special
  */
-class Project extends Item implements ProjectInterface
+class Project extends Item
 {
     const TYPE_AVAILABLE_APARTMENT = 1;
     const TYPE_INVESTMENT = 2;
@@ -279,8 +279,8 @@ class Project extends Item implements ProjectInterface
                 'hint' => 'حداقل سایز تصویر: 600 در 600 پیکسل',
                 'containerCssClass' => 'col-sm-6',
                 'temp' => MainController::$tempDir,
-                'path' => ApartmentController::$imgDir,
-                'filesOptions' => ApartmentController::$imageOptions,
+                'path' => ProjectController::$imgDir,
+                'filesOptions' => ProjectController::$imageOptions,
                 'options' => [
                     'url' => Url::to(['upload-image']),
                     'removeUrl' => Url::to(['delete-image']),
@@ -304,7 +304,7 @@ class Project extends Item implements ProjectInterface
                 'type' => static::FORM_FIELD_TYPE_DROP_ZONE,
                 'containerCssClass' => 'col-sm-6',
                 'temp' => MainController::$tempDir,
-                'path' => ApartmentController::$pdfDir,
+                'path' => ProjectController::$pdfDir,
                 'filesOptions' => [],
                 'options' => [
                     'url' => Url::to(['upload-pdf']),
@@ -330,7 +330,7 @@ class Project extends Item implements ProjectInterface
                 'hint' => 'تصویر کاور برای پروژه های چند معرفی، حداقل سایز تصویر: 1920 در 1080 پیکسل',
                 'containerCssClass' => 'col-sm-12 banner-container d-none',
                 'temp' => MainController::$tempDir,
-                'path' => ApartmentController::$imgDir,
+                'path' => ProjectController::$imgDir,
                 'filesOptions' => [],
                 'options' => [
                     'url' => Url::to(['upload-banner']),
@@ -467,13 +467,6 @@ JS
         return $this->description;
     }
 
-    public function getPosterSrc()
-    {
-        if (isset($this->image) && is_file(Yii::getAlias('@webroot/uploads/apartment/') . $this->image))
-            return Yii::getAlias('@web/uploads/apartment/') . $this->image;
-        return Yii::getAlias('@webapp/public_html/themes/frontend/images/default.jpg');
-    }
-
     public function getSubtitleStr()
     {
         if (!static::$multiLanguage) {
@@ -537,5 +530,17 @@ JS
         }
 
         return parent::beforeSave($insert);
+    }
+
+    public function getModelImage()
+    {
+        if (isset($this->image) && is_file(Yii::getAlias('@webroot/uploads/project/') . $this->image))
+            return Yii::getAlias('@web/uploads/project/') . $this->image;
+        return Yii::getAlias('@webapp/public_html/themes/frontend/images/default.jpg');
+    }
+
+    public function getUrl()
+    {
+        return Url::to(['/project/show', 'id' => $this->id]);
     }
 }

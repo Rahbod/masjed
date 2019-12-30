@@ -54,8 +54,6 @@ class Category extends MultiLangActiveRecord
     const CATEGORY_TYPE_NEWS = 'news';
     const CATEGORY_TYPE_PICTURE_GALLERY = 'image_gallery';
     const CATEGORY_TYPE_VIDEO_GALLERY = 'video_gallery';
-    const CATEGORY_TYPE_INSURANCE = 'insurance';
-    const CATEGORY_TYPE_EXPERTISE = 'expertise';
 
     public static $typeName = self::TYPE_CATEGORY;
 
@@ -233,8 +231,6 @@ class Category extends MultiLangActiveRecord
             self::CATEGORY_TYPE_NEWS => trans('words', 'News & Articles'),
             self::CATEGORY_TYPE_PICTURE_GALLERY => trans('words', 'Picture Gallery'),
             self::CATEGORY_TYPE_VIDEO_GALLERY => trans('words', 'Video Gallery'),
-            self::CATEGORY_TYPE_INSURANCE => trans('words', 'Insurance'),
-            self::CATEGORY_TYPE_EXPERTISE => trans('words', 'Expertise'),
         ];
         return $statusLabels;
     }

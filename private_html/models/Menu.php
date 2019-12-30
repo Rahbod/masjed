@@ -20,7 +20,6 @@ use yii\widgets\ActiveForm;
  * @property string $action_name
  * @property string $external_link
  * @property string $show_in_footer
- * @property string $icon_class
  *
  */
 class Menu extends Category
@@ -58,14 +57,11 @@ class Menu extends Category
             'action_name' => ['CHAR', ''],
             'external_link' => ['CHAR', ''],
             'show_in_footer' => ['INTEGER', ''],
-            'icon_class' => ['INTEGER', ''],
         ]);
     }
 
     public function formAttributes()
     {
-        if($this->isNewRecord || !$this->icon_class)
-            $this->icon_class = 'sprite-services-icon';
         return array_merge(parent::formAttributes(),[
             'parentID' => [
                 'type' => static::FORM_FIELD_TYPE_SELECT,
@@ -74,7 +70,6 @@ class Menu extends Category
                     'prompt' => 'بدون والد'
                 ]
             ],
-            'icon_class' => static::FORM_FIELD_TYPE_TEXT,
 //            'show_in_footer' => static::FORM_FIELD_TYPE_SWITCH,
             /*'image' => [
                 'type' => static::FORM_FIELD_TYPE_DROP_ZONE,
@@ -117,7 +112,7 @@ class Menu extends Category
             ['type', 'default', 'value' => self::$typeName],
             [['menu_type', 'page_id'], 'integer'],
             [['external_link'], 'url'],
-            [['action_name', 'external_link', 'image','icon_class'], 'string'],
+            [['action_name', 'external_link', 'image'], 'string'],
             [['show_in_footer'], 'safe'],
             ['show_in_footer', 'default', 'value' => 0],
             ['content', 'default', 'value' => 0]
@@ -137,7 +132,6 @@ class Menu extends Category
             'action_name' => trans('words', 'Module Name'),
             'show_in_footer' => trans('words', 'Show in footer'),
             'external_link' => trans('words', 'External Link'),
-            'icon_class' => trans('words', 'Icon Class'),
         ]);
     }
 

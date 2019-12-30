@@ -6,7 +6,7 @@ use app\components\CrudControllerTrait;
 use app\models\Attachment;
 use app\models\Item;
 use app\models\Page;
-use app\models\projects\Apartment;
+use app\models\Project;
 use app\models\Service;
 use app\models\ServiceSearch;
 use devgroup\dropzone\RemoveAction;
@@ -207,10 +207,10 @@ class ServiceController extends AuthController
         $model->seen++;
         $model->save(false);
 
-        $availableApartments = Apartment::find()->andWhere(['>', Apartment::columnGetString('free_count'), 0])->all();
+        $availableProjects = Project::find()->andWhere(['>', Project::columnGetString('free_count'), 0])->all();
         return $this->render('show', [
             'model' => $model,
-            'availableApartments' => $availableApartments,
+            'availableProjects' => $availableProjects,
         ]);
     }
 }

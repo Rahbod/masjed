@@ -18,7 +18,6 @@ $this->registerJs("
 <section class="main-submit">
     <div class="slide-title">
         <div class="title-left">
-            <!--<img src="<?//= $baseUrl ?>/images/apartment-icon-w.png" alt="apartment-icon">-->
             <div class="text">
                 <h2 class="slide"><strong><?= trans('words', 'CONTACT US') ?></strong></h2>
             </div>

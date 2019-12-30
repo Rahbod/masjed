@@ -104,9 +104,7 @@ class BlockController extends AuthController
     public function actionIndex($id)
     {
         app()->session->set('itemID', $id);
-        if (strpos(request()->referrer, 'apartment') !== false ||
-            strpos(request()->referrer, 'investment') !== false ||
-            strpos(request()->referrer, 'construction') !== false)
+        if (strpos(request()->referrer, 'project') !== false)
             app()->session->set('return', request()->referrer);
         $searchModel = new BlockSearch();
         $searchModel->itemID = $id;

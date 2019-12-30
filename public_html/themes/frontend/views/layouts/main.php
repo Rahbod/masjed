@@ -16,7 +16,7 @@ AppAsset::register($this);
     <meta charset="<?= Yii::$app->charset; ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
-    <title><?= (($this->title) ? $this->title . ' - ' : '') . Yii::$app->name; ?></title>
+    <title><?= (($this->title) ? $this->title . ' - ' : '') . trans('words', Yii::$app->name); ?></title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="<?= $this->theme->baseUrl.'/favicon.ico' ?>"/>
 
@@ -71,7 +71,6 @@ else
 <?php echo $this->render('_public_alert'); ?>
 <?php $this->endBody(); ?>
 
-<!--<script src="--><?//= $this->theme->baseUrl . '/assets/js/jquery.min.js' ?><!--"></script>-->
 <script src="<?= $this->theme->baseUrl . '/assets/bootstrap/js/bootstrap.min.js' ?>"></script>
 <script src="<?= $this->theme->baseUrl . '/assets/js/custom.js' ?>"></script>
 </body>

@@ -42,7 +42,7 @@ class MainController extends Controller implements CrudControllerInterface
     public function init()
     {
         parent::init();
-        app()->name = trans('words', 'Rezvan');
+        app()->name = trans('words', 'App Name');
         if (app()->session->has('language'))
             app()->language = app()->session->get('language');
         else if (isset(app()->request->cookies['language']))
@@ -306,39 +306,37 @@ class MainController extends Controller implements CrudControllerInterface
 
             [
                 'label' => '<i class="m-menu__link-icon fas fa-building"></i><span class="m-menu__link-text">پروژه ها</span>',
-                'items' => [
-                    ['label' => 'آپارتمان', 'url' => ['/apartment/index'], 'visible' => $permissions || app()->user->can('userCreate')],
-                    ['label' => 'سرمایه گذاری', 'url' => ['/investment/index'], 'visible' => $permissions || app()->user->can('userCreate')],
-                    ['label' => 'دیگر', 'url' => ['/construction/index'], 'visible' => $permissions || app()->user->can('userCreate')],
-                ]
+                'url' => ['/project/index'],
+                'visible' => $permissions || app()->user->can('projectIndex')
             ],
 
             [
                 'label' => '<i class="m-menu__link-icon fa fa-server"></i><span class="m-menu__link-text">' . trans('words', 'Items') . '</span>',
                 'items' => [
-//                    ['label' => trans('words', 'Slides'), 'url' => ['/slide/index'], 'visible' => $permissions || app()->user->can('slideIndex')],
+                    ['label' => trans('words', 'Slides'), 'url' => ['/slide/index'], 'visible' => $permissions || app()->user->can('slideIndex')],
                     ['label' => trans('words', 'Pages'), 'url' => ['/page/index'], 'visible' => $permissions || app()->user->can('pageIndex')],
-                    ['label' => trans('words', 'Services'), 'url' => ['/service/index'], 'visible' => $permissions || app()->user->can('serviceIndex')],
+                    ['label' => trans('words', 'Post'), 'url' => ['/post/index'], 'visible' => $permissions || app()->user->can('postIndex')],
                     ['label' => trans('words', 'Lists'), 'url' => ['/list/index'], 'visible' => $permissions || app()->user->can('listIndex')],
                 ]
             ],
-//            [
-//                'label' => '<i class="m-menu__link-icon fa fa-images"></i><span class="m-menu__link-text">' . trans('words', 'Gallery') . '</span>',
-//                'items' => [
-//                    ['label' => trans('words', 'Picture Gallery'), 'url' => ['/gallery/index'], 'visible' => $permissions || app()->user->can('galleryIndex')],
-//                    ['label' => trans('words', 'Video Gallery'), 'url' => ['/gallery/index-video'], 'visible' => $permissions || app()->user->can('galleryIndexVideo')],
-//                ]
-//            ],
-//            [
-//                'label' => '<i class="m-menu__link-icon fa fa-th"></i><span class="m-menu__link-text">' . trans('words', 'Categories') . '</span>',
-//                'url' => ['/category/index'],
-//                'visible' => $permissions || app()->user->can('categoryIndex')
-//            ],
             [
-                'label' => '<i class="m-menu__link-icon fa fa-envelope"></i><span class="m-menu__link-text">' . trans('words', 'Requests') . '</span>'.$unreadCount,
-                'url' => ['/request/index'],
-                'visible' => $permissions || app()->user->can('requestIndex')
+                'label' => '<i class="m-menu__link-icon fa fa-th"></i><span class="m-menu__link-text">' . trans('words', 'Categories') . '</span>',
+                'url' => ['/category/index'],
+                'visible' => $permissions || app()->user->can('categoryIndex')
             ],
+
+            [
+                'label' => '<i class="m-menu__link-icon fa fa-images"></i><span class="m-menu__link-text">' . Yii::t('words', 'Gallery') . '</span>',
+                'items' => [
+                    ['label' => Yii::t('words', 'Picture Gallery'), 'url' => ['/gallery/index'], 'visible' => $permissions || Yii::$app->user->can('galleryIndex')],
+                    ['label' => Yii::t('words', 'Video Gallery'), 'url' => ['/gallery/index-video'], 'visible' => $permissions || Yii::$app->user->can('galleryIndexVideo')],
+                ]
+            ],
+//            [
+//                'label' => '<i class="m-menu__link-icon fa fa-envelope"></i><span class="m-menu__link-text">' . trans('words', 'Requests') . '</span>'.$unreadCount,
+//                'url' => ['/request/index'],
+//                'visible' => $permissions || app()->user->can('requestIndex')
+//            ],
             [
                 'label' => '<i class="m-menu__link-icon fa fa-comments"></i><span class="m-menu__link-text">' . trans('words', 'Messages') . '</span>'.$contactCount,
                 'url' => ['/message/index'],

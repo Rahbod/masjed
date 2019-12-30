@@ -15,11 +15,10 @@ require_once(__DIR__ . '/../yii_helper.php');
 
 $config = [
     'id' => 'basic',
-    'name' => 'Rezvan',
+    'name' => 'App Name',
     'basePath' => dirname(__DIR__),
     'language' => 'ar',
     'timeZone' => Setting::get('timeZone'),
-//    'bootstrap' => ['log'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -49,7 +48,7 @@ $config = [
         ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => 'j5stjE4_Z4MGofmiwRkw0mxmR2Do2RNq',
+            'cookieValidationKey' => 'j5stjE4_Z4MGofmiwRkw0mxmR2Do2RNE',
             'baseUrl' => $baseUrl,
             'enableCsrfValidation'=>true,
             'enableCookieValidation'=>true,
@@ -60,15 +59,9 @@ $config = [
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => false,
-//            'enableSession' => true,
             'authTimeout' =>3600,
             'identityCookie' => ['name' => '_identity', 'httpOnly' => true],
         ],
-//        'session' => [
-//            'class' => 'yii\web\Session',
-//            'name' => 'basic',
-//            'timeout' => 3,
-//        ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
@@ -103,7 +96,6 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                '/english' => '/site/coming-soon',
                 'dashboard'=>'user/dashboard',
                 '<language:\w{2}>'=>'site/change-lang',
                 '<language:\w{2}>/<controller:\w+>' => 'site/change-lang',

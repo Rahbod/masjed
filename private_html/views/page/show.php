@@ -2,16 +2,16 @@
 
 /* @var $this yii\web\View */
 /* @var $model Page */
-/* @var $apartment Apartment */
+/* @var $project Project */
 
 use app\models\Page;
-use app\models\projects\Apartment;
+use app\models\Project;
 use yii\helpers\Html;
 
 $this->title = strip_tags($model->getName());
 
 $baseUrl = $this->theme->baseUrl;
-$apartmentCounts = isset($availableApartments) ? count($availableApartments) : 0;
+$projectCounts = isset($availableProjects) ? count($availableProjects) : 0;
 ?>
 <section class="main-text">
     <div class="slide-title">
@@ -45,21 +45,21 @@ $apartmentCounts = isset($availableApartments) ? count($availableApartments) : 0
             </div>
             <div id="order-post" class="carousel slide col-lg-12" data-ride="carousel">
                 <div class="carousel-inner">
-                    <?php for ($i = 0; $i < $apartmentCounts; $i = $i + 4): ?>
+                    <?php for ($i = 0; $i < $projectCounts; $i = $i + 4): ?>
                         <div class="carousel-item <?= $i == 0 ? 'active' : '' ?>">
                             <div class="posts">
                                 <div class="row">
                                     <?php for ($j = $i; $j < $i+ 4; $j++):
-                                        if (!isset($availableApartments[$j]))
+                                        if (!isset($availableProjects[$j]))
                                             break;
-                                        $apartment = $availableApartments[$j]; ?>
+                                        $project = $availableProjects[$j]; ?>
                                         <div class="grid little-post col-lg-3 col-md-6  col-sm-12 col-xs-12">
-                                            <a href="<?= $apartment->getUrl() ?>">
-                                                <img src="<?= $apartment->getModelImage() ?>"
-                                                     alt="<?= $apartment->getName() ?>">
-                                                <h2 class="item-title"><?= $apartment->getName() ?></h2>
-                                                <span class="description"><?= $apartment->getLocationStr() ?><?= $apartment->getLocationTwoStr()?' / ':'' ?></span>
-                                                <span class="description-2"><?= $apartment->getLocationTwoStr() ?></span>
+                                            <a href="<?= $project->getUrl() ?>">
+                                                <img src="<?= $project->getModelImage() ?>"
+                                                     alt="<?= $project->getName() ?>">
+                                                <h2 class="item-title"><?= $project->getName() ?></h2>
+                                                <span class="description"><?= $project->getLocationStr() ?><?= $project->getLocationTwoStr()?' / ':'' ?></span>
+                                                <span class="description-2"><?= $project->getLocationTwoStr() ?></span>
                                             </a>
                                         </div>
                                     <?php endfor; ?>

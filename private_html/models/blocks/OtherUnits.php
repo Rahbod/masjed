@@ -4,7 +4,6 @@ namespace app\models\blocks;
 
 use app\models\Block;
 use app\models\Project;
-use app\models\projects\Apartment;
 use app\models\Unit;
 use yii\web\View;
 

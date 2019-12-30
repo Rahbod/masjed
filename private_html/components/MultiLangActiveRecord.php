@@ -22,6 +22,7 @@ abstract class MultiLangActiveRecord extends DynamicActiveRecord
     ];
 
     public static $showLangArray = [
+        'fa' => 'Fa',
         'ar' => 'Ar',
         'en' => 'En',
     ];

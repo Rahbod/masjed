@@ -1,7 +1,7 @@
 <?php
 
-use app\controllers\ApartmentController;
-use app\models\projects\Apartment;
+use app\controllers\ProjectController;
+use app\models\Project;
 use app\models\Unit;
 use yii\web\View;
 
@@ -11,7 +11,7 @@ use yii\web\View;
 $baseUrl = $this->theme->baseUrl;
 
 $this->context->breadcrumbs = [
-    trans('words', 'Available Apartments'),
+    trans('words', 'Available Projects'),
     $model->getName(),
     $model->getSubtitleStr(),
 ];
@@ -47,7 +47,7 @@ $this->context->breadcrumbs = [
             <img src="<?= $baseUrl ?>/images/item-8-w.png" alt="item-8">
         </div>
     </div>
-    <?php if ($pdf_url = $model->project->getPdfUrl(ApartmentController::$pdfDir)): ?>
+    <?php if ($pdf_url = $model->project->getPdfUrl(ProjectController::$pdfDir)): ?>
         <div class="download">
             <a href="<?= $pdf_url ?>">
                 <p><?= trans('words', 'Download As<br><strong>PDF</strong>') ?></p>

@@ -3,7 +3,7 @@
 namespace app\models;
 
 use app\components\MainController;
-use app\controllers\ApartmentController;
+use app\controllers\ProjectController;
 use app\controllers\ListController;
 use Yii;
 use yii\helpers\Html;

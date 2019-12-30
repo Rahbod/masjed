@@ -50,8 +50,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     'columns' => [
                         'name',
                         'username',
-                        'phone',
-                        'nationalCode',
                         [
                             'attribute' => 'roleID',
                             'value' => function ($model) {
@@ -67,7 +65,6 @@ $this->params['breadcrumbs'][] = $this->title;
                             'format' => 'raw',
                             'filter' => \app\models\Slide::getStatusFilter()
                         ],
-                        'verification_code',
                         ['class' => 'app\components\customWidgets\CustomActionColumn']
                     ],
                 ]); ?>

@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'Rezvan' => 'رضوان',
+    'App Name' => 'مسجد جامع کربلا',
     'fa' => 'فارسی',
     'en' => 'انگلیسی',
     'ar' => 'عربی',
@@ -191,10 +191,6 @@ return [
     'No Result!' => 'نتیجه ای یافت نشد!',
     'Menu' => 'منوها',
     'Short Title' => 'عنوان کوتاه',
-    'Available Investments' => 'سرمایه گذاری های موجود',
-    'Available Apartments' => 'ساختمان های موجود',
-//    'Investments' => 'سرمایه گذاری',
-    'Other constructions' => 'دیگر سازه ها',
     'Banner block' => 'بنر اصلی',
     'Image block' => 'تصویر',
     'Video block' => 'ویدئو',
@@ -254,10 +250,7 @@ return [
     'Bank distance' => 'فاصله تا بانک',
     'Restaurant distance' => 'فاصله تا رستوران',
 
-    'Create apartment' => 'ایجاد پروژه',
-    'Create investment' => 'ایجاد پروژه',
-    'Create construction' => 'ایجاد پروژه',
-    'Create other construction' => 'ایجاد پروژه',
+    'Create project' => 'ایجاد پروژه',
     'Create unit' => 'ایجاد واحد',
     'Create block' => 'ایجاد بلوک',
     'Project type' => 'نوع پروژه',
@@ -266,10 +259,7 @@ return [
     'Multi view' => 'نمایش چند معرفی',
 
 
-    'Apartments' => 'پروژه ها',
-    'Investments' => 'سرمایه گذاری ها',
-    'Constructions' => 'پروژه ها',
-
+    'Projects' => 'پروژه ها',
     'Blocks' => 'بلوک ها',
 
     //    unit : create
@@ -362,10 +352,7 @@ return [
     'laundry' => 'خشکشویی',
 
     //    apartment : update
-    'Update apartment: {name}' => 'ویرایش پروژه: {name}',
-
-    //    investment : update
-    'Update investment: {name}' => 'ویرایش پروژه: {name}',
+    'Update project: {name}' => 'ویرایش پروژه: {name}',
 
     //    lists
     'Lists' => 'لیست های پویا',

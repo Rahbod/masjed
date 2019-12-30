@@ -8,7 +8,7 @@ use app\components\CrudControllerTrait;
 use app\models\Attachment;
 use app\models\Item;
 use app\models\Page;
-use app\models\projects\Apartment;
+use app\models\Project;
 use devgroup\dropzone\RemoveAction;
 use devgroup\dropzone\UploadAction;
 use devgroup\dropzone\UploadedFiles;
@@ -98,11 +98,11 @@ class PageController extends AuthController
         $model->seen++;
         $model->save(false);
 
-        $availableApartments = Apartment::find()->andWhere(['>', Apartment::columnGetString('free_count'), 0])->all();
+        $availableProjects = Project::find()->andWhere(['>', Project::columnGetString('free_count'), 0])->all();
 
         return $this->render('show', [
             'model' => $model,
-            'availableApartments' => $availableApartments,
+            'availableProjects' => $availableProjects,
         ]);
     }
 

@@ -10,7 +10,7 @@ use yii\helpers\Url;
     <img src="<?= $project->image ?>"
          alt="<?= Html::encode($project->name) ?> ">
     <a title="<?= Html::encode($project->name) ?>"
-       href="<?= Url::to(['/apartment/show/', 'id' => $project->id]) ?>">
+       href="<?= Url::to(['/project/show/', 'id' => $project->id]) ?>">
         <h2 class="item-title"><?= Html::encode($project->name) ?></h2>
     </a>
     <span class="description"><?= $project->location ?></span>

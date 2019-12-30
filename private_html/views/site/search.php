@@ -1,6 +1,6 @@
 <?php
 
-/** @var ActiveDataProvider $apartmentProvider */
+/** @var ActiveDataProvider $projectProvider */
 
 use yii\data\ActiveDataProvider;
 use yii\helpers\Html;
@@ -9,7 +9,7 @@ $baseUrl = $this->theme->baseUrl;
 
 
 <?php
-if ($apartmentProvider->totalCount): ?>
+if ($projectProvider->totalCount): ?>
     <section class="full-slide">
         <div class="container-fluid">
             <div class="row">
@@ -24,16 +24,16 @@ if ($apartmentProvider->totalCount): ?>
                         <p class="slide">
                             <span class="available-project">found<br>
 									apartment </span>
-                            <span class="num"><?= $apartmentProvider->count ?></span>
+                            <span class="num"><?= $projectProvider->count ?></span>
                         </p>
                     </div>
                 </div>
                 <div class="container-fluid project-list">
                     <div class="row">
-                        <? if ($apartmentProvider->count): ?>
+                        <? if ($projectProvider->count): ?>
                             <?php echo \yii\widgets\ListView::widget([
-                                'id' => 'apartment-list',
-                                'dataProvider' => $apartmentProvider,
+                                'id' => 'project-list',
+                                'dataProvider' => $projectProvider,
                                 'itemView' => '//page/_page_item',
                                 'layout' => '{items}'
                             ]) ?>

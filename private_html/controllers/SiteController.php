@@ -10,12 +10,7 @@ use app\models\ContactForm;
 use app\models\Item;
 use app\models\Message;
 use app\models\Page;
-use app\models\projects\Apartment;
-use app\models\projects\ApartmentSearch;
-use app\models\projects\Investment;
-use app\models\projects\InvestmentSearch;
-use app\models\projects\OtherConstruction;
-use app\models\projects\OtherConstructionSearch;
+use app\models\ProjectSearch;
 use app\models\Service;
 use app\models\Slide;
 use Yii;
@@ -126,15 +121,13 @@ class SiteController extends AuthController
         $this->innerPage = true;
         $this->bodyClass = 'more-one list';
 
-        $availableApartments = Apartment::find()->andWhere(['>', Apartment::columnGetString('free_count'), 0])->count();
-
         $term = Yii::$app->request->getQueryParam('query');
         if ($term && !empty($term)) {
-            $searchApartment = new ApartmentSearch();
-            $searchApartment->name = $term;
-            $searchApartment->subtitle = $term;
-            $apartmentProvider = $searchApartment->search([]);
-            $apartmentProvider->getPagination()->pageSize = 20;
+            $searchProject = new ProjectSearch();
+            $searchProject->name = $term;
+            $searchProject->subtitle = $term;
+            $projectProvider = $searchProject->search([]);
+            $projectProvider->getPagination()->pageSize = 20;
 
 //            $searchInvestment = new InvestmentSearch();
 //            $searchInvestment->name = $term;
@@ -157,13 +150,9 @@ class SiteController extends AuthController
 
 //            $services = Service::find()->all();
 
-            return $this->render('//apartment/list', [
-                'projects' => $apartmentProvider->getModels(),
-                'availableApartments' => $availableApartments,
+            return $this->render('//project/list', [
+                'projects' => $projectProvider->getModels()
             ]);
-
-//            return $this->render('search', compact('term', 'investmentProvider',
-//                'constructionProvider', 'searchApartment', 'apartmentProvider', 'services'));
         } else
             return $this->goBack();
     }
@@ -173,22 +162,9 @@ class SiteController extends AuthController
     {
         $this->bodyClass = 'home';
 
-        $apartmentCounts = Apartment::find()->count();
-        $investmentCounts = Investment::find()->count();
-        $constructionCounts = OtherConstruction::find()->count();
-
-//        $services = Service::find()->where(['=','name','SERVICES'])->orderBy(['id' => SORT_DESC,])->all();
-        $services = Service::find()->all();
         $slides = Slide::find()->valid()->orderBy(['id' => SORT_ASC])->all();
 
-        $availableApartments = Apartment::find()->orderBy([Apartment::columnGetString('special') => SORT_DESC, 'id' => SORT_DESC])->andWhere(['>', Apartment::columnGetString('free_count'), 0])->all();
-        $availableInvestments = Investment::find()->orderBy([Investment::columnGetString('special') => SORT_DESC, 'id' => SORT_DESC])->andWhere(['>', Investment::columnGetString('free_count'), 0])->all();
-        $availableConstructions = OtherConstruction::find()->orderBy([OtherConstruction::columnGetString('special') => SORT_DESC, 'id' => SORT_DESC])
-//            ->andWhere(['>', OtherConstruction::columnGetString('free_count'), 0])
-            ->all();
-
-        return $this->render('index', compact(['slides', 'apartmentCounts', 'investmentCounts',
-            'constructionCounts', 'availableApartments', 'availableInvestments', 'availableConstructions', 'services']));
+        return $this->render('index', compact(['slides']));
     }
 
     /**
@@ -234,30 +210,9 @@ class SiteController extends AuthController
             'model' => $model,
         ]);
     }
-//
-//    /**
-//     * Displays about page.
-//     *
-//     * @return string
-//     */
-//    public function actionAbout()
-//    {
-//        $this->setTheme('frontend');
-//        $this->innerPage = true;
-//        $this->bodyClass = 'text-page';
-//        $this->headerClass = 'header-style-2';
-//        $this->mainTag = 'main-text-page';
-//
-//        $model = Page::find()->one();
-//
-//        $availableApartments = Apartment::find()->andWhere(['>', Apartment::columnGetString('free_count'), 0])->all();
-//
-//        return $this->render('//page/show', compact('availableApartments', 'model'));
-//    }
-
 
     public function getProjects()
     {
-        return Apartment::find()->andWhere(['>', Apartment::columnGetString('free_count'), 0])->all();
+        return Project::find()->andWhere(['>', Project::columnGetString('free_count'), 0])->all();
     }
 }

@@ -68,10 +68,11 @@ class Post extends Item
     public function rules()
     {
         return array_merge(parent::rules(), [
-            [['body', 'image', 'formCategories', 'publish_date'], 'required'],
+            [['body', 'image', 'formCategories'], 'required'],
             [['summary'], 'string'],
             [['publish_date'], 'safe'],
             ['seen', 'default', 'value' => 0],
+            ['publish_date', 'default', 'value' => time()],
             ['modelID', 'default', 'value' => isset(Yii::$app->controller->models[self::$modelName]) ? Yii::$app->controller->models[self::$modelName] : null],
         ]);
     }

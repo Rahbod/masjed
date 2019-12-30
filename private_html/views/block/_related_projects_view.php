@@ -2,30 +2,16 @@
 /** @var $this View */
 /** @var $block Banner */
 
-/** @var $projects Apartment[] */
+/** @var $projects Project[] */
 
-/** @var $apartment Apartment */
+/** @var $project Project */
 
-use app\controllers\ApartmentController;
-use app\controllers\ConstructionController;
-use app\controllers\InvestmentController;
+use app\controllers\ProjectController;
 use app\models\blocks\Banner;
 use app\models\Project;
-use app\models\projects\Apartment;
-use app\models\projects\Investment;
-use app\models\projects\OtherConstruction;
 use yii\web\View;
 
-switch ($project->type) {
-    case Project::TYPE_INVESTMENT:
-        $baseUrl = alias('@web') . '/' . InvestmentController::$imgDir . '/';
-        break;
-    case Project::TYPE_OTHER_CONSTRUCTION:
-        $baseUrl = alias('@web') . '/' . ConstructionController::$imgDir . '/';
-        break;
-    default:
-        $baseUrl = alias('@web') . '/' . ApartmentController::$imgDir . '/';
-}
+$baseUrl = alias('@web') . '/' . ProjectController::$imgDir . '/';
 ?>
 <?php if ($projects): ?>
     <section class="order-post">
@@ -45,14 +31,14 @@ switch ($project->type) {
                                         <?php for ($j = $i; $j < $i + 4; $j++):
                                             if (!isset($projects[$j]))
                                                 break;
-                                            $apartment = $projects[$j]; ?>
+                                            $project = $projects[$j]; ?>
                                             <div class="grid little-post col-lg-3 col-md-6  col-sm-12 col-xs-12">
-                                                <a href="<?= $apartment->getUrl() ?>">
-                                                    <img src="<?= $baseUrl . $apartment->image ?>"
-                                                         alt="<?= $apartment->getName() ?>">
-                                                    <h2 class="item-title"><?= $apartment->getName() ?></h2>
-                                                    <span class="description"><?= $apartment->getLocationStr() ?><?= $apartment->getLocationTwoStr() ? ' / ' : '' ?></span>
-                                                    <span class="description-2"><?= $apartment->getLocationTwoStr() ?></span>
+                                                <a href="<?= $project->getUrl() ?>">
+                                                    <img src="<?= $baseUrl . $project->image ?>"
+                                                         alt="<?= $project->getName() ?>">
+                                                    <h2 class="item-title"><?= $project->getName() ?></h2>
+                                                    <span class="description"><?= $project->getLocationStr() ?><?= $project->getLocationTwoStr() ? ' / ' : '' ?></span>
+                                                    <span class="description-2"><?= $project->getLocationTwoStr() ?></span>
                                                 </a>
                                             </div>
                                         <?php endfor; ?>

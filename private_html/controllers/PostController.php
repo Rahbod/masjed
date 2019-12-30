@@ -127,10 +127,10 @@ class PostController extends AuthController
                 $pdate = $model->publish_date;
                 $model->publish_date = Helper::jDateTotoGregorian($model->publish_date);
             }
-            $image = new UploadedFiles($this->tmpDir, $model->image, $this->imageOptions);
-            $gallery = new UploadedFiles($this->tmpDir, $model->gallery, $this->galleryOptions);
+            $image = new UploadedFiles($this->tmpDir, $model->image, self::$imageOptions);
+            $gallery = new UploadedFiles($this->tmpDir, $model->gallery, self::$galleryOptions);
             if ($model->save()) {
-                $image->move($this->imageDir);
+                $image->move(self::$imageDir);
                 $gallery->move(Attachment::getAttachmentPath());
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
                 return $this->redirect(['view', 'id' => $model->id]);
@@ -161,8 +161,8 @@ class PostController extends AuthController
             return ActiveForm::validate($model);
         }
 
-        $image = new UploadedFiles($this->imageDir, $model->image, $this->imageOptions);
-        $gallery = new UploadedFiles(Attachment::$attachmentPath, $model->attachments, $this->galleryOptions);
+        $image = new UploadedFiles(self::$imageDir, $model->image, self::$imageOptions);
+        $gallery = new UploadedFiles(Attachment::$attachmentPath, $model->attachments, self::$galleryOptions);
 
         if (Yii::$app->request->post()) {
             $oldImage = $model->image;
@@ -201,9 +201,9 @@ class PostController extends AuthController
     public function actionDelete($id)
     {
         $model = $this->findModel($id);
-        $image = new UploadedFiles($this->imageDir, $model->image, $this->imageOptions);
+        $image = new UploadedFiles(self::$imageDir, $model->image, self::$imageOptions);
         $image->removeAll(true);
-        $gallery = new UploadedFiles(Attachment::$attachmentPath, $model->attachments, $this->galleryOptions);
+        $gallery = new UploadedFiles(Attachment::$attachmentPath, $model->attachments, self::$galleryOptions);
         $gallery->removeAll(true);
         $model->delete();
 

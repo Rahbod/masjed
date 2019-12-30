@@ -1,0 +1,37 @@
+/*
+Theme Name:   Custom
+Author:       Erfan Rahimi
+Version:      1.0
+Create Date:  1398/05/22
+*/
+
+section.slide-1 {
+    background-image: url("/images/slide-1.jpg");
+}
+
+#main-navigation {
+    list-style: none;
+    display: flex;
+    float: right;
+}
+
+
+a {
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+    padding: auto;
+    padding-right: 20px;
+}
+
+.title-page-test{
+	margin:20px auto;
+	background-color:#4b4742;
+	height:120px;
+}
+
+#title-text-page-test{
+	/*padding-left:20px;*/
+	color:#ffff;
+	padding:30px 15%;
+}

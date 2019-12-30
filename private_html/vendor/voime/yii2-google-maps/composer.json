@@ -1,0 +1,21 @@
+{
+    "name": "voime/yii2-google-maps",
+    "description": "Google Maps Yii2 wrapper",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Arvi Võime",
+            "email": "avoime@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "voime\\GoogleMaps\\": ""
+        }
+    }
+}

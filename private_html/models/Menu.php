@@ -247,4 +247,12 @@ class Menu extends Category
         parent::afterDelete();
         app()->cache->delete('menus');
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getParent()
+    {
+        return $this->hasOne(self::className(), ['id' => 'parentID']);
+    }
 }

@@ -103,7 +103,7 @@ class MenuController extends AuthController
             $model->load(Yii::$app->request->post());
             $saveResult = false;
             $parentID = $model->parentID;
-            if ($parentID == '') {
+            if (empty($parentID)) {
                 $saveResult = $model->makeRoot();
                 $model->parentID = null;
             } else {
@@ -148,8 +148,7 @@ class MenuController extends AuthController
 
             $saveResult = false;
             $parentID = $model->parentID;
-            $model->parentID = null;
-            if ($parentID == '') {
+            if (empty($parentID)) {
                 if ($parent)
                     $saveResult = $model->makeRoot();
                 else

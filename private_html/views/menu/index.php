@@ -50,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'columns' => [
                         [
                             'header' => '',
-                            'value' => function(){
+                            'value' => function () {
                                 return '<i class="handle"></i>';
                             },
                             'format' => 'raw',
@@ -60,22 +60,22 @@ $this->params['breadcrumbs'][] = $this->title;
                         'name',
                         [
                             'attribute' => 'parentID',
-                            'value' => function($model){
-                                return $model->parent?"<b>{$model->parent->name}</b>":'-';
+                            'value' => function ($model) {
+                                return $model->parent ? "<b>{$model->parent->name}</b>" : '-';
                             },
                             'filter' => \app\models\Menu::parentsList(),
                             'format' => 'raw'
                         ],
                         [
                             'attribute' => 'menu_type',
-                            'value' => function($model){
+                            'value' => function ($model) {
                                 return $model->getMenuTypeLabel();
                             },
                         ],
                         [
                             'header' => trans('words', 'Link'),
-                            'value' => function($model){
-                                return $model->getUrl()!= "#"?Html::a(trans('words', 'show'), $model->getUrl(), ['target' => '_blank']):'-';
+                            'value' => function ($model) {
+                                return $model->getUrl() != "#" ? Html::a(trans('words', 'show'), $model->getUrl(), ['target' => '_blank']) : '-';
                             },
                             'format' => 'raw'
                         ],
@@ -83,7 +83,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         [
                             'attribute' => 'status',
                             'value' => function ($model) {
-                                return \app\models\Slide::getStatusLabels($model->status,true);
+                                return \app\models\Slide::getStatusLabels($model->status, true);
                             },
                             'format' => 'raw',
                             'filter' => \app\models\Slide::getStatusFilter()
@@ -92,7 +92,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'attribute' => 'en_status',
                             'value' => function ($model) {
                                 $model->en_status = $model->en_status ?: 0;
-                                return \app\models\Slide::getStatusLabels($model->en_status,true);
+                                return \app\models\Slide::getStatusLabels($model->en_status, true);
                             },
                             'format' => 'raw',
                             'filter' => \app\models\Slide::getStatusFilter()
@@ -101,19 +101,19 @@ $this->params['breadcrumbs'][] = $this->title;
                             'attribute' => 'ar_status',
                             'value' => function ($model) {
                                 $model->ar_status = $model->ar_status ?: 0;
-                                return \app\models\Slide::getStatusLabels($model->ar_status,true);
+                                return \app\models\Slide::getStatusLabels($model->ar_status, true);
                             },
                             'format' => 'raw',
                             'filter' => \app\models\Slide::getStatusFilter()
                         ],
-                        ['class' => 'app\components\customWidgets\CustomActionColumn','template' => '{update} {delete}']
+                        ['class' => 'app\components\customWidgets\CustomActionColumn', 'template' => '{update} {delete}']
                     ],
                 ]); ?>
             </div>
         </div>
     </div>
     <?php
-//    var_dump(\yii\helpers\ArrayHelper::map(\app\models\Menu::find()->roots()->all(), 'url', 'name'));exit;
+    //    var_dump(\yii\helpers\ArrayHelper::map(\app\models\Menu::find()->roots()->all(), 'url', 'name'));exit;
     ?>
     <?php Pjax::end(); ?>
 </div>

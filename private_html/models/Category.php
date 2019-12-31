@@ -190,7 +190,7 @@ class Category extends MultiLangActiveRecord
      */
     public function getParent()
     {
-        return $this->hasOne(Category::className(), ['id' => 'parentID']);
+        return $this->hasOne(self::className(), ['id' => 'parentID']);
     }
 
     /**

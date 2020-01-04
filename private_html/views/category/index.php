@@ -50,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'columns' => [
                         [
                             'header' => '',
-                            'value' => function(){
+                            'value' => function () {
                                 return '<i class="handle"></i>';
                             },
                             'format' => 'raw',
@@ -60,15 +60,15 @@ $this->params['breadcrumbs'][] = $this->title;
                         'name',
                         [
                             'attribute' => 'category_type',
-                            'value' => function($model){
+                            'value' => function ($model) {
                                 return $model->getCategoryTypeLabel($model->category_type);
                             },
                             'filter' => \app\models\Category::getCategoryTypeLabels()
                         ],
                         [
                             'attribute' => 'parentID',
-                            'value' => function($model){
-                                return $model->parent?"<b>{$model->parent->name}</b>":'-';
+                            'value' => function ($model) {
+                                return $model->parent ? "<b>{$model->parent->name}</b>" : '-';
                             },
                             'filter' => \app\models\Category::parentsList(),
                             'format' => 'raw'
@@ -77,7 +77,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         [
                             'attribute' => 'status',
                             'value' => function ($model) {
-                                return \app\models\Page::getStatusLabels($model->status,true);
+                                return \app\models\Page::getStatusLabels($model->status, true);
                             },
                             'format' => 'raw',
                             'filter' => \app\models\Page::getStatusFilter()
@@ -86,7 +86,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'attribute' => 'en_status',
                             'value' => function ($model) {
                                 $model->en_status = $model->en_status ?: 0;
-                                return \app\models\Page::getStatusLabels($model->en_status,true);
+                                return \app\models\Page::getStatusLabels($model->en_status, true);
                             },
                             'format' => 'raw',
                             'filter' => \app\models\Page::getStatusFilter()
@@ -95,19 +95,19 @@ $this->params['breadcrumbs'][] = $this->title;
                             'attribute' => 'ar_status',
                             'value' => function ($model) {
                                 $model->ar_status = $model->ar_status ?: 0;
-                                return \app\models\Page::getStatusLabels($model->ar_status,true);
+                                return \app\models\Page::getStatusLabels($model->ar_status, true);
                             },
                             'format' => 'raw',
                             'filter' => \app\models\Page::getStatusFilter()
                         ],
-                        ['class' => 'app\components\customWidgets\CustomActionColumn']
+                        [
+                            'class' => 'app\components\customWidgets\CustomActionColumn',
+                            'template' => '{update} {delete}'
+                        ]
                     ],
                 ]); ?>
             </div>
         </div>
     </div>
-    <?php
-//    var_dump(\yii\helpers\ArrayHelper::map(\app\models\Category::find()->roots()->all(), 'url', 'name'));exit;
-    ?>
     <?php Pjax::end(); ?>
 </div>

@@ -5,6 +5,7 @@ namespace app\models;
 use app\components\MainController;
 use app\controllers\ProjectController;
 use app\controllers\ListController;
+use app\controllers\SlideController;
 use Yii;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -81,8 +82,8 @@ class Slide extends Item
                 'type' => static::FORM_FIELD_TYPE_DROP_ZONE,
                 'containerCssClass' => 'col-sm-12',
                 'temp' => MainController::$tempDir,
-                'path' => ListController::$imgDir,
-                'filesOptions' => ListController::$imageOptions,
+                'path' => SlideController::$imgDir,
+                'filesOptions' => SlideController::$imageOptions,
                 'hint' => 'حداقل سایز تصویر: 1920 در 1080 پیکسل',
                 'options' => [
                     'url' => Url::to(['upload-image']),

@@ -11,11 +11,12 @@ use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 use app\components\CrudControllerTrait;
+use app\components\CrudControllerInterface;
 
 /**
  * DonationController implements the CRUD actions for Donation model.
  */
-class DonationController extends AuthController
+class DonationController extends AuthController implements CrudControllerInterface
 {
     use CrudControllerTrait;
 
@@ -26,4 +27,23 @@ class DonationController extends AuthController
     {
         return Donation::className();
     }
+
+    public function getViewPath()
+    {
+        return '@app/views/layouts/default_crud';
+    }
+
+    /**
+    * for attributes that is need uploader processes
+    * @return array
+    */
+    /*public function uploaderAttributes()
+    {
+        return [
+            'image' => [
+                'dir' => self::$imgDir,
+                'options' => self::$imageOptions
+            ]
+        ];
+    }*/
 }

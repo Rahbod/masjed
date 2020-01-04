@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use \app\components\customWidgets\CustomGridView;
 use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\SlideSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -27,7 +28,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="m-portlet__head-tools">
                 <ul class="m-portlet__nav">
                     <li class="m-portlet__nav-item">
-                        <a href="<?= \yii\helpers\Url::to(['create'])?>" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
+                        <a href="<?= \yii\helpers\Url::to(['create']) ?>"
+                           class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
 						<span>
 							<i class="la la-plus"></i>
 							<span><?= trans('words', 'Create Slide') ?></span>
@@ -45,24 +47,17 @@ $this->params['breadcrumbs'][] = $this->title;
                     'dataProvider' => $dataProvider,
                     'filterModel' => $searchModel,
                     'columns' => [
-                        ['class' => 'yii\grid\SerialColumn'],
-                        [
-                            'attribute' => 'userID',
-                            'value' => function($model){
-                                return $model->user->username;
-                            }
-                        ],
                         'name',
                         [
                             'attribute' => 'created',
-                            'value' => function($model){
+                            'value' => function ($model) {
                                 return jDateTime::date('Y/m/d', $model->created);
                             }
                         ],
                         [
                             'attribute' => 'status',
                             'value' => function ($model) {
-                                return \app\models\Slide::getStatusLabels($model->status,true);
+                                return \app\models\Slide::getStatusLabels($model->status, true);
                             },
                             'format' => 'raw',
                             'filter' => \app\models\Slide::getStatusFilter()
@@ -71,7 +66,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'attribute' => 'en_status',
                             'value' => function ($model) {
                                 $model->en_status = $model->en_status ?: 0;
-                                return \app\models\Slide::getStatusLabels($model->en_status,true);
+                                return \app\models\Slide::getStatusLabels($model->en_status, true);
                             },
                             'format' => 'raw',
                             'filter' => \app\models\Slide::getStatusFilter()
@@ -80,12 +75,15 @@ $this->params['breadcrumbs'][] = $this->title;
                             'attribute' => 'ar_status',
                             'value' => function ($model) {
                                 $model->ar_status = $model->ar_status ?: 0;
-                                return \app\models\Slide::getStatusLabels($model->ar_status,true);
+                                return \app\models\Slide::getStatusLabels($model->ar_status, true);
                             },
                             'format' => 'raw',
                             'filter' => \app\models\Slide::getStatusFilter()
                         ],
-                        ['class' => 'app\components\customWidgets\CustomActionColumn']
+                        [
+                            'class' => 'app\components\customWidgets\CustomActionColumn',
+                            'template' => '{update} {delete}'
+                        ]
                     ],
                 ]); ?>
             </div>

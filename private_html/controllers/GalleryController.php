@@ -235,7 +235,7 @@ class GalleryController extends AuthController
                 $thumb->move($this->imageDir);
                 $fullImage->move($this->imageDir);
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['index']);
             } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
@@ -275,7 +275,7 @@ class GalleryController extends AuthController
                 $thumb->update($oldThumb, $model->thumbnail_image, $this->tmpDir);
                 $fullImage->update($oldFullImage, $model->full_image, $this->tmpDir);
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['index']);
             } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
@@ -330,7 +330,7 @@ class GalleryController extends AuthController
                 $poster->move($this->imageDir);
                 $video->move($this->videoDir);
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['index']);
             } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
@@ -368,7 +368,7 @@ class GalleryController extends AuthController
                 $poster->update($oldPoster, $model->image, $this->tmpDir);
                 $video->update($oldVideo, $model->video, $this->tmpDir);
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['index']);
             } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }

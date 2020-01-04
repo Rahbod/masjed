@@ -149,19 +149,19 @@ if (YII_ENV_DEV) {
             'controller' => [ // generator name
                 'class' => 'app\giigenerators\controller\Generator', // generator class
                 'templates' => [ //setting for out templates
-                    'dyna-multilingual' => '@app/giigenerators/controller/dynamultilingual', // template name => path to template
+                    'default' => '@app/giigenerators/controller/default', // template name => path to template
                 ]
             ],
             'crud' => [ // generator name
                 'class' => 'app\giigenerators\crud\Generator', // generator class
                 'templates' => [ //setting for out templates
-                    'dyna-multilingual' => '@app/giigenerators/crud/dynamultilingual', // template name => path to template
+                    'default' => '@app/giigenerators/crud/default', // template name => path to template
                 ]
             ],
             'model' => [ // generator name
                 'class' => 'app\giigenerators\model\Generator', // generator class
                 'templates' => [ //setting for out templates
-                    'dyna-multilingual' => '@app/giigenerators/model/dynamultilingual', // template name => path to template
+                    'default' => '@app/giigenerators/model/default', // template name => path to template
                 ]
             ]
         ],

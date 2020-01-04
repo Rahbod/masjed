@@ -2,44 +2,22 @@
 
 namespace app\controllers;
 
-use richardfan\sortable\SortableAction;
 use Yii;
+use app\components\CrudControllerInterface;
+use app\components\CrudControllerTrait;
+use richardfan\sortable\SortableAction;
 use app\models\Category;
-use app\models\CategorySearch;
 use app\components\AuthController;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 
 /**
  * CategoryController implements the CRUD actions for Category model.
  */
-class CategoryController extends AuthController
+class CategoryController extends AuthController implements CrudControllerInterface
 {
-    /**
-    * for set admin theme
-    */
-    public function init()
-    {
-        $this->setTheme('default');
-        parent::init();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
+    use CrudControllerTrait;
 
     public function actions()
     {
@@ -50,36 +28,6 @@ class CategoryController extends AuthController
                 'orderColumn' => 'sort',
             ],
         ];
-    }
-
-    /**
-     * Lists all Category models.
-     * @return mixed
-     */
-    public function actionIndex()
-    {
-        $searchModel = new CategorySearch();
-
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->pagination = false;
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
-    }
-
-    /**
-     * Displays a single Category model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
     }
 
     /**
@@ -97,7 +45,7 @@ class CategoryController extends AuthController
             return ActiveForm::validate($model);
         }
 
-        if (Yii::$app->request->post()){
+        if (Yii::$app->request->post()) {
             $model->load(Yii::$app->request->post());
             $saveResult = false;
             $parentID = $model->parentID;
@@ -110,8 +58,8 @@ class CategoryController extends AuthController
             }
             if ($saveResult) {
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
-                return $this->redirect(['view', 'id' => $model->id]);
-            }else
+                return $this->redirect(['index']);
+            } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => trans('words', 'base.dangerMsg')]);
         }
 
@@ -120,10 +68,11 @@ class CategoryController extends AuthController
         ]);
     }
 
-public function actionCreateGallery()
+    public function actionCreateGallery()
     {
         $parent = \app\models\Category::findOne(162);
-        var_dump($parent->children()->count());exit;
+        var_dump($parent->children()->count());
+        exit;
         /*$newParent = new Category();
         $newParent->name = $parent->name;
         $newParent->category_type = 'image_gallery';
@@ -149,8 +98,7 @@ public function actionCreateGallery()
         */
 
 
-
-        if (Yii::$app->request->post()){
+        if (Yii::$app->request->post()) {
             $model->load(Yii::$app->request->post());
             $saveResult = false;
             $parentID = $model->parentID;
@@ -164,7 +112,7 @@ public function actionCreateGallery()
             if ($saveResult) {
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
                 return $this->redirect(['view', 'id' => $model->id]);
-            }else
+            } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => trans('words', 'base.dangerMsg')]);
         }
 
@@ -172,7 +120,6 @@ public function actionCreateGallery()
             'model' => $model,
         ]);
     }
-
 
 
     /**
@@ -192,12 +139,12 @@ public function actionCreateGallery()
             return ActiveForm::validate($model);
         }
 
-        if (Yii::$app->request->post()){
+        if (Yii::$app->request->post()) {
             $model->load(Yii::$app->request->post());
             if ($model->save()) {
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
-                return $this->redirect(['view', 'id' => $model->id]);
-            }else
+                return $this->redirect(['index']);
+            } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => trans('words', 'base.dangerMsg')]);
         }
 
@@ -228,18 +175,10 @@ public function actionCreateGallery()
     }
 
     /**
-     * Finds the Category model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Category the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
+     * @return string
      */
-    protected function findModel($id)
+    public function getModelName()
     {
-        if (($model = Category::findOne($id)) !== null) {
-            return $model;
-        }
-
-        throw new NotFoundHttpException(trans('words', 'The requested page does not exist.'));
+        return Category::className();
     }
 }

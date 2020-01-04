@@ -3,6 +3,7 @@
 namespace app\models;
 
 use app\components\MainController;
+use app\controllers\PageController;
 use app\controllers\PostController;
 use Yii;
 use yii\helpers\ArrayHelper;
@@ -95,8 +96,8 @@ class Page extends Item
                 'type' => static::FORM_FIELD_TYPE_DROP_ZONE,
                 'containerCssClass' => 'col-sm-12',
                 'temp' => MainController::$tempDir,
-                'path' => PostController::$imageDir,
-                'filesOptions' => PostController::$imageOptions,
+                'path' => PageController::$imageDir,
+                'filesOptions' => PageController::$imageOptions,
                 'options' => [
                     'url' => Url::to(['upload-image']),
                     'removeUrl' => Url::to(['delete-image']),

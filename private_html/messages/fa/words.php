@@ -562,6 +562,10 @@ return [
     'Categories' => 'دسته بندی ها',
     'Category' => 'دسته بندی',
     'Select Category' => 'انتخاب دسته بندی',
+    'Create Category' => 'افزودن دسته بندی',
+    'News & Articles' => 'اخبار و مقالات',
+    'Category Type' => 'نوع دسته بندی',
+    'Update Category: {name}' => 'ویرایش دسته بندی: {name}',
 
     ///////// Post
     'Post' => 'مطالب',

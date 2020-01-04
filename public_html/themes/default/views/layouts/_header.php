@@ -65,7 +65,7 @@
                 <div id="m_header_topbar" class="m-topbar  m-stack m-stack--ver m-stack--general m-stack--fluid">
                     <div class="m-stack__item m-topbar__nav-wrapper">
                         <ul class="m-topbar__nav m-nav m-nav--inline">
-                            <li class="d-none m-nav__item m-topbar__languages m-dropdown m-dropdown--small m-dropdown--header-bg-fill m-dropdown--arrow m-dropdown--align-right m-dropdown--mobile-full-width"
+                            <li class="m-nav__item m-topbar__languages m-dropdown m-dropdown--small m-dropdown--header-bg-fill m-dropdown--arrow m-dropdown--align-right m-dropdown--mobile-full-width"
                                 m-dropdown-toggle="click" aria-expanded="true">
                                 <a href="#" class="m-nav__link m-dropdown__toggle">
                                     <span class="m-nav__link-badge m-badge m-badge--dot m-badge--info m--hide"></span>

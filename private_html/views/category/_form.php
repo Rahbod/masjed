@@ -39,11 +39,23 @@ $form = CustomActiveForm::begin([
             </div>
 
             <div class="col-sm-4">
-                <?= $form->field($model, 'en_name')->textInput(['maxlength' => true]) ?>
+                <?= $form->field($model, 'ar_name')->textInput(['maxlength' => true]) ?>
             </div>
 
             <div class="col-sm-4">
-                <?= $form->field($model, 'ar_name')->textInput(['maxlength' => true]) ?>
+                <?= $form->field($model, 'en_name')->textInput(['maxlength' => true]) ?>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4">
+                <?php echo $form->field($model, 'status', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox([], false) ?>
+            </div>
+            <div class="col-sm-4">
+                <?php echo $form->field($model, 'ar_status', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox([], false) ?>
+            </div>
+            <div class="col-sm-4">
+                <?php echo $form->field($model, 'en_status', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox([], false) ?>
             </div>
         </div>
 
@@ -55,30 +67,19 @@ $form = CustomActiveForm::begin([
             </div>
             <div class="col-sm-4">
                 <?= $form->field($model, 'category_type')->dropDownList(Category::getCategoryTypeLabels(),[
-                        'data-toggle' => 'box'
+                    'data-toggle' => 'box'
                 ]) ?>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-sm-4">
-                <?php echo $form->field($model, 'status', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox([], false) ?>
-            </div>
-            <div class="col-sm-4">
-                <?php echo $form->field($model, 'en_status', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox([], false) ?>
-            </div>
-            <div class="col-sm-4">
-                <?php echo $form->field($model, 'ar_status', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox([], false) ?>
-            </div>
-        </div>
-        <div class="row box-target box-image_gallery hide">
-            <div class="col-sm-4">
-                <?php echo $form->field($model, 'show_in_home', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox([], false) ?>
-            </div>
-            <div class="col-sm-4">
-                <?php echo $form->field($model, 'show_always', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox([], false) ?>
-            </div>
-        </div>
+<!--        <div class="row box-target box-image_gallery hide">-->
+<!--            <div class="col-sm-4">-->
+<!--                --><?php //echo $form->field($model, 'show_in_home', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox([], false) ?>
+<!--            </div>-->
+<!--            <div class="col-sm-4">-->
+<!--                --><?php //echo $form->field($model, 'show_always', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox([], false) ?>
+<!--            </div>-->
+<!--        </div>-->
     </div>
 
     <div class="m-portlet__foot m-portlet__foot--fit">

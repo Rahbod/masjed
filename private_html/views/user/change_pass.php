@@ -7,7 +7,7 @@ use app\components\customWidgets\CustomActiveForm;
 /* @var $model app\models\User */
 
 $this->title = trans('words', 'Change Password: {name}', ['name' => Yii::$app->user->identity->username]);
-$this->params['breadcrumbs'][] = ['label' => '<span class="m-nav__link-text">'.trans('words', 'Slides').'</span>', 'url' => ['index'], 'class' =>'m-nav__link'];
+
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

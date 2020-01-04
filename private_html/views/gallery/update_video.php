@@ -8,8 +8,8 @@ use yii\helpers\Html;
 $this->title = Yii::t('words', 'Update Video: {name}', [
     'name' => $model->name,
 ]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('words', 'Video Gallery'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('words', 'Video Gallery'), 'url' => ['index-video']];
+//$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('words', 'Update');
 ?>
 

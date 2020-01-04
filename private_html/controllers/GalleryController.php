@@ -173,7 +173,7 @@ class GalleryController extends AuthController
 
         $searchModel->type = Gallery::TYPE_PICTURE_GALLERY;
 //        $searchModel->status = Gallery::STATUS_PUBLISHED;
-        if($category = Yii::$app->request->getQueryParam('category'))
+        if ($category = Yii::$app->request->getQueryParam('category'))
             $searchModel->catID = $category;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -330,7 +330,7 @@ class GalleryController extends AuthController
                 $poster->move($this->imageDir);
                 $video->move($this->videoDir);
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
-                return $this->redirect(['index']);
+                return $this->redirect(['index-video']);
             } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
@@ -384,21 +384,23 @@ class GalleryController extends AuthController
 
     public function actionDelete($id)
     {
-        $model = $this->findModel($id);
+        $model = Gallery::findOne($id);
         if ($model->type == Gallery::TYPE_PICTURE_GALLERY) {
             $image = new UploadedFiles($this->imageDir, $model->thumbnail_image, $this->thumbOptions);
             $image->removeAll(true);
             $image = new UploadedFiles($this->imageDir, $model->full_image, $this->fullImageOptions);
             $image->removeAll(true);
+            $return = 'index';
         } elseif ($model->type == Gallery::TYPE_VIDEO_GALLERY) {
             $image = new UploadedFiles($this->imageDir, $model->image, $this->posterOptions);
             $image->removeAll(true);
             $video = new UploadedFiles($this->videoDir, $model->video);
             $video->removeAll(true);
+            $return = 'index-video';
         }
         $model->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect([$return]);
     }
 
     /**

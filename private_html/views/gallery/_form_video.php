@@ -22,7 +22,7 @@ use app\models\Category;
         <?php echo $form->field($model, 'image')->widget(\devgroup\dropzone\DropZone::className(), [
             'url' => Url::to(['upload-image']),
             'removeUrl' => Url::to(['delete-image']),
-            'storedFiles' => isset($image) ? $image : [],
+            'storedFiles' => isset($poster) ? $poster : [],
             'sortable' => false, // sortable flag
             'sortableOptions' => [], // sortable options
             'htmlOptions' => ['class' => 'single', 'id' => Html::getInputId($model, 'image')],
@@ -42,7 +42,7 @@ use app\models\Category;
         <?php echo $form->field($model, 'video')->widget(\devgroup\dropzone\DropZone::className(), [
             'url' => Url::to(['upload-video']),
             'removeUrl' => Url::to(['delete-video']),
-            'storedFiles' => isset($image) ? $image : [],
+            'storedFiles' => isset($video) ? $video : [],
             'sortable' => false, // sortable flag
             'sortableOptions' => [], // sortable options
             'htmlOptions' => ['class' => 'single', 'id' => Html::getInputId($model, 'video')],

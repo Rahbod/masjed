@@ -49,13 +49,30 @@ $this->params['breadcrumbs'][] = $this->title;
                     'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
                         'name',
+                        'short_description',
+//                        [
+//                            'attribute' => 'userID',
+//                            'value' => function ($model) {
+//                                return $model->user->username;
+//                            }
+//                        ],
                         [
-                            'attribute' => 'userID',
-                            'value' => function ($model) {
-                                return $model->user->username;
-                            }
-                        ],
-                        ['class' => 'app\components\customWidgets\CustomActionColumn']
+                            'class' => 'app\components\customWidgets\CustomActionColumn',
+                            'template' => '{update} {delete}',
+                            'buttons' => [
+                                'update' => function ($url, $model, $key) {
+                                    return Html::a('<span class="far fa-edit text-success" ></span >', ['gallery/update-video', 'id' => $model->id],
+                                        [
+                                            'class' => '',
+                                            'title' => "ویرایش ویدئو",
+                                            'aria-label' => "update video",
+                                            'data-pjax' => 0
+
+                                        ]
+                                    );
+                                },
+                            ]
+                        ]
                     ],
                 ]); ?>
             </div>

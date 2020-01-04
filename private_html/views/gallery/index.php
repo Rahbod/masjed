@@ -84,7 +84,10 @@ $this->params['breadcrumbs'][] = $this->title;
                             'format' => 'raw',
                             'filter'=>\app\models\Gallery::getStatusFilter()
                         ],
-                        ['class' => 'app\components\customWidgets\CustomActionColumn']
+                        [
+                            'class' => 'app\components\customWidgets\CustomActionColumn',
+                            'template' => '{update} {delete}'
+                        ]
                     ],
                 ]); ?>
             </div>

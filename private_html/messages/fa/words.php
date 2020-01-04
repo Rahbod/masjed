@@ -60,7 +60,6 @@ return [
     'External Link' => 'لینک خارجی',
     'Content' => 'محتوا',
     'Module Name' => 'نام ماژول',
-    'Gallery' => 'گالری تصاویر',
     'Contact' => 'تماس با ما',
     'show' => 'نمایش',
     'Link' => 'پیوند',
@@ -554,4 +553,33 @@ return [
     // contact
     '<strong>CONTACT</strong> US' => '<strong>تماس</strong> با ما',
     'contact_us_text' => 'contact_us_text',
+
+
+
+
+
+    ///////// Category
+    'Categories' => 'دسته بندی ها',
+    'Category' => 'دسته بندی',
+    'Select Category' => 'انتخاب دسته بندی',
+
+    ///////// Post
+    'Post' => 'مطالب',
+    'Posts' => 'مطالب',
+    'Create Post' => 'افزودن مطلب',
+    'Update Post: {name}' => 'ویرایش مطلب: {name}',
+    'Type' => 'نوع',
+    'Picture gallery' => 'گالری تصاویر',
+
+
+    ///////// Gallery
+    'Gallery' => 'گالری',
+    'Picture Gallery' => 'گالری تصاویر',
+    'Video Gallery' => 'گالری ویدئو',
+    'Create Video' => 'افزودن ویدئو',
+    'Update Video: {name}' => 'ویرایش ویدئو: {name}',
+    'Create Picture' => 'افزودن تصویر',
+    'Update Picture: {name}' => 'ویرایش تصویر: {name}',
+    'Short Description' => 'عنوان کوتاه',
+    'Description' => 'توضیحات',
 ];

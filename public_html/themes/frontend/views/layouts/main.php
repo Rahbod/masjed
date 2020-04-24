@@ -3,8 +3,16 @@
 
 /* @var $content string */
 
+use app\components\customWidgets\CustomActiveForm;
+use app\components\customWidgets\CustomCaptcha;
+use app\components\FormRendererTrait;
+use app\models\ContactForm;
+use app\models\ProjectProcess;
+use app\models\Slide;
 use app\themes\AppAsset;
 use yii\helpers\Html;
+use yii\web\JqueryAsset;
+use yii\web\View;
 
 AppAsset::register($this);
 ?>
@@ -17,62 +25,131 @@ AppAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
     <title><?= (($this->title) ? $this->title . ' - ' : '') . trans('words', Yii::$app->name); ?></title>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="<?= $this->theme->baseUrl.'/favicon.ico' ?>"/>
+    <link rel="shortcut icon" href="<?= $this->theme->baseUrl . '/favicon.ico' ?>"/>
+
+    <link href="<?= $this->theme->baseUrl . '/css/bootstrap.min.css' ?>" rel="stylesheet">
+    <?php if (app()->language != 'en'): ?>
+        <link href="<?= $this->theme->baseUrl . '/css/bootstrap-rtl.min.css' ?>" rel="stylesheet">
+    <?php endif; ?>
+    <link href="<?= $this->theme->baseUrl . '/css/bootstrap-4-classes.css' ?>" rel="stylesheet">
+    <link href="<?= $this->theme->baseUrl . '/css/font-awesome.css' ?>" rel="stylesheet">
+    <link href="<?= $this->theme->baseUrl . '/css/hacen-maghreb.css' ?>" rel="stylesheet">
+    <link href="<?= $this->theme->baseUrl . '/css/open-sans.css' ?>" rel="stylesheet">
+    <link href="<?= $this->theme->baseUrl . '/css/owl.carousel.min.css' ?>" rel="stylesheet">
+    <link href="<?= $this->theme->baseUrl . '/css/owl.theme.default.min.css' ?>" rel="stylesheet">
+    <link href="<?= $this->theme->baseUrl . '/css/svg_icons.css' ?>" rel="stylesheet">
+    <link href="<?= $this->theme->baseUrl . '/css/onepage-scroll.css' ?>" rel="stylesheet">
+    <link href="<?= $this->theme->baseUrl . '/css/bootstrap-theme.css' ?>" rel="stylesheet">
 
     <?php if (app()->language != 'en'): ?>
-        <link href="<?= $this->theme->baseUrl . '/assets/bootstrap/rtl/css/bootstrap.min.css' ?>" rel="stylesheet">
-    <?php else: ?>
-        <link href="<?= $this->theme->baseUrl . '/assets/bootstrap/css/bootstrap.min.css' ?>" rel="stylesheet">
-    <?php endif; ?>
 
-    <link href="<?= $this->theme->baseUrl . '/assets/css/all.css' ?>" rel="stylesheet">
-    <link href="<?= $this->theme->baseUrl . '/style.css' ?>" rel="stylesheet">
-    <?php if (app()->language != 'en'): ?>
-        <link href="<?= $this->theme->baseUrl . '/rtl.css' ?>" rel="stylesheet">
     <?php endif; ?>
-    <link href="<?= $this->theme->baseUrl . '/custom.css' ?>" rel="stylesheet">
 </head>
-<?php
-
-$url = app()->request->url;
-$url_array = explode('/', $url);
-$pageName = end($url_array);
-
-
-if ($pageName == 'more-one') {
-    $bodyClass = 'more-one';
-    $headerClass = 'header-style-2';
-} else {
-    $bodyClass = 'home';
-    $headerClass = 'header-style-1';
-}
-
-?>
-
-<body class="<?= app()->controller->bodyClass ?><?= app()->language != 'en'?' rtl':'' ?>">
+<body class="<?= app()->controller->bodyClass ?><?= app()->language != 'en' ? ' rtl' : '' ?>">
 <?php $this->beginBody(); ?>
 
-<?php if (app()->controller->innerPage)
-    echo $this->render('_inner_header');
-else
-    echo $this->render('_header');
-?>
-<main class="<?= isset(app()->controller->mainTag) ? app()->controller->mainTag : '' ?>">
+<main class="content">
+    <?= $this->render('_header'); ?>
+
+    <?php $slides = Slide::find()->valid()->orderBy(['id' => SORT_ASC])->all(); ?>
+    <section class="slider-container" id="section-1">
+        <div class="slider owl-carousel owl-theme" data-items="1" data-rtl="true">
+            <?php
+            /** @var Slide $item */
+            foreach ($slides as $item):
+                $path = alias('@webroot') . DIRECTORY_SEPARATOR . 'uploads/slide' . DIRECTORY_SEPARATOR . $item->image;
+                $url = request()->getBaseUrl() . '/uploads/slide/' . $item->image;
+                if (is_file($path)):
+                    ?>
+                    <div class="slide-item relative">
+                        <div class="image-container">
+                            <img src="<?= $url ?>" alt="<?= $item->getName() ?>">
+                        </div>
+                    </div>
+                <?php
+                endif;
+            endforeach; ?>
+        </div>
+    </section>
+
     <?= $content ?>
+
+    <section class="contact-form-container" id="section-11">
+        <div class="body-info">
+            <div class="right-side">
+                <div class="right-side--header">
+                    <h3>
+                        <b><?= trans('words', 'Contact us') ?></b>
+                        <?= trans('words', 'Mosque of karbala') ?>
+                    </h3>
+                    <small>أخبار متعلقة بالتعاون والتقدم في مشروع<br>مسجد كربلاء وشفافية مساهماتكم</small>
+                </div>
+            </div>
+            <div class="left-side">
+                <div class="contact-us-form-container">
+                    <div class="text">لا تتردد في الاتصال بنا عبر النموذج أدناه إذا كنت ترغب في الاتصال بمجموعة مسجد جامع
+                        الكربلاء ، أو إذا كان لديك أي نقد أو اقتراحات.
+                    </div>
+                    <div class="form">
+                        <?php
+                        $model = new ContactForm();
+                        $form = CustomActiveForm::begin([
+                                'id' => 'contact-us-form',
+                                'enableAjaxValidation' => false,
+                                'enableClientValidation' => true,
+                                'validateOnSubmit' => true,
+                        ]); ?>
+                        <div class="row">
+                            <?= $this->render('//layouts/_flash_message') ?>
+                            <?= $form->errorSummary($model) ?>
+                        </div>
+                        <div class="row">
+                            <?= $model->formRenderer($form, '{field}', 'col-lg-3 col-md-3 col-sm-3 input-container') ?>
+                        </div>
+                        <?= Html::textarea(Html::getInputName($model, 'body'), '',
+                                ['options' => ['placeholder' => $model->getAttributeLabel('body')]]) ?>
+                        <div class="button-container">
+                            <div class="pull-right">
+                                <?= $this->render('//layouts/_socials') ?>
+                            </div>
+                            <div class="pull-left captcha-container">
+                                <input type="submit" value="<?= trans('words', 'Send') ?>">
+                                <?= $form->field($model, 'verifyCode')->widget(CustomCaptcha::className(), [
+                                        'captchaAction' => ['/site/captcha'],
+                                        'template' => '<div class="input-group"><span class="input-group-addon">{image}</span>{input}</div>',
+                                        'options' => [
+                                                'class' => 'captcha-control',
+//                                            'placeholder' => trans('words', 'Verify Code'),
+                                                'tabindex' => ++FormRendererTrait::$tabindex,
+                                                'autocomplete' => 'off',
+                                        ],
+                                ])->label(false)->hint(false) ?>
+                            </div>
+                        </div>
+                        <?php CustomActiveForm::end(); ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .captcha-container > div{
+            float: left !important;
+        }
+    </style>
+
+    <?= $this->render('_footer'); ?>
 </main>
 
-<?php if (app()->controller->innerPage)
-    echo $this->render('_inner_footer');
-else
-    echo $this->render('_footer');
-?>
-
-<?php echo $this->render('_public_alert'); ?>
 <?php $this->endBody(); ?>
 
-<script src="<?= $this->theme->baseUrl . '/assets/bootstrap/js/bootstrap.min.js' ?>"></script>
-<script src="<?= $this->theme->baseUrl . '/assets/js/custom.js' ?>"></script>
+
+<script src="<?= $this->theme->baseUrl . '/js/bootstrap.min.js' ?>"></script>
+<script src="<?= $this->theme->baseUrl . '/js/owl.carousel.min.js' ?>"></script>
+<script src="<?= $this->theme->baseUrl . '/js/jquery.nicescroll.min.js' ?>"></script>
+<script src="<?= $this->theme->baseUrl . '/js/jquery.onepage-scroll.min.js' ?>"></script>
+<script src="<?= $this->theme->baseUrl . '/js/jquery.script.js' ?>"></script>
 </body>
 </html>
 <?php $this->endPage(); ?>

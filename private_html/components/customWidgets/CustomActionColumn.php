@@ -14,6 +14,8 @@ use yii\helpers\Html;
 
 class CustomActionColumn extends ActionColumn
 {
+    public $template = '{update} {delete}';
+
     protected function initDefaultButtons()
     {
         $this->initDefaultButton('view', 'fas fa-eye text-info');

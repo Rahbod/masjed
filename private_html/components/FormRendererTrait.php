@@ -9,6 +9,7 @@ use devgroup\dropzone\DropZone;
 use devgroup\dropzone\UploadedFiles;
 use dosamigos\tinymce\TinyMce;
 use faravaghi\jalaliDatePicker\jalaliDatePicker;
+use jDateTime;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\web\View;
@@ -38,13 +39,16 @@ trait FormRendererTrait
                 if (is_int($name)) {
                     $names = $field[0];
                     $field = $field[1];
-                    if (is_array($names))
-                        foreach ($names as $name)
+                    if (is_array($names)) {
+                        foreach ($names as $name) {
                             $output .= $this->fieldRenderer($form, $template, $name, $field, $allContainerCssClass, $i);
-                    else
+                        }
+                    } else {
                         $output .= $this->fieldRenderer($form, $template, $names, $field, $allContainerCssClass, $i);
-                } else
+                    }
+                } else {
                     $output .= $this->fieldRenderer($form, $template, $name, $field, $allContainerCssClass, $i);
+                }
                 $i++;
             }
         }
@@ -69,35 +73,42 @@ trait FormRendererTrait
      */
     public function fieldRenderer($form, $template, $name, $field, $allContainerCssClass, $index)
     {
-        if (!is_array($field))
+        if (!is_array($field)) {
             $field = ['type' => $field];
+        }
 
         // for js script type
         if ($field['type'] === static::FORM_JS_SCRIPT) {
-            if (isset($field['url']))
-                $form->view->registerJsFile($field['url'], isset($field['pos']) ? $field['pos'] : View::POS_READY, isset($field['key']) ? $field['key'] : $name . '-script');
-            elseif (isset($field['js']))
-                $form->view->registerJs($field['js'], isset($field['pos']) ? $field['pos'] : View::POS_READY, isset($field['key']) ? $field['key'] : $name . '-script');
+            if (isset($field['url'])) {
+                $form->view->registerJsFile($field['url'], isset($field['pos']) ? $field['pos'] : View::POS_READY,
+                        isset($field['key']) ? $field['key'] : $name . '-script');
+            } elseif (isset($field['js'])) {
+                $form->view->registerJs($field['js'], isset($field['pos']) ? $field['pos'] : View::POS_READY,
+                        isset($field['key']) ? $field['key'] : $name . '-script');
+            }
             return '';
         }
 
         if (isset($field['visible'])) {
-            if ($field['visible'] instanceof \Closure)
+            if ($field['visible'] instanceof \Closure) {
                 $visible = $field['visible']($this);
-            else
+            } else {
                 $visible = $field['visible'];
+            }
 
-            if (!$visible)
+            if (!$visible) {
                 return null;
+            }
         }
 
         $labelEx = true;
         $label = '';
         if ($field['type'] !== static::FORM_SEPARATOR && isset($field['label'])) {
-            if ($field['label'] instanceof \Closure)
+            if ($field['label'] instanceof \Closure) {
                 $label = $field['label']($this);
-            else
+            } else {
                 $label = $field['label'];
+            }
 
             $labelEx = $label === true;
 
@@ -122,34 +133,43 @@ trait FormRendererTrait
             $list = Lists::find()->andWhere([Lists::columnGetString('slug') => $field['listSlug']])->one();
             if ($list) {
                 $list_options = Lists::find()->andWhere(['parentID' => $list->id])->all();
-                if ($list_options)
+                if ($list_options) {
                     $items = ArrayHelper::map($list_options, 'id', function ($model) {
                         return $model->getName();
                     });
+                }
             }
 
-            if (!isset($options['prompt']) || $options['prompt'])
+            if (!isset($options['prompt']) || $options['prompt']) {
                 $options['prompt'] = isset($options['prompt']) ? $options['prompt'] : "";
-            else
+            } else {
                 unset($options['prompt']);
+            }
 
-            if (!$items)
-                $field['hint'] = "لیست خالی است. " . Html::a('ایجاد لیست', ['/list/create', 'slug' => $field['listSlug'], 'label' => $model->getAttributeLabel($field['attribute'])]);
-            else if (!isset($field['hint']))
+            if (!$items) {
+                $field['hint'] = "لیست خالی است. " . Html::a('ایجاد لیست', [
+                                '/list/create',
+                                'slug' => $field['listSlug'],
+                                'label' => $model->getAttributeLabel($field['attribute'])
+                        ]);
+            } elseif (!isset($field['hint'])) {
                 $field['hint'] = Html::a('ویرایش لیست', ['/list/create', 'slug' => $field['listSlug']]);
+            }
         }
         $attribute = $field['attribute'];
         $type = isset($field['type']) ? $field['type'] : false;
 
-        if (isset($field['tabindex']))
+        if (isset($field['tabindex'])) {
             $options['tabindex'] = $field['tabindex'];
+        }
 
         $hint = false;
         if (isset($field['hint'])) {
-            if ($field['hint'] instanceof \Closure)
+            if ($field['hint'] instanceof \Closure) {
                 $hint = $field['hint']($this);
-            else
+            } else {
                 $hint = $field['hint'];
+            }
             unset($field['hint']);
         }
 
@@ -158,11 +178,13 @@ trait FormRendererTrait
             case static::FORM_SEPARATOR:
                 Html::addCssClass($options, 'm-form__heading');
                 $obj = Html::tag('hr') .
-                    (isset($field['label']) ? Html::tag('div', Html::tag('h3', $field['label'], ['class' => 'm-form__heading-title']), $options) : '');
+                        (isset($field['label']) ? Html::tag('div',
+                                Html::tag('h3', $field['label'], ['class' => 'm-form__heading-title']), $options) : '');
                 break;
             case static::FORM_FIELD_TYPE_DROP_ZONE:
                 unset($options['tabindex']);
-                $options['storedFiles'] = new UploadedFiles($model->isNewRecord ? $field['temp'] : $field['path'], $model->$attribute, $field['filesOptions']);
+                $options['storedFiles'] = new UploadedFiles($model->isNewRecord ? $field['temp'] : $field['path'],
+                        $model->$attribute, $field['filesOptions']);
                 $obj = $form->field($model, $attribute)->widget(DropZone::className(), $options);
                 break;
             case static::FORM_FIELD_TYPE_CHECKBOX:
@@ -181,63 +203,72 @@ trait FormRendererTrait
                 $obj = $form->field($model, $attribute)->dropDownList($items, $options);
                 break;
             case static::FORM_FIELD_TYPE_SWITCH:
-                if (!isset($fieldOptions['template']))
+                if (!isset($fieldOptions['template'])) {
                     $fieldOptions['template'] = '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}';
+                }
                 $obj = $form->field($model, $attribute, $fieldOptions)->checkbox($options, false);
                 break;
             case static::FORM_FIELD_TYPE_TEXT_EDITOR:
-                if (!isset($options['options']['dir']))
+                if (!isset($options['options']['dir'])) {
                     $options['options']['dir'] = 'auto';
+                }
                 $options['options']['tabindex'] = $options['tabindex'];
                 $options['clientOptions'] = [
-                    'plugins' => [
-                        "advlist autolink lists link charmap print preview anchor",
-                        "searchreplace visualblocks code fullscreen",
-                        "insertdatetime media table contextmenu paste"
-                    ],
-                    'toolbar' => "undo redo | styleselect | removeformat | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+                        'plugins' => [
+                                "advlist autolink lists link charmap print preview anchor",
+                                "searchreplace visualblocks code fullscreen",
+                                "insertdatetime media table contextmenu paste"
+                        ],
+                        'toolbar' => "undo redo | styleselect | removeformat | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
                 ];
                 unset($options['tabindex']);
                 $obj = $form->field($model, $attribute, $fieldOptions)->widget(TinyMce::className(), $options);
                 break;
             case static::FORM_FIELD_TYPE_TEXT_AREA:
-                if (!isset($options['dir']))
+                if (!isset($options['dir'])) {
                     $options['dir'] = 'auto';
+                }
                 $obj = $form->field($model, $attribute, $fieldOptions)->textarea($options);
                 break;
             case static::FORM_FIELD_TYPE_PASSWORD:
-                if (!isset($options['dir']))
+                if (!isset($options['dir'])) {
                     $options['dir'] = 'auto';
+                }
                 $obj = $form->field($model, $attribute, $fieldOptions)->passwordInput($options);
                 break;
             case static::FORM_FIELD_TYPE_LANGUAGE_SELECT:
-                $obj = $form->field($model, $attribute, $fieldOptions)->dropDownList(MultiLangActiveRecord::$langArray, $options);
+                $obj = $form->field($model, $attribute, $fieldOptions)->dropDownList(MultiLangActiveRecord::$langArray,
+                        $options);
                 break;
             case static::FORM_FIELD_TYPE_DATE:
                 Html::addCssClass($options, 'datepicker form-control m-input m-input--solid');
-                $prefixField = \yii\bootstrap\Html::tag('div', Html::textInput("", $this->$attribute ?: "", [
-                    'class' => $options['class'],
-                    'tabindex' => $options['tabindex'],
-                    'data-value' => $model->$attribute,
-                    'data-config' => [
-                        'autoClose' => true,
-                        'observer' => true,
-                        'navigator' => [
-                            'text' => [
-                                'btnNextText' => trans('words', 'base.next'),
-                                'btnPrevText' => trans('words', 'base.previous'),
-                            ]
-                        ],
-                        'timePicker' => [
-                            'enabled' => false
-                        ],
-                        'altField' => '#' . \yii\bootstrap\Html::getInputId($model, $attribute),
-                        'dateFormat' => 'yy/mm/dd',
-                        'altFormat' => '@',
-                        'alignByRightSide' => true,
-                        'initialValue' => false,
-                    ]
-                ]), ['class' => 'row']);
+                $prefixField = \yii\bootstrap\Html::tag('div',
+                        Html::label($model->getAttributeLabel($attribute), $attribute,
+                                ['class' => 'col-form-label control-label']) .
+                        Html::textInput("", $this->$attribute ? jDateTime::date('Y/m/d', $this->$attribute, false) : "",
+                                [
+                                        'class' => $options['class'],
+                                        'tabindex' => $options['tabindex'],
+//                        'data-value' => $model->$attribute,
+                                        'data-config' => [
+                                                'autoClose' => true,
+                                                'observer' => true,
+                                                'navigator' => [
+                                                        'text' => [
+                                                                'btnNextText' => trans('words', 'base.next'),
+                                                                'btnPrevText' => trans('words', 'base.previous'),
+                                                        ]
+                                                ],
+                                                'timePicker' => [
+                                                        'enabled' => false
+                                                ],
+                                                'altField' => '#' . \yii\bootstrap\Html::getInputId($model, $attribute),
+                                                'dateFormat' => 'yy/mm/dd',
+                                                'altFormat' => '@',
+                                                'alignByRightSide' => true,
+                                                'initialValue' => false,
+                                        ]
+                                ]), ['class' => 'form-group m-form__group field-projecttimeline-' . $attribute]);
                 $obj = $form->field($model, $attribute, ['options' => ['class' => '']])->hiddenInput()->label(false);
                 break;
             case static::FORM_FIELD_TYPE_TAG:
@@ -245,32 +276,41 @@ trait FormRendererTrait
             case static::FORM_FIELD_TYPE_DATETIME:
             case static::FORM_FIELD_TYPE_TEXT:
             default:
-                if (!isset($options['dir']))
+                if (!isset($options['dir'])) {
                     $options['dir'] = 'auto';
+                }
                 $obj = $form->field($model, $attribute, $fieldOptions)->textInput($options);
                 break;
         }
 
         $output = '';
         if (!$labelEx) {
-            if (strpos($template, '{label}') === false)
+            if (strpos($template, '{label}') === false) {
                 $obj->label($label);
-            else {
+            } else {
                 $obj->label(false);
                 $output .= strtr($template, ['{label}' => $label]);
             }
         }
 
-        if ($hint)
+        if ($hint) {
             $obj->hint($hint);
+        }
 
-        if (isset($field['labelOptions']))
+        if (isset($field['labelOptions'])) {
             $obj->labelOptions = $field['labelOptions'];
+        }
 
-        if (isset($field['template']))
+        if (isset($field['template'])) {
             $obj->template = $field['template'];
+        }
 
-        Html::addCssClass($containerOptions, empty($containerCssClass) ? ($field['type'] !== static::FORM_SEPARATOR ? $allContainerCssClass : 'col-sm-12') : $containerCssClass);
+        if (isset($field['error']) && !$field['error']) {
+            $obj->errorOptions = ['class' => 'hidden'];
+        }
+
+        Html::addCssClass($containerOptions,
+                empty($containerCssClass) ? ($field['type'] !== static::FORM_SEPARATOR ? $allContainerCssClass : 'col-sm-12') : $containerCssClass);
         $fieldHtml = Html::tag('div', $prefixField . $obj, $containerOptions);
         $output .= strtr($template, ['{field}' => $fieldHtml]);
         return $output;

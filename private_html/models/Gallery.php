@@ -18,22 +18,24 @@ class Gallery extends Item
     public static $modelName = 'gallery';
 
     public static $typeLabels = [
-        self::TYPE_PICTURE_GALLERY => 'Picture Gallery',
-        self::TYPE_VIDEO_GALLERY => 'Video Gallery'
+            self::TYPE_PICTURE_GALLERY => 'Picture Gallery',
+            self::TYPE_VIDEO_GALLERY => 'Video Gallery'
     ];
 
     public function getTypeLabel($type = false)
     {
-        if (!$type)
+        if (!$type) {
             $type = $this->type;
+        }
         return Yii::t('words', ucfirst(self::$typeLabels[$type]));
     }
 
     public static function getTypeLabels()
     {
         $lbs = [];
-        foreach (self::$typeLabels as $key => $label)
+        foreach (self::$typeLabels as $key => $label) {
             $lbs[$key] = Yii::t('words', ucfirst($label));
+        }
         return $lbs;
     }
 
@@ -49,9 +51,9 @@ class Gallery extends Item
     {
         parent::init();
         $this->dynaDefaults = array_merge($this->dynaDefaults, [
-            'short_description' => ['CHAR', ''],
-            'body' => ['CHAR', ''],
-            'catID' => ['INTEGER', ''],
+                'short_description' => ['CHAR', ''],
+                'body' => ['CHAR', ''],
+                'catID' => ['INTEGER', ''],
         ]);
     }
 
@@ -61,10 +63,10 @@ class Gallery extends Item
     public function rules()
     {
         return array_merge(parent::rules(), [
-            [['short_description', 'formCategories'], 'required'],
-            [['short_description'], 'string', 'max' => 255],
-            [['body'], 'string', 'max' => 1024],
-            ['modelID', 'default', 'value' => Model::findOne(['name' => self::$modelName])->id],
+                [['short_description', 'formCategories'], 'required'],
+                [['short_description'], 'string', 'max' => 255],
+                [['body'], 'string', 'max' => 1024],
+                ['modelID', 'default', 'value' => Model::findOne(['name' => self::$modelName])->id],
 //            [['catID'], 'exist', 'skipOnError' => false, 'targetClass' => Category::className(), 'targetAttribute' => ['catID' => 'id']],
         ]);
     }
@@ -75,9 +77,9 @@ class Gallery extends Item
     public function attributeLabels()
     {
         return array_merge(parent::attributeLabels(), [
-            'short_description' => Yii::t('words', 'Short Description'),
-            'body' => Yii::t('words', 'Description'),
-            'catID' => Yii::t('words', 'Category'),
+                'short_description' => Yii::t('words', 'Short Description'),
+                'body' => Yii::t('words', 'Description'),
+                'catID' => Yii::t('words', 'Category'),
         ]);
     }
 
@@ -88,5 +90,27 @@ class Gallery extends Item
     public static function find()
     {
         return new ItemQuery(get_called_class());
+    }
+
+    /**
+     * @param int $id
+     * @param $type
+     * @return VideoGallery[]|PictureGallery[]
+     */
+    public static function getListByCategory($id, $type)
+    {
+        $query = self::find();
+        $query->andWhere(['type' => $type])
+            ->andWhere([self::columnGetString('catID') => $id])->valid();
+        return $query->all();
+    }
+
+    public function beforeSave($insert)
+    {
+        if ($this->formCategories) {
+            $this->catID = $this->formCategories;
+        }
+
+        return parent::beforeSave($insert);
     }
 }

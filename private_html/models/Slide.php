@@ -100,7 +100,7 @@ class Slide extends Item
                         'dictDefaultMessage' => 'جهت آپلود تصویر کلیک کنید',
                         'acceptedFiles' => 'png, jpeg, jpg',
                         'maxFiles' => 1,
-                        'maxFileSize' => 0.5,
+                        'maxFileSize' => 5,
                     ],
                 ]
             ],

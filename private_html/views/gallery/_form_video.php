@@ -1,5 +1,6 @@
 <?php
 
+use app\components\MultiLangActiveRecord;
 use yii\helpers\Html;
 use app\components\customWidgets\CustomActiveForm;
 use \yii\helpers\Url;
@@ -35,9 +36,9 @@ use app\models\Category;
                 'dictDefaultMessage' => 'جهت آپلود تصویر پوستر کلیک کنید',
                 'acceptedFiles' => 'png, jpeg, jpg',
                 'maxFiles' => 1,
-                'maxFileSize' => 0.2,
+                'maxFileSize' => 0.5,
             ],
-        ])->hint('270x190 pixel') ?>
+        ])->hint('670x350 pixel') ?>
 
         <?php echo $form->field($model, 'video')->widget(\devgroup\dropzone\DropZone::className(), [
             'url' => Url::to(['upload-video']),
@@ -55,11 +56,11 @@ use app\models\Category;
                 'dictDefaultMessage' => 'جهت آپلود ویدئو کلیک کنید',
                 'acceptedFiles' => 'mp4',
                 'maxFiles' => 1,
-                'maxFileSize' => 10,
+                'maxFileSize' => 50,
             ],
         ]) ?>
 
-        <?= \app\components\MultiLangActiveRecord::renderSelectLangInput($form, $model) ?>
+        <?= MultiLangActiveRecord::renderSelectLangInput($form, $model) ?>
 
         <div class="row">
             <div class="col-sm-4">
@@ -69,7 +70,7 @@ use app\models\Category;
                 <?= $form->field($model, 'short_description')->textInput() ?>
             </div>
             <div class="col-sm-4">
-                <?= $form->field($model, 'formCategories')->dropDownList(Category::getWithType(Category::CATEGORY_TYPE_PICTURE_GALLERY), ['prompt' => Yii::t('words', 'Select Category')]) ?>
+                <?= $form->field($model, 'formCategories')->dropDownList(Category::getWithType(Category::CATEGORY_TYPE_VIDEO_GALLERY), ['prompt' => Yii::t('words', 'Select Category')]) ?>
             </div>
         </div>
 

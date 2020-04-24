@@ -29,7 +29,9 @@
         "ruskid/yii2-csv-importer": "dev-master",
         "faravaghi/yii2-jalali-datepicker": "*",
         "moonlandsoft/yii2-phpexcel": "*",
-        "linslin/yii2-curl": "*"
+        "linslin/yii2-curl": "*",
+        "flotfeali/payping-client": "^0.0.1",
+        "arcanedev/arabic": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

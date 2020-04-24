@@ -297,4 +297,9 @@ trait CrudControllerTrait
         $routes = $this->getRoutes();
         return $routes[$name];
     }
+
+    public function getTitleField()
+    {
+        return property_exists($this, 'titleField')?$this->titleField:'name';
+    }
 }

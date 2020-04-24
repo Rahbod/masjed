@@ -33,9 +33,9 @@ class Menu extends Category
     public static $typeName = self::TYPE_MENU;
 
     public static $menuTypeLabels = [
-        self::MENU_TYPE_PAGE_LINK => 'Page Link',
-        self::MENU_TYPE_ACTION => 'Action',
-        self::MENU_TYPE_EXTERNAL_LINK => 'External Link',
+            self::MENU_TYPE_PAGE_LINK => 'Page Link',
+            self::MENU_TYPE_ACTION => 'Action',
+            self::MENU_TYPE_EXTERNAL_LINK => 'External Link',
     ];
 
     /**
@@ -50,26 +50,26 @@ class Menu extends Category
     {
         parent::init();
         $this->dynaDefaults = array_merge($this->dynaDefaults, [
-            'image' => ['CHAR', ''],
-            'content' => ['INTEGER', ''],
-            'menu_type' => ['INTEGER', ''],
-            'page_id' => ['INTEGER', ''],
-            'action_name' => ['CHAR', ''],
-            'external_link' => ['CHAR', ''],
-            'show_in_footer' => ['INTEGER', ''],
+                'image' => ['CHAR', ''],
+                'content' => ['INTEGER', ''],
+                'menu_type' => ['INTEGER', ''],
+                'page_id' => ['INTEGER', ''],
+                'action_name' => ['CHAR', ''],
+                'external_link' => ['CHAR', ''],
+                'show_in_footer' => ['INTEGER', ''],
         ]);
     }
 
     public function formAttributes()
     {
-        return array_merge(parent::formAttributes(),[
-            'parentID' => [
-                'type' => static::FORM_FIELD_TYPE_SELECT,
-                'items' => Menu::parentsList(),
-                'options' => [
-                    'prompt' => 'بدون والد'
-                ]
-            ],
+        return array_merge(parent::formAttributes(), [
+                'parentID' => [
+                        'type' => static::FORM_FIELD_TYPE_SELECT,
+                        'items' => Menu::parentsList(),
+                        'options' => [
+                                'prompt' => 'بدون والد'
+                        ]
+                ],
 //            'show_in_footer' => static::FORM_FIELD_TYPE_SWITCH,
             /*'image' => [
                 'type' => static::FORM_FIELD_TYPE_DROP_ZONE,
@@ -96,10 +96,10 @@ class Menu extends Category
                     ],
                 ]
             ],*/
-            'content' => [
-                'type' => static::FORM_FIELD_TYPE_SWITCH,
-                'options' => ['id' => 'content-trigger']
-            ],
+                'content' => [
+                        'type' => static::FORM_FIELD_TYPE_SWITCH,
+                        'options' => ['id' => 'content-trigger']
+                ],
         ]);
     }
 
@@ -109,13 +109,13 @@ class Menu extends Category
     public function rules()
     {
         return array_merge(parent::rules(), [
-            ['type', 'default', 'value' => self::$typeName],
-            [['menu_type', 'page_id'], 'integer'],
-            [['external_link'], 'url'],
-            [['action_name', 'external_link', 'image'], 'string'],
-            [['show_in_footer'], 'safe'],
-            ['show_in_footer', 'default', 'value' => 0],
-            ['content', 'default', 'value' => 0]
+                ['type', 'default', 'value' => self::$typeName],
+                [['menu_type', 'page_id'], 'integer'],
+//            [['external_link'], 'url'],
+                [['action_name', 'external_link', 'image'], 'string'],
+                [['show_in_footer'], 'safe'],
+                ['show_in_footer', 'default', 'value' => 0],
+                ['content', 'default', 'value' => 0]
         ]);
     }
 
@@ -125,13 +125,13 @@ class Menu extends Category
     public function attributeLabels()
     {
         return array_merge(parent::attributeLabels(), [
-            'image' => trans('words', 'Icon'),
-            'menu_type' => trans('words', 'Menu Type'),
-            'content' => trans('words', 'Content'),
-            'page_id' => trans('words', 'Page Name'),
-            'action_name' => trans('words', 'Module Name'),
-            'show_in_footer' => trans('words', 'Show in footer'),
-            'external_link' => trans('words', 'External Link'),
+                'image' => trans('words', 'Icon'),
+                'menu_type' => trans('words', 'Menu Type'),
+                'content' => trans('words', 'Content'),
+                'page_id' => trans('words', 'Page Name'),
+                'action_name' => trans('words', 'Module Name'),
+                'show_in_footer' => trans('words', 'Show in footer'),
+                'external_link' => trans('words', 'External Link'),
         ]);
     }
 
@@ -152,8 +152,9 @@ class Menu extends Category
             $parents[$root->id] = $root->name;
             $childrens = $root->children(1)->all();
             if ($childrens) {
-                foreach ($childrens as $children)
+                foreach ($childrens as $children) {
                     $parents[$children->id] = "$root->name/$children->name";
+                }
             }
         }
         return $parents;
@@ -162,16 +163,18 @@ class Menu extends Category
 
     public function getMenuTypeLabel($type = false)
     {
-        if (!$type)
+        if (!$type) {
             $type = $this->menu_type;
-        return $type?trans('words', ucfirst(self::$menuTypeLabels[$type])):'-';
+        }
+        return $type ? trans('words', ucfirst(self::$menuTypeLabels[$type])) : '-';
     }
 
     public static function getMenuTypeLabels()
     {
         $lbs = [];
-        foreach (self::$menuTypeLabels as $key => $label)
+        foreach (self::$menuTypeLabels as $key => $label) {
             $lbs[$key] = trans('words', ucfirst($label));
+        }
         return $lbs;
     }
 
@@ -188,10 +191,10 @@ class Menu extends Category
     public static function renderMenuActionsSelect($context, $model, $attribute, $options = [], $form = false)
     {
         $validControllers = [
-            'app\controllers\Controller',
-            'app\controllers\PersonController',
-            'app\controllers\SiteController',
-            'app\controllers\PostController',
+                'app\controllers\Controller',
+                'app\controllers\PersonController',
+                'app\controllers\SiteController',
+                'app\controllers\PostController',
         ];
         $controllers = $context->getAllActions([], [], true);
         $controllers = $context->prepareForSelect($controllers);
@@ -202,8 +205,9 @@ class Menu extends Category
         $options['name'] = Html::getInputName($model, $attribute);
 
         $html = Html::beginTag('div', ['class' => 'form-group m-form__group']);
-        if ($form)
+        if ($form) {
             $html .= $form->field($model, $attribute, ['template' => '{label}'])->label();
+        }
         $html .= Html::beginTag('select', $options);
         foreach ($controllers as $controller => $actions) {
             $html .= Html::beginTag('optgroup', ['label' => trans('actions', $controller)]);
@@ -211,8 +215,9 @@ class Menu extends Category
             $html .= Html::endTag('optgroup');
         }
         $html .= Html::endTag('select');
-        if ($form)
+        if ($form) {
             $html .= $form->field($model, $attribute, ['template' => '{error}'])->error();
+        }
         $html .= Html::endTag('div');
 
         return $html;
@@ -223,16 +228,25 @@ class Menu extends Category
         switch ($this->menu_type) {
             case self::MENU_TYPE_PAGE_LINK:
                 $page = Page::findOne($this->page_id);
-                if (!$page)
+                if (!$page) {
                     return '#';
+                }
                 return $page->getUrl();
             case self::MENU_TYPE_ACTION:
                 $url = str_replace('@', '/', $this->action_name);
                 return Url::to(["/$url"]);
             case self::MENU_TYPE_EXTERNAL_LINK:
-                return $this->external_link;
+                return strpos($this->external_link, '#',
+                        0) === 0 ? app()->getHomeUrl() . $this->external_link : $this->external_link;
             default:
                 return '#';
+        }
+    }
+
+    public function isAnchor()
+    {
+        if ($this->menu_type == self::MENU_TYPE_EXTERNAL_LINK) {
+            return strpos($this->external_link, '#', 0) === 0;
         }
     }
 
@@ -254,5 +268,10 @@ class Menu extends Category
     public function getParent()
     {
         return $this->hasOne(self::className(), ['id' => 'parentID']);
+    }
+
+    public function isActive()
+    {
+        return false;
     }
 }

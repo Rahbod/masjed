@@ -6,6 +6,7 @@ use app\components\FormRendererDefinition;
 use app\components\FormRendererTrait;
 use Yii;
 use yii\base\Model;
+use yii\helpers\ArrayHelper;
 
 /**
  * ContactForm is the model behind the contact form.
@@ -17,7 +18,7 @@ class ContactForm extends Model implements FormRendererDefinition
     public $name;
     public $email;
     public $tel;
-    public $subject;
+    public $department_id;
     public $body;
     public $verifyCode;
 
@@ -29,16 +30,15 @@ class ContactForm extends Model implements FormRendererDefinition
     {
         return [
             // name, email, subject and body are required
-            [['name', 'email', 'body', 'tel', 'subject'], 'required'],
-//            [['department_id'], 'required', 'on' => 'default'],
-//            [['department_id'], 'default', 'value' => Department::find()->one()->id, 'except' => 'default'],
+                [['name', 'email', 'body', 'tel', 'department_id'], 'required'],
+                [['department_id'], 'default', 'value' => Department::find()->one()->id, 'except' => 'default'],
             // email has to be a valid email address
-            ['email', 'email'],
+                ['email', 'email'],
 //            [['degree'], 'integer', 'max' => 10],
 //            [['country', 'city'], 'string', 'max' => 50],
 //            [['address'], 'string'],
             // verifyCode needs to be entered correctly
-            ['verifyCode', 'captcha', 'skipOnEmpty' => false, 'captchaAction' => '/site/captcha'],
+                ['verifyCode', 'captcha', 'skipOnEmpty' => false, 'captchaAction' => '/site/captcha'],
         ];
     }
 
@@ -48,18 +48,18 @@ class ContactForm extends Model implements FormRendererDefinition
     public function attributeLabels()
     {
         return [
-            'name' => trans('words', 'First name and Last name'),
-            'email' => trans('words', 'E-Mail'),
-            'tel' => trans('words', 'MOBILE NUMBER'),
-            'body' => trans('words', 'MESSAGE TEXT'),
-            'subject' => trans('words', 'SUBJECT'),
+                'name' => trans('words', 'First name and Last name'),
+                'email' => trans('words', 'E-Mail'),
+                'tel' => trans('words', 'MOBILE NUMBER'),
+                'body' => trans('words', 'MESSAGE TEXT'),
+                'subject' => trans('words', 'SUBJECT'),
 
-            'department_id' => trans('words', 'Department ID'),
-            'verifyCode' => trans('words', 'Verify Code'),
-            'degree' => trans('words', 'Degree'),
-            'country' => trans('words', 'Country'),
-            'city' => trans('words', 'City'),
-            'address' => trans('words', 'Address'),
+                'department_id' => trans('words', 'Department ID'),
+                'verifyCode' => trans('words', 'Verify Code'),
+                'degree' => trans('words', 'Degree'),
+                'country' => trans('words', 'Country'),
+                'city' => trans('words', 'City'),
+                'address' => trans('words', 'Address'),
         ];
     }
 
@@ -72,11 +72,11 @@ class ContactForm extends Model implements FormRendererDefinition
     {
         if ($this->validate()) {
             Yii::$app->mailer->compose()
-                ->setTo($email)
-                ->setFrom([$this->email => $this->name])
-                ->setSubject($this->subject)
-                ->setTextBody($this->body)
-                ->send();
+                    ->setTo($email)
+                    ->setFrom([$this->email => $this->name])
+                    ->setSubject($this->subject)
+                    ->setTextBody($this->body)
+                    ->send();
 
             return true;
         }
@@ -87,21 +87,43 @@ class ContactForm extends Model implements FormRendererDefinition
     public function formAttributes()
     {
         return [
-            [['name', 'email', 'tel', 'subject'], [
-                'type' => self::FORM_FIELD_TYPE_TEXT,
-                'fieldOptions' => [
-                    'inputOptions' => ['class' => 'input'],
-                    'labelOptions' => ['class' => 'register-label'],
-                ]
-            ]],
-            'body' => [
-                'type' => self::FORM_FIELD_TYPE_TEXT_AREA,
-                'containerCssClass' => 'col-lg-12',
-                'fieldOptions' => [
-                    'labelOptions' => ['class' => 'register-label'],
+                'name' => [
+                        'type' => self::FORM_FIELD_TYPE_TEXT,
+                        'label' => false,
+                        'error' => false,
+                        'options' => ['placeholder' => $this->getAttributeLabel('name')],
                 ],
-                'options' => ['class' => 'message-input', 'rows' => 6]
-            ],
+                'email' => [
+                        'type' => self::FORM_FIELD_TYPE_TEXT,
+                        'label' => false,
+                        'error' => false,
+                        'options' => ['placeholder' => $this->getAttributeLabel('email'), 'class' => 'email'],
+                ],
+                'tel' => [
+                        'type' => self::FORM_FIELD_TYPE_TEXT,
+                        'label' => false,
+                        'error' => false,
+                        'options' => ['placeholder' => $this->getAttributeLabel('tel'), 'class' => 'tel'],
+                ],
+                'department_id' => [
+                        'type' => self::FORM_FIELD_TYPE_SELECT,
+                        'label' => false,
+                        'error' => false,
+                        'items' => ArrayHelper::map(
+                                Department::find()->valid()->orderBy([Department::columnGetString('sort') => SORT_ASC])->all(),
+                                'id',
+                                'fullName'
+                        ),
+                        'options' => ['placeholder' => $this->getAttributeLabel('tel'), 'class' => 'tel'],
+                ],
+//                'body' => [
+//                        'type' => self::FORM_FIELD_TYPE_TEXT_AREA,
+//                        'containerCssClass' => 'col-lg-12',
+//                        'fieldOptions' => [
+//                                'labelOptions' => ['class' => 'register-label'],
+//                        ],
+//                        'options' => ['class' => 'message-input', 'rows' => 6]
+//                ],
         ];
     }
 }

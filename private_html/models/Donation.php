@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use app\components\DynamicActiveRecord;
 use Yii;
 
 /**
@@ -16,7 +15,7 @@ use Yii;
  * @property string $status
  * @property string $create_date
  */
-class Donation extends DynamicActiveRecord
+class Donation extends \app\components\MultiLangActiveRecord
 {
     /**
      * {@inheritdoc}

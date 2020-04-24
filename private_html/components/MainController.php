@@ -2,6 +2,7 @@
 
 namespace app\components;
 
+
 use app\models\Advice;
 use app\models\Cooperation;
 use app\models\Department;
@@ -303,13 +304,22 @@ class MainController extends Controller implements CrudControllerInterface
                 'url' => ['/menu/index'],
                 'visible' => $permissions || app()->user->can('menuIndex')
             ],
-
+//
+//            [
+//                'label' => '<i class="m-menu__link-icon fas fa-building"></i><span class="m-menu__link-text">پروژه ها</span>',
+//                'url' => ['/project/index'],
+//                'visible' => $permissions || app()->user->can('projectIndex')
+//            ],
             [
-                'label' => '<i class="m-menu__link-icon fas fa-building"></i><span class="m-menu__link-text">پروژه ها</span>',
-                'url' => ['/project/index'],
-                'visible' => $permissions || app()->user->can('projectIndex')
+                'label' => '<i class="m-menu__link-icon fa fa-building"></i><span class="m-menu__link-text">' . trans('words', 'Project Management') . '</span>',
+                'items' => [
+                    ['label' => trans('words', 'Project Process'), 'url' => ['/process/index'], 'visible' => $permissions || app()->user->can('processIndex')],
+                    ['label' => trans('words', 'Project Section'), 'url' => ['/section/index'], 'visible' => $permissions || app()->user->can('sectionIndex')],
+                    ['label' => trans('words', 'Project Timeline'), 'url' => ['/timeline/index'], 'visible' => $permissions || app()->user->can('timelineIndex')],
+                    ['label' => trans('words', 'Donation'), 'url' => ['/donation/index'], 'visible' => $permissions || app()->user->can('donationIndex')],
+                    ['label' => trans('words', 'Material Assistance'), 'url' => ['/material/index'], 'visible' => $permissions || app()->user->can('materialIndex')],
+                ]
             ],
-
             [
                 'label' => '<i class="m-menu__link-icon fa fa-server"></i><span class="m-menu__link-text">' . trans('words', 'Items') . '</span>',
                 'items' => [
@@ -385,6 +395,7 @@ class MainController extends Controller implements CrudControllerInterface
         $expire = 30 * 24 * 3600;
 
         // cache models
+//        $cache->flush();
         $this->models = $cache->getOrSet('models', function () {
             $arr = [];
             foreach (Model::find()->all() as $model)

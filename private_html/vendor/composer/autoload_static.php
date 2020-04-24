@@ -10,9 +10,11 @@ class ComposerStaticInitb6e2e5fcbedc0ea6a91859b1c014a8a7
         '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
-        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
+        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
+        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
+        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         'abede361264e2ae69ec1eee813a101af' => __DIR__ . '/..' . '/markbaker/complex/classes/src/functions/abs.php',
         '21a5860fbef5be28db5ddfbc3cca67c4' => __DIR__ . '/..' . '/markbaker/complex/classes/src/functions/acos.php',
         '1546e3f9d127f2a9bb2d1b6c31c26ef1' => __DIR__ . '/..' . '/markbaker/complex/classes/src/functions/acosh.php',
@@ -73,6 +75,8 @@ class ComposerStaticInitb6e2e5fcbedc0ea6a91859b1c014a8a7
         '6ab8ad87a734f276a6bcd5a0fe1289be' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/operations/divideinto.php',
         '180092cfc969a12e06f2132a203a3184' => __DIR__ . '/..' . '/codeception/verify/src/Codeception/function.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
+        '3b0f16c0762a22ffed787d705a1c68b3' => __DIR__ . '/..' . '/arcanedev/arabic/src/helpers.php',
+        '4ba839ee93e09f465009c04edbfb88b4' => __DIR__ . '/..' . '/flotfeali/payping-client/src/helper.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -154,6 +158,7 @@ class ComposerStaticInitb6e2e5fcbedc0ea6a91859b1c014a8a7
             'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
             'PhpOffice\\PhpSpreadsheet\\' => 25,
+            'PayPing\\' => 8,
         ),
         'M' => 
         array (
@@ -162,6 +167,8 @@ class ComposerStaticInitb6e2e5fcbedc0ea6a91859b1c014a8a7
         'G' => 
         array (
             'GuzzleHttp\\Psr7\\' => 16,
+            'GuzzleHttp\\Promise\\' => 19,
+            'GuzzleHttp\\' => 11,
         ),
         'F' => 
         array (
@@ -177,6 +184,10 @@ class ComposerStaticInitb6e2e5fcbedc0ea6a91859b1c014a8a7
             'Complex\\' => 8,
             'Codeception\\Extension\\' => 22,
             'Codeception\\' => 12,
+        ),
+        'A' => 
+        array (
+            'Arcanedev\\Arabic\\' => 17,
         ),
     );
 
@@ -331,6 +342,10 @@ class ComposerStaticInitb6e2e5fcbedc0ea6a91859b1c014a8a7
         array (
             0 => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet',
         ),
+        'PayPing\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/flotfeali/payping-client/src',
+        ),
         'Matrix\\' => 
         array (
             0 => __DIR__ . '/..' . '/markbaker/matrix/classes/src',
@@ -338,6 +353,14 @@ class ComposerStaticInitb6e2e5fcbedc0ea6a91859b1c014a8a7
         'GuzzleHttp\\Psr7\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
+        ),
+        'GuzzleHttp\\Promise\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/promises/src',
+        ),
+        'GuzzleHttp\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
         ),
         'Faker\\' => 
         array (
@@ -363,6 +386,10 @@ class ComposerStaticInitb6e2e5fcbedc0ea6a91859b1c014a8a7
         array (
             0 => __DIR__ . '/..' . '/codeception/base/src/Codeception',
             1 => __DIR__ . '/..' . '/codeception/stub/src',
+        ),
+        'Arcanedev\\Arabic\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/arcanedev/arabic/src',
         ),
     );
 

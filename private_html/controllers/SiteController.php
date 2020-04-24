@@ -76,14 +76,14 @@ class SiteController extends AuthController
             'captcha' => [
                 'class' => CustomCaptchaAction::className(),
                 'setTheme' => true,
-                'width' => 130,
+                'width' => 100,
                 'height' => 40,
                 'transparent' => true,
                 'onlyNumber' => true,
                 'foreColor' => 0x555555,
                 'minLength' => 4,
                 'maxLength' => 4,
-                'fontFile' => '@webroot/themes/frontend/assets/fonts/OpenSans-Bold.ttf'
+                'fontFile' => '@webroot/themes/frontend/fonts/OpenSans/Bold/OpenSans-Bold.ttf'
             ],
         ];
     }
@@ -160,11 +160,9 @@ class SiteController extends AuthController
 
     public function actionIndex()
     {
-        $this->bodyClass = 'home';
-
-        $slides = Slide::find()->valid()->orderBy(['id' => SORT_ASC])->all();
-
-        return $this->render('index', compact(['slides']));
+        $this->setTheme('frontend');
+        $this->layout = 'main';
+        return $this->render('index');
     }
 
     /**

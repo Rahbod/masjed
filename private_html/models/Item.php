@@ -21,6 +21,7 @@ use yii\helpers\ArrayHelper;
  * @property int $status
  * @property int $en_status
  * @property int $ar_status
+ * @property Attachment[] $gallery
  *
  * @property Catitem[] $catitems
  * @property Attachment[] $attachments
@@ -370,4 +371,13 @@ class Item extends MultiLangActiveRecord
         return $this->name;
     }
 
+    public function tableColumns()
+    {
+        return [];
+    }
+
+    public function viewColumns()
+    {
+        return [];
+    }
 }

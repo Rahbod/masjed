@@ -42,4 +42,14 @@ class PictureGallery extends Gallery
             'full_image' => Yii::t('words', 'Full Image'),
         ]);
     }
+
+    public function getImageSrc()
+    {
+        return $this->full_image ? app()->getHomeUrl() . '/uploads/gallery/' . $this->full_image : false;
+    }
+
+    public function getThumbImageSrc()
+    {
+        return $this->thumbnail_image ? app()->getHomeUrl() . '/uploads/gallery/' . $this->thumbnail_image : false;
+    }
 }

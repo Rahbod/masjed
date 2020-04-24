@@ -31,6 +31,9 @@ use yii\helpers\ArrayHelper;
  * @property int $show_always
  * @property int $show_in_home
  * @property string $fullName
+ * @property string $description
+ * @property string $ar_description
+ * @property string $en_description
  *
  * @property Page[] $pages
  * @property Catitem[] $catitems
@@ -49,11 +52,11 @@ class Category extends MultiLangActiveRecord
     const TYPE_LIST = 'lst';
     const TYPE_MENU = 'mnu';
     const TYPE_DEPARTMENT = 'dep';
-    const TYPE_ONLINE = 'onl';
 
     const CATEGORY_TYPE_NEWS = 'news';
     const CATEGORY_TYPE_PICTURE_GALLERY = 'image_gallery';
     const CATEGORY_TYPE_VIDEO_GALLERY = 'video_gallery';
+//    const CATEGORY_TYPE_ABOUT_US = 'about_us';
 
     public static $typeName = self::TYPE_CATEGORY;
 
@@ -102,6 +105,10 @@ class Category extends MultiLangActiveRecord
 
             'en_name' => ['CHAR', ''],
             'ar_name' => ['CHAR', ''],
+
+            'description' => ['CHAR', ''],
+            'ar_description' => ['CHAR', ''],
+            'en_description' => ['CHAR', ''],
         ]);
     }
 
@@ -113,13 +120,16 @@ class Category extends MultiLangActiveRecord
             unset($langs['fa']);
             $langs = array_keys($langs);
             $names = ['name'];
+            $descriptions = ['description'];
             $statuses = ['status'];
             foreach ($langs as $lang) {
                 $names[] = "{$lang}_name";
+                $descriptions[] = "{$lang}_description";
                 $statuses[] = "{$lang}_status";
             }
             $fields = [
                 [$names, static::FORM_FIELD_TYPE_TEXT],
+                [$descriptions, static::FORM_FIELD_TYPE_TEXT],
                 [$statuses, [
                     'type' => static::FORM_FIELD_TYPE_SELECT,
                     'items' => self::getStatusFilter()
@@ -129,6 +139,7 @@ class Category extends MultiLangActiveRecord
             $fields = [
                 'lang' => static::FORM_FIELD_TYPE_LANGUAGE_SELECT,
                 'name' => static::FORM_FIELD_TYPE_TEXT,
+                'description' => static::FORM_FIELD_TYPE_TEXT,
                 'status' => [
                     'type' => static::FORM_FIELD_TYPE_SELECT,
                     'items' => self::getStatusFilter()
@@ -147,6 +158,7 @@ class Category extends MultiLangActiveRecord
             [['parentID', 'status', 'left', 'right', 'depth', 'tree', 'sort'], 'integer'],
             [['name'], 'required'],
             [['en_name', 'ar_name'], 'string'],
+            [['description', 'ar_description', 'en_description'], 'string'],
             [['sort'], 'required', 'on' => SortableAction::SORTING_SCENARIO],
             [['type', 'dyna', 'extra', 'category_type'], 'string'],
             [['created'], 'safe'],
@@ -167,6 +179,9 @@ class Category extends MultiLangActiveRecord
         return array_merge(parent::attributeLabels(), [
             'id' => trans('words', 'ID'),
             'parentID' => trans('words', 'Parent ID'),
+            'description' => trans('words', 'Description'),
+            'ar_description' => trans('words', 'Ar Description'),
+            'en_description' => trans('words', 'En Description'),
             'type' => trans('words', 'Type'),
             'category_type' => trans('words', 'Category Type'),
             'name' => trans('words', 'Name'),
@@ -336,6 +351,12 @@ class Category extends MultiLangActiveRecord
         return $name;
     }
 
+    /**
+     * @param $type
+     * @param string $return
+     * @param bool $valid
+     * @return Category[]|array
+     */
     public static function getWithType($type, $return = 'array', $valid = false)
     {
         $models = self::find()->andWhere([self::columnGetString('category_type') => $type]);
@@ -356,8 +377,18 @@ class Category extends MultiLangActiveRecord
                 return $this->{Yii::$app->language . '_name'} ?: $this->name;
         }
 
-        if(app()->language == 'en')
-            $this->name = strtoupper($this->name);
         return $this->name;
+    }
+
+    public function getDescriptionStr()
+    {
+        if (!static::$multiLanguage) {
+            if (Yii::$app->language == 'fa')
+                return $this->description;
+            else
+                return $this->{Yii::$app->language . '_description'} ?: $this->description;
+        }
+
+        return $this->description;
     }
 }

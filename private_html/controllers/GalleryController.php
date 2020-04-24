@@ -26,8 +26,8 @@ class GalleryController extends AuthController
 
     public $imageDir = 'uploads/gallery';
     public $videoDir = 'uploads/gallery/video';
-    private $posterOptions = ['thumbnail' => ['width' => 270, 'height' => 190, 'replaceOrigin' => true]];
-    private $thumbOptions = ['thumbnail' => ['width' => 160, 'height' => 90, 'replaceOrigin' => true]];
+    private $posterOptions = ['thumbnail' => ['width' => 670, 'height' => 350, 'replaceOrigin' => true]];
+    private $thumbOptions = ['thumbnail' => ['width' => 185, 'height' => 120, 'replaceOrigin' => true]];
     private $fullImageOptions = ['thumbnail' => ['width' => 280, 'height' => 380]];
 
     /**
@@ -42,24 +42,24 @@ class GalleryController extends AuthController
     public function getMenuActions()
     {
         return [
-            'show',
-//            'video',
+                'picture',
+                'video',
         ];
     }
 
     public function getSystemActions()
     {
         return [
-            'upload-image',
-            'delete-image',
-            'upload-video',
-            'delete-video',
-            'upload-thumb',
-            'delete-thumb',
-            'upload-full-image',
-            'delete-full-image',
-            'show',
-            'video',
+                'upload-image',
+                'delete-image',
+                'upload-video',
+                'delete-video',
+                'upload-thumb',
+                'delete-thumb',
+                'upload-full-image',
+                'delete-full-image',
+                'picture',
+                'video',
         ];
     }
 
@@ -69,12 +69,12 @@ class GalleryController extends AuthController
     public function behaviors()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
+                'verbs' => [
+                        'class' => VerbFilter::className(),
+                        'actions' => [
+                                'delete' => ['POST'],
+                        ],
                 ],
-            ],
         ];
     }
 
@@ -82,70 +82,70 @@ class GalleryController extends AuthController
     {
         return [
             /* Video Gallery Actions */
-            'upload-image' => [
-                'class' => UploadAction::className(),
-                'fileName' => Html::getInputName(new VideoGallery(), 'image'),
-                'rename' => UploadAction::RENAME_UNIQUE,
-                'validateOptions' => array(
-                    'acceptedTypes' => array('png', 'jpg', 'jpeg')
-                )
-            ],
-            'delete-image' => [
-                'class' => RemoveAction::className(),
-                'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
-                'model' => new VideoGallery(),
-                'attribute' => 'image',
-                'upload' => $this->imageDir,
-                'options' => $this->posterOptions
-            ],
-            'upload-video' => [
-                'class' => UploadAction::className(),
-                'fileName' => Html::getInputName(new VideoGallery(), 'video'),
-                'rename' => UploadAction::RENAME_UNIQUE,
-                'validateOptions' => array(
-                    'acceptedTypes' => array('mp4')
-                )
-            ],
-            'delete-video' => [
-                'class' => RemoveAction::className(),
-                'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
-                'model' => new VideoGallery(),
-                'attribute' => 'video',
-                'upload' => $this->videoDir
-            ],
+                'upload-image' => [
+                        'class' => UploadAction::className(),
+                        'fileName' => Html::getInputName(new VideoGallery(), 'image'),
+                        'rename' => UploadAction::RENAME_UNIQUE,
+                        'validateOptions' => array(
+                                'acceptedTypes' => array('png', 'jpg', 'jpeg')
+                        )
+                ],
+                'delete-image' => [
+                        'class' => RemoveAction::className(),
+                        'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
+                        'model' => new VideoGallery(),
+                        'attribute' => 'image',
+                        'upload' => $this->imageDir,
+                        'options' => $this->posterOptions
+                ],
+                'upload-video' => [
+                        'class' => UploadAction::className(),
+                        'fileName' => Html::getInputName(new VideoGallery(), 'video'),
+                        'rename' => UploadAction::RENAME_UNIQUE,
+                        'validateOptions' => array(
+                                'acceptedTypes' => array('mp4')
+                        )
+                ],
+                'delete-video' => [
+                        'class' => RemoveAction::className(),
+                        'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
+                        'model' => new VideoGallery(),
+                        'attribute' => 'video',
+                        'upload' => $this->videoDir
+                ],
             /* Picture Gallery Actions */
-            'upload-thumb' => [
-                'class' => UploadAction::className(),
-                'fileName' => Html::getInputName(new PictureGallery(), 'thumbnail_image'),
-                'rename' => UploadAction::RENAME_UNIQUE,
-                'validateOptions' => array(
-                    'acceptedTypes' => array('png', 'jpg', 'jpeg')
-                )
-            ],
-            'delete-thumb' => [
-                'class' => RemoveAction::className(),
-                'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
-                'model' => new PictureGallery(),
-                'attribute' => 'thumbnail_image',
-                'upload' => $this->imageDir,
-                'options' => $this->thumbOptions
-            ],
-            'upload-full-image' => [
-                'class' => UploadAction::className(),
-                'fileName' => Html::getInputName(new PictureGallery(), 'full_image'),
-                'rename' => UploadAction::RENAME_UNIQUE,
-                'validateOptions' => array(
-                    'acceptedTypes' => array('png', 'jpg', 'jpeg')
-                )
-            ],
-            'delete-full-image' => [
-                'class' => RemoveAction::className(),
-                'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
-                'model' => new PictureGallery(),
-                'attribute' => 'full_image',
-                'upload' => $this->imageDir,
-                'options' => $this->fullImageOptions
-            ]
+                'upload-thumb' => [
+                        'class' => UploadAction::className(),
+                        'fileName' => Html::getInputName(new PictureGallery(), 'thumbnail_image'),
+                        'rename' => UploadAction::RENAME_UNIQUE,
+                        'validateOptions' => array(
+                                'acceptedTypes' => array('png', 'jpg', 'jpeg')
+                        )
+                ],
+                'delete-thumb' => [
+                        'class' => RemoveAction::className(),
+                        'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
+                        'model' => new PictureGallery(),
+                        'attribute' => 'thumbnail_image',
+                        'upload' => $this->imageDir,
+                        'options' => $this->thumbOptions
+                ],
+                'upload-full-image' => [
+                        'class' => UploadAction::className(),
+                        'fileName' => Html::getInputName(new PictureGallery(), 'full_image'),
+                        'rename' => UploadAction::RENAME_UNIQUE,
+                        'validateOptions' => array(
+                                'acceptedTypes' => array('png', 'jpg', 'jpeg')
+                        )
+                ],
+                'delete-full-image' => [
+                        'class' => RemoveAction::className(),
+                        'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
+                        'model' => new PictureGallery(),
+                        'attribute' => 'full_image',
+                        'upload' => $this->imageDir,
+                        'options' => $this->fullImageOptions
+                ]
         ];
     }
 
@@ -161,25 +161,26 @@ class GalleryController extends AuthController
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
         ]);
     }
 
-    public function actionShow()
+    public function actionPicture()
     {
         $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
         $searchModel = new GallerySearch();
 
         $searchModel->type = Gallery::TYPE_PICTURE_GALLERY;
 //        $searchModel->status = Gallery::STATUS_PUBLISHED;
-        if ($category = Yii::$app->request->getQueryParam('category'))
+        if ($category = Yii::$app->request->getQueryParam('category')) {
             $searchModel->catID = $category;
+        }
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('show', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+        return $this->render('pictures', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -191,9 +192,9 @@ class GalleryController extends AuthController
         $searchModel->type = Gallery::TYPE_VIDEO_GALLERY;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('show', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+        return $this->render('videos', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -206,7 +207,7 @@ class GalleryController extends AuthController
     public function actionView($id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+                'model' => $this->findModel($id),
         ]);
     }
 
@@ -234,16 +235,19 @@ class GalleryController extends AuthController
             if ($model->save()) {
                 $thumb->move($this->imageDir);
                 $fullImage->move($this->imageDir);
-                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+                Yii::$app->session->setFlash('alert',
+                        ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['index']);
-            } else
-                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+            } else {
+                Yii::$app->session->setFlash('alert',
+                        ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+            }
         }
 
         return $this->render('create', [
-            'model' => $model,
-            'thumb' => $thumb,
-            'fullImage' => $fullImage,
+                'model' => $model,
+                'thumb' => $thumb,
+                'fullImage' => $fullImage,
         ]);
     }
 
@@ -274,16 +278,19 @@ class GalleryController extends AuthController
             if ($model->save()) {
                 $thumb->update($oldThumb, $model->thumbnail_image, $this->tmpDir);
                 $fullImage->update($oldFullImage, $model->full_image, $this->tmpDir);
-                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+                Yii::$app->session->setFlash('alert',
+                        ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['index']);
-            } else
-                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+            } else {
+                Yii::$app->session->setFlash('alert',
+                        ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+            }
         }
 
         return $this->render('update', [
-            'model' => $model,
-            'thumb' => $thumb,
-            'fullImage' => $fullImage,
+                'model' => $model,
+                'thumb' => $thumb,
+                'fullImage' => $fullImage,
         ]);
     }
 
@@ -302,8 +309,8 @@ class GalleryController extends AuthController
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index_video', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -329,14 +336,17 @@ class GalleryController extends AuthController
             if ($model->save()) {
                 $poster->move($this->imageDir);
                 $video->move($this->videoDir);
-                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+                Yii::$app->session->setFlash('alert',
+                        ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['index-video']);
-            } else
-                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+            } else {
+                Yii::$app->session->setFlash('alert',
+                        ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+            }
         }
 
         return $this->render('create_video', [
-            'model' => $model,
+                'model' => $model,
         ]);
     }
 
@@ -367,16 +377,19 @@ class GalleryController extends AuthController
             if ($model->save()) {
                 $poster->update($oldPoster, $model->image, $this->tmpDir);
                 $video->update($oldVideo, $model->video, $this->tmpDir);
-                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+                Yii::$app->session->setFlash('alert',
+                        ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['index']);
-            } else
-                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+            } else {
+                Yii::$app->session->setFlash('alert',
+                        ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+            }
         }
 
         return $this->render('update_video', [
-            'model' => $model,
-            'poster' => $poster,
-            'video' => $video,
+                'model' => $model,
+                'poster' => $poster,
+                'video' => $video,
         ]);
     }
 

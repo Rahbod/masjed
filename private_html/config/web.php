@@ -1,5 +1,6 @@
 <?php
 
+use app\components\gateway\PayPingGateway;
 use yii\helpers\Html;
 use \yii\web\Request;
 use app\components\Setting;
@@ -52,6 +53,10 @@ $config = [
             'baseUrl' => $baseUrl,
             'enableCsrfValidation'=>true,
             'enableCookieValidation'=>true,
+        ],
+        'gateway' => [
+            'class' => PayPingGateway::className(),
+            'token' => '',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',

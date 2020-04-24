@@ -3,7 +3,6 @@
 /** @var $searchModel \app\models\Post */
 /** @var $dataProvider \yii\data\ActiveDataProvider */
 ?>
-
 <section class="news news-show">
     <div class="container">
         <div class="row news-container">

@@ -28,7 +28,7 @@ class PostController extends AuthController
     use CrudControllerTrait;
 
     public static $imageDir = 'uploads/post';
-    public static $imageOptions = ['thumbnail' => ['width' => 340, 'height' => 130]];
+    public static $imageOptions = ['thumbnail' => ['width' => 100, 'height' => 100]];
     public static $galleryOptions = ['thumbnail' => ['width' => 100, 'height' => 100]];
 
     public function getMenuActions()
@@ -233,7 +233,8 @@ class PostController extends AuthController
 
     public function actionNews()
     {
-        $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
+        $this->setTheme('frontend', ['layout' => 'inner']);
+
         $searchModel = new PostSearch();
 
         $searchModel->type = Post::TYPE_NEWS;

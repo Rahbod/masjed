@@ -1,35 +1,25 @@
--- phpMyAdmin SQL Dump
--- version 4.8.4
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1:3307
--- Generation Time: Dec 30, 2019 at 07:42 AM
--- Server version: 10.3.12-MariaDB
--- PHP Version: 7.3.1
+/*
+Navicat MariaDB Data Transfer
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
+Source Server         : mariadb
+Source Server Version : 100208
+Source Host           : localhost:3307
+Source Database       : masjed
 
+Target Server Type    : MariaDB
+Target Server Version : 100208
+File Encoding         : 65001
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+Date: 2020-04-24 18:23:52
+*/
 
---
--- Database: `masjed`
---
+SET FOREIGN_KEY_CHECKS=0;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `attachment`
---
-
+-- ----------------------------
+-- Table structure for attachment
+-- ----------------------------
 DROP TABLE IF EXISTS `attachment`;
-CREATE TABLE IF NOT EXISTS `attachment` (
+CREATE TABLE `attachment` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `userID` int(10) NOT NULL COMMENT 'User uploaded the file.\r\nNULL is system files.',
   `dyna` blob DEFAULT NULL COMMENT 'ItemID\r\nPath\r\nFilename\r\nType',
@@ -41,39 +31,37 @@ CREATE TABLE IF NOT EXISTS `attachment` (
   KEY `UserID` (`userID`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='All files uploaded to system are logged here';
 
--- --------------------------------------------------------
+-- ----------------------------
+-- Records of attachment
+-- ----------------------------
 
---
--- Table structure for table `auth_assignment`
---
-
+-- ----------------------------
+-- Table structure for auth_assignment
+-- ----------------------------
 DROP TABLE IF EXISTS `auth_assignment`;
-CREATE TABLE IF NOT EXISTS `auth_assignment` (
+CREATE TABLE `auth_assignment` (
   `item_name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `user_id` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` int(11) DEFAULT NULL,
-  PRIMARY KEY (`item_name`,`user_id`)
+  PRIMARY KEY (`item_name`,`user_id`),
+  CONSTRAINT `auth_assignment_ibfk_1` FOREIGN KEY (`item_name`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Dumping data for table `auth_assignment`
---
+-- ----------------------------
+-- Records of auth_assignment
+-- ----------------------------
+INSERT INTO `auth_assignment` VALUES ('admin', '42', '1577688787');
+INSERT INTO `auth_assignment` VALUES ('admin', '43', '1578156735');
+INSERT INTO `auth_assignment` VALUES ('admin', '9', '1554365919');
+INSERT INTO `auth_assignment` VALUES ('operator', '7', '1552897543');
+INSERT INTO `auth_assignment` VALUES ('superAdmin', '1', '1508416990');
+INSERT INTO `auth_assignment` VALUES ('superAdmin', '8', '1508416990');
 
-INSERT INTO `auth_assignment` (`item_name`, `user_id`, `created_at`) VALUES
-('admin', '42', 1577688787),
-('admin', '9', 1554365919),
-('operator', '7', 1552897543),
-('superAdmin', '1', 1508416990),
-('superAdmin', '8', 1508416990);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `auth_item`
---
-
+-- ----------------------------
+-- Table structure for auth_item
+-- ----------------------------
 DROP TABLE IF EXISTS `auth_item`;
-CREATE TABLE IF NOT EXISTS `auth_item` (
+CREATE TABLE `auth_item` (
   `name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `type` smallint(6) NOT NULL,
   `description` text COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -83,79 +71,72 @@ CREATE TABLE IF NOT EXISTS `auth_item` (
   `updated_at` int(11) DEFAULT NULL,
   PRIMARY KEY (`name`),
   KEY `rule_name` (`rule_name`) USING BTREE,
-  KEY `idx-auth_item-type` (`type`) USING BTREE
+  KEY `idx-auth_item-type` (`type`) USING BTREE,
+  CONSTRAINT `auth_item_ibfk_1` FOREIGN KEY (`rule_name`) REFERENCES `auth_rule` (`name`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Dumping data for table `auth_item`
---
+-- ----------------------------
+-- Records of auth_item
+-- ----------------------------
+INSERT INTO `auth_item` VALUES ('admin', '1', 'مدیر', null, null, '1507555215', '1515502636');
+INSERT INTO `auth_item` VALUES ('clinicAddDoctor', '2', null, null, null, '1557905416', '1557905416');
+INSERT INTO `auth_item` VALUES ('clinicCreate', '2', null, null, null, '1552897506', '1552897506');
+INSERT INTO `auth_item` VALUES ('clinicDelete', '2', null, null, null, '1552897506', '1552897506');
+INSERT INTO `auth_item` VALUES ('clinicImportCsvProgram', '2', null, null, null, '1557905416', '1557905416');
+INSERT INTO `auth_item` VALUES ('clinicImportExcelProgram', '2', null, null, null, '1557905416', '1557905416');
+INSERT INTO `auth_item` VALUES ('clinicIndex', '2', null, null, null, '1552897506', '1552897506');
+INSERT INTO `auth_item` VALUES ('clinicUpdate', '2', null, null, null, '1552897506', '1552897506');
+INSERT INTO `auth_item` VALUES ('clinicView', '2', null, null, null, '1552897506', '1552897506');
+INSERT INTO `auth_item` VALUES ('operator', '1', 'اپراتور', null, null, '1552897506', '1557906709');
+INSERT INTO `auth_item` VALUES ('personCreate', '2', null, null, null, '1552897506', '1552897506');
+INSERT INTO `auth_item` VALUES ('personDelete', '2', null, null, null, '1552897506', '1552897506');
+INSERT INTO `auth_item` VALUES ('personIndex', '2', null, null, null, '1552897506', '1552897506');
+INSERT INTO `auth_item` VALUES ('personList', '2', null, null, null, '1552897506', '1552897506');
+INSERT INTO `auth_item` VALUES ('personUpdate', '2', null, null, null, '1552897506', '1552897506');
+INSERT INTO `auth_item` VALUES ('personView', '2', null, null, null, '1552897506', '1552897506');
+INSERT INTO `auth_item` VALUES ('receptionClinicRequest', '2', null, null, null, '1557906701', '1557906701');
+INSERT INTO `auth_item` VALUES ('receptionHospitalization', '2', null, null, null, '1557906701', '1557906701');
+INSERT INTO `auth_item` VALUES ('receptionParaClinic', '2', null, null, null, '1557906702', '1557906702');
+INSERT INTO `auth_item` VALUES ('superAdmin', '1', 'مدیر کل', null, null, '1507643138', '1507643138');
+INSERT INTO `auth_item` VALUES ('user', '1', 'کاربر', null, null, '1507555215', '1515502636');
 
-INSERT INTO `auth_item` (`name`, `type`, `description`, `rule_name`, `data`, `created_at`, `updated_at`) VALUES
-('admin', 1, 'مدیر', NULL, NULL, 1507555215, 1515502636),
-('clinicAddDoctor', 2, NULL, NULL, NULL, 1557905416, 1557905416),
-('clinicCreate', 2, NULL, NULL, NULL, 1552897506, 1552897506),
-('clinicDelete', 2, NULL, NULL, NULL, 1552897506, 1552897506),
-('clinicImportCsvProgram', 2, NULL, NULL, NULL, 1557905416, 1557905416),
-('clinicImportExcelProgram', 2, NULL, NULL, NULL, 1557905416, 1557905416),
-('clinicIndex', 2, NULL, NULL, NULL, 1552897506, 1552897506),
-('clinicUpdate', 2, NULL, NULL, NULL, 1552897506, 1552897506),
-('clinicView', 2, NULL, NULL, NULL, 1552897506, 1552897506),
-('operator', 1, 'اپراتور', NULL, NULL, 1552897506, 1557906709),
-('personCreate', 2, NULL, NULL, NULL, 1552897506, 1552897506),
-('personDelete', 2, NULL, NULL, NULL, 1552897506, 1552897506),
-('personIndex', 2, NULL, NULL, NULL, 1552897506, 1552897506),
-('personList', 2, NULL, NULL, NULL, 1552897506, 1552897506),
-('personUpdate', 2, NULL, NULL, NULL, 1552897506, 1552897506),
-('personView', 2, NULL, NULL, NULL, 1552897506, 1552897506),
-('receptionClinicRequest', 2, NULL, NULL, NULL, 1557906701, 1557906701),
-('receptionHospitalization', 2, NULL, NULL, NULL, 1557906701, 1557906701),
-('receptionParaClinic', 2, NULL, NULL, NULL, 1557906702, 1557906702),
-('superAdmin', 1, 'مدیر کل', NULL, NULL, 1507643138, 1507643138),
-('user', 1, 'کاربر', NULL, NULL, 1507555215, 1515502636);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `auth_item_child`
---
-
+-- ----------------------------
+-- Table structure for auth_item_child
+-- ----------------------------
 DROP TABLE IF EXISTS `auth_item_child`;
-CREATE TABLE IF NOT EXISTS `auth_item_child` (
+CREATE TABLE `auth_item_child` (
   `parent` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `child` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`parent`,`child`),
-  KEY `child` (`child`) USING BTREE
+  KEY `child` (`child`) USING BTREE,
+  CONSTRAINT `auth_item_child_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `auth_item_child_ibfk_2` FOREIGN KEY (`child`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Dumping data for table `auth_item_child`
---
+-- ----------------------------
+-- Records of auth_item_child
+-- ----------------------------
+INSERT INTO `auth_item_child` VALUES ('operator', 'clinicAddDoctor');
+INSERT INTO `auth_item_child` VALUES ('operator', 'clinicCreate');
+INSERT INTO `auth_item_child` VALUES ('operator', 'clinicDelete');
+INSERT INTO `auth_item_child` VALUES ('operator', 'clinicImportCsvProgram');
+INSERT INTO `auth_item_child` VALUES ('operator', 'clinicImportExcelProgram');
+INSERT INTO `auth_item_child` VALUES ('operator', 'clinicIndex');
+INSERT INTO `auth_item_child` VALUES ('operator', 'clinicUpdate');
+INSERT INTO `auth_item_child` VALUES ('operator', 'clinicView');
+INSERT INTO `auth_item_child` VALUES ('operator', 'personCreate');
+INSERT INTO `auth_item_child` VALUES ('operator', 'personDelete');
+INSERT INTO `auth_item_child` VALUES ('operator', 'personIndex');
+INSERT INTO `auth_item_child` VALUES ('operator', 'personUpdate');
+INSERT INTO `auth_item_child` VALUES ('operator', 'personView');
+INSERT INTO `auth_item_child` VALUES ('operator', 'receptionClinicRequest');
+INSERT INTO `auth_item_child` VALUES ('operator', 'receptionHospitalization');
 
-INSERT INTO `auth_item_child` (`parent`, `child`) VALUES
-('operator', 'clinicAddDoctor'),
-('operator', 'clinicCreate'),
-('operator', 'clinicDelete'),
-('operator', 'clinicImportCsvProgram'),
-('operator', 'clinicImportExcelProgram'),
-('operator', 'clinicIndex'),
-('operator', 'clinicUpdate'),
-('operator', 'clinicView'),
-('operator', 'personCreate'),
-('operator', 'personDelete'),
-('operator', 'personIndex'),
-('operator', 'personUpdate'),
-('operator', 'personView'),
-('operator', 'receptionClinicRequest'),
-('operator', 'receptionHospitalization');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `auth_rule`
---
-
+-- ----------------------------
+-- Table structure for auth_rule
+-- ----------------------------
 DROP TABLE IF EXISTS `auth_rule`;
-CREATE TABLE IF NOT EXISTS `auth_rule` (
+CREATE TABLE `auth_rule` (
   `name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `data` blob DEFAULT NULL,
   `created_at` int(11) DEFAULT NULL,
@@ -163,14 +144,15 @@ CREATE TABLE IF NOT EXISTS `auth_rule` (
   PRIMARY KEY (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- --------------------------------------------------------
+-- ----------------------------
+-- Records of auth_rule
+-- ----------------------------
 
---
--- Table structure for table `category`
---
-
+-- ----------------------------
+-- Table structure for category
+-- ----------------------------
 DROP TABLE IF EXISTS `category`;
-CREATE TABLE IF NOT EXISTS `category` (
+CREATE TABLE `category` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `parentID` int(10) DEFAULT NULL,
   `type` enum('cat','tag','lst','mnu','dep') COLLATE utf8_unicode_ci NOT NULL,
@@ -189,25 +171,30 @@ CREATE TABLE IF NOT EXISTS `category` (
   KEY `Name` (`name`(255)) USING BTREE,
   KEY `Created` (`created`) USING BTREE,
   KEY `Status` (`status`) USING BTREE,
-  KEY `lft` (`left`,`right`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Nested records to store tree structures.\r\nIt includes categories, tags, persons.\r\n! This table is based on what Yii has designed.\r\nIf nothing exists, we will use "Nested sets" structure.';
+  KEY `lft` (`left`,`right`) USING BTREE,
+  FULLTEXT KEY `name_2` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Nested records to store tree structures.\r\nIt includes categories, tags, persons.\r\n! This table is based on what Yii has designed.\r\nIf nothing exists, we will use "Nested sets" structure.';
 
---
--- Dumping data for table `category`
---
+-- ----------------------------
+-- Records of category
+-- ----------------------------
+INSERT INTO `category` VALUES ('1', null, 'dep', 'مدیریت', 0x0407003B0000000000040013000B0023001200D3001B00F300240010012F001001736F727461725F6E616D65656E5F6E616D6561725F737461747573656E5F73746174757373686F775F616C7761797373686F775F696E5F686F6D650221214D616E6167656D656E7421312131, null, '1566741351', '1', '1', '2', '0', '1');
+INSERT INTO `category` VALUES ('4', null, 'mnu', 'خانه', 0x040F00980000000000040013000B0083001200A3001900F300220013012B003301340053013F0003024A00100255001002610013026E0023027C0033028A004002736F727461725F6E616D65636F6E74656E74656E5F6E616D6561725F737461747573656E5F7374617475736D656E755F74797065616374696F6E5F6E616D656465736372697074696F6E73686F775F616C7761797373686F775F696E5F686F6D6565787465726E616C5F6C696E6B61725F6465736372697074696F6E656E5F6465736372697074696F6E73686F775F696E5F666F6F7465720421D8A8DB8CD8AA213121486F6D65213121312132217369746540696E64657821212121, null, '1577689810', '1', '1', '2', '0', '4');
+INSERT INTO `category` VALUES ('11', null, 'mnu', 'کمکهای مالی', 0x040C00710000000000040013000B002301120043011900E301220003022B002302340033023F0000034A0000035600030363001003736F727461725F6E616D65636F6E74656E74656E5F6E616D6561725F737461747573656E5F7374617475736D656E755F74797065616374696F6E5F6E616D6573686F775F616C7761797373686F775F696E5F686F6D6565787465726E616C5F6C696E6B73686F775F696E5F666F6F7465720621D8A7D984D8AAD8A8D8B1D8B9D8A7D8AA213021446F6E6174696F6E7321312131212167616C6C6572794073686F7721, null, '1587573110', '1', '1', '2', '0', '11');
+INSERT INTO `category` VALUES ('12', null, 'mnu', 'اخبار پروژه', 0x040C00710000000000040013000B00B3011200D3011900A3022200C3022B00E3023400F3023F00C0034A00C0035600C3036300D003736F727461725F6E616D65636F6E74656E74656E5F6E616D6561725F737461747573656E5F7374617475736D656E755F74797065616374696F6E5F6E616D6573686F775F616C7761797373686F775F696E5F686F6D6565787465726E616C5F6C696E6B73686F775F696E5F666F6F7465720821D8A3D8AED8A8D8A7D8B120D8A7D984D985D8B4D8B1D988D8B921302150726F6A656374206E65777321312131212167616C6C6572794073686F7721, null, '1587573148', '1', '1', '2', '0', '12');
+INSERT INTO `category` VALUES ('13', null, 'mnu', 'دیدگاه ها', 0x040C00710000000000040013000B00F301120013021900A3022200C3022B00E3023400F3023F00C0034A00C0035600C3036300D003736F727461725F6E616D65636F6E74656E74656E5F6E616D6561725F737461747573656E5F7374617475736D656E755F74797065616374696F6E5F6E616D6573686F775F616C7761797373686F775F696E5F686F6D6565787465726E616C5F6C696E6B73686F775F696E5F666F6F7465720A21D982D8A7D984D988D8A720D984D986D8A720D8B9D98620D8B0D984D983213021636F6D6D656E747321312131212167616C6C6572794073686F7721, null, '1587573218', '1', '1', '2', '0', '13');
+INSERT INTO `category` VALUES ('14', null, 'mnu', 'بخش های پروژه', 0x040C00710000000000040013000B00B3011200D3011900E302220003032B002303340033033F0000044A0000045600030463001004736F727461725F6E616D65636F6E74656E74656E5F6E616D6561725F737461747573656E5F7374617475736D656E755F74797065616374696F6E5F6E616D6573686F775F616C7761797373686F775F696E5F686F6D6565787465726E616C5F6C696E6B73686F775F696E5F666F6F7465720C21D8A3D982D8B3D8A7D98520D8A7D984D985D8B4D8B1D988D8B921302150726F6A6563742073656374696F6E7321312131212167616C6C6572794073686F7721, null, '1587573250', '1', '1', '2', '0', '14');
+INSERT INTO `category` VALUES ('15', null, 'mnu', 'گالری ویدئو', 0x040C00710000000000040013000B0093011200B301190093022200B3022B00D3023400E3023F00B0034A00B0035600B3036300C003736F727461725F6E616D65636F6E74656E74656E5F6E616D6561725F737461747573656E5F7374617475736D656E755F74797065616374696F6E5F6E616D6573686F775F616C7761797373686F775F696E5F686F6D6565787465726E616C5F6C696E6B73686F775F696E5F666F6F7465720E21D985D8B9D8B1D8B620D8A7D984D981D98AD8AFD98AD988213021566964656F2067616C6C65727921312131212167616C6C6572794073686F7721, null, '1587573281', '1', '1', '2', '0', '15');
+INSERT INTO `category` VALUES ('16', null, 'mnu', 'گالری تصاویر', 0x040C00710000000000040013000B0053011200730119005302220073022B0093023400A3023F0070034A0070035600730363008003736F727461725F6E616D65636F6E74656E74656E5F6E616D6561725F737461747573656E5F7374617475736D656E755F74797065616374696F6E5F6E616D6573686F775F616C7761797373686F775F696E5F686F6D6565787465726E616C5F6C696E6B73686F775F696E5F666F6F7465721021D985D8B9D8B1D8B620D8A7D984D8B5D988D8B121302150686F746F2067616C6C65727921312131212167616C6C6572794073686F7721, null, '1587573317', '1', '1', '2', '0', '16');
+INSERT INTO `category` VALUES ('17', null, 'mnu', 'درباره ما', 0x040C00710000000000040013000B0083001200A30019003301220053012B007301340083013F0050024A0050025600530263006002736F727461725F6E616D65636F6E74656E74656E5F6E616D6561725F737461747573656E5F7374617475736D656E755F74797065616374696F6E5F6E616D6573686F775F616C7761797373686F775F696E5F686F6D6565787465726E616C5F6C696E6B73686F775F696E5F666F6F7465721221D8B9D986D8A721302141626F757420757321312131212167616C6C6572794073686F7721, null, '1587573336', '1', '1', '2', '0', '17');
+INSERT INTO `category` VALUES ('18', null, 'mnu', 'تماس با ما', 0x040F00980000000000040013000B001301120033011900E301220003022B002302340043023F0043034A00500355005003610053036E0013047C0023048A003004736F727461725F6E616D65636F6E74656E74656E5F6E616D6561725F737461747573656E5F7374617475736D656E755F74797065616374696F6E5F6E616D656465736372697074696F6E73686F775F616C7761797373686F775F696E5F686F6D6565787465726E616C5F6C696E6B61725F6465736372697074696F6E656E5F6465736372697074696F6E73686F775F696E5F666F6F7465721421D8A7D8AAD8B5D98420D8A8D986D8A7213121436F6E746163742075732131213121332167616C6C657279407069637475726521212373656374696F6E2D31312121, null, '1587573362', '1', '1', '2', '0', '18');
+INSERT INTO `category` VALUES ('19', null, 'cat', 'مسجد جامع كربلا', 0x040800480000000000040013000B000302120023031B004303240060032F0060033B006303736F727461725F6E616D65656E5F6E616D6561725F737461747573656E5F73746174757373686F775F616C7761797373686F775F696E5F686F6D6563617465676F72795F747970651621D985D8B3D8ACD8AF20D8ACD8A7D985D8B920D983D8B1D8A8D984D8A7D8A1214D6F73717565206F66206B617262616C612131213121766964656F5F67616C6C657279, null, '1587678051', '1', '1', '2', '0', '19');
 
-INSERT INTO `category` (`id`, `parentID`, `type`, `name`, `dyna`, `extra`, `created`, `status`, `left`, `right`, `depth`, `tree`) VALUES
-(1, NULL, 'dep', 'مدیریت', 0x0407003b0000000000040013000b0023001200d3001b00f300240010012f001001736f727461725f6e616d65656e5f6e616d6561725f737461747573656e5f73746174757373686f775f616c7761797373686f775f696e5f686f6d650221214d616e6167656d656e7421312131, NULL, '1566741351', 1, 1, 2, 0, 1),
-(4, NULL, 'mnu', 'خانه', 0x040c00710000000000040013000b0083001200a3001900f300220013012b003301340053013f0000024a0000025600030263001002736f727461725f6e616d65636f6e74656e74656e5f6e616d6561725f737461747573656e5f7374617475736d656e755f74797065616374696f6e5f6e616d6573686f775f616c7761797373686f775f696e5f686f6d6565787465726e616c5f6c696e6b73686f775f696e5f666f6f7465720421d8a8db8cd8aa213121486f6d65213121312132217369746540696e64657821, NULL, '1577689810', 1, 1, 2, 0, 4);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `catitem`
---
-
+-- ----------------------------
+-- Table structure for catitem
+-- ----------------------------
 DROP TABLE IF EXISTS `catitem`;
-CREATE TABLE IF NOT EXISTS `catitem` (
+CREATE TABLE `catitem` (
   `itemID` int(10) NOT NULL,
   `catID` int(10) NOT NULL,
   `type` enum('cat','tax') COLLATE utf8_unicode_ci NOT NULL COMMENT 'Some types are defined in list like: ''cat'', ''tax''',
@@ -216,17 +203,40 @@ CREATE TABLE IF NOT EXISTS `catitem` (
   KEY `CatID` (`catID`) USING BTREE,
   KEY `Type` (`type`) USING BTREE,
   KEY `Status` (`status`) USING BTREE,
-  KEY `ItemID` (`itemID`) USING BTREE
+  KEY `ItemID` (`itemID`) USING BTREE,
+  CONSTRAINT `catitem_ibfk_1` FOREIGN KEY (`itemID`) REFERENCES `item` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `catitem_ibfk_2` FOREIGN KEY (`catID`) REFERENCES `category` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- --------------------------------------------------------
+-- ----------------------------
+-- Records of catitem
+-- ----------------------------
+INSERT INTO `catitem` VALUES ('16', '19', 'cat', '1');
 
---
--- Table structure for table `item`
---
+-- ----------------------------
+-- Table structure for donation
+-- ----------------------------
+DROP TABLE IF EXISTS `donation`;
+CREATE TABLE `donation` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `mobile` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `amount` double NOT NULL,
+  `dyna` blob DEFAULT NULL,
+  `status` decimal(1,0) DEFAULT 0,
+  `create_date` varchar(20) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
+-- ----------------------------
+-- Records of donation
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for item
+-- ----------------------------
 DROP TABLE IF EXISTS `item`;
-CREATE TABLE IF NOT EXISTS `item` (
+CREATE TABLE `item` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `userID` int(10) NOT NULL COMMENT 'Book creator',
   `modelID` int(11) NOT NULL,
@@ -241,24 +251,28 @@ CREATE TABLE IF NOT EXISTS `item` (
   KEY `Created` (`created`) USING BTREE,
   KEY `Status` (`status`) USING BTREE,
   KEY `Name` (`name`(255)) USING BTREE,
-  KEY `modelID` (`modelID`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Stores list of items.';
+  KEY `modelID` (`modelID`) USING BTREE,
+  FULLTEXT KEY `name_2` (`name`),
+  CONSTRAINT `item_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `item_ibfk_2` FOREIGN KEY (`modelID`) REFERENCES `model` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Stores list of items.';
 
---
--- Dumping data for table `item`
---
+-- ----------------------------
+-- Records of item
+-- ----------------------------
+INSERT INTO `item` VALUES ('12', '42', '7', null, 'تاریخ شروع پروژه', 0x0408004E0000000300070083010E00E3011500F3011E00130227003302320093034000630461725F6E616D65656E5F6E616D65706167655F696461725F737461747573656E5F7374617475736465736372697074696F6E61725F6465736372697074696F6E656E5F6465736372697074696F6E21D8B4D8B1D988D8B920D8A7D984D9BED8B1D988DA98D987215374617274212131213121D8B3D8B3DB8CD8B4DB8CD8B420D8B3D8A8D8B4D8B321D8B4D8B3D8A8D8B4D8B3D8A82164736120617364, null, '1587030116', '1');
+INSERT INTO `item` VALUES ('14', '42', '1', null, 'اسلاید 1', 0x040500250000000300050053020C0043031300C3031C00E303696D61676561725F6E616D65656E5F6E616D6561725F737461747573656E5F7374617475732130386638656461643835636532393131386461383964383435306433366562312E6A706721D8A7D8B3D984D8A7DB8CD8AF203121536C696465203121312131, null, '1587632560', '1');
+INSERT INTO `item` VALUES ('15', '42', '8', null, 'eqe', 0x040C0062000000030004001301080063030D00B3051400D3061B00F3062200030829002308320043083B0063084600D30854003309626F647969636F6E696D61676561725F626F647961725F6E616D65656E5F626F6479656E5F6E616D6561725F737461747573656E5F7374617475736465736372697074696F6E61725F6465736372697074696F6E656E5F6465736372697074696F6E213C703E6173666173666167613C2F703E2137343862323139303862626337646436393562393535313463636436303638642E7376672133313839333162326435353661343836393561353532663962353337363965652E6A7067213C703E617364677364677361683C2F703E2165213C703E6173647364687364683C2F703E2165213121312161736661667321617367617321616761736761, null, '1587677265', '1');
+INSERT INTO `item` VALUES ('16', '42', '6', '2', 'asf', 0x0408003A000000030004001300080043000D0073001200C302170010052000200529003305626F64796C616E676361744944696D616765766964656F61725F737461747573656E5F73746174757373686F72745F6465736372697074696F6E212161722131392132396139633866386263373239653536643538306664323462333962663633612E6A70672139613139646132656638656664663936383831366130656366386264353263652E6D7034020221617366617366, null, '1587680840', '1');
+INSERT INTO `item` VALUES ('17', '42', '9', null, 'مرحله پایه و اسکلت مسجد', 0x040E009F00000003000400B3000900D300100083041700C3072000E307290003083400130842002308500033085E0053096D00D3097D00330A8E00B30B64617465737461746561725F6E616D65656E5F6E616D6561725F737461747573656E5F7374617475736465736372697074696F6E61725F6465736372697074696F6E656E5F6465736372697074696F6E73656374696F6E5F6E756D62657272657175697265645F616D6F756E747375626D69747465645F616D6F756E7461725F73656374696F6E5F6E756D626572656E5F73656374696F6E5F6E756D6265722131353837343937343030213221D985D8B1D8ADD984D8A920D8A7D984D8AAD8A3D8B3D98AD8B320D988D987D98AD983D98420D8B9D8B8D985D98A20D984D984D985D8B3D8ACD8AF2154686520666F756E646174696F6E20737461676520616E642074686520736B656C65746F6E206F6620746865206D6F737175652131213121212121D985D8B1D8ADD984D98720D8AFD988D985213138303030303021323030303021D985D8B1D8ADD984D8A920D8A7D984D8ABD8A7D986DB8C215365636F6E64207374616765, null, '1587710328', '1');
+INSERT INTO `item` VALUES ('18', '42', '9', null, 'مرحله سفید کاری', 0x040D008F00000003000400B3000900D3001000E3001700F30020001301290033013400430142005301500063015E0083026D0003037E00A30464617465737461746561725F6E616D65656E5F6E616D6561725F737461747573656E5F7374617475736465736372697074696F6E61725F6465736372697074696F6E656E5F6465736372697074696F6E73656374696F6E5F6E756D62657272657175697265645F616D6F756E7461725F73656374696F6E5F6E756D626572656E5F73656374696F6E5F6E756D6265722131353838303135383030213121212131213121212121D985D8B1D8ADD984D98720D8B3D988D985213138303030303021D985D8B1D8ADD984D8A920D8A7D984D8ABD8A7D984D8ABD8A9215468697264207374616765, null, '1587711813', '1');
+INSERT INTO `item` VALUES ('19', '42', '9', null, 'مرحله نقشه برداری', 0x040E009F00000003000400B3000900D3001000E3021700C3032000E303290003043400130442002304500033045E0053056D00B3057D0013068E00730764617465737461746561725F6E616D65656E5F6E616D6561725F737461747573656E5F7374617475736465736372697074696F6E61725F6465736372697074696F6E656E5F6465736372697074696F6E73656374696F6E5F6E756D62657272657175697265645F616D6F756E747375626D69747465645F616D6F756E7461725F73656374696F6E5F6E756D626572656E5F73656374696F6E5F6E756D6265722131353834363439383030213321D985D8B1D8ADD984D8A920D8B1D8B3D98520D8A7D984D8AED8B1D8A7D8A6D8B7214D617070696E672073746167652131213121212121D985D8B1D8ADD984D98720D8A7D988D98421353030303021353030303021D985D8B1D8ADD984D8A920D8A7D984D8A7D988D984214669727374207374616765, null, '1587712048', '1');
 
-INSERT INTO `item` (`id`, `userID`, `modelID`, `type`, `name`, `dyna`, `extra`, `created`, `status`) VALUES
-(1, 42, 5, NULL, 'مسجد جامع کربلا', 0x0421005f01000003000400130009002300100083011700a3021e00b3022500d3022d00e3023500f3023d000303450013034e003303570043036000530369007303730083037d0093038700a3039100b3039c00c303a700d303b200e303bd00f303c8000304d4001304e0002304ec004304fa005304080163041701730426018304370193044a01a30476696577757361676561725f6e616d65656e5f6e616d657061726b696e677370656369616c62675f636f6c6f72656c657661746f726c6f636174696f6e7375627469746c6561725f737461747573617265615f73697a65646972656374696f6e656e5f737461747573626567696e5f64617465667265655f636f756e74736f6c645f636f756e74756e69745f636f756e7461725f6c6f636174696f6e61725f7375627469746c656465736372697074696f6e656e5f6c6f636174696f6e656e5f7375627469746c65666c6f6f725f6e756d6265726c6f636174696f6e5f74776f70726f6a6563745f7479706561725f6465736372697074696f6e656e5f6465736372697074696f6e61725f6c6f636174696f6e5f74776f656e5f6c6f636174696f6e5f74776f636f6e737472756374696f6e5f74696d656167655f6f665f7468655f6275696c64696e67756e69745f7065725f666c6f6f725f6e756d626572212121d985d8b3d8acd8af20d983d8b1d8a8d984d8a7d8a1214d6f73717565206f66204b617262616c61212130212121212131212121312121212121212121212121213121212121212121, NULL, '1577691450', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `log`
---
-
+-- ----------------------------
+-- Table structure for log
+-- ----------------------------
 DROP TABLE IF EXISTS `log`;
-CREATE TABLE IF NOT EXISTS `log` (
+CREATE TABLE `log` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `userID` int(10) NOT NULL COMMENT 'User who did the action.\r\nNull is system actions',
   `code` smallint(5) NOT NULL COMMENT 'Action code.\r\nCodes are defined in excel file',
@@ -276,17 +290,19 @@ CREATE TABLE IF NOT EXISTS `log` (
   KEY `ModelID` (`modelID`) USING BTREE,
   KEY `Date` (`date`) USING BTREE,
   KEY `Time` (`time`) USING BTREE,
-  KEY `FKLog440613` (`userID`) USING BTREE
+  KEY `FKLog440613` (`userID`) USING BTREE,
+  CONSTRAINT `log_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Audit table.\r\n! This is only about actions are done by operators or auto-system, it is not the search log.';
 
--- --------------------------------------------------------
+-- ----------------------------
+-- Records of log
+-- ----------------------------
 
---
--- Table structure for table `message`
---
-
+-- ----------------------------
+-- Table structure for message
+-- ----------------------------
 DROP TABLE IF EXISTS `message`;
-CREATE TABLE IF NOT EXISTS `message` (
+CREATE TABLE `message` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(511) COLLATE utf8_unicode_ci NOT NULL COMMENT 'نام و نام خانوادگی',
   `type` enum('cnt','sgn','cmp') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'cnt' COMMENT 'Enum: cnt: contact us, sgn: suggestions, cmp: complaints',
@@ -297,14 +313,31 @@ CREATE TABLE IF NOT EXISTS `message` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- --------------------------------------------------------
+-- ----------------------------
+-- Records of message
+-- ----------------------------
 
---
--- Table structure for table `model`
---
+-- ----------------------------
+-- Table structure for migration
+-- ----------------------------
+DROP TABLE IF EXISTS `migration`;
+CREATE TABLE `migration` (
+  `version` varchar(180) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `apply_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`version`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
+-- ----------------------------
+-- Records of migration
+-- ----------------------------
+INSERT INTO `migration` VALUES ('m000000_000000_base', '1578150893');
+INSERT INTO `migration` VALUES ('m200104_072357_create_donation_table', '1578150896');
+
+-- ----------------------------
+-- Table structure for model
+-- ----------------------------
 DROP TABLE IF EXISTS `model`;
-CREATE TABLE IF NOT EXISTS `model` (
+CREATE TABLE `model` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `alias` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -312,28 +345,29 @@ CREATE TABLE IF NOT EXISTS `model` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `Alias` (`alias`) USING BTREE,
   KEY `Name` (`name`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
 
---
--- Dumping data for table `model`
---
+-- ----------------------------
+-- Records of model
+-- ----------------------------
+INSERT INTO `model` VALUES ('1', 'slide', 'اسلاید', null);
+INSERT INTO `model` VALUES ('2', 'post', 'مطلب', null);
+INSERT INTO `model` VALUES ('3', 'page', 'صفحات', null);
+INSERT INTO `model` VALUES ('4', 'project', 'پروژه', null);
+INSERT INTO `model` VALUES ('5', 'block', 'بلاک', null);
+INSERT INTO `model` VALUES ('6', 'gallery', 'گالری', null);
+INSERT INTO `model` VALUES ('7', 'project-process', 'فرآیند پروژه', null);
+INSERT INTO `model` VALUES ('8', 'project-section', 'بخش پروژه', null);
+INSERT INTO `model` VALUES ('9', 'project-timeline', 'تام لاین پروژه', null);
+INSERT INTO `model` VALUES ('10', 'comments', 'دیدگاه ها', null);
+INSERT INTO `model` VALUES ('11', 'about-us', 'درباره ما', null);
+INSERT INTO `model` VALUES ('12', 'material', 'کمک های غیرنقدی', null);
 
-INSERT INTO `model` (`id`, `name`, `alias`, `extra`) VALUES
-(1, 'slide', 'اسلاید', NULL),
-(2, 'post', 'مطلب', NULL),
-(3, 'page', 'صفحات', NULL),
-(4, 'project', 'پروژه', NULL),
-(5, 'block', 'بلاک', NULL),
-(6, 'gallery', 'گالری', NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `ugroup`
---
-
+-- ----------------------------
+-- Table structure for ugroup
+-- ----------------------------
 DROP TABLE IF EXISTS `ugroup`;
-CREATE TABLE IF NOT EXISTS `ugroup` (
+CREATE TABLE `ugroup` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `members` blob DEFAULT NULL COMMENT 'JSON array:\r\nU[userID] => [Status:0,1]',
@@ -345,14 +379,15 @@ CREATE TABLE IF NOT EXISTS `ugroup` (
   KEY `status` (`status`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='User groups';
 
--- --------------------------------------------------------
+-- ----------------------------
+-- Records of ugroup
+-- ----------------------------
 
---
--- Table structure for table `user`
---
-
+-- ----------------------------
+-- Table structure for user
+-- ----------------------------
 DROP TABLE IF EXISTS `user`;
-CREATE TABLE IF NOT EXISTS `user` (
+CREATE TABLE `user` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `name` char(255) COLLATE utf8_unicode_ci NOT NULL,
   `username` char(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -365,102 +400,29 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `Username` (`username`) USING BTREE,
   KEY `Name` (`name`) USING BTREE,
   KEY `Status` (`status`) USING BTREE,
-  KEY `ruleID` (`roleID`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Table of users';
+  KEY `ruleID` (`roleID`) USING BTREE,
+  CONSTRAINT `user_ibfk_1` FOREIGN KEY (`roleID`) REFERENCES `auth_item` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Table of users';
 
---
--- Dumping data for table `user`
---
+-- ----------------------------
+-- Records of user
+-- ----------------------------
+INSERT INTO `user` VALUES ('8', 'Rahbod', 'rahbod', '$2y$13$LzbDws024iCbvece6kIsSOuoiVQj.6cETL7bgrRuKgZpa.Dul/dqW', 'superAdmin', null, '2018-02-13 21:46:22', '1');
+INSERT INTO `user` VALUES ('42', 'مدیر سایت', 'admin', '$2y$13$TzkKj/Y7WvRayuSf0idhK.GlEzUHIXHeYC.2jdlzSjPTv/IEgFckG', 'admin', 0x0402000C000000030005007301656D61696C7570646174656421616C692E6A6177616865726940676D61696C2E636F6D21323031392D31322D33302031303A32333A3037, '2019-12-30 10:23:07', '1');
 
-INSERT INTO `user` (`id`, `name`, `username`, `password`, `roleID`, `dyna`, `created`, `status`) VALUES
-(8, 'Rahbod', 'rahbod', '$2y$13$LzbDws024iCbvece6kIsSOuoiVQj.6cETL7bgrRuKgZpa.Dul/dqW', 'superAdmin', NULL, '2018-02-13 21:46:22', 1),
-(42, 'مدیر سایت', 'admin', '$2y$13$TzkKj/Y7WvRayuSf0idhK.GlEzUHIXHeYC.2jdlzSjPTv/IEgFckG', 'admin', 0x0402000c000000030005007301656d61696c7570646174656421616c692e6a6177616865726940676d61696c2e636f6d21323031392d31322d33302031303a32333a3037, '2019-12-30 10:23:07', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `userugroup`
---
-
+-- ----------------------------
+-- Table structure for userugroup
+-- ----------------------------
 DROP TABLE IF EXISTS `userugroup`;
-CREATE TABLE IF NOT EXISTS `userugroup` (
+CREATE TABLE `userugroup` (
   `userID` int(11) NOT NULL,
   `ugroupID` int(11) NOT NULL,
   PRIMARY KEY (`userID`,`ugroupID`),
-  KEY `ugroupID` (`ugroupID`) USING BTREE
+  KEY `ugroupID` (`ugroupID`) USING BTREE,
+  CONSTRAINT `userugroup_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `userugroup_ibfk_2` FOREIGN KEY (`ugroupID`) REFERENCES `ugroup` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `category`
---
-ALTER TABLE `category` ADD FULLTEXT KEY `name_2` (`name`);
-
---
--- Indexes for table `item`
---
-ALTER TABLE `item` ADD FULLTEXT KEY `name_2` (`name`);
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `auth_assignment`
---
-ALTER TABLE `auth_assignment`
-  ADD CONSTRAINT `auth_assignment_ibfk_1` FOREIGN KEY (`item_name`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `auth_item`
---
-ALTER TABLE `auth_item`
-  ADD CONSTRAINT `auth_item_ibfk_1` FOREIGN KEY (`rule_name`) REFERENCES `auth_rule` (`name`) ON DELETE SET NULL ON UPDATE CASCADE;
-
---
--- Constraints for table `auth_item_child`
---
-ALTER TABLE `auth_item_child`
-  ADD CONSTRAINT `auth_item_child_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `auth_item_child_ibfk_2` FOREIGN KEY (`child`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `catitem`
---
-ALTER TABLE `catitem`
-  ADD CONSTRAINT `catitem_ibfk_1` FOREIGN KEY (`itemID`) REFERENCES `item` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  ADD CONSTRAINT `catitem_ibfk_2` FOREIGN KEY (`catID`) REFERENCES `category` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
-
---
--- Constraints for table `item`
---
-ALTER TABLE `item`
-  ADD CONSTRAINT `item_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  ADD CONSTRAINT `item_ibfk_2` FOREIGN KEY (`modelID`) REFERENCES `model` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
-
---
--- Constraints for table `log`
---
-ALTER TABLE `log`
-  ADD CONSTRAINT `log_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `user` (`id`);
-
---
--- Constraints for table `user`
---
-ALTER TABLE `user`
-  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`roleID`) REFERENCES `auth_item` (`name`);
-
---
--- Constraints for table `userugroup`
---
-ALTER TABLE `userugroup`
-  ADD CONSTRAINT `userugroup_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  ADD CONSTRAINT `userugroup_ibfk_2` FOREIGN KEY (`ugroupID`) REFERENCES `ugroup` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+-- ----------------------------
+-- Records of userugroup
+-- ----------------------------

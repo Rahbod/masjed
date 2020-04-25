@@ -1,11 +1,9 @@
 <?php
 
 /* @var $this yii\web\View */
-/* @var $model Page */
+/* @var $model Material */
 
-use app\models\Page;
-use app\models\Project;
-use yii\helpers\Html;
+use app\models\Material;
 
 $this->title = strip_tags($model->getName());
 
@@ -14,7 +12,7 @@ $baseUrl = $this->theme->baseUrl;
 <div class="text-page row">
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 title-box">
         <h3><b><?= $model->getName() ?></b>
-<!--            <small>--><?//= $model->getS ?><!--</small>-->
+            <small><?= $model->getDescriptionStr() ?></small>
         </h3>
         <small>أخبار متعلقة بالتعاون والتقدم في مشروع مسجد كربلاء وشفافية مساهماتكم</small>
     </div>

@@ -94,4 +94,11 @@ class MaterialController extends AuthController implements CrudControllerInterfa
                 ],
         ];
     }
+
+    public function actionArchive()
+    {
+        $materials = Material::find()->valid()->all();
+
+        return $this->render('archive', compact('materials'));
+    }
 }

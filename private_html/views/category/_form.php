@@ -60,11 +60,11 @@ $form = CustomActiveForm::begin([
         </div>
 
         <div class="row">
-            <div class="col-sm-4">
-                <?= $form->field($model, 'parentID')->dropDownList(Category::parentsList(), [
-                    'prompt' => 'بدون والد'
-                ]) ?>
-            </div>
+<!--            <div class="col-sm-4">-->
+<!--                --><?//= $form->field($model, 'parentID')->dropDownList(Category::parentsList(), [
+//                    'prompt' => 'بدون والد'
+//                ]) ?>
+<!--            </div>-->
             <div class="col-sm-4">
                 <?= $form->field($model, 'category_type')->dropDownList(Category::getCategoryTypeLabels(),[
                     'data-toggle' => 'box'

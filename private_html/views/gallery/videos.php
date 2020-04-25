@@ -3,15 +3,16 @@
 use app\models\Category;
 use app\models\Gallery;
 use app\models\PictureGallery;
+use app\models\VideoGallery;
 use yii\helpers\Url;
 
 /** @var $this \yii\web\View */
 /** @var $categories Category[] */
 
-$categories = \app\models\Category::find()
+$categories = Category::find()
     ->andWhere([
-        'type' => \app\models\Category::TYPE_CATEGORY,
-        'category_type' => \app\models\Category::CATEGORY_TYPE_PICTURE_GALLERY,
+        'type' => Category::TYPE_CATEGORY,
+        'category_type' => Category::CATEGORY_TYPE_VIDEO_GALLERY,
     ])
     ->all();
 
@@ -21,9 +22,9 @@ $baseUrl = $this->theme->baseUrl;
 //$this->registerJsFile($baseUrl . '/js/vendors/html5lightbox/html5lightbox.js', [], 'html5lightbox');
 ?>
 
-<div class="gallery-page row">
+<div class="gallery-page video row">
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 title-box">
-        <h3><b><?= trans('words', 'Picture Gallery') ?></b>
+        <h3><b><?= trans('words', 'Video Gallery') ?></b>
             <small><?= trans('words', 'Mosque of karbala') ?></small>
         </h3>
         <small>اقترب من هذا المشروع عن طريق إنشاء مقاطع صور</small>
@@ -38,16 +39,21 @@ $baseUrl = $this->theme->baseUrl;
             <?php
             $i=0;
             foreach ($categories as $category):
-                $photos = PictureGallery::getListByCategory($category->id, Gallery::TYPE_PICTURE_GALLERY);
+                $videos = VideoGallery::getListByCategory($category->id, Gallery::TYPE_VIDEO_GALLERY);
                 ?>
                 <div id="picture-gallery-<?= $category->id ?>" class="tab-pane fade<?= $i++==0?' in active':'' ?>">
                     <div class="gallery row">
-                        <?php foreach ($photos as $photo):?>
+                        <?php foreach ($videos as $video):?>
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 gallery-item">
-                                <img src="<?= $photo->getThumbImageSrc() ?>" alt="<?= $photo->getName() ?>">
-                                <h5><?= $photo->getName() ?></h5>
-                                <span><?= $photo->short_description ?></span>
-                                <a href="<?= $photo->getImageSrc() ?>"></a>
+                                <div class="image">
+                                    <video controls preload="none" poster="<?= $video->getPosterSrc() ?>">
+                                        <source src="<?= $video->getVideoSrc() ?>" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                                <h5><?= $video->getName() ?></h5>
+                                <span><?= $video->short_description ?></span>
+                                <a href="<?= $video->getImageSrc() ?>"></a>
                             </div>
                         <?php endforeach; ?>
                     </div>

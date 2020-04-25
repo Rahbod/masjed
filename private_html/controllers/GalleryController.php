@@ -168,7 +168,7 @@ class GalleryController extends AuthController
 
     public function actionPicture()
     {
-        $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
+        $this->setTheme('frontend', ['layout' => 'inner']);
         $searchModel = new GallerySearch();
 
         $searchModel->type = Gallery::TYPE_PICTURE_GALLERY;
@@ -186,7 +186,7 @@ class GalleryController extends AuthController
 
     public function actionVideo()
     {
-        $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
+        $this->setTheme('frontend', ['layout' => 'inner']);
         $searchModel = new GallerySearch();
 
         $searchModel->type = Gallery::TYPE_VIDEO_GALLERY;

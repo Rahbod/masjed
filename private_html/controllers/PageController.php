@@ -87,22 +87,15 @@ class PageController extends AuthController
 
     public function actionShow($id)
     {
-        $this->setTheme('frontend');
-        $this->innerPage = true;
-        $this->bodyClass = 'text-page more-one list';
-        $this->headerClass = 'header-style-2';
-        $this->mainTag = 'main-text-page';
+        $this->setTheme('frontend', ['layout' => 'inner']);
 
         $model = Page::findOne($id);
         $model->scenario = 'increase_seen';
         $model->seen++;
         $model->save(false);
 
-        $availableProjects = Project::find()->andWhere(['>', Project::columnGetString('free_count'), 0])->all();
-
         return $this->render('show', [
-            'model' => $model,
-            'availableProjects' => $availableProjects,
+            'model' => $model
         ]);
     }
 

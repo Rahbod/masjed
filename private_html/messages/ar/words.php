@@ -236,4 +236,6 @@ return [
     'About us' => 'عنا',
     'Send' => 'إرسال',
     'News related pictures' => 'الصور المتعلقة بالأخبار',
+    'Command code' => 'كود القيادة',
+    'Iran and Iraq' => 'إيران والعراق',
 ];

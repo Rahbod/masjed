@@ -1,6 +1,7 @@
 <?php
 /** @var $this View */
 /** @var string $baseUrl */
+/** @var bool $inner */
 
 use app\components\MultiLangActiveRecord;
 use app\components\Setting;

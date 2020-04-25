@@ -55,7 +55,7 @@ $processMoreLink = ProjectProcess::getMoreLink();
                     <?php endforeach; ?>
                     <li></li>
                     <li>
-                        <a href="#" class="btn-donate">
+                        <a href="<?= Url::to(['/payment']) ?>" class="btn-donate">
                             <?= trans('words', '<b>Donate</b> now') ?>
                             <i class="left-side--btn__heart svg-heart-r">
                                 <i class="left-side--btn__heart-inner svg-heart-filled-r"></i>

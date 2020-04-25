@@ -20,7 +20,6 @@ AppAsset::register($this);
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language; ?>">
 <head>
-
     <meta charset="<?= Yii::$app->charset; ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
@@ -38,18 +37,17 @@ AppAsset::register($this);
     <link href="<?= $this->theme->baseUrl . '/css/owl.carousel.min.css' ?>" rel="stylesheet">
     <link href="<?= $this->theme->baseUrl . '/css/owl.theme.default.min.css' ?>" rel="stylesheet">
     <link href="<?= $this->theme->baseUrl . '/css/svg_icons.css' ?>" rel="stylesheet">
-    <link href="<?= $this->theme->baseUrl . '/css/onepage-scroll.css' ?>" rel="stylesheet">
     <link href="<?= $this->theme->baseUrl . '/css/bootstrap-theme.css' ?>" rel="stylesheet">
 
     <?php if (app()->language != 'en'): ?>
 
     <?php endif; ?>
 </head>
-<body class="<?= app()->controller->bodyClass ?><?= app()->language != 'en' ? ' rtl' : '' ?>">
+<body class="inner-page<?= app()->language != 'en' ? ' rtl' : '' ?>">
 <?php $this->beginBody(); ?>
 
 <main class="content">
-    <?= $this->render('_header'); ?>
+    <?= $this->render('_header', array('inner' => true)); ?>
 
     <?php
     $slides = Slide::find()->valid()->orderBy(['id' => SORT_ASC])->all();
@@ -57,7 +55,7 @@ AppAsset::register($this);
     $processes = ProjectProcess::getLastRows();
     $processMoreLink = ProjectProcess::getMoreLink();
     ?>
-    <section class="slider-container" id="section-1">
+    <section class="slider-container">
         <div class="slider owl-carousel owl-theme" data-items="1" data-rtl="true">
             <?php
             /** @var Slide $item */
@@ -76,7 +74,7 @@ AppAsset::register($this);
             endforeach; ?>
         </div>
     </section>
-    <section class="project-intro" id="section-2">
+    <section class="project-intro">
         <div class="top-bar-info">
             <div class="container">
                 <div class="top-bar-info__body">
@@ -184,7 +182,6 @@ AppAsset::register($this);
 <script src="<?= $this->theme->baseUrl . '/js/bootstrap.min.js' ?>"></script>
 <script src="<?= $this->theme->baseUrl . '/js/owl.carousel.min.js' ?>"></script>
 <script src="<?= $this->theme->baseUrl . '/js/jquery.nicescroll.min.js' ?>"></script>
-<script src="<?= $this->theme->baseUrl . '/js/jquery.onepage-scroll.min.js' ?>"></script>
 <script src="<?= $this->theme->baseUrl . '/js/jquery.script.js' ?>"></script>
 </body>
 </html>

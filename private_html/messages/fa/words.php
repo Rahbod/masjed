@@ -373,6 +373,8 @@ return [
     'Payer Name' => 'نام پرداخت کننده',
     'Amount' => 'مبلغ',
     'Payment' => 'پرداخت',
+    'Command code' => 'کد فرمان',
+    'Iran and Iraq' => 'ایران و عراق',
 
     //////// Donation
     'Donation' => 'کمک های نقدی',

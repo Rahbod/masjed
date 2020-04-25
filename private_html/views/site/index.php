@@ -121,7 +121,7 @@ $this->registerJs("
                                 </div>
                             </div>
                             <div class="left-side--btn">
-                                <a href="#" class="left-side--btn__btn-donate"><?= trans('words',
+                                <a href="<?= Url::to(['/payment']) ?>" class="left-side--btn__btn-donate"><?= trans('words',
                                             '<b>Donate</b> now') ?><i class="left-side--btn__heart svg-heart-r"><i
                                                 class="left-side--btn__heart-inner svg-heart-filled-r"></i></i></a>
                             </div>
@@ -375,7 +375,7 @@ $this->registerJs("
                     </div>
                 <?php endforeach; ?>
             </div>
-            <a href="#" class="btn-donate"><?= trans('words', '<b>Donate</b> now') ?><i
+            <a href="<?= Url::to(['/payment']) ?>" class="btn-donate"><?= trans('words', '<b>Donate</b> now') ?><i
                         class="left-side--btn__heart svg-heart-r"><i
                             class="left-side--btn__heart-inner svg-heart-filled-r"></i></i></a>
         </div>

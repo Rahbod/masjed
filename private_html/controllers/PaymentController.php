@@ -24,6 +24,8 @@ class PaymentController extends MainController
 
     public function actionIndex()
     {
+        $this->setTheme('frontend', ['layout' => 'inner']);
+
         $model = new PaymentForm();
 
         if (request()->post()) {

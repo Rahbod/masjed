@@ -130,6 +130,7 @@ class Post extends Item
     public function formAttributes()
     {
         return array_merge(parent::formAttributes(), [
+
                 'image' => [
                         'type' => static::FORM_FIELD_TYPE_DROP_ZONE,
                         'containerCssClass' => 'col-sm-12',
@@ -163,6 +164,10 @@ class Post extends Item
                         'type' => static::FORM_FIELD_TYPE_SELECT,
                         'items' => Category::getWithType(Category::CATEGORY_TYPE_NEWS),
                         'options' => ['prompt' => trans('words', 'Select Category')]
+                ],
+                'publish_date' => [
+                        'type' => static::FORM_FIELD_TYPE_DATE,
+                        'options' => ['class' => 'form-control m-input m-input--solid', 'autocomplete' => 'off']
                 ],
                 'summary' => [
                         'type' => static::FORM_FIELD_TYPE_TEXT_AREA,
@@ -200,10 +205,6 @@ class Post extends Item
                                 ],
                         ]
                 ],
-                'publish_date' => [
-                        'type' => static::FORM_FIELD_TYPE_DATE,
-                        'options' => ['class' => 'form-control m-input m-input--solid', 'autocomplete' => 'off']
-                ]
         ]);
     }
 
@@ -213,7 +214,7 @@ class Post extends Item
      */
     public function getImageSrc($thumb = false)
     {
-        return app()->getHomeUrl() . '/' . PostController::$imageDir . '/' .($thumb?'thumbs/100x100/':''). $this->image;
+        return app()->getHomeUrl() . '/' . PostController::$imageDir . '/' . ($thumb ? 'thumbs/100x100/' : '') . $this->image;
     }
 
     public function getDate($timestamp = false)
@@ -230,5 +231,14 @@ class Post extends Item
                 return $d->hijriDate($timestamp, false, ':year/:month/:day');
         }
         return null;
+    }
+
+    public function beforeSave($insert)
+    {
+        if ($this->publish_date) {
+            $this->publish_date = substr($this->publish_date, 0, 10);
+        }
+
+        return parent::beforeSave($insert);
     }
 }

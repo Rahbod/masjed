@@ -46,6 +46,7 @@ class MaterialController extends AuthController implements CrudControllerInterfa
                 'delete-icon',
                 'upload-image',
                 'delete-image',
+                'archive',
         ];
     }
 
@@ -97,8 +98,9 @@ class MaterialController extends AuthController implements CrudControllerInterfa
 
     public function actionArchive()
     {
+        $this->setTheme('frontend', ['layout' => 'inner']);
         $materials = Material::find()->valid()->all();
 
-        return $this->render('archive', compact('materials'));
+        return $this->render('/material/archive', compact('materials'));
     }
 }

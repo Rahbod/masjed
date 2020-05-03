@@ -53,7 +53,7 @@ $baseUrl = $this->theme->baseUrl;
                                 </div>
                                 <h5><?= $video->getName() ?></h5>
                                 <span><?= $video->short_description ?></span>
-                                <a href="<?= $video->getImageSrc() ?>"></a>
+                                <a href="<?= $video->getVideoSrc() ?>"></a>
                             </div>
                         <?php endforeach; ?>
                     </div>

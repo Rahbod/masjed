@@ -278,12 +278,9 @@ class MainController extends Controller implements CrudControllerInterface
 
         $contactLinks = [];
 //        foreach (Department::find()->valid()->all() as $item) {
-////            $contactLinks[] = ['label' => "پیام های {$item->name}", 'url' => ['/message/index', 'id' => $item->id], 'visible' => $permissions || app()->user->can('messageIndex')];
+//            $contactLinks[] = ['label' => "پیام های {$item->name}", 'url' => ['/message/index', 'id' => $item->id], 'visible' => $permissions || app()->user->can('messageIndex')];
 //        }
         $contactLinks[] = ['label' => 'پیام های تماس با ما', 'url' => ['/message/index'], 'visible' => $permissions || app()->user->can('messageContactus')];
-//        $contactLinks[] = ['label' => 'انتقادات و پیشنهادات', 'url' => ['/message/suggestions'], 'visible' => $permissions || app()->user->can('messageSuggestions')];
-//        $contactLinks[] = ['label' => 'شکایات', 'url' => ['/message/complaints'], 'visible' => $permissions || app()->user->can('messageComplaints')];
-//        $contactLinks[] = ['label' => 'مدیریت بخش ها', 'url' => ['/message/department'], 'visible' => $permissions || app()->user->can('messageDepartment')];
         $contactCount = Message::find()->andWhere(['type' => Message::STATUS_UNREAD])->count();
         $contactCount = $contactCount>0?'<span class="m-badge m-badge--danger float-right">'.$contactCount.'</span>':'';
 
@@ -310,6 +307,16 @@ class MainController extends Controller implements CrudControllerInterface
 //                'url' => ['/project/index'],
 //                'visible' => $permissions || app()->user->can('projectIndex')
 //            ],
+
+            [
+                'label' => '<i class="m-menu__link-icon fa fa-server"></i><span class="m-menu__link-text">' . trans('words', 'Items') . '</span>',
+                'items' => [
+                    ['label' => trans('words', 'Slides'), 'url' => ['/slide/index'], 'visible' => $permissions || app()->user->can('slideIndex')],
+                    ['label' => trans('words', 'Pages'), 'url' => ['/page/index'], 'visible' => $permissions || app()->user->can('pageIndex')],
+                    ['label' => trans('words', 'Post'), 'url' => ['/post/index'], 'visible' => $permissions || app()->user->can('postIndex')],
+                    ['label' => trans('words', 'Lists'), 'url' => ['/list/index'], 'visible' => $permissions || app()->user->can('listIndex')],
+                ]
+            ],
             [
                 'label' => '<i class="m-menu__link-icon fa fa-building"></i><span class="m-menu__link-text">' . trans('words', 'Project Management') . '</span>',
                 'items' => [
@@ -318,15 +325,6 @@ class MainController extends Controller implements CrudControllerInterface
                     ['label' => trans('words', 'Project Timeline'), 'url' => ['/timeline/index'], 'visible' => $permissions || app()->user->can('timelineIndex')],
                     ['label' => trans('words', 'Donation'), 'url' => ['/donation/index'], 'visible' => $permissions || app()->user->can('donationIndex')],
                     ['label' => trans('words', 'Material Assistance'), 'url' => ['/material/index'], 'visible' => $permissions || app()->user->can('materialIndex')],
-                ]
-            ],
-            [
-                'label' => '<i class="m-menu__link-icon fa fa-server"></i><span class="m-menu__link-text">' . trans('words', 'Items') . '</span>',
-                'items' => [
-                    ['label' => trans('words', 'Slides'), 'url' => ['/slide/index'], 'visible' => $permissions || app()->user->can('slideIndex')],
-                    ['label' => trans('words', 'Pages'), 'url' => ['/page/index'], 'visible' => $permissions || app()->user->can('pageIndex')],
-                    ['label' => trans('words', 'Post'), 'url' => ['/post/index'], 'visible' => $permissions || app()->user->can('postIndex')],
-                    ['label' => trans('words', 'Lists'), 'url' => ['/list/index'], 'visible' => $permissions || app()->user->can('listIndex')],
                 ]
             ],
             [
@@ -342,15 +340,13 @@ class MainController extends Controller implements CrudControllerInterface
                     ['label' => Yii::t('words', 'Video Gallery'), 'url' => ['/gallery/index-video'], 'visible' => $permissions || Yii::$app->user->can('galleryIndexVideo')],
                 ]
             ],
-//            [
-//                'label' => '<i class="m-menu__link-icon fa fa-envelope"></i><span class="m-menu__link-text">' . trans('words', 'Requests') . '</span>'.$unreadCount,
-//                'url' => ['/request/index'],
-//                'visible' => $permissions || app()->user->can('requestIndex')
-//            ],
+
             [
-                'label' => '<i class="m-menu__link-icon fa fa-comments"></i><span class="m-menu__link-text">' . trans('words', 'Messages') . '</span>'.$contactCount,
-                'url' => ['/message/index'],
-                'visible' => $permissions || app()->user->can('messageIndex')
+                'label' => '<i class="m-menu__link-icon fa fa-comments"></i><span class="m-menu__link-text">' . 'تماس با ما' . '</span>',
+                'items' => [
+                    ['label' => Yii::t('words', 'Messages'), 'url' => ['/message/index'], 'visible' => $permissions || Yii::$app->user->can('messageIndex')],
+                    ['label' => Yii::t('words', 'Departments'), 'url' => ['/message/department'], 'visible' => $permissions || Yii::$app->user->can('messageDepartment')],
+                ]
             ],
             [
                 'label' => '<i class="m-menu__link-icon fa fa-users"></i><span class="m-menu__link-text">کاربران</span>',

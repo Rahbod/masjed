@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\components\Setting;
+use app\models\Page;
 use Yii;
 use app\models\ProjectProcess;
 use app\models\ProjectProcessSearch;
@@ -26,8 +28,8 @@ class ProcessController extends AuthController implements CrudControllerInterfac
     public $viewTitle = 'View Process: {name}';
 
     /**
-    * @return string
-    */
+     * @return string
+     */
     public function getModelName()
     {
         return ProjectProcess::className();
@@ -39,16 +41,30 @@ class ProcessController extends AuthController implements CrudControllerInterfac
     }
 
     /**
-    * for attributes that is need uploader processes
-    * @return array
-    */
-    /*public function uploaderAttributes()
+     * Lists all Slide models.
+     * @return mixed
+     */
+    public function actionIndex()
     {
-        return [
-            'image' => [
-                'dir' => self::$imgDir,
-                'options' => self::$imageOptions
-            ]
-        ];
-    }*/
+        $searchModelName = $this->getModelName() . "Search";
+        $searchModel = new $searchModelName();
+
+        $dataProvider = $searchModel->search(app()->request->queryParams);
+
+        return $this->render('/process/index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionSaveMore()
+    {
+        if ($page_id = request()->post('page_id')) {
+            if ($page = Page::findOne($page_id)) {
+                Setting::set(ProjectProcess::$morePageSettingKey, $page_id);
+            }
+        }
+
+        return $this->redirect(['index']);
+    }
 }

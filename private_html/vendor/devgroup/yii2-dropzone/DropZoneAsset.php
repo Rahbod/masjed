@@ -14,7 +14,7 @@ class DropZoneAsset extends AssetBundle
     ];
     public $depends = [
         'yii\web\JqueryAsset',
-        'yii\jui\JuiAsset',
+//        'yii\jui\JuiAsset',
     ];
     public $js = [
         'dropzone.js',

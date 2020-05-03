@@ -34,59 +34,59 @@ class PostController extends AuthController
     public function getMenuActions()
     {
         return [
-            'news',
-            'articles'
+                'news',
+                'articles'
         ];
     }
 
     public function getSystemActions()
     {
         return [
-            'upload-image',
-            'delete-image',
-            'upload-attachment',
-            'delete-attachment',
-            'show',
-            'news',
-            'articles',
+                'upload-image',
+                'delete-image',
+                'upload-attachment',
+                'delete-attachment',
+                'show',
+                'news',
+                'articles',
         ];
     }
 
     public function actions()
     {
         return [
-            'upload-image' => [
-                'class' => UploadAction::className(),
-                'fileName' => Html::getInputName(new Post(), 'image'),
-                'rename' => UploadAction::RENAME_UNIQUE,
-                'validateOptions' => array(
-                    'acceptedTypes' => array('png', 'jpg', 'jpeg')
-                )
-            ],
-            'delete-image' => [
-                'class' => RemoveAction::className(),
-                'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
-                'model' => new Post(),
-                'attribute' => 'image',
-                'upload' => self::$imageDir,
-                'options' => self::$imageOptions
-            ],
-            'upload-attachment' => [
-                'class' => UploadAction::className(),
-                'rename' => UploadAction::RENAME_UNIQUE,
-                'fileName' => Html::getInputName(new Post(), 'gallery'),
-                'validateOptions' => array(
-                    'acceptedTypes' => array('png', 'jpg', 'jpeg')
-                )
-            ],
-            'delete-attachment' => [
-                'class' => RemoveAction::className(),
-                'upload' => Attachment::$attachmentPath,
-                'storedMode' => RemoveAction::STORED_RECORD_MODE,
-                'model' => new Attachment(),
-                'attribute' => 'file',
-                'options' => self::$galleryOptions
-            ],
+                'upload-image' => [
+                        'class' => UploadAction::className(),
+                        'fileName' => Html::getInputName(new Post(), 'image'),
+                        'rename' => UploadAction::RENAME_UNIQUE,
+                        'validateOptions' => array(
+                                'acceptedTypes' => array('png', 'jpg', 'jpeg')
+                        )
+                ],
+                'delete-image' => [
+                        'class' => RemoveAction::className(),
+                        'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
+                        'model' => new Post(),
+                        'attribute' => 'image',
+                        'upload' => self::$imageDir,
+                        'options' => self::$imageOptions
+                ],
+                'upload-attachment' => [
+                        'class' => UploadAction::className(),
+                        'rename' => UploadAction::RENAME_UNIQUE,
+                        'fileName' => Html::getInputName(new Post(), 'gallery'),
+                        'validateOptions' => array(
+                                'acceptedTypes' => array('png', 'jpg', 'jpeg')
+                        )
+                ],
+                'delete-attachment' => [
+                        'class' => RemoveAction::className(),
+                        'upload' => Attachment::$attachmentPath,
+                        'storedMode' => RemoveAction::STORED_RECORD_MODE,
+                        'model' => new Attachment(),
+                        'attribute' => 'file',
+                        'options' => self::$galleryOptions
+                ],
         ];
     }
 
@@ -100,8 +100,8 @@ class PostController extends AuthController
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams, true);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -122,25 +122,22 @@ class PostController extends AuthController
 
         if (Yii::$app->request->post()) {
             $model->load(Yii::$app->request->post());
-            $pdate = null;
-            if ($model->publish_date) {
-                $pdate = $model->publish_date;
-                $model->publish_date = Helper::jDateTotoGregorian($model->publish_date);
-            }
             $image = new UploadedFiles($this->tmpDir, $model->image, self::$imageOptions);
             $gallery = new UploadedFiles($this->tmpDir, $model->gallery, self::$galleryOptions);
             if ($model->save()) {
                 $image->move(self::$imageDir);
                 $gallery->move(Attachment::getAttachmentPath());
-                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
+                Yii::$app->session->setFlash('alert',
+                        ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
                 return $this->redirect(['view', 'id' => $model->id]);
-            } else
-                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => trans('words', 'base.dangerMsg')]);
-            $model->publish_date = $pdate;
+            } else {
+                Yii::$app->session->setFlash('alert',
+                        ['type' => 'danger', 'message' => trans('words', 'base.dangerMsg')]);
+            }
         }
 
         return $this->render('create', [
-            'model' => $model,
+                'model' => $model,
         ]);
     }
 
@@ -168,26 +165,24 @@ class PostController extends AuthController
             $oldImage = $model->image;
             $oldGallery = ArrayHelper::map($model->gallery, 'id', 'file');
             $model->load(Yii::$app->request->post());
-            $pdate = null;
-            if ($model->publish_date) {
-                $pdate = $model->publish_date;
-                $model->publish_date = Helper::jDateTotoGregorian($model->publish_date);
-            }
 
             if ($model->save()) {
                 $image->update($oldImage, $model->image, $this->tmpDir);
-                $gallery->updateAll($oldGallery, $model->gallery, $this->tmpDir, Attachment::getAttachmentRelativePath());
-                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
+                $gallery->updateAll($oldGallery, $model->gallery, $this->tmpDir,
+                        Attachment::getAttachmentRelativePath());
+                Yii::$app->session->setFlash('alert',
+                        ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
                 return $this->redirect(['view', 'id' => $model->id]);
-            } else
-                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => trans('words', 'base.dangerMsg')]);
-            $model->publish_date = $pdate;
+            } else {
+                Yii::$app->session->setFlash('alert',
+                        ['type' => 'danger', 'message' => trans('words', 'base.dangerMsg')]);
+            }
         }
 
         return $this->render('update', [
-            'model' => $model,
-            'image' => $image,
-            'gallery' => $gallery,
+                'model' => $model,
+                'image' => $image,
+                'gallery' => $gallery,
         ]);
     }
 
@@ -212,7 +207,7 @@ class PostController extends AuthController
 
     public function actionShow($id)
     {
-        $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
+        $this->setTheme('frontend', ['layout' => 'inner']);
         $model = $this->findModel($id);
 
         $model->scenario = 'increase_seen';
@@ -220,14 +215,14 @@ class PostController extends AuthController
         $model->save(false);
 
         $relatedPosts = Post::find()->select('item.*')
-            ->innerJoinWith('catitems')
-            ->andWhere(['catitem.catID' => $model->categories[0]->id])
-            ->andWhere('item.id <> :id', [':id' => $id])
-            ->valid()->all();
+                ->innerJoinWith('catitems')
+                ->andWhere(['catitem.catID' => $model->categories[0]->id])
+                ->andWhere('item.id <> :id', [':id' => $id])
+                ->valid()->all();
 
         return $this->render('show', [
-            'model' => $model,
-            'relatedPosts' => $relatedPosts
+                'model' => $model,
+                'relatedPosts' => $relatedPosts
         ]);
     }
 
@@ -239,13 +234,14 @@ class PostController extends AuthController
 
         $searchModel->type = Post::TYPE_NEWS;
         $searchModel->status = Post::STATUS_PUBLISHED;
-        if ($term = Yii::$app->request->getQueryParam('term'))
+        if ($term = Yii::$app->request->getQueryParam('term')) {
             $searchModel->name = $term;
+        }
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $dataProvider->pagination = false;
         return $this->render('news', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -256,13 +252,14 @@ class PostController extends AuthController
 
         $searchModel->type = Post::TYPE_ARTICLE;
         $searchModel->status = Post::STATUS_PUBLISHED;
-        if ($term = Yii::$app->request->getQueryParam('term'))
+        if ($term = Yii::$app->request->getQueryParam('term')) {
             $searchModel->name = $term;
+        }
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $dataProvider->pagination = false;
         return $this->render('articles', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
         ]);
     }
 

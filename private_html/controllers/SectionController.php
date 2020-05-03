@@ -43,7 +43,7 @@ class SectionController extends AuthController implements CrudControllerInterfac
     public function getSystemActions()
     {
         return [
-            'upload-icon', 'delete-icon', 'upload-image', 'delete-image'
+            'upload-icon', 'delete-icon', 'upload-image', 'delete-image', 'show'
         ];
     }
 
@@ -92,5 +92,10 @@ class SectionController extends AuthController implements CrudControllerInterfac
                         'options' => static::$imageOptions
                 ],
         ];
+    }
+
+    public function actionShow($id)
+    {
+
     }
 }

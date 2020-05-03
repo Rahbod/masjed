@@ -56,7 +56,7 @@ $config = [
         ],
         'gateway' => [
             'class' => PayPingGateway::className(),
-            'token' => '',
+            'token' => 'e4145b056c3ab27537d6519d8d08a0718f0f37465c9993b583574d7038d38a0d',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',

@@ -3,6 +3,7 @@
 namespace app\models;
 
 use app\components\customWidgets\CustomActionColumn;
+use app\components\Setting;
 use Yii;
 use yii\helpers\Html;
 
@@ -20,6 +21,8 @@ class ProjectProcess extends Item
 {
     public static $multiLanguage = false;
     public static $modelName = 'project-process';
+
+    public static $morePageSettingKey = 'project_process_more_page_id';
 
     /**
      * {@inheritdoc}
@@ -125,7 +128,8 @@ class ProjectProcess extends Item
 
     public static function getMoreLink()
     {
-        return '';
+        $page = Page::findOne(Setting::get(self::$morePageSettingKey));
+        return $page?$page->getUrl():null;
     }
 
     public function getDescriptionStr()

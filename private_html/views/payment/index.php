@@ -47,25 +47,25 @@ use yii\widgets\ActiveForm;
                     <ul>
                         <li data-toggle="modal" data-target="#pay-modal">
                             <div class="image">
-                                <img src="images/visa.png">
+                                <img src="<?= $this->theme->baseUrl ?>/images/visa.png">
                             </div>
                             بطاقة فيزا
                         </li>
                         <li data-toggle="modal" data-target="#pay-modal">
                             <div class="image">
-                                <img src="images/paypal.png">
+                                <img src="<?= $this->theme->baseUrl ?>/images/paypal.png">
                             </div>
                             باي بال
                         </li>
                         <li data-toggle="modal" data-target="#pay-modal">
                             <div class="image">
-                                <img src="images/mastercard.png">
+                                <img src="<?= $this->theme->baseUrl ?>/images/mastercard.png">
                             </div>
                             بطاقة ماستر
                         </li>
                         <li data-toggle="modal" data-target="#pay-modal">
                             <div class="image">
-                                <img src="images/shetab.png">
+                                <img src="<?= $this->theme->baseUrl ?>/images/shetab.png">
                             </div>
                             شبكة التسريع
                         </li>

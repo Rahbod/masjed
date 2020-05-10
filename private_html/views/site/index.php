@@ -62,9 +62,11 @@ $this->registerJs("
                             </div>
                             <?php foreach ($processes as $process): ?>
                                 <div class="top-bar-info_cell">
+                                    <?php if($process->getUrl()):?><a href="<?= $process->getUrl() ?>"><?php endif;?>
                                     <i class="line-icon"></i>
                                     <span><?= $process->getName() ?></span>
                                     <span class="bold"><?= $process->getDescriptionStr() ?></span>
+                                    <?php if($process->getUrl()):?></a><?php endif;?>
                                 </div>
                             <?php endforeach; ?>
                         </div>
@@ -88,11 +90,23 @@ $this->registerJs("
             <ul class="right-side--menu">
                 <?php
                 $i = 0;
-                foreach ($sections as $section): ?>
+                foreach ($sections as $section):
+                    if ($src = $section->getIconSrc()) {
+                        $srcHover = $section->getIconHoverSrc();
+                        $this->registerCss('
+                        .right-side--menu__icon.section-icon-' . $section->id . ' {
+                            background-image: url("'.$src.'");
+                        }
+                        
+                        .right-side--menu > li.active .right-side--menu__icon.section-icon-' . $section->id . ',
+                        .right-side--menu > li:hover .right-side--menu__icon.section-icon-' . $section->id . ' {
+                            background-image: url("'.$srcHover.'");
+                        }', [], 'section-style-'.$section->id);
+                    }
+                    ?>
                     <li<?= $i++ == 0 ? ' class="active"' : '' ?>>
                         <a href="#" data-toggle="tab" data-target="#project-info-tab-<?= $section->id ?>">
-                            <span class="right-side--menu__icon"><?php if ($src = $section->getIconSrc()): ?><img
-                                    src="<?= $src ?>" alt="<?= $section->getName() ?>"><?php endif; ?></span>
+                            <?php if ($src): ?><span class="right-side--menu__icon section-icon-<?= $section->id ?>"></span><?php endif; ?>
                             <div class="right-side--menu__title">
                                 <b><?= $section->getName() ?></b>
                                 <small><?= $section->getDescriptionStr() ?></small>

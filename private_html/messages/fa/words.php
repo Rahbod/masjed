@@ -105,6 +105,7 @@ return [
     'Create' => 'افزودن',
     'Hover icon' => 'آیکون هاور',
     'Icon' => 'آیکون',
+    'Icon Hover' => 'آیکون در حالت Hover',
     'Show in footer' => 'نمایش در فوتر',
     'Select Day...' => 'روز را انتخاب کنید...',
     'Copy from' => 'کپی از',
@@ -380,4 +381,5 @@ return [
     'Donation' => 'کمک های نقدی',
     'Non-cash Donation' => 'کمک های غیرنقدی',
     'Material Assistance' => 'کمک های غیرنقدی',
+    'Create New' => 'افزودن مورد جدید',
 ];

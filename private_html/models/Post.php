@@ -214,7 +214,7 @@ class Post extends Item
      */
     public function getImageSrc($thumb = false)
     {
-        return app()->getHomeUrl() . '/' . PostController::$imageDir . '/' . ($thumb ? 'thumbs/100x100/' : '') . $this->image;
+        return Yii::$app->request->getBaseUrl() . '/' . PostController::$imageDir . '/' . ($thumb ? 'thumbs/100x100/' : '') . $this->image;
     }
 
     public function getDate($timestamp = false)

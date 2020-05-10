@@ -54,7 +54,7 @@ class ProjectProcess extends Item
                 'page_id' => [
                         'type' => self::FORM_FIELD_TYPE_SELECT,
                         'items' => Page::getList(),
-                        'hint' => ' - اختیاری' . Html::a('صفحه جدید', ['/page/create', 'return' => request()->url]),
+                        'hint' => 'اختیاری - ' . Html::a('صفحه جدید', ['/page/create', 'return' => request()->url]),
                         'options' => ['prompt' => 'صفحه متنی موردنظر را انتخاب کنید']
                 ],
         ]);
@@ -142,5 +142,9 @@ class ProjectProcess extends Item
             }
         }
         return $this->description;
+    }
+
+    public function getUrl(){
+        return $this->page_id?$this->page->getUrl():null;
     }
 }

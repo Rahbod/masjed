@@ -63,7 +63,7 @@ class Material extends Item
      */
     public function formAttributes()
     {
-        return [
+        return array_merge(parent::formAttributes(),[
                 [['description', 'ar_description', 'en_description'], self::FORM_FIELD_TYPE_TEXT_AREA],
                 [
                         [
@@ -140,7 +140,7 @@ class Material extends Item
                                 ],
                         ]
                 ],
-        ];
+        ]);
     }
 
 
@@ -207,13 +207,13 @@ class Material extends Item
 
     public function getIconSrc()
     {
-        $path = app()->getHomeUrl();
+        $path = Yii::$app->request->getBaseUrl();
         return $path . '/' . MaterialController::$iconDir . '/' . $this->icon;
     }
 
     public function getImageSrc()
     {
-        $path = app()->getHomeUrl();
+        $path = Yii::$app->request->getBaseUrl();
         return $path . '/' . MaterialController::$iconDir . '/' . $this->image;
     }
 

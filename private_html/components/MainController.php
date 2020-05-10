@@ -323,7 +323,7 @@ class MainController extends Controller implements CrudControllerInterface
                     ['label' => trans('words', 'Project Process'), 'url' => ['/process/index'], 'visible' => $permissions || app()->user->can('processIndex')],
                     ['label' => trans('words', 'Project Section'), 'url' => ['/section/index'], 'visible' => $permissions || app()->user->can('sectionIndex')],
                     ['label' => trans('words', 'Project Timeline'), 'url' => ['/timeline/index'], 'visible' => $permissions || app()->user->can('timelineIndex')],
-                    ['label' => trans('words', 'Donation'), 'url' => ['/donation/index'], 'visible' => $permissions || app()->user->can('donationIndex')],
+//                    ['label' => trans('words', 'Donation'), 'url' => ['/donation/index'], 'visible' => $permissions || app()->user->can('donationIndex')],
                     ['label' => trans('words', 'Material Assistance'), 'url' => ['/material/index'], 'visible' => $permissions || app()->user->can('materialIndex')],
                 ]
             ],

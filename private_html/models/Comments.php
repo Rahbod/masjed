@@ -92,13 +92,13 @@ class Comments extends Item
 
     public function getImageSrc()
     {
-        $path = app()->getHomeUrl();
+        $path = Yii::$app->request->getBaseUrl();
         return $path . '/' . CommentsController::$imageDir . '/' . $this->image;
     }
 
     public function getVideoSrc()
     {
-        return $this->video ? app()->getHomeUrl() . '/'.CommentsController::$videoDir.'/' . $this->video : false;
+        return $this->video ? Yii::$app->request->getBaseUrl() . '/'.CommentsController::$videoDir.'/' . $this->video : false;
     }
 
     public function getDescriptionStr()

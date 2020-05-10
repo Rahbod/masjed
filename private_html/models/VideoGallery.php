@@ -48,11 +48,11 @@ class VideoGallery extends Gallery
 
     public function getVideoSrc()
     {
-        return $this->video ? app()->getHomeUrl() . '/uploads/gallery/video/' . $this->video : false;
+        return $this->video ? Yii::$app->request->getBaseUrl() . '/uploads/gallery/video/' . $this->video : false;
     }
 
     public function getPosterSrc()
     {
-        return $this->image ? app()->getHomeUrl() . '/uploads/gallery/' . $this->image : false;
+        return $this->image ? Yii::$app->request->getBaseUrl() . '/uploads/gallery/' . $this->image : false;
     }
 }

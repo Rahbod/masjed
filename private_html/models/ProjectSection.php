@@ -13,6 +13,7 @@ use yii\helpers\Url;
  * This is the model class for table "item".
  *
  * @property string $icon
+ * @property string $icon_hover
  * @property string $image
  * @property string $description
  * @property string $ar_description
@@ -64,6 +65,7 @@ class ProjectSection extends Item
                 'en_body' => ['CHAR', ''],
 
                 'icon' => ['CHAR', ''],
+                'icon_hover' => ['CHAR', ''],
                 'image' => ['CHAR', ''],
         ]);
     }
@@ -98,6 +100,32 @@ class ProjectSection extends Item
                                 'sortable' => false, // sortable flag
                                 'sortableOptions' => [], // sortable options
                                 'htmlOptions' => ['class' => '', 'id' => Html::getInputId(new self(), 'icon')],
+                                'options' => [
+                                        'createImageThumbnails' => true,
+                                        'addRemoveLinks' => true,
+                                        'dictRemoveFile' => 'حذف',
+                                        'addViewLinks' => true,
+                                        'dictViewFile' => '',
+                                        'dictDefaultMessage' => 'جهت آپلود آیکون کلیک کنید',
+                                        'acceptedFiles' => 'svg',
+                                        'maxFiles' => 1,
+                                        'maxFileSize' => 0.5,
+                                ],
+                        ]
+                ],
+                'icon_hover' => [
+                        'type' => self::FORM_FIELD_TYPE_DROP_ZONE,
+                        'hint' => 'تصویر آیکون hover با فرمت svg',
+                        'containerCssClass' => 'col-sm-4',
+                        'temp' => MainController::$tempDir,
+                        'path' => SectionController::$iconDir,
+                        'filesOptions' => SectionController::$iconOptions,
+                        'options' => [
+                                'url' => Url::to(['upload-icon-hover']),
+                                'removeUrl' => Url::to(['delete-icon-hover']),
+                                'sortable' => false, // sortable flag
+                                'sortableOptions' => [], // sortable options
+                                'htmlOptions' => ['class' => '', 'id' => Html::getInputId(new self(), 'icon_hover')],
                                 'options' => [
                                         'createImageThumbnails' => true,
                                         'addRemoveLinks' => true,
@@ -149,7 +177,7 @@ class ProjectSection extends Item
     {
         return array_merge(parent::rules(), [
 //                [['icon','image'], 'required'],
-                [['icon','image'], 'string'],
+                [['icon','icon_hover','image'], 'string'],
                 [['description', 'ar_description', 'en_description'], 'string'],
                 [['body', 'ar_body', 'en_body'], 'string'],
                 ['modelID', 'default', 'value' => Model::findOne(['name' => self::$modelName])->id],
@@ -169,6 +197,7 @@ class ProjectSection extends Item
                 'ar_body' => trans('words', 'Ar Body'),
                 'en_body' => trans('words', 'En Body'),
                 'icon' => trans('words', 'Icon'),
+                'icon_hover' => trans('words', 'Icon Hover'),
                 'image' => trans('words', 'Image'),
         ]);
     }
@@ -192,13 +221,19 @@ class ProjectSection extends Item
 
     public function getIconSrc()
     {
-        $path = app()->getHomeUrl();
+        $path = Yii::$app->request->getBaseUrl();
         return $path . '/' . SectionController::$iconDir . '/' . $this->icon;
+    }
+
+    public function getIconHoverSrc()
+    {
+        $path = Yii::$app->request->getBaseUrl();
+        return $path . '/' . SectionController::$iconDir . '/' . $this->icon_hover;
     }
 
     public function getImageSrc()
     {
-        $path = app()->getHomeUrl();
+        $path = Yii::$app->request->getBaseUrl();
         return $path . '/' . SectionController::$iconDir . '/' . $this->image;
     }
 

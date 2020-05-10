@@ -88,9 +88,11 @@ AppAsset::register($this);
                                 </div>
                                 <?php foreach ($processes as $process): ?>
                                     <div class="top-bar-info_cell">
+                                        <?php if($process->getUrl()):?><a href="<?= $process->getUrl() ?>"><?php endif;?>
                                         <i class="line-icon"></i>
                                         <span><?= $process->getName() ?></span>
                                         <span class="bold"><?= $process->getDescriptionStr() ?></span>
+                                        <?php if($process->getUrl()):?></a><?php endif;?>
                                     </div>
                                 <?php endforeach; ?>
                             </div>

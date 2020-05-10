@@ -43,7 +43,7 @@ class SectionController extends AuthController implements CrudControllerInterfac
     public function getSystemActions()
     {
         return [
-            'upload-icon', 'delete-icon', 'upload-image', 'delete-image', 'show'
+            'upload-icon', 'delete-icon', 'upload-icon-hover', 'delete-icon-hover', 'upload-image', 'delete-image', 'show'
         ];
     }
 
@@ -51,6 +51,7 @@ class SectionController extends AuthController implements CrudControllerInterfac
     {
         return [
             'icon' => ['dir' => self::$iconDir, 'options' => self::$iconOptions],
+            'icon_hover' => ['dir' => self::$iconDir, 'options' => self::$iconOptions],
             'image' => ['dir' => self::$imageDir, 'options' => self::$imageOptions],
         ];
     }
@@ -72,6 +73,23 @@ class SectionController extends AuthController implements CrudControllerInterfac
                         'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
                         'model' => new ProjectSection(),
                         'attribute' => 'icon',
+                        'options' => static::$iconOptions
+                ],
+
+                'upload-icon-hover' => [
+                    'class' => UploadAction::className(),
+                    'fileName' => Html::getInputName(new ProjectSection(), 'icon_hover'),
+                    'rename' => UploadAction::RENAME_UNIQUE,
+                    'validateOptions' => array(
+                            'acceptedTypes' => array('svg')
+                    )
+                ],
+                'delete-icon-hover' => [
+                        'class' => RemoveAction::className(),
+                        'upload' => self::$iconDir,
+                        'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
+                        'model' => new ProjectSection(),
+                        'attribute' => 'icon_hover',
                         'options' => static::$iconOptions
                 ],
 

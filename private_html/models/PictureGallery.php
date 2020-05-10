@@ -45,11 +45,11 @@ class PictureGallery extends Gallery
 
     public function getImageSrc()
     {
-        return $this->full_image ? app()->getHomeUrl() . '/uploads/gallery/' . $this->full_image : false;
+        return $this->full_image ? Yii::$app->request->getBaseUrl() . '/uploads/gallery/' . $this->full_image : false;
     }
 
     public function getThumbImageSrc()
     {
-        return $this->thumbnail_image ? app()->getHomeUrl() . '/uploads/gallery/' . $this->thumbnail_image : false;
+        return $this->thumbnail_image ? Yii::$app->request->getBaseUrl() . '/uploads/gallery/' . $this->thumbnail_image : false;
     }
 }

@@ -237,7 +237,7 @@ class Menu extends Category
                 return Url::to(["/$url"]);
             case self::MENU_TYPE_EXTERNAL_LINK:
                 return strpos($this->external_link, '#',
-                        0) === 0 ? app()->getHomeUrl() . $this->external_link : $this->external_link;
+                        0) === 0 ? Yii::$app->request->getBaseUrl() . $this->external_link : $this->external_link;
             default:
                 return '#';
         }

@@ -267,6 +267,6 @@ class Material extends Item
 
     public function getMoreUrl()
     {
-        return Url::to(['/material/show', 'id' => $this->id]);
+        return Url::to(['/material/archive', 'id' => $this->id]);
     }
 }

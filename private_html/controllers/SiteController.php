@@ -189,11 +189,7 @@ class SiteController extends AuthController
                 $message->tel = $model->tel;
                 $message->email = $model->email;
                 $message->body = $model->body;
-                $message->sta = $model->body;
                 if($message->save())
-                    dd($message->id);
-                else
-                    dd($message->errors);
                     $model->contact(Setting::get('email'));
 
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);

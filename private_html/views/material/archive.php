@@ -1,6 +1,7 @@
 <?php
 
 /* @var $this yii\web\View */
+/* @var $id integer */
 
 /* @var $materials Material[] */
 
@@ -19,17 +20,19 @@ $baseUrl = $this->theme->baseUrl;
     </div>
     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
         <ul class="nav nav-tabs">
-            <?php foreach ($materials as $material): ?>
-                <li><a data-toggle="tab" href="#material-tab-<?= $material->id ?>"><?= $material->getName() ?></a></li>
+            <?php
+            $i = 0;
+            foreach ($materials as $material): ?>
+                <li<?= ($id!=false && $material->id == $id) || ($id == false && $i++==0)?' class="active"':''?>><a data-toggle="tab" href="#material-tab-<?= $material->id ?>"><?= $material->getName() ?></a></li>
             <?php endforeach; ?>
         </ul>
         <div class="tab-content">
             <?php
             $i=0;
             foreach ($materials as $material): ?>
-                <div id="material-tab-<?= $material->id ?>" class="tab-pane fade<?= $i++==0?' in active':''?>">
+                <div id="material-tab-<?= $material->id ?>" class="tab-pane fade<?= ($id!=false && $material->id == $id) || ($id == false && $i++==0)?' in active':''?>">
                     <div class="text">
-                        <img src="<?= $material->getImageSrc() ?>" alt="<?= $material->getName() ?>">
+                        <?php if($material->image):?><img src="<?= $material->getImageSrc() ?>" alt="<?= $material->getName() ?>"><?php endif;?>
                         <div><?= $material->getBodyStr() ?></div>
                     </div>
                 </div>

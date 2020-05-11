@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\components\DynamicActiveRecord;
 use Yii;
 
 /**
@@ -13,10 +14,14 @@ use Yii;
  * @property double $amount
  * @property resource $dyna
  * @property string $status
+ * @property string $invoice_id
  * @property string $create_date
  */
-class Donation extends \app\components\MultiLangActiveRecord
+class Donation extends DynamicActiveRecord
 {
+    const STATUS_UNPAID = 0;
+    const STATUS_PAID = 1;
+
     /**
      * {@inheritdoc}
      */
@@ -29,7 +34,8 @@ class Donation extends \app\components\MultiLangActiveRecord
     {
         parent::init();
         $this->dynaDefaults = array_merge($this->dynaDefaults, [
-
+                'invoice_id' => ['CHAR', ''],
+                'status' => ['INTEGER', ''],
         ]);
     }
 
@@ -51,6 +57,9 @@ class Donation extends \app\components\MultiLangActiveRecord
             [['name', 'amount'], 'required'],
             [['amount', 'status'], 'number'],
             [['dyna'], 'string'],
+            [['invoice_id'], 'string'],
+            [['status'], 'integer'],
+            ['status', 'default', 'value' => self::STATUS_UNPAID],
             [['name', 'mobile'], 'string', 'max' => 255],
             [['create_date'], 'string', 'max' => 20],
         ]);
@@ -69,6 +78,7 @@ class Donation extends \app\components\MultiLangActiveRecord
             'dyna' => Yii::t('words', 'Dyna'),
             'status' => Yii::t('words', 'Status'),
             'create_date' => Yii::t('words', 'Create Date'),
+            'invoice_id' => Yii::t('words', 'Invoice ID'),
         ]);
     }
 }

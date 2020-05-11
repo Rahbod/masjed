@@ -14,6 +14,7 @@ use app\components\DynamicActiveRecord;
  * @property string $tel
  * @property string $body
  * @property string $subject
+ * @property string $status
  * @property string $email
  * @property string $department_id
  * @property resource $dyna All fields
@@ -38,12 +39,16 @@ class Message extends DynamicActiveRecord
     public function init()
     {
         parent::init();
+
+        $this->type = 'cnt';
+
         preg_match('/(app\\\\models\\\\)(\w*)(Search)/', $this::className(), $matches);
         if (!$matches)
-            $this->type = self::STATUS_UNREAD;
+            $this->status = self::STATUS_UNREAD;
 
         $this->dynaDefaults = array_merge($this->dynaDefaults, [
             'subject' => ['CHAR', ''],
+            'status' => ['INTEGER', ''],
             'email' => ['CHAR', ''],
             'department_id' => ['CHAR', ''],
             'degree' => ['CHAR', ''],
@@ -59,9 +64,10 @@ class Message extends DynamicActiveRecord
     public function rules()
     {
         return array_merge(parent::rules(), [
-            [['name','email', 'body', 'subject'], 'required'],
+            [['name','email', 'body'], 'required'],
             [['dyna', 'email', 'subject', 'country', 'city', 'address'], 'string'],
-            ['type', 'default', 'value' => self::STATUS_UNREAD],
+            ['status', 'integer'],
+            ['status', 'default', 'value' => self::STATUS_UNREAD],
             ['email', 'email'],
             [['name'], 'string', 'max' => 511],
             [['tel'], 'string', 'max' => 15],
@@ -80,7 +86,7 @@ class Message extends DynamicActiveRecord
     {
         return array_merge(parent::attributeLabels(), [
             'id' => trans('words', 'ID'),
-            'type' => trans('words', 'Status'),
+            'status' => trans('words', 'Status'),
             'created' => trans('words', 'Created'),
             'name' => trans('words', 'Name and Family'),
             'email' => trans('words', 'Email'),

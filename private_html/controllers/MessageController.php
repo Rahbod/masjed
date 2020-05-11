@@ -71,8 +71,8 @@ class MessageController extends AuthController
     public function actionView($id)
     {
         $model =$this->findModel($id);
-        if($model->type == Message::STATUS_UNREAD){
-            $model->type = Message::STATUS_PENDING;
+        if($model->status == Message::STATUS_UNREAD){
+            $model->status = Message::STATUS_PENDING;
             $model->save();
         }
         return $this->render('view', [

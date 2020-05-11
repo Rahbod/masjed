@@ -11,6 +11,7 @@ use app\models\ProjectProcess;
 use app\models\Slide;
 use app\themes\AppAsset;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\web\JqueryAsset;
 use yii\web\View;
 
@@ -20,6 +21,7 @@ AppAsset::register($this);
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language; ?>">
 <head>
+    <?php $this->head() ?>
     <meta charset="<?= Yii::$app->charset; ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
@@ -129,8 +131,10 @@ AppAsset::register($this);
                     <div class="form">
                         <?php
                         $model = new ContactForm();
+                        $model->load(Yii::$app->request->post());
                         $form = CustomActiveForm::begin([
                                 'id' => 'contact-us-form',
+                                'action' => Url::to(['/contact']),
                                 'enableAjaxValidation' => false,
                                 'enableClientValidation' => true,
                                 'validateOnSubmit' => true,

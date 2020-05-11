@@ -172,11 +172,6 @@ class SiteController extends AuthController
      */
     public function actionContact()
     {
-        $this->setTheme('frontend');
-        $this->innerPage = true;
-        $this->bodyClass = 'more-one list';
-        $this->mainTag = 'main-submit-page';
-
         $model = new ContactForm();
 
         if (Yii::$app->request->isAjax and !Yii::$app->request->isPjax) {
@@ -192,21 +187,24 @@ class SiteController extends AuthController
                 $message = new Message();
                 $message->name = $model->name;
                 $message->tel = $model->tel;
-                $message->subject = $model->subject;
                 $message->email = $model->email;
                 $message->body = $model->body;
+                $message->sta = $model->body;
                 if($message->save())
+                    dd($message->id);
+                else
+                    dd($message->errors);
                     $model->contact(Setting::get('email'));
 
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
-                return $this->refresh();
+                return $this->redirect(['/']);
             } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => trans('words', 'base.dangerMsg')]);
         }
 
-        return $this->render('contact', [
-            'model' => $model,
-        ]);
+        $this->setTheme('frontend');
+        $this->layout = 'main';
+        return $this->render('index');
     }
 
     public function getProjects()

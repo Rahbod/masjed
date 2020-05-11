@@ -9,9 +9,13 @@ use yii\helpers\Html;
 
 $this->title = "خطا";
 ?>
-<div class="site-error">
-<!--    <h1>--><?//= Html::encode($this->title) ?><!--</h1>-->
-    <div class="alert alert-danger">
-        <?= nl2br(Html::encode($message)) ?>
+
+
+<section class="about-container" >
+    <div class="site-error">
+        <!--    <h1>--><?//= Html::encode($this->title) ?><!--</h1>-->
+        <div class="alert alert-danger">
+            <?= nl2br(Html::encode($message)) ?>
+        </div>
     </div>
-</div>
+</section>

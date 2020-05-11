@@ -6,6 +6,7 @@ use app\components\customWidgets\CustomCaptchaAction;
 use app\components\gateway\GatewayInterface;
 use app\components\gateway\PayPingGateway;
 use app\components\MainController;
+use app\models\Donation;
 use app\models\PaymentForm;
 use yii\helpers\Url;
 
@@ -30,14 +31,25 @@ class PaymentController extends MainController
 
         if (request()->post()) {
             $model->load(request()->post());
+            $model->filled = true;
 
             if ($model->validate()) {
+                $invoiceNumber = time();
                 app()->session->set('payment_amount', $model->amount);
+                app()->session->set('invoice_id', $invoiceNumber);
+
+                $donate = new Donation();
+                $donate->name = $model->payerName;
+                $donate->mobile = $model->payerMobile;
+                $donate->amount = $model->amount;
+                $donate->invoice_id = $invoiceNumber;
+                if($donate->save())
+                    app()->session->set('donate_id', $donate->id);
+
 
                 /** @var GatewayInterface|PayPingGateway $gateway */
                 $gateway = app()->gateway;
 
-                $invoiceNumber = time();
                 $returnUrl = Url::to('/payment/verify', true);
                 $gateway->setPayArguments(
                         $model->amount,
@@ -60,7 +72,13 @@ class PaymentController extends MainController
     {
         /** @var GatewayInterface|PayPingGateway $gateway */
         $gateway = app()->gateway;
-        $gateway->verify(app()->session->get('payment_amount'));
+        if($gateway->verify(app()->session->get('payment_amount'))){
+            $donate = Donation::findOne(app()->session->get('donate_id'));
+            if($donate){
+                $donate->status = Donation::STATUS_PAID;
+                $donate->save();
+            }
+        }
 
         dd($gateway->verifyResponse);
 

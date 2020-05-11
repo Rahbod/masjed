@@ -52,7 +52,7 @@ class ContactForm extends Model implements FormRendererDefinition
                 'email' => trans('words', 'E-Mail'),
                 'tel' => trans('words', 'MOBILE NUMBER'),
                 'body' => trans('words', 'MESSAGE TEXT'),
-                'subject' => trans('words', 'SUBJECT'),
+
 
                 'department_id' => trans('words', 'Department ID'),
                 'verifyCode' => trans('words', 'Verify Code'),
@@ -74,7 +74,6 @@ class ContactForm extends Model implements FormRendererDefinition
             Yii::$app->mailer->compose()
                     ->setTo($email)
                     ->setFrom([$this->email => $this->name])
-                    ->setSubject($this->subject)
                     ->setTextBody($this->body)
                     ->send();
 

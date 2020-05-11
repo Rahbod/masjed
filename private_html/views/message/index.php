@@ -1,5 +1,6 @@
 <?php
 
+use app\models\Message;
 use yii\helpers\Html;
 use \app\components\customWidgets\CustomGridView;
 use yii\widgets\Pjax;
@@ -51,9 +52,9 @@ $this->params['breadcrumbs'][] = $this->title;
                         'tel',
                         'subject',
                         [
-                            'attribute' => 'type',
+                            'attribute' => 'status',
                             'value' => function ($model) {
-                                return \app\models\Message::getStatusLabels($model->type, true);
+                                return \app\models\Message::getStatusLabels($model->status, true);
                             },
                             'format' => 'raw',
                             'filter' => \app\models\Message::getStatusLabels()

@@ -372,10 +372,12 @@ return [
 
     //////// Payment
     'Payer Name' => 'نام پرداخت کننده',
+    'Payer Mobile' => 'شماره موبایل',
     'Amount' => 'مبلغ',
-    'Payment' => 'پرداخت',
+    'Payment' => 'انتقال به درگاه بانک و پرداخت',
     'Command code' => 'کد فرمان',
     'Iran and Iraq' => 'ایران و عراق',
+    'Rials' => 'ریال',
 
     //////// Donation
     'Donation' => 'کمک های نقدی',

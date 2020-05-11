@@ -238,4 +238,9 @@ return [
     'News related pictures' => 'الصور المتعلقة بالأخبار',
     'Command code' => 'كود القيادة',
     'Iran and Iraq' => 'إيران والعراق',
+    'Payer Name' => 'الاسم و اللقب',
+    'Payer Mobile' => 'رقم الاتصال',
+    'Amount' => 'مبلغ التبرع',
+    'Payment' => 'تسجيل الدخول إلي بوابة البنك و الدفع',
+    'Rials' => 'ريال',
 ];

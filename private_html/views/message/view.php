@@ -57,7 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ?>
         <div class="row">
             <div class="col-sm-3">
-                <?= $form->field($model, 'type')->dropDownList(Message::getStatusLabels()) ?>
+                <?= $form->field($model, 'status')->dropDownList(Message::getStatusLabels()) ?>
             </div>
             <div class="col-sm-3">
                 <div style="margin-top: 40px">
@@ -74,15 +74,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 'model' => $model,
                 'attributes' => [
                     [
-                        'attribute' => 'type',
+                        'attribute' => 'status',
                         'value' => function ($model) {
-                            return $model->getStatusLabels($model->type,true);
+                            return $model->getStatusLabels($model->status,true);
                         },
                         'format' => 'raw'
                     ],
 //                    [
-//                        'attribute' => 'type',
-//                        'value' => \app\models\Message::getStatusLabels($model->type),
+//                        'attribute' => 'status',
+//                        'value' => \app\models\Message::getStatusLabels($model->status),
 //                        'format' => 'raw'
 //                    ],
 //                    [

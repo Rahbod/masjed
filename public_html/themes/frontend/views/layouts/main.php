@@ -11,6 +11,7 @@ use app\models\ProjectProcess;
 use app\models\Slide;
 use app\themes\AppAsset;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\web\JqueryAsset;
 use yii\web\View;
 
@@ -93,8 +94,10 @@ AppAsset::register($this);
                     <div class="form">
                         <?php
                         $model = new ContactForm();
+                        $model->load(Yii::$app->request->post());
                         $form = CustomActiveForm::begin([
                                 'id' => 'contact-us-form',
+                                'action' => Url::to(['/contact']),
                                 'enableAjaxValidation' => false,
                                 'enableClientValidation' => true,
                                 'validateOnSubmit' => true,

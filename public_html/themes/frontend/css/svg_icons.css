@@ -44,3 +44,11 @@
 .svg-heart-filled-r {
     background-image: url("../svg/heart-filled-r.svg");
 }
+
+.svg-heart-white {
+    background-image: url("../svg/heart-outline-white.svg");
+}
+
+.svg-heart-filled-white {
+    background-image: url("../svg/heart-filled-white.svg");
+}

@@ -16,7 +16,7 @@
     <link type="text/css" rel="stylesheet" href="css/svg_icons.css">
     <link type="text/css" rel="stylesheet" href="css/onepage-scroll.css">
     <link type="text/css" rel="stylesheet" href="css/bootstrap-theme.css">
-    <!--    <link type="text/css" rel="stylesheet" href="css/responsive-theme.css">-->
+    <link type="text/css" rel="stylesheet" href="css/responsive-theme.css">
 </head>
 
 <body class="rtl">
@@ -32,13 +32,20 @@
             </a>
         </div>
     </div>
+    <div class="dropdown language-dropdown visible-xs">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">عربي</a>
+        <ul class="dropdown-menu dropdown-menu-left">
+            <li><a href="#">عربي</a></li>
+            <li><a href="#">فارسي</a></li>
+        </ul>
+    </div>
     <header>
         <div class="container">
             <nav class="navbar">
                 <div class="container-fluid">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
-                        <a href="#" class="navbar-toggler">
+                        <a href="#" class="navbar-toggler hidden-xs">
                             <span class="bars-icon"></span>
                         </a>
                     </div>
@@ -60,9 +67,8 @@
             </nav>
         </div>
     </header>
-
     <section class="slider-container">
-        <div class="slider owl-carousel owl-theme" data-items="1" data-rtl="true">
+        <div class="slider owl-carousel owl-theme hidden-xs" data-items="1" data-rtl="true">
             <div class="slide-item relative">
                 <div class="image-container">
                     <img src="uploads/slide1.jpg" alt="">
@@ -74,18 +80,19 @@
                 </div>
             </div>
         </div>
+        <div class="visible-xs mobile-bg"></div>
     </section>
     <section class="project-intro">
         <div class="top-bar-info">
             <div class="container">
                 <div class="top-bar-info__body">
                     <div class="top-bar-info--ring"></div>
-                    <div class="top-bar-info--inner">
+                    <div class="top-bar-info--inner" id="project-intro-info">
                         <div class="top-bar-info--cols">
                             <div class="top-bar-info--cols-inner">
                                 <div class="top-bar-info_cell dark-red with-icon">
                                     <i class="info-icon"></i>
-                                    <span>عملية تنفيذ<br>المشروع</span>
+                                    <span>عملية تنفيذ المشروع</span>
                                 </div>
                                 <div class="top-bar-info_cell">
                                     <i class="line-icon"></i>
@@ -116,7 +123,10 @@
                 </div>
             </div>
         </div>
-        <div class="body-info">
+        <div class="body-info" id="project-intro">
+            <a href="#" class="navbar-toggler hidden-xs">
+                <span class="bars-icon"></span>
+            </a>
             <div class="right-side">
                 <div class="right-side--header">
                     <h3>
@@ -140,7 +150,7 @@
                         <a href="#" data-toggle="tab" data-target="#">
                             <span class="right-side--menu__icon svg-icon-clinic"></span>
                             <div class="right-side--menu__title">
-                                <b>ديكلينيك (العيادة اليومية)</b>
+                                <b>ديكلينيك <span class="hidden-xs">(العيادة اليومية)</span></b>
                                 <small>عيادة يومية مع المعدات الكاملة والموظفين المهرة</small>
                             </div>
                             <span class="right-side--menu__icon-arrow svg-arrow-left-w"></span>
@@ -160,7 +170,7 @@
                         <a href="#" data-toggle="tab" data-target="#">
                             <span class="right-side--menu__icon svg-icon-hat"></span>
                             <div class="right-side--menu__title">
-                                <b>حوزة العلمية (الأخوة والأخوات)</b>
+                                <b>حوزة العلمية <span class="hidden-xs">(الأخوة والأخوات)</span></b>
                                 <small>فصول مجهزة بالمعدات التعليمية للتعليم الديني</small>
                             </div>
                             <span class="right-side--menu__icon-arrow svg-arrow-left-w"></span>
@@ -170,7 +180,7 @@
                         <a href="#" data-toggle="tab" data-target="#">
                             <span class="right-side--menu__icon svg-icon-doorman"></span>
                             <div class="right-side--menu__title">
-                                <b>إقامة زوار (دار الضيافة)</b>
+                                <b>إقامة زوار <span class="hidden-xs">(دار الضيافة)</span></b>
                                 <small>تقديم خدمات الإقامة زوار كربلاء</small>
                             </div>
                             <span class="right-side--menu__icon-arrow svg-arrow-left-w"></span>
@@ -220,7 +230,10 @@
         </div>
     </section>
     <section class="contact-us">
-        <div class="body-info">
+        <div class="body-info" id="contact-us">
+            <a href="#" class="navbar-toggler hidden-xs">
+                <span class="bars-icon"></span>
+            </a>
             <div class="right-side">
                 <div class="right-side--header">
                     <h3 class="text-white underline-black">
@@ -235,7 +248,7 @@
             </div>
             <div class="left-side">
                 <div class="container-fluid">
-                    <ul class="text-white">
+                    <ul class="text-white mobile-carousel owl-carousel owl-theme" data-items="1" data-nav="false" data-dots="true" data-rtl="true">
                         <li>
                             <span class="num">1</span>
                             <h2>كود القيادة
@@ -278,7 +291,10 @@
         </div>
     </section>
     <section class="video-gallery">
-        <div class="body-info">
+        <div class="body-info" id="video-gallery">
+            <a href="#" class="navbar-toggler hidden-xs">
+                <span class="bars-icon"></span>
+            </a>
             <div class="right-side">
                 <div class="right-side--header">
                     <h3>
@@ -305,7 +321,7 @@
                                 <small>(دار الضيافة)</small>
                             </a></li>
                         </ul>
-                        <div class="tab-content">
+                        <div class="tab-content hidden-xs">
                             <div id="vid-1" class="tab-pane fade in active">
                                 <div class="video-slider owl-carousel owl-theme" data-items="1" data-rtl="true"
                                      data-dots="true" data-nav="true">
@@ -444,14 +460,53 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="#" class="archive-link">آرشيف<br>قسم الفيديو</a>
+                        <div class="video-slider owl-carousel owl-theme mobile-carousel visible-xs" data-items="1" data-rtl="true"
+                             data-dots="true" data-nav="false">
+                            <div class="video-item">
+                                <div class="video-container">
+                                    <video>
+                                        <source src="uploads/mov_bbb.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                    <div class="video-overlay"></div>
+                                </div>
+                                <div class="caption">
+                                    <i></i>
+                                    <h5>مسجد جامع للرسوم المتحركة الداخلية
+                                        <small>صور لأجزاء مختلفة من المسجد في 3D مع إدخال أقسامها الفرعية
+                                        </small>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="video-item">
+                                <div class="video-container">
+                                    <video>
+                                        <source src="uploads/mov_bbb.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                    <div class="video-overlay"></div>
+                                </div>
+                                <div class="caption">
+                                    <i></i>
+                                    <h5>مسجد جامع للرسوم المتحركة الداخلية
+                                        <small>صور لأجزاء مختلفة من المسجد في 3D مع إدخال أقسامها الفرعية
+                                        </small>
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" class="archive-link hidden-xs">آرشيف<br>قسم الفيديو</a>
+                        <a href="#" class="archive-link visible-xs">آرشيف الفيديو</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     <section class="image-gallery">
-        <div class="body-info">
+        <div class="body-info" id="image-gallery">
+            <a href="#" class="navbar-toggler hidden-xs">
+                <span class="bars-icon"></span>
+            </a>
             <div class="right-side">
                 <div class="right-side--header">
                     <h3>
@@ -478,7 +533,7 @@
                                 <small>(دار الضيافة)</small>
                             </a></li>
                         </ul>
-                        <div class="tab-content">
+                        <div class="tab-content hidden-xs">
                             <div id="img-1" class="tab-pane fade in active">
                                 <div class="image-slider owl-carousel owl-theme" data-margin="15" data-items="1"
                                      data-rtl="true" data-dots="true" data-nav="false">
@@ -561,14 +616,61 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="#" class="archive-link">آرشيف<br>قسم الفيديو</a>
+                        <div class="image-slider owl-carousel owl-theme visible-xs mobile-carousel" data-items="1"
+                             data-rtl="true" data-dots="true" data-nav="false">
+                            <div class="image-item">
+                                <a href="#"><img src="uploads/masjed.jpg"></a>
+                                <h5 class="visible-xs">
+                                    مسجد جامع للرسوم المتحركة الداخلية
+                                    <small>صور لأجزاء مختلفة من المسجد في 3D مع إدخال أقسامها الفرعية
+                                    </small>
+                                </h5>
+                            </div>
+                            <div class="image-item">
+                                <a href="#"><img src="uploads/masjed.jpg"></a>
+                                <h5 class="visible-xs">
+                                    مسجد جامع للرسوم المتحركة الداخلية
+                                    <small>صور لأجزاء مختلفة من المسجد في 3D مع إدخال أقسامها الفرعية
+                                    </small>
+                                </h5>
+                            </div>
+                            <div class="image-item">
+                                <a href="#"><img src="uploads/masjed.jpg"></a>
+                                <h5 class="visible-xs">
+                                    مسجد جامع للرسوم المتحركة الداخلية
+                                    <small>صور لأجزاء مختلفة من المسجد في 3D مع إدخال أقسامها الفرعية
+                                    </small>
+                                </h5>
+                            </div>
+                            <div class="image-item">
+                                <a href="#"><img src="uploads/masjed.jpg"></a>
+                                <h5 class="visible-xs">
+                                    مسجد جامع للرسوم المتحركة الداخلية
+                                    <small>صور لأجزاء مختلفة من المسجد في 3D مع إدخال أقسامها الفرعية
+                                    </small>
+                                </h5>
+                            </div>
+                            <div class="image-item">
+                                <a href="#"><img src="uploads/masjed.jpg"></a>
+                                <h5 class="visible-xs">
+                                    مسجد جامع للرسوم المتحركة الداخلية
+                                    <small>صور لأجزاء مختلفة من المسجد في 3D مع إدخال أقسامها الفرعية
+                                    </small>
+                                </h5>
+                            </div>
+                        </div>
+                        <a href="#" class="archive-link hidden-xs">آرشيف<br>قسم الفيديو</a>
+                        <a href="#" class="archive-link visible-xs">آرشيف الفيديو</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     <section class="time-line-box">
-        <div class="body-info">
+        <div class="body-info" id="timeline">
+            <a href="#" class="navbar-toggler hidden-xs">
+                <span class="bars-icon"></span>
+            </a>
             <div class="title right-side--header">
                 <h3>
                     <b>خطوات البناء</b>
@@ -579,7 +681,7 @@
             <div class="bg"></div>
             <div class="time-line-container">
                 <div class="time-line owl-carousel owl-theme" data-items="5" data-rtl="ltr" data-dots="false"
-                     data-nav="true">
+                     data-nav="true" data-responsive='{"0":{"items":3}}'>
                     <div class="time-line-item todo">
                         <div class="date">
                             <b>1440</b>
@@ -734,7 +836,10 @@
         </div>
     </section>
     <section class="media-gallery">
-        <div class="body-info">
+        <div class="body-info" id="media-gallery">
+            <a href="#" class="navbar-toggler hidden-xs">
+                <span class="bars-icon"></span>
+            </a>
             <div class="right-side">
                 <div class="right-side--header">
                     <h3>
@@ -788,7 +893,10 @@
         </div>
     </section>
     <section class="help-container">
-        <div class="body-info">
+        <div class="body-info" id="help">
+            <a href="#" class="navbar-toggler hidden-xs">
+                <span class="bars-icon"></span>
+            </a>
             <div class="right-side--header">
                 <h3>
                     <b>المساعدة الموضوعية</b>
@@ -858,11 +966,15 @@
                     <a href="#">مزيد من<br>المعلومات<i></i></a>
                 </div>
             </div>
-            <a href="#" class="archive-link">مزيد من<br>المعلومات</a>
+            <a href="#" class="archive-link hidden-xs">مزيد من<br>المعلومات</a>
+            <a href="#" class="archive-link visible-xs">مزيد من المعلومات</a>
         </div>
     </section>
     <section class="news-container">
-        <div class="body-info">
+        <div class="body-info" id="news">
+            <a href="#" class="navbar-toggler hidden-xs">
+                <span class="bars-icon"></span>
+            </a>
             <div class="right-side">
                 <div class="right-side--header">
                     <h3>
@@ -871,7 +983,7 @@
                     </h3>
                     <small>أخبار متعلقة بالتعاون والتقدم في مشروع<br>مسجد كربلاء وشفافية مساهماتكم</small>
                 </div>
-                <a href="#" class="archive-link">آرشيف اخبار<br>المشروع</a>
+                <a href="#" class="archive-link hidden-xs">آرشيف اخبار<br>المشروع</a>
             </div>
             <div class="left-side">
                 <div class="news-slider owl-carousel owl-theme" data-items="1" data-rtl="true" data-dots="true"
@@ -889,7 +1001,7 @@
                                 حوالي 4000 متر مربع، ويتألف من طابقين،
                             </div>
                             <div class="date">14/02/2019</div>
-                            <a href="#" class="more-details">للمزيد من المعلومات</a>
+                            <a href="#" class="more-details hidden-xs">للمزيد من المعلومات</a>
                         </div>
                     </div>
                     <div class="news-item">
@@ -905,15 +1017,19 @@
                                 حوالي 4000 متر مربع، ويتألف من طابقين،
                             </div>
                             <div class="date">14/02/2019</div>
-                            <a href="#" class="more-details">للمزيد من المعلومات</a>
+                            <a href="#" class="more-details hidden-xs">للمزيد من المعلومات</a>
                         </div>
                     </div>
                 </div>
+                <a href="#" class="archive-link visible-xs">آرشيف اخبار المشروع</a>
             </div>
         </div>
     </section>
-    <section class="about-container">
+    <section class="about-container hidden-xs">
         <div class="body-info">
+            <a href="#" class="navbar-toggler hidden-xs">
+                <span class="bars-icon"></span>
+            </a>
             <div class="right-side">
                 <div class="right-side--header">
                     <h3>
@@ -1031,8 +1147,11 @@
             <div class="rectangle"></div>
         </div>
     </section>
-    <section class="contact-form-container">
+    <section class="contact-form-container hidden-xs">
         <div class="body-info">
+            <a href="#" class="navbar-toggler hidden-xs">
+                <span class="bars-icon"></span>
+            </a>
             <div class="right-side">
                 <div class="right-side--header">
                     <h3>
@@ -1086,8 +1205,11 @@
             </div>
         </div>
     </section>
-    <section class="footer">
+    <section class="footer hidden-xs">
         <div class="body-info">
+            <a href="#" class="navbar-toggler hidden-xs">
+                <span class="bars-icon"></span>
+            </a>
             <div class="right-side">
                 <div class="logo-container">
                     <a href="#" class="logo" title="مسجد جامع كربلا">
@@ -1141,8 +1263,71 @@
             </div>
         </div>
     </section>
+    <div class="footer-mobile visible-xs">
+        <a href="#" title="مسجد جامع كربلا">
+            <img src="images/logo.png">
+        </a>
+        <div class="copyright">
+            <div><b>All Rights Reserved</b> masjed jame karbala</div>
+            <div><b>Design by</b> <a href="#">Tarsim.inc</a></div>
+        </div>
+    </div>
+    <div class="mobile-footer-menu visible-xs">
+        <a href="#" class="navbar-toggler">
+            <span class="bars-icon"></span>
+        </a>
+        <a href="#" class="mobile-menu-trigger"></a>
+        <a href="#" class="btn-donate">
+            <i class="svg-heart-white">
+                <i class="svg-heart-filled-white"></i>
+            </i>
+        </a>
+    </div>
 </main>
-
+<div class="desktop-menu">
+    <button type="button" class="close">&times;</button>
+    <ul>
+        <li><a href="#">أقسام المشروع</a></li>
+        <li><a href="#">كيفيـة التبرع</a></li>
+        <li><a href="#">معرض الفيديو</a></li>
+        <li><a href="#">معرض الصور</a></li>
+        <li><a href="#">طوات البناء</a></li>
+        <li><a href="#">قالوا عنا</a></li>
+        <li><a href="#">المساعدات الموضوعية</a></li>
+        <li><a href="#">الأخبار</a></li>
+        <li><a href="#">من نحن؟</a></li>
+        <li><a href="#">اتصل بنا</a></li>
+    </ul>
+    <a href="#" class="logo" title="مسجد جامع كربلا">
+        <img src="images/logo.png">
+        <h2>
+            <span class="arabic">مسجد جامع <span>كربلاء</span></span>
+            <span class="english">Mosque <span>of Karbala</span></span>
+        </h2>
+    </a>
+</div>
+<div class="mobile-index-menu">
+    <button type="button" class="close">&times;</button>
+    <span class="title">الصفحــة الرئيسـية</span>
+    <ul>
+        <li><a href="#project-intro-info">عملية تنفيذ المشروع</a></li>
+        <li><a href="#project-intro">أجزاء من المشروع</a></li>
+        <li><a href="#contact-us">كيف يمكنني المساعدة؟</a></li>
+        <li><a href="#video-gallery">معرض الفيديو</a></li>
+        <li><a href="#image-gallery">معرض الصور</a></li>
+        <li><a href="#timeline">خطوات البناء</a></li>
+        <li><a href="#media-gallery">ونقلت عن</a></li>
+        <li><a href="#help">المساعدة الموضوعية</a></li>
+        <li><a href="#news">أخبار متعلقة بمشروع</a></li>
+    </ul>
+    <a href="#" class="logo" title="مسجد جامع كربلا">
+        <img src="images/logo.png">
+        <h2>
+            <span class="arabic">مسجد جامع <span>كربلاء</span></span>
+            <span class="english">Mosque <span>of Karbala</span></span>
+        </h2>
+    </a>
+</div>
 
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>

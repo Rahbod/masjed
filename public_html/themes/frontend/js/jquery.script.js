@@ -17,14 +17,6 @@ $(function () {
         $(this).dateFormat();
     }).on("change", '.dateFormat', function () {
         $(this).dateFormat();
-    }).on("click", '.anchor-link', function (e) {
-        e.preventDefault();
-
-        var href = $(this).data('anchor');
-        if(href.substr(1,href.length))
-            $('html, body').animate({
-                scrollTop: ($(href).offset().top)
-            },1000);
     });
 
     if ($.fn.datepicker) {
@@ -36,6 +28,13 @@ $(function () {
 
     // $(window).on("load resize scroll", function () {
     $(".owl-carousel").each(function () {
+        if ($(window).width() > 768) {
+            if ($(this).hasClass('mobile-carousel')) {
+                $(this).removeClass('owl-carousel').removeClass('owl-theme');
+                return;
+            }
+        }
+
         var options = $(this).data(),
             allOptions = $(this).data('owlcarousel');
         delete options.owlcarousel;
@@ -71,23 +70,6 @@ $(function () {
         $(this).owlCarousel(options);
     });
     // });
-
-    // $(".news-carousel").css({right: $(".container").offset().left + 15, width: $(".container").width()});
-    // var dotsCount = $(".owl-carousel .owl-dot").length;
-    // $(".owl-carousel .owl-dots").css("margin-left", -((dotsCount * 16 + 20) / 2));
-
-    $('.mobile-menu-trigger').on('click', function (e) {
-        e.preventDefault();
-        $('.overlay').fadeIn('fast', function () {
-            $('.menu-container .menu').addClass('open');
-        });
-    });
-
-    $('.overlay').on('click', function (e) {
-        e.preventDefault();
-        $('.menu-container .menu').removeClass('open');
-        $(this).hide();
-    });
 
     var contentBodyH;
     $(window).on('scroll', function () {
@@ -125,8 +107,7 @@ $(function () {
         $('#' + el_id).collapse();
         if (panel_parent.hasClass('-z-index')) {
             panel_parent.removeClass('-z-index')
-        }
-        else {
+        } else {
             panel_parent.addClass('-z-index')
         }
     }).on('click', '#sidebarCollapse', function () {
@@ -141,6 +122,28 @@ $(function () {
         $('#sidebar').removeClass('active');
         // hide overlay
         $('.sidebar--overlay').removeClass('active');
+    }).on('click', '.desktop-menu .close', function () {
+        $('.desktop-menu').removeClass('open').fadeOut();
+    }).on('click', '.navbar-toggler', function () {
+        $('.desktop-menu').fadeIn(function () {
+            $(this).addClass('open')
+        });
+        return false;
+    }).on('click', '.mobile-index-menu ul li a', function (e) {
+        var position = $($(this).attr('href')).offset();
+        $('.mobile-index-menu').removeClass('open').fadeOut(function () {
+            $("html, body").animate({ scrollTop: position.top }, 'slow');
+        });
+        e.preventDefault();
+    }).on('click', '.mobile-index-menu .close', function () {
+        $('.mobile-index-menu').removeClass('open').fadeOut();
+    }).on('click', '.mobile-menu-trigger', function () {
+        $('.mobile-index-menu').fadeIn(function () {
+            $(this).addClass('open')
+        });
+        return false;
+    }).on('click', '.bank-accounts li', function () {
+        copyToClipboard($(this).find('.account-number input').attr('id'));
     });
 
     $(window).on("load resize", function () {
@@ -166,7 +169,7 @@ $(function () {
         // });
     });
 
-    if ($.fn.onepage_scroll !== undefined) {
+    if ($.fn.onepage_scroll !== undefined && $(window).width() > 768) {
         $(".content").onepage_scroll({
             sectionContainer: "section",
             easing: "ease",
@@ -181,6 +184,11 @@ $(function () {
     }
 
     makeHelpBox();
+
+    if ($(window).width() < 768) {
+        var index = $('.time-line .owl-item').index($('.time-line-item.doing').parent('.owl-item'));
+        $('.time-line.owl-carousel').trigger('to.owl.carousel', [index - 1, 500, true]);
+    }
 });
 // hide or show the main navbar base on page scroll : start
 // var header_height = $('header').height();
@@ -196,8 +204,7 @@ $(window).on("load resize scroll", function () {
             $('header .navbar > li > a').addClass('text-white');
             headerTag.addClass('smallHeader');
             // $('li.dropdown').removeClass("open");
-        }
-        else {
+        } else {
 
             $('header > .container').show();
             headerTag.removeClass('smallHeader');
@@ -268,25 +275,43 @@ $.fn.dateFormat = function () {
 };
 
 function makeHelpBox() {
-    var helpBoxColumns = {first: [], second: [], third: []},
-        i = 0,
-        helpContainer = $('.help-container');
-    helpContainer.find('.help-content .help-item').each(function (index) {
-        if (i == 0)
-            helpBoxColumns.first.push($(this).html());
-        else if (i == 1)
-            helpBoxColumns.second.push($(this).html());
-        else if (i == 2)
-            helpBoxColumns.third.push($(this).html());
+    if ($(window).width() > 768) {
+        var helpBoxColumns = {first: [], second: [], third: []},
+            i = 0,
+            helpContainer = $('.help-container');
+        helpContainer.find('.help-content .help-item').each(function (index) {
+            if (i == 0)
+                helpBoxColumns.first.push($(this).html());
+            else if (i == 1)
+                helpBoxColumns.second.push($(this).html());
+            else if (i == 2)
+                helpBoxColumns.third.push($(this).html());
 
-        if (i < 2)
-            i++;
-        else
-            i = 0;
-    });
+            if (i < 2)
+                i++;
+            else
+                i = 0;
+        });
 
-    helpContainer.find('.help-content').html('');
-    helpContainer.find('.help-content').append('<div class="col-lg-4 col-md-4 col-sm-4 help-column first"><div class="help-item">' + helpBoxColumns.first.join('</div><div class="help-item">') + '</div></div>');
-    helpContainer.find('.help-content').append('<div class="col-lg-4 col-md-4 col-sm-4 help-column second"><div class="help-item">' + helpBoxColumns.second.join('</div><div class="help-item">') + '</div></div>');
-    helpContainer.find('.help-content').append('<div class="col-lg-4 col-md-4 col-sm-4 help-column third"><div class="help-item">' + helpBoxColumns.third.join('</div><div class="help-item">') + '</div></div>');
+        helpContainer.find('.help-content').html('');
+        helpContainer.find('.help-content').append('<div class="col-lg-4 col-md-4 col-sm-4 help-column first"><div class="help-item">' + helpBoxColumns.first.join('</div><div class="help-item">') + '</div></div>');
+        helpContainer.find('.help-content').append('<div class="col-lg-4 col-md-4 col-sm-4 help-column second"><div class="help-item">' + helpBoxColumns.second.join('</div><div class="help-item">') + '</div></div>');
+        helpContainer.find('.help-content').append('<div class="col-lg-4 col-md-4 col-sm-4 help-column third"><div class="help-item">' + helpBoxColumns.third.join('</div><div class="help-item">') + '</div></div>');
+    }
+}
+
+function copyToClipboard(id) {
+    /* Get the text field */
+    var copyText = document.getElementById(id);
+
+    /* Select the text field */
+    copyText.select();
+    copyText.setSelectionRange(0, 99999);
+    /*For mobile devices*/
+
+    /* Copy the text inside the text field */
+    document.execCommand("copy");
+
+    /* Alert the copied text */
+    alert("The account number was copied.");
 }

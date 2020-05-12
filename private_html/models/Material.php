@@ -4,6 +4,7 @@ namespace app\models;
 
 use app\components\customWidgets\CustomActionColumn;
 use app\components\MainController;
+use app\controllers\CommentsController;
 use app\controllers\MaterialController;
 use app\controllers\SectionController;
 use Yii;
@@ -208,14 +209,21 @@ class Material extends Item
 
     public function getIconSrc()
     {
-        $path = Yii::$app->request->getBaseUrl();
-        return $path . '/' . MaterialController::$iconDir . '/' . $this->icon;
+        if(is_file(alias('@webroot').DIRECTORY_SEPARATOR.MaterialController::$iconDir.DIRECTORY_SEPARATOR.$this->icon)) {
+            $path = Yii::$app->request->getBaseUrl();
+            return $path . '/' . MaterialController::$iconDir . '/' . $this->icon;
+        }
+        return null;
     }
 
     public function getImageSrc()
     {
-        $path = Yii::$app->request->getBaseUrl();
-        return $path . '/' . MaterialController::$iconDir . '/' . $this->image;
+
+        if(is_file(alias('@webroot').DIRECTORY_SEPARATOR.MaterialController::$iconDir.DIRECTORY_SEPARATOR.$this->image)) {
+            $path = Yii::$app->request->getBaseUrl();
+            return $path . '/' . MaterialController::$iconDir . '/' . $this->image;
+        }
+        return null;
     }
 
     public function getDescriptionStr()

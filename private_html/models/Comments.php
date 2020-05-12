@@ -92,8 +92,11 @@ class Comments extends Item
 
     public function getImageSrc()
     {
-        $path = Yii::$app->request->getBaseUrl();
-        return $path . '/' . CommentsController::$imageDir . '/' . $this->image;
+        if(is_file(alias('@webroot').DIRECTORY_SEPARATOR.CommentsController::$imageDir.DIRECTORY_SEPARATOR.$this->image)) {
+            $path = Yii::$app->request->getBaseUrl();
+            return $path . '/' . CommentsController::$imageDir . '/' . $this->image;
+        }
+        return null;
     }
 
     public function getVideoSrc()

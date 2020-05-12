@@ -114,6 +114,12 @@ class SectionController extends AuthController implements CrudControllerInterfac
 
     public function actionShow($id)
     {
+        $this->setTheme('frontend', ['layout' => 'inner']);
 
+        $model = ProjectSection::findOne($id);
+
+        return $this->render('/page/show', [
+            'model' => $model
+        ]);
     }
 }

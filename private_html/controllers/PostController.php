@@ -214,15 +214,8 @@ class PostController extends AuthController
         $model->seen++;
         $model->save(false);
 
-        $relatedPosts = Post::find()->select('item.*')
-                ->innerJoinWith('catitems')
-                ->andWhere(['catitem.catID' => $model->categories[0]->id])
-                ->andWhere('item.id <> :id', [':id' => $id])
-                ->valid()->all();
-
         return $this->render('show', [
-                'model' => $model,
-                'relatedPosts' => $relatedPosts
+                'model' => $model
         ]);
     }
 

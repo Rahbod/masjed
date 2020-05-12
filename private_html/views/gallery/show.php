@@ -36,7 +36,7 @@ $this->registerJsFile($baseUrl . '/js/vendors/html5lightbox/html5lightbox.js', [
             <div class="col-xs-12 col-md-3">
                 <nav class="gallery-sidebar-menu">
                     <div class="sidebar-header mt-3">
-                        <h4 class="text-purple"><?= Yii::t('words', 'Payambaran Hospital Gallery') ?></h4>
+
                     </div>
                     <ul class="list-unstyled mt-5">
                         <?php foreach ($categories as $item):
@@ -81,7 +81,7 @@ $this->registerJsFile($baseUrl . '/js/vendors/html5lightbox/html5lightbox.js', [
                          class="img-fluid content-header__image" alt="">
                     <div class="content-header__titles">
                         <h1 class="media-heading content-header__title"><?= Yii::t('words', 'Gallery') ?></h1>
-                        <h3 class="content-header__subTitle"><?= Yii::t('words', 'Payambaran hospital') ?></h3>
+
                     </div>
                     <button type="button" class="btn sideMenuIcon" data-toggle="modal" data-target="#myModal"></button>
 

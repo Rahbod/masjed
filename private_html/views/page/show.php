@@ -1,7 +1,7 @@
 <?php
 
 /* @var $this yii\web\View */
-/* @var $model Page */
+/* @var $model Page|\app\models\ProjectSection */
 
 use app\models\Page;
 use app\models\Project;
@@ -25,7 +25,7 @@ $baseUrl = $this->theme->baseUrl;
                     <?php if($src = $model->getModelImage()):?>
                         <img src="<?= $model->getModelImage() ?>" alt="<?= $model->getName() ?>">
                     <?php endif;?>
-                    <div><?= $model->getBodyStr() ?></div>
+                    <br><div><?= $model->getBodyStr() ?></div>
                 </div>
             </div>
         </div>

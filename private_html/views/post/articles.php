@@ -9,10 +9,8 @@
         <div class="row news-container">
             <div class="col-xs-12">
                 <div class="content-header">
-                    <img src="<?= $this->theme->baseUrl ?>/images/news/news-header-image.png" class="img-fluid content-header__image" alt="">
                     <div class="content-header__titles">
                         <h1 class="media-heading content-header__title"><?= trans('words', 'Articles') ?></h1>
-                        <h3 class="content-header__subTitle "><?= trans('words', 'Payambaran Hospital') ?></h3>
                     </div>
                     <div class="newsSearchBox">
                         <form class="search-form" action="<?= \yii\helpers\Url::to(['/post/articles']) ?>" method="get"

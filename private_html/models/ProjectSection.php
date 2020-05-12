@@ -4,6 +4,7 @@ namespace app\models;
 
 use app\components\customWidgets\CustomActionColumn;
 use app\components\MainController;
+use app\controllers\MaterialController;
 use app\controllers\SectionController;
 use Yii;
 use yii\helpers\Html;
@@ -221,20 +222,29 @@ class ProjectSection extends Item
 
     public function getIconSrc()
     {
-        $path = Yii::$app->request->getBaseUrl();
-        return $path . '/' . SectionController::$iconDir . '/' . $this->icon;
+        if(is_file(alias('@webroot').DIRECTORY_SEPARATOR.SectionController::$iconDir.DIRECTORY_SEPARATOR.$this->icon)) {
+            $path = Yii::$app->request->getBaseUrl();
+            return $path . '/' . SectionController::$iconDir . '/' . $this->icon;
+        }
+        return null;
     }
 
     public function getIconHoverSrc()
     {
-        $path = Yii::$app->request->getBaseUrl();
-        return $path . '/' . SectionController::$iconDir . '/' . $this->icon_hover;
+        if(is_file(alias('@webroot').DIRECTORY_SEPARATOR.SectionController::$iconDir.DIRECTORY_SEPARATOR.$this->icon_hover)) {
+            $path = Yii::$app->request->getBaseUrl();
+            return $path . '/' . SectionController::$iconDir . '/' . $this->icon_hover;
+        }
+        return $this->getIconSrc();
     }
 
     public function getImageSrc()
     {
-        $path = Yii::$app->request->getBaseUrl();
-        return $path . '/' . SectionController::$iconDir . '/' . $this->image;
+        if(is_file(alias('@webroot').DIRECTORY_SEPARATOR.SectionController::$imageDir.DIRECTORY_SEPARATOR.$this->image)) {
+            $path = Yii::$app->request->getBaseUrl();
+            return $path . '/' . SectionController::$imageDir . '/' . $this->image;
+        }
+        return null;
     }
 
     public function getDescriptionStr()
@@ -264,5 +274,10 @@ class ProjectSection extends Item
     public function getMoreUrl()
     {
         return Url::to(['/section/show', 'id' => $this->id]);
+    }
+
+    public function getModelImage()
+    {
+        return $this->getImageSrc();
     }
 }

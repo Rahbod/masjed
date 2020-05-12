@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\components\customWidgets\CustomActionColumn;
 use app\components\MainController;
 use app\controllers\MaterialController;
 use app\controllers\SectionController;
@@ -116,27 +117,27 @@ class Material extends Item
 
                 'image' => [
                         'type' => self::FORM_FIELD_TYPE_DROP_ZONE,
-                        'hint' => 'تصویر آیکون با فرمت svg',
+                        'hint' => 'تصویر صفحه توضیحات - سایز دلخواه - حداکثر حجم 5 مگابایت',
                         'containerCssClass' => 'col-sm-4',
                         'temp' => MainController::$tempDir,
                         'path' => MaterialController::$iconDir,
-                        'filesOptions' => MaterialController::$iconOptions,
+                        'filesOptions' => MaterialController::$imageOptions,
                         'options' => [
-                                'url' => Url::to(['upload-icon']),
-                                'removeUrl' => Url::to(['delete-icon']),
+                                'url' => Url::to(['upload-image']),
+                                'removeUrl' => Url::to(['delete-image']),
                                 'sortable' => false, // sortable flag
                                 'sortableOptions' => [], // sortable options
-                                'htmlOptions' => ['class' => '', 'id' => Html::getInputId(new self(), 'icon')],
+                                'htmlOptions' => ['class' => '', 'id' => Html::getInputId(new self(), 'image')],
                                 'options' => [
                                         'createImageThumbnails' => true,
                                         'addRemoveLinks' => true,
                                         'dictRemoveFile' => 'حذف',
                                         'addViewLinks' => true,
                                         'dictViewFile' => '',
-                                        'dictDefaultMessage' => 'جهت آپلود آیکون کلیک کنید',
-                                        'acceptedFiles' => 'svg',
+                                        'dictDefaultMessage' => 'جهت آپلود تصویر کلیک کنید',
+                                        'acceptedFiles' => 'png, jpg, jpeg',
                                         'maxFiles' => 1,
-                                        'maxFileSize' => 0.5,
+                                        'maxFileSize' => 5,
                                 ],
                         ]
                 ],
@@ -268,5 +269,13 @@ class Material extends Item
     public function getMoreUrl()
     {
         return Url::to(['/material/archive', 'id' => $this->id]);
+    }
+
+    public function tableColumns()
+    {
+        return [
+            'name',
+            ['class' => CustomActionColumn::className()]
+        ];
     }
 }

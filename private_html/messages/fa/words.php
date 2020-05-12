@@ -384,4 +384,12 @@ return [
     'Non-cash Donation' => 'کمک های غیرنقدی',
     'Material Assistance' => 'کمک های غیرنقدی',
     'Create New' => 'افزودن مورد جدید',
+
+    /////// Material
+    'Material Submitted Amount' => 'مقدار جمع آوری شده',
+    'Ar Material Submitted Amount' => 'مقدار جمع آوری شده عربی',
+    'En Material Submitted Amount' => 'مقدار جمع آوری شده انگلیسی',
+    'Material Required Amount'=> 'مقدار موردنیاز',
+    'Ar Material Required Amount'=> 'مقدار موردنیاز عربی',
+    'En Material Required Amount'=> 'مقدار موردنیاز انگلیسی',
 ];

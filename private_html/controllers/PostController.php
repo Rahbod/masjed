@@ -129,7 +129,7 @@ class PostController extends AuthController
                 $gallery->move(Attachment::getAttachmentPath());
                 Yii::$app->session->setFlash('alert',
                         ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['index']);
             } else {
                 Yii::$app->session->setFlash('alert',
                         ['type' => 'danger', 'message' => trans('words', 'base.dangerMsg')]);
@@ -172,7 +172,7 @@ class PostController extends AuthController
                         Attachment::getAttachmentRelativePath());
                 Yii::$app->session->setFlash('alert',
                         ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['index']);
             } else {
                 Yii::$app->session->setFlash('alert',
                         ['type' => 'danger', 'message' => trans('words', 'base.dangerMsg')]);

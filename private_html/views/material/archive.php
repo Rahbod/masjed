@@ -33,7 +33,7 @@ $baseUrl = $this->theme->baseUrl;
                 <div id="material-tab-<?= $material->id ?>" class="tab-pane fade<?= ($id!=false && $material->id == $id) || ($id == false && $i++==0)?' in active':''?>">
                     <div class="text">
                         <?php if($material->image):?><img src="<?= $material->getImageSrc() ?>" alt="<?= $material->getName() ?>"><?php endif;?>
-                        <div><?= $material->getBodyStr() ?></div>
+                        <br><div><?= $material->getBodyStr() ?></div>
                     </div>
                 </div>
             <?php endforeach; ?>

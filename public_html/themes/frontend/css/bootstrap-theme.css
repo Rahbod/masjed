@@ -3089,7 +3089,7 @@ h3.underline-black:after {
 
 .mobile-footer-menu {
     background: #57b040;
-    height: 60px;
+    height: 50px;
     position: fixed;
     bottom: 0;
     right: 0;
@@ -3098,26 +3098,31 @@ h3.underline-black:after {
     box-shadow: 0 0 16px rgba(8, 9, 9, .31);
 }
 
+.mobile-footer-menu .navbar-toggler {
+    padding: 12px 15px 15px;
+}
+
 .mobile-footer-menu .btn-donate {
     position: absolute;
     width: 50px;
-    height: 60px;
+    height: 50px;
     left: 15px;
     top: 0;
-    padding: 10px 5px;
+    padding: 10px 0;
+    text-align: left;
 }
 
 .mobile-footer-menu .btn-donate .svg-heart-white {
     display: inline-block;
-    width: 40px;
-    height: 40px;
-    padding: 10px;
+    width: 30px;
+    height: 30px;
+    padding: 6px;
 }
 
 .mobile-footer-menu .btn-donate .svg-heart-filled-white {
     display: inline-block;
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
 }
 
 .footer .navbar-toggler,
@@ -3342,10 +3347,19 @@ h3.underline-black:after {
     position: absolute;
     right: 50%;
     margin-right: -27px;
-    padding: 16px;
-    width: 55px;
-    height: 55px;
+    width: 50px;
+    height: 50px;
     background: url("../svg/mobile-menu.svg") no-repeat center;
+    background-size: 20px;
+}
+
+.back-to-index-trigger {
+    position: absolute;
+    right: 50%;
+    margin-right: -27px;
+    width: 50px;
+    height: 50px;
+    background: url("../svg/left-w.svg") no-repeat center;
     background-size: 20px;
 }
 
@@ -3429,10 +3443,12 @@ h3.underline-black:after {
     font-size: 18px;
     font-weight: bold;
 }
-.mobile-index-menu ul li{
+
+.mobile-index-menu ul li {
     margin-bottom: 5px;
 }
-.mobile-index-menu ul li a{
+
+.mobile-index-menu ul li a {
     width: 80%;
     background: #fff url("../svg/left-b.svg") no-repeat 10px center;
     background-size: 25px;
@@ -3440,4 +3456,161 @@ h3.underline-black:after {
     right: 10%;
     text-align: right;
     padding: 10px;
+}
+
+.mobile-scrolled.inner-page .title-box {
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 90px;
+    background: #2b2b2b;
+    z-index: 60;
+    padding-top: 20px;
+    padding-bottom: 0;
+}
+
+.mobile-scrolled.inner-page .news-archive-page .title-box,
+.mobile-scrolled.inner-page .news-page .title-box {
+    height: 60px;
+}
+
+.mobile-scrolled .inner-page-content {
+    padding-top: 320px;
+}
+
+.mobile-scrolled.inner-page .title-box h3 {
+    font-size: 2rem;
+}
+
+.mobile-scrolled.inner-page .news-page .title-box h3,
+.mobile-scrolled.inner-page .news-archive-page .title-box h3 {
+    margin-bottom: 0;
+    padding: 0;
+}
+
+.mobile-scrolled.inner-page .logo-container .logo {
+    position: fixed;
+    left: 30px;
+    top: 10px;
+    z-index: 61;
+}
+
+.mobile-scrolled.inner-page .logo-container .logo img {
+    width: 40px;
+    height: 40px;
+}
+
+.mobile-scrolled.inner-page .logo-container .logo h1 {
+    display: none;
+}
+
+.mobile-scrolled.inner-page .gallery-page .nav-tabs,
+.mobile-scrolled.inner-page .donate-page .title-box .nav-tabs,
+.mobile-scrolled.inner-page .text-page .nav-tabs {
+    position: fixed;
+    background: #57b040;
+    border-radius: 5px;
+    left: 15px;
+    right: 20px;
+    top: 65px;
+    z-index: 61;
+    padding: 0 5px;
+}
+
+.mobile-scrolled.inner-page .mobile-shape {
+    display: none !important;
+}
+
+.mobile-scrolled.inner-page .gallery-page .nav-tabs > li > a,
+.mobile-scrolled.inner-page .donate-page .title-box .nav-tabs > li > a,
+.mobile-scrolled.inner-page .text-page .nav-tabs > li > a {
+    line-height: 30px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+}
+
+.mobile-scrolled.inner-page .donate-page .title-box .nav-tabs > li.active > a:after,
+.mobile-scrolled.inner-page .donate-page .title-box .nav-tabs > li.active > a:focus:after,
+.mobile-scrolled.inner-page .donate-page .title-box .nav-tabs > li.active > a:hover:after,
+.mobile-scrolled.inner-page .text-page .nav-tabs > li.active > a:after,
+.mobile-scrolled.inner-page .text-page .nav-tabs > li.active > a:focus:after,
+.mobile-scrolled.inner-page .text-page .nav-tabs > li.active > a:hover:after,
+.mobile-scrolled.inner-page .gallery-page .nav-tabs > li.active > a:after,
+.mobile-scrolled.inner-page .gallery-page .nav-tabs > li.active > a:focus:after,
+.mobile-scrolled.inner-page .gallery-page .nav-tabs > li.active > a:hover:after {
+    background: #fff;
+    bottom: 8px;
+}
+
+.mobile-scrolled.inner-page .gallery-page .nav-tabs > li,
+.mobile-scrolled.inner-page .text-page .nav-tabs > li,
+.mobile-scrolled.inner-page .donate-page .title-box .nav-tabs > li {
+    margin-left: 0;
+}
+
+.news-archive-items {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.news-archive-items li {
+    position: relative;
+    border: 2px solid #dedede;
+    border-radius: 10px;
+    background: #f3f3f3;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.news-archive-items li:hover {
+    background: #e9e9e9;
+}
+
+.news-archive-items li .image {
+    float: right;
+    width: 150px;
+    height: 150px;
+    margin-left: 30px;
+}
+
+.news-archive-items li .image img {
+    max-width: 100%;
+}
+
+.news-archive-items li h4 {
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.news-archive-items li .text {
+    color: #818181;
+    font-size: 14px;
+    padding-left: 30px;
+}
+
+.news-archive-items li .date {
+    color: #818181;
+    font-weight: bold;
+    font-size: 14px;
+    padding-left: 30px;
+    text-align: left;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.news-archive-items li .link {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+}
+
+.captcha-container > div {
+    float: left !important;
 }

@@ -41,6 +41,7 @@ AppAsset::register($this);
     <link href="<?= $this->theme->baseUrl . '/css/svg_icons.css' ?>" rel="stylesheet">
     <link href="<?= $this->theme->baseUrl . '/css/onepage-scroll.css' ?>" rel="stylesheet">
     <link href="<?= $this->theme->baseUrl . '/css/bootstrap-theme.css' ?>" rel="stylesheet">
+    <link href="<?= $this->theme->baseUrl . '/css/responsive-theme.css' ?>" rel="stylesheet">
 
     <?php if (app()->language != 'en'): ?>
 
@@ -54,7 +55,7 @@ AppAsset::register($this);
 
     <?php $slides = Slide::find()->valid()->orderBy(['id' => SORT_ASC])->all(); ?>
     <section class="slider-container" id="section-1">
-        <div class="slider owl-carousel owl-theme" data-items="1" data-rtl="true">
+        <div class="slider owl-carousel owl-theme hidden-xs" data-items="1" data-rtl="true">
             <?php
             /** @var Slide $item */
             foreach ($slides as $item):
@@ -75,8 +76,11 @@ AppAsset::register($this);
 
     <?= $content ?>
 
-    <section class="contact-form-container" id="section-11">
+    <section class="contact-form-container hidden-xs" id="section-11">
         <div class="body-info">
+            <a href="#" class="navbar-toggler hidden-xs">
+                <span class="bars-icon"></span>
+            </a>
             <div class="right-side">
                 <div class="right-side--header">
                     <h3>
@@ -136,14 +140,47 @@ AppAsset::register($this);
         </div>
     </section>
 
-    <style>
-        .captcha-container > div{
-            float: left !important;
-        }
-    </style>
-
     <?= $this->render('_footer'); ?>
 </main>
+<div class="desktop-menu">
+    <button type="button" class="close">&times;</button>
+    <ul>
+        <?php
+        /** @var \app\models\Menu $menu */
+        foreach (app()->controller->menus as $menu): ?>
+            <li<?= $menu->isActive()?' class="active"':'' ?>><a href="<?= $menu->getUrl()?>"<?= $menu->isAnchor()?' class="anchor-link"':'' ?><?= $menu->isAnchor()?' data-anchor="'.$menu->external_link.'"':'' ?>><?= $menu->getName() ?></a></li>
+        <?php endforeach; ?>
+    </ul>
+    <a href="#" class="logo" title="<?= app()->name ?>">
+        <img src="<?= $this->theme->baseUrl.'/images/logo.png' ?>" alt="<?= app()->name ?>">
+        <h2>
+            <span class="arabic">مسجد جامع <span>كربلاء</span></span>
+            <span class="english">Mosque <span>of Karbala</span></span>
+        </h2>
+    </a>
+</div>
+<div class="mobile-index-menu">
+    <button type="button" class="close">&times;</button>
+    <span class="title">الصفحــة الرئيسـية</span>
+    <ul>
+        <li><a href="#project-intro-info">عملية تنفيذ المشروع</a></li>
+        <li><a href="#project-intro">أجزاء من المشروع</a></li>
+        <li><a href="#contact-us">كيف يمكنني المساعدة؟</a></li>
+        <li><a href="#video-gallery">معرض الفيديو</a></li>
+        <li><a href="#image-gallery">معرض الصور</a></li>
+        <li><a href="#timeline">خطوات البناء</a></li>
+        <li><a href="#media-gallery">ونقلت عن</a></li>
+        <li><a href="#help">المساعدة الموضوعية</a></li>
+        <li><a href="#news">أخبار متعلقة بمشروع</a></li>
+    </ul>
+    <a href="#" class="logo" title="<?= app()->name ?>">
+        <img src="<?= $this->theme->baseUrl.'/images/logo.png' ?>" alt="<?= app()->name ?>">
+        <h2>
+            <span class="arabic">مسجد جامع <span>كربلاء</span></span>
+            <span class="english">Mosque <span>of Karbala</span></span>
+        </h2>
+    </a>
+</div>
 
 <?php $this->endBody(); ?>
 

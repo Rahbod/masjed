@@ -53,7 +53,7 @@ $this->registerJs("
         <div class="container">
             <div class="top-bar-info__body">
                 <div class="top-bar-info--ring"></div>
-                <div class="top-bar-info--inner">
+                <div class="top-bar-info--inner" id="project-intro-info">
                     <div class="top-bar-info--cols">
                         <div class="top-bar-info--cols-inner">
                             <div class="top-bar-info_cell dark-red with-icon">
@@ -78,7 +78,10 @@ $this->registerJs("
             </div>
         </div>
     </div>
-    <div class="body-info">
+    <div class="body-info" id="project-intro">
+        <a href="#" class="navbar-toggler hidden-xs">
+            <span class="bars-icon"></span>
+        </a>
         <div class="right-side">
             <div class="right-side--header">
                 <h3>
@@ -154,7 +157,10 @@ $this->registerJs("
 </section>
 
 <section class="contact-us" id="section-3">
-    <div class="body-info">
+    <div class="body-info" id="contact-us">
+        <a href="#" class="navbar-toggler hidden-xs">
+            <span class="bars-icon"></span>
+        </a>
         <div class="right-side">
             <div class="right-side--header">
                 <h3 class="text-white underline-black">
@@ -215,7 +221,10 @@ $this->registerJs("
 </section>
 
 <section class="video-gallery" id="section-4">
-    <div class="body-info">
+    <div class="body-info" id="video-gallery">
+        <a href="#" class="navbar-toggler hidden-xs">
+            <span class="bars-icon"></span>
+        </a>
         <div class="right-side">
             <div class="right-side--header">
                 <h3>
@@ -239,7 +248,7 @@ $this->registerJs("
                             </li>
                         <?php endforeach; ?>
                     </ul>
-                    <div class="tab-content">
+                    <div class="tab-content hidden-xs">
                         <?php
                         $i = 0;
                         foreach ($videoCategories as $category):
@@ -273,8 +282,29 @@ $this->registerJs("
                             </div>
                         <?php endforeach; ?>
                     </div>
-                    <a href="<?= Url::to(['/gallery/video']) ?>" class="archive-link"><?= trans('words',
-                                'Video Section<br>Archive') ?></a>
+                    <?php $lastVideos = VideoGallery::getLastList(5, Gallery::TYPE_VIDEO_GALLERY);?>
+                    <div class="video-slider owl-carousel owl-theme mobile-carousel visible-xs" data-items="1" data-rtl="true"
+                         data-dots="true" data-nav="false">
+                        <?php foreach($lastVideos as $video):?>
+                            <?php if (!$video->getVideoSrc()) continue;?>
+                            <div class="video-item">
+                                <div class="video-container">
+                                    <video controls preload="none" poster="<?= $video->getPosterSrc() ?>">
+                                        <source src="<?= $video->getVideoSrc() ?>" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                    <div class="video-overlay"></div>
+                                </div>
+                                <div class="caption">
+                                    <i></i>
+                                    <h5><?= $video->name ?>
+                                        <small><?= $video->short_description ?></small>
+                                    </h5>
+                                </div>
+                            </div>
+                        <?php endforeach;?>
+                    </div>
+                    <a href="<?= Url::to(['/gallery/video']) ?>" class="archive-link"><?= trans('words', 'Video Section<br>Archive') ?></a>
                 </div>
             </div>
         </div>
@@ -282,7 +312,10 @@ $this->registerJs("
 </section>
 
 <section class="image-gallery" id="section-5">
-    <div class="body-info">
+    <div class="body-info" id="image-gallery">
+        <a href="#" class="navbar-toggler hidden-xs">
+            <span class="bars-icon"></span>
+        </a>
         <div class="right-side">
             <div class="right-side--header">
                 <h3>
@@ -306,7 +339,7 @@ $this->registerJs("
                             </li>
                         <?php endforeach; ?>
                     </ul>
-                    <div class="tab-content">
+                    <div class="tab-content hidden-xs">
                         <?php
                         $i = 0;
                         foreach ($pictureCategories as $category):
@@ -330,8 +363,22 @@ $this->registerJs("
                             </div>
                         <?php endforeach; ?>
                     </div>
-                    <a href="<?= Url::to(['/gallery/video']) ?>" class="archive-link"><?= trans('words',
-                                'Picture Section<br>Archive') ?></a>
+                    <?php $lastPhotos = Gallery::getLastList(5, Gallery::TYPE_PICTURE_GALLERY);?>
+                    <div class="image-slider owl-carousel owl-theme visible-xs mobile-carousel" data-items="1"
+                         data-rtl="true" data-dots="true" data-nav="false">
+                        <?php foreach($lastPhotos as $photo):?>
+                            <div class="image-item">
+                                <a href="#"><img src="<?= $photo->getImageSrc() ?>"
+                                                 alt="<?= $photo->getName() ?>"></a>
+                                <h5 class="visible-xs">
+                                    <?= $photo->getName() ?>
+<!--                                    <small>صور لأجزاء مختلفة من المسجد في 3D مع إدخال أقسامها الفرعية-->
+<!--                                    </small>-->
+                                </h5>
+                            </div>
+                        <?php endforeach;?>
+                    </div>
+                    <a href="<?= Url::to(['/gallery/video']) ?>" class="archive-link"><?= trans('words', 'Picture Section<br>Archive') ?></a>
                 </div>
             </div>
         </div>
@@ -339,7 +386,10 @@ $this->registerJs("
 </section>
 
 <section class="time-line-box" id="section-6">
-    <div class="body-info">
+    <div class="body-info" id="timeline">
+        <a href="#" class="navbar-toggler hidden-xs">
+            <span class="bars-icon"></span>
+        </a>
         <div class="title right-side--header">
             <h3>
                 <b><?= trans('words', 'Construction steps') ?></b>
@@ -397,7 +447,10 @@ $this->registerJs("
 </section>
 
 <section class="media-gallery" id="section-7">
-    <div class="body-info">
+    <div class="body-info" id="media-gallery">
+        <a href="#" class="navbar-toggler hidden-xs">
+            <span class="bars-icon"></span>
+        </a>
         <div class="right-side">
             <div class="right-side--header">
                 <h3>
@@ -441,7 +494,10 @@ $this->registerJs("
 </section>
 
 <section class="help-container" id="section-8">
-    <div class="body-info">
+    <div class="body-info" id="help">
+        <a href="#" class="navbar-toggler hidden-xs">
+            <span class="bars-icon"></span>
+        </a>
         <div class="right-side--header">
             <h3>
                 <b><?= trans('words', 'Objective assistance') ?></b>
@@ -469,7 +525,10 @@ $this->registerJs("
 </section>
 
 <section class="news-container" id="section-9">
-    <div class="body-info">
+    <div class="body-info" id="news">
+        <a href="#" class="navbar-toggler hidden-xs">
+            <span class="bars-icon"></span>
+        </a>
         <div class="right-side">
             <div class="right-side--header">
                 <h3>
@@ -478,7 +537,7 @@ $this->registerJs("
                 </h3>
                 <small>أخبار متعلقة بالتعاون والتقدم في مشروع<br>مسجد كربلاء وشفافية مساهماتكم</small>
             </div>
-            <a href="<?= Url::to(['/post/news']) ?>" class="archive-link"><?= trans('words', 'Project<br>news archive') ?></a>
+            <a href="<?= Url::to(['/post/news']) ?>" class="archive-link hidden-xs"><?= trans('words', 'Project<br>news archive') ?></a>
         </div>
         <div class="left-side">
             <div class="news-slider owl-carousel owl-theme" data-items="1" data-rtl="true" data-dots="true"
@@ -493,18 +552,22 @@ $this->registerJs("
                             <h3><?= $item->getName() ?></h3>
                             <div class="text"><?= $item->summary ?></div>
                             <div class="date"><?= $item->getDate() ?></div>
-                            <a href="<?= $item->getUrl() ?>" class="more-details"><?= trans('words',
+                            <a href="<?= $item->getUrl() ?>" class="more-details hidden-xs"><?= trans('words',
                                         'More information') ?></a>
                         </div>
                     </div>
                 <?php endforeach; ?>
             </div>
+            <a href="<?= Url::to(['/post/news']) ?>" class="archive-link visible-xs"><?= trans('words', 'Project<br>news archive') ?></a>
         </div>
     </div>
 </section>
 
-<section class="about-container" id="section-10">
+<section class="about-container hidden-xs" id="section-10">
     <div class="body-info">
+        <a href="#" class="navbar-toggler hidden-xs">
+            <span class="bars-icon"></span>
+        </a>
         <div class="right-side">
             <div class="right-side--header">
                 <h3>

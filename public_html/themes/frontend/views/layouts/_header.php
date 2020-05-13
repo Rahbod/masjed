@@ -23,14 +23,20 @@ $baseUrl = $this->theme->baseUrl;
         </a>
     </div>
 </div>
-
+<div class="dropdown language-dropdown visible-xs">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">عربي</a>
+    <ul class="dropdown-menu dropdown-menu-left">
+        <li><a href="#">عربي</a></li>
+        <li><a href="#">فارسي</a></li>
+    </ul>
+</div>
 <header>
     <div class="container">
         <nav class="navbar">
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
-                    <a href="#" class="navbar-toggler">
+                    <a href="#" class="navbar-toggler hidden-xs">
                         <span class="bars-icon"></span>
                     </a>
                 </div>

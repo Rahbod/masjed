@@ -105,6 +105,19 @@ class Gallery extends Item
         return $query->all();
     }
 
+    /**
+     * @param $count
+     * @param $type
+     * @return VideoGallery[]|PictureGallery[]
+     */
+    public static function getLastList($count, $type)
+    {
+        $query = self::find();
+        $query->andWhere(['type' => $type])
+            ->limit($count)->valid();
+        return $query->all();
+    }
+
     public function beforeSave($insert)
     {
         if ($this->formCategories) {

@@ -14,8 +14,11 @@ $processes = ProjectProcess::getLastRows(4);
 $processMoreLink = ProjectProcess::getMoreLink();
 ?>
 
-<section class="footer">
+<section class="footer hidden-xs">
     <div class="body-info">
+        <a href="#" class="navbar-toggler hidden-xs">
+            <span class="bars-icon"></span>
+        </a>
         <div class="right-side">
             <div class="logo-container">
                 <a href="#" class="logo" title="<?= app()->name ?>">
@@ -67,3 +70,23 @@ $processMoreLink = ProjectProcess::getMoreLink();
         </div>
     </div>
 </section>
+<div class="footer-mobile visible-xs">
+    <a href="#" title="<?= app()->name ?>">
+        <img src="<?= $this->theme->baseUrl.'/images/logo.png' ?>" alt="<?= app()->name ?>">
+    </a>
+    <div class="copyright">
+        <div><b>All Rights Reserved</b> masjed jame karbala</div>
+        <div><b>Design by</b> <a href="#">Tarsim.inc</a></div>
+    </div>
+</div>
+<div class="mobile-footer-menu visible-xs">
+    <a href="#" class="navbar-toggler">
+        <span class="bars-icon"></span>
+    </a>
+    <a href="#" class="mobile-menu-trigger"></a>
+    <a href="<?= Url::to(['/payment']) ?>" class="btn-donate">
+        <i class="svg-heart-white">
+            <i class="svg-heart-filled-white"></i>
+        </i>
+    </a>
+</div>

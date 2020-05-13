@@ -33,7 +33,7 @@ $baseUrl = $this->theme->baseUrl;
 $processes = ProjectProcess::getLastRows();
 $processMoreLink = ProjectProcess::getMoreLink();
 
-$sections = ProjectSection::find()->valid()->all();
+$sections = ProjectSection::find()->orderBy(['item.id' => SORT_ASC])->valid()->all();
 
 $videoCategories = Category::getWithType(Category::CATEGORY_TYPE_VIDEO_GALLERY, 'object');
 $pictureCategories = Category::getWithType(Category::CATEGORY_TYPE_PICTURE_GALLERY, 'object');

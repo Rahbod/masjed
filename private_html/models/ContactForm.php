@@ -49,7 +49,7 @@ class ContactForm extends Model implements FormRendererDefinition
     {
         return [
                 'name' => trans('words', 'First name and Last name'),
-                'email' => trans('words', 'E-Mail'),
+                'email' => trans('words', 'Email'),
                 'tel' => trans('words', 'MOBILE NUMBER'),
                 'body' => trans('words', 'MESSAGE TEXT'),
 
@@ -90,7 +90,7 @@ class ContactForm extends Model implements FormRendererDefinition
                         'type' => self::FORM_FIELD_TYPE_TEXT,
                         'label' => false,
                         'error' => false,
-                        'options' => ['placeholder' => $this->getAttributeLabel('name')],
+                        'options' => ['placeholder' => $this->getAttributeLabel('name'), 'dir' => false],
                 ],
                 'email' => [
                         'type' => self::FORM_FIELD_TYPE_TEXT,
@@ -99,10 +99,10 @@ class ContactForm extends Model implements FormRendererDefinition
                         'options' => ['placeholder' => $this->getAttributeLabel('email'), 'class' => 'email'],
                 ],
                 'tel' => [
-                        'type' => self::FORM_FIELD_TYPE_TEXT,
+                        'type' => self::FORM_FIELD_TYPE_NUMBER,
                         'label' => false,
                         'error' => false,
-                        'options' => ['placeholder' => $this->getAttributeLabel('tel'), 'class' => 'tel'],
+                        'options' => ['placeholder' => $this->getAttributeLabel('tel'), 'class' => 'phone', 'dir' => false],
                 ],
                 'department_id' => [
                         'type' => self::FORM_FIELD_TYPE_SELECT,

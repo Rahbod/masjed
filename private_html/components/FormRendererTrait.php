@@ -271,6 +271,13 @@ trait FormRendererTrait
                                 ]), ['class' => 'form-group m-form__group field-projecttimeline-' . $attribute]);
                 $obj = $form->field($model, $attribute, ['options' => ['class' => '']])->hiddenInput()->label(false);
                 break;
+            case static::FORM_FIELD_TYPE_NUMBER:
+                if (!isset($options['dir'])) {
+                    $options['dir'] = 'auto';
+                }
+                $options['type'] = 'number';
+                $obj = $form->field($model, $attribute, $fieldOptions)->textInput($options);
+                break;
             case static::FORM_FIELD_TYPE_TAG:
             case static::FORM_FIELD_TYPE_TIME:
             case static::FORM_FIELD_TYPE_DATETIME:

@@ -118,10 +118,11 @@ class ProjectProcess extends Item
      */
     public static function getLastRows($limit = 4, $orderBy = 'id')
     {
-        $query = self::find();
+        $query = self::find()
+            ->orderBy([$orderBy => SORT_DESC])
+            ->limit($limit);
 
-        $query->from('(SELECT * FROM ' . self::tableName() . ' ORDER BY ' . $orderBy . ' DESC LIMIT ' . $limit . ') as t')
-                ->orderBy([$orderBy => SORT_ASC]);
+//        $query->from('(SELECT * FROM ' . self::tableName() . ' ORDER BY ' . $orderBy . ' DESC LIMIT ' . $limit . ') as t')
 
         return $query->all();
     }

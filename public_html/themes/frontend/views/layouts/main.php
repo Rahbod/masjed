@@ -92,8 +92,8 @@ AppAsset::register($this);
             </div>
             <div class="left-side">
                 <div class="contact-us-form-container">
-                    <div class="text">لا تتردد في الاتصال بنا عبر النموذج أدناه إذا كنت ترغب في الاتصال بمجموعة مسجد جامع
-                        الكربلاء ، أو إذا كان لديك أي نقد أو اقتراحات.
+                    <div class="text">
+                        <?= trans('words', 'contact_page_description') ?>
                     </div>
                     <div class="form">
                         <?php
@@ -129,6 +129,7 @@ AppAsset::register($this);
 //                                            'placeholder' => trans('words', 'Verify Code'),
                                                 'tabindex' => ++FormRendererTrait::$tabindex,
                                                 'autocomplete' => 'off',
+                                                'placeholder' => trans('words', 'Captcha Code'),
                                         ],
                                 ])->label(false)->hint(false) ?>
                             </div>

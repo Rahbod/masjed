@@ -14,6 +14,7 @@ use yii\widgets\ActiveForm;
 abstract class MultiLangActiveRecord extends DynamicActiveRecord
 {
     public static $multiLanguage = true;
+    public $normalizeValue = false;
 
     public static $langArray = [
         'fa' => 'فارسی',
@@ -84,4 +85,20 @@ abstract class MultiLangActiveRecord extends DynamicActiveRecord
             'ar_status' => trans('words', 'Ar Status'),
         ];
     }
+//
+//    public function normalizeValue()
+//    {
+//        $this->normalizeValue = true;
+//    }
+//
+//    public function __get($name)
+//    {
+//        $value = parent::__get($name);
+//        if($this->normalizeValue && app()->language == 'ar'){
+//            if(static::$multiLanguage)
+//            $patterns = array('/ی/', '/ک/');
+//            $replacements = array('ي', 'ك');
+//            return preg_replace($patterns, $replacements, $value);
+//        }
+//    }
 }

@@ -195,7 +195,7 @@ $this->registerJs("
                             <small>(<?= trans('words', 'Iran and Iraq') ?>)</small>
                         </h2>
                         <ul class="bank-accounts">
-                            <?php foreach (Setting::get('donation.bank_numbers') as $item):?>
+                            <?php foreach (Setting::get('donation.bank_numbers') as $item):if(empty($item['bank_name'])) continue; ?>
                                 <li><b><?= $item['bank_name'] ?> <span>(<?= $item['account_type'] ?>)</span></b><?= trans('words', 'Account number') ?><span
                                             class="account-num"><?= $item['account_number'] ?></span>
                                 </li>
@@ -206,7 +206,7 @@ $this->registerJs("
                         <span class="num">4</span>
                         <h2><?= trans('words', 'Approved phone number') ?></h2>
                         <ul class="bank-accounts">
-                            <?php foreach (Setting::get('donation.persons') as $item):?>
+                            <?php foreach (Setting::get('donation.persons') as $item):if(empty($item['name'])) continue; ?>
                                 <li><b><?= $item['name'] ?></b><?= $item['country'] ?><span class="account-num"><?= $item['mobile'] ?></span></li>
                             <?php endforeach;?>
                         </ul>

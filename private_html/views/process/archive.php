@@ -29,14 +29,14 @@ $baseUrl = $this->theme->baseUrl;
     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
         <div class="tab-content">
             <?php
-            $i=0;
+            $i=1;
             foreach ($processes as $item): ?>
-                <div id="process-tab-<?= $item->id ?>" class="tab-pane fade<?= ($id!=false && $item->id == $id) || ($id == false && $i++==0)?' in active':''?>">
+                <div id="process-tab-<?= $item->id ?>" class="tab-pane fade<?= ($id!=false && $item->id == $id) || ($id == false && $i==count($processes))?' in active':''?>">
                     <div class="text">
                         <div><?= $item->getTextStr() ?></div>
                     </div>
                 </div>
-            <?php endforeach; ?>
+            <?php $i++; endforeach; ?>
         </div>
     </div>
 </div>

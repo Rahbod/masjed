@@ -100,7 +100,7 @@ AppAsset::register($this);
                             </div>
                         </div>
                         <div class="top-bar-info--btn">
-                            <a href="#" class="top-bar-info_btn"><?= trans('words', 'More information') ?></a>
+                            <a href="<?= Url::to(['/process/archive']) ?>" class="top-bar-info_btn"><?= trans('words', 'More information') ?></a>
                         </div>
                     </div>
                 </div>

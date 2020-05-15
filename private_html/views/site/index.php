@@ -63,11 +63,10 @@ $this->registerJs("
                             </div>
                             <?php foreach ($processes as $process): ?>
                                 <div class="top-bar-info_cell">
-                                    <?php if($process->getUrl()):?><a href="<?= $process->getUrl() ?>"><?php endif;?>
                                     <i class="line-icon"></i>
                                     <span><?= $process->getName() ?></span>
                                     <span class="bold"><?= $process->getDescriptionStr() ?></span>
-                                    <?php if($process->getUrl()):?></a><?php endif;?>
+                                    <a href="<?= Url::to(['/process/archive', ['id' => $process->id]]) ?>"></a>
                                 </div>
                             <?php endforeach; ?>
                         </div>

@@ -67,4 +67,12 @@ class ProcessController extends AuthController implements CrudControllerInterfac
 
         return $this->redirect(['index']);
     }
+
+    public function actionArchive($id = false)
+    {
+        $this->setTheme('frontend', ['layout' => 'inner']);
+        $processes = ProjectProcess::find()->valid()->all();
+
+        return $this->render('/process/archive', compact('processes','id'));
+    }
 }

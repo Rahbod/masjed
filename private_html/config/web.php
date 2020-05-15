@@ -15,7 +15,7 @@ require_once(__DIR__ . '/../yii_helper.php');
 
 $config = [
     'id' => 'basic',
-    'name' => 'App Name',
+    'name' => 'مسجد جامع كربلاء',
     'basePath' => dirname(__DIR__),
     'language' => 'ar',
     'timeZone' => Setting::get('timeZone'),

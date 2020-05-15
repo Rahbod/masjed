@@ -36,11 +36,13 @@ class ProjectProcess extends Item
     {
         parent::init();
         $this->dynaDefaults = array_merge($this->dynaDefaults, [
-                'description' => ['CHAR', ''],
-                'ar_description' => ['CHAR', ''],
-                'en_description' => ['CHAR', ''],
-
-                'page_id' => ['INTEGER', '']
+            'description' => ['CHAR', ''],
+            'ar_description' => ['CHAR', ''],
+            'en_description' => ['CHAR', ''],
+            'text' => ['CHAR', ''],
+            'en_text' => ['CHAR', ''],
+            'ar_text' => ['CHAR', ''],
+//            'page_id' => ['INTEGER', '']
         ]);
     }
 
@@ -50,13 +52,20 @@ class ProjectProcess extends Item
     public function formAttributes()
     {
         return array_merge(parent::formAttributes(), [
-                [['description', 'ar_description', 'en_description'], self::FORM_FIELD_TYPE_TEXT_AREA],
-                'page_id' => [
-                        'type' => self::FORM_FIELD_TYPE_SELECT,
-                        'items' => Page::getList(),
-                        'hint' => 'اختیاری - ' . Html::a('صفحه جدید', ['/page/create', 'return' => request()->url]),
-                        'options' => ['prompt' => 'صفحه متنی موردنظر را انتخاب کنید']
-                ],
+            [['description', 'ar_description', 'en_description'], self::FORM_FIELD_TYPE_TEXT_AREA],
+            [['text', 'en_text', 'ar_text'], [
+                'type' => static::FORM_FIELD_TYPE_TEXT_EDITOR,
+                'containerCssClass' => 'col-sm-6',
+                'options' => [
+                    'options' => ['rows' => 30]
+                ]
+            ]],
+//            'page_id' => [
+//                'type' => self::FORM_FIELD_TYPE_SELECT,
+//                'items' => Page::getList(),
+//                'hint' => 'اختیاری - ' . Html::a('صفحه جدید', ['/page/create', 'return' => request()->url]),
+//                'options' => ['prompt' => 'صفحه متنی موردنظر را انتخاب کنید']
+//            ],
         ]);
     }
 
@@ -67,9 +76,10 @@ class ProjectProcess extends Item
     public function rules()
     {
         return array_merge(parent::rules(), [
-                [['description', 'ar_description', 'en_description'], 'string'],
-                ['page_id', 'integer'],
-                ['modelID', 'default', 'value' => Model::findOne(['name' => self::$modelName])->id],
+            [['description', 'ar_description', 'en_description'], 'string'],
+//            ['page_id', 'integer'],
+            [['text', 'en_text', 'ar_text'], 'string'],
+            ['modelID', 'default', 'value' => Model::findOne(['name' => self::$modelName])->id],
         ]);
     }
 
@@ -79,10 +89,13 @@ class ProjectProcess extends Item
     public function attributeLabels()
     {
         return array_merge(parent::attributeLabels(), [
-                'description' => trans('words', 'Description'),
-                'ar_description' => trans('words', 'Ar Description'),
-                'en_description' => trans('words', 'En Description'),
-                'page_id' => trans('words', 'Page'),
+            'description' => trans('words', 'Description'),
+            'ar_description' => trans('words', 'Ar Description'),
+            'en_description' => trans('words', 'En Description'),
+            'text' => trans('words', 'Text'),
+            'ar_text' => trans('words', 'Arabic Text'),
+            'en_text' => trans('words', 'English Text'),
+//            'page_id' => trans('words', 'Page'),
         ]);
     }
 
@@ -106,8 +119,8 @@ class ProjectProcess extends Item
     public function tableColumns()
     {
         return [
-                'name',
-                ['class' => CustomActionColumn::className()]
+            'name',
+            ['class' => CustomActionColumn::className()]
         ];
     }
 
@@ -131,7 +144,7 @@ class ProjectProcess extends Item
     public static function getMoreLink()
     {
         $page = Page::findOne(Setting::get(self::$morePageSettingKey));
-        return $page?$page->getUrl():null;
+        return $page ? $page->getUrl() : null;
     }
 
     public function getDescriptionStr()
@@ -146,7 +159,15 @@ class ProjectProcess extends Item
         return $this->description;
     }
 
-    public function getUrl(){
-        return $this->page_id?$this->page->getUrl():null;
+    public function getTextStr()
+    {
+        if (!static::$multiLanguage) {
+            if (Yii::$app->language == 'fa') {
+                return $this->text;
+            } else {
+                return $this->{Yii::$app->language . '_text'} ?: $this->text;
+            }
+        }
+        return $this->text;
     }
 }

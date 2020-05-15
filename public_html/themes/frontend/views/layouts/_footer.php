@@ -70,20 +70,26 @@ $processMoreLink = ProjectProcess::getMoreLink();
         </div>
     </div>
 </section>
-<div class="footer-mobile visible-xs">
-    <a href="#" title="<?= app()->name ?>">
-        <img src="<?= $this->theme->baseUrl.'/images/logo.png' ?>" alt="<?= app()->name ?>">
-    </a>
-    <div class="copyright">
-        <div><b>All Rights Reserved</b> masjed jame karbala</div>
-        <div><b>Design by</b> <a href="#">Tarsim.inc</a></div>
+<?php if(Yii::$app->controller->id == 'site' and Yii::$app->controller->action->id == 'index'):?>
+    <div class="footer-mobile visible-xs">
+        <a href="#" title="<?= app()->name ?>">
+            <img src="<?= $this->theme->baseUrl.'/images/logo.png' ?>" alt="<?= app()->name ?>">
+        </a>
+        <div class="copyright">
+            <div><b>All Rights Reserved</b> masjed jame karbala</div>
+            <div><b>Design by</b> <a href="#">Tarsim.inc</a></div>
+        </div>
     </div>
-</div>
+<?php endif;?>
 <div class="mobile-footer-menu visible-xs">
     <a href="#" class="navbar-toggler">
         <span class="bars-icon"></span>
     </a>
-    <a href="#" class="mobile-menu-trigger"></a>
+    <?php if(Yii::$app->controller->id == 'site' and Yii::$app->controller->action->id == 'index'):?>
+        <a href="#" class="mobile-menu-trigger"></a>
+    <?php else:?>
+        <a href="#" class="back-to-index-trigger"></a>
+    <?php endif;?>
     <a href="<?= Url::to(['/payment']) ?>" class="btn-donate">
         <i class="svg-heart-white">
             <i class="svg-heart-filled-white"></i>

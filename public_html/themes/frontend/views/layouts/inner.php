@@ -109,11 +109,12 @@ AppAsset::register($this);
         </div>
     </section>
     <section class="inner-page-content">
+        <div class="mobile-shape visible-xs"></div>
         <div class="container">
             <?= $content ?>
         </div>
     </section>
-    <section class="contact-form-container" id="section-11">
+    <section class="contact-form-container hidden-xs" id="section-11">
         <div class="body-info">
             <div class="right-side">
                 <div class="right-side--header">
@@ -173,12 +174,6 @@ AppAsset::register($this);
             </div>
         </div>
     </section>
-
-    <style>
-        .captcha-container > div{
-            float: left !important;
-        }
-    </style>
 
     <?= $this->render('_footer'); ?>
 </main>

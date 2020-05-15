@@ -14,7 +14,7 @@ $baseUrl = $this->theme->baseUrl;
 
 <div class="logo-container">
     <div class="container">
-        <a href="#" class="logo" title="مسجد جامع كربلا">
+        <a href="<?= Url::to(['/site/index'])?>" class="logo" title="مسجد جامع كربلا">
             <img src="<?= $this->theme->baseUrl.'/images/logo.png' ?>" alt="<?= app()->name ?>">
             <h1>
                 <span class="arabic">مسجد جامع <span>كربلاء</span></span>
@@ -23,13 +23,15 @@ $baseUrl = $this->theme->baseUrl;
         </a>
     </div>
 </div>
-<div class="dropdown language-dropdown visible-xs">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown">عربي</a>
-    <ul class="dropdown-menu dropdown-menu-left">
-        <li><a href="#">عربي</a></li>
-        <li><a href="#">فارسي</a></li>
-    </ul>
-</div>
+<?php if(Yii::$app->controller->id == 'site' and Yii::$app->controller->action->id == 'index'):?>
+    <div class="dropdown language-dropdown visible-xs">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">عربي</a>
+        <ul class="dropdown-menu dropdown-menu-left">
+            <li><a href="#">عربي</a></li>
+            <li><a href="#">فارسي</a></li>
+        </ul>
+    </div>
+<?php endif;?>
 <header>
     <div class="container">
         <nav class="navbar">

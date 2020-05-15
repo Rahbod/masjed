@@ -30,7 +30,7 @@ use yii\web\View;
 
 $baseUrl = $this->theme->baseUrl;
 
-$processes = ProjectProcess::getLastRows();
+$processes = ProjectProcess::getLastRows(4, 'id', SORT_ASC);
 $processMoreLink = ProjectProcess::getMoreLink();
 
 $sections = ProjectSection::find()->orderBy(['item.id' => SORT_ASC])->valid()->all();
@@ -175,7 +175,7 @@ $this->registerJs("
         </div>
         <div class="left-side">
             <div class="container-fluid">
-                <ul class="text-white">
+                <ul class="text-white mobile-carousel owl-carousel owl-theme" data-items="1" data-nav="false" data-dots="true" data-rtl="true">
                     <li>
                         <span class="num">1</span>
                         <h2>كود القيادة
@@ -400,7 +400,7 @@ $this->registerJs("
         <div class="bg"></div>
         <div class="time-line-container">
             <div class="time-line owl-carousel owl-theme" data-items="5" data-rtl="ltr" data-dots="false"
-                 data-nav="true">
+                 data-nav="true" data-responsive='{"0":{"items":3}}'>
                 <?php foreach ($timelines as $timeline): ?>
                     <div class="time-line-item <?= $timeline->stateClasses[$timeline->state] ?>">
                         <div class="date">

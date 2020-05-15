@@ -249,7 +249,7 @@
         /*float: right;*/
         display: inline-block;
         background: #fff;
-        width: 120px;
+        width: auto;
         margin-left: 10px;
         margin-bottom: 0;
     }

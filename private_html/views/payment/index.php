@@ -7,10 +7,14 @@
 use app\components\customWidgets\CustomActiveForm;
 use app\components\customWidgets\CustomCaptcha;
 use app\components\FormRendererTrait;
+use app\components\Setting;
+use app\models\Page;
 use app\models\PaymentForm;
 use yii\helpers\Html;
 use yii\web\View;
 use yii\widgets\ActiveForm;
+
+$donationSetting = Setting::get('donation');
 ?>
 
 <div class="donate-page row">
@@ -18,63 +22,37 @@ use yii\widgets\ActiveForm;
         <h3><b><?= trans('words', 'Donate now') ?></b>
             <small><?= trans('words', 'Mosque of karbala') ?></small>
         </h3>
-        <small>أخبار متعلقة بالتعاون والتقدم في مشروع مسجد كربلاء وشفافية مساهماتكم</small>
+<!--        <small>أخبار متعلقة بالتعاون والتقدم في مشروع مسجد كربلاء وشفافية مساهماتكم</small>-->
         <ul class="nav nav-tabs">
             <li class="active"><a data-toggle="tab" href="#donate-1"><?= trans('words', 'Command code') ?>
                     <small>(<?= trans('words', 'Iran and Iraq') ?>)</small></a></li>
-            <li><a data-toggle="tab" href="#donate-2">شبكة التسارع والحسابات الدولية</a></li>
-            <li><a data-toggle="tab" href="#donate-3">رقم الحساب البنكي <small>(إيران والعراق)</small></a></li>
-            <li><a data-toggle="tab" href="#donate-4">المساعدة الموضوعية</a></li>
+            <li><a data-toggle="tab" href="#donate-2"><?= trans('words', 'Acceleration and International Accounts Network') ?></a></li>
+            <li><a data-toggle="tab" href="#donate-3"><?= trans('words', 'Bank account number') ?> <small>(<?= trans('words', 'Iran and Iraq') ?>)</small></a></li>
+            <li><a data-toggle="tab" href="#donate-4"><?= trans('words', 'Approved phone number') ?></a></li>
         </ul>
     </div>
     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
         <div class="tab-content donate-content">
             <div id="donate-1" class="tab-pane fade in active">
-                <h3>كود القيادة <small>(إيران والعراق)</small></h3>
-                <div class="code">*780*5#</div>
-                <div class="text">
-                    ثم هداه صدق الله العظيم. فلما لاح له من ذلك، أن الروح الحيواني بنوع واحد، وان عرض له التكثر بوجه ما،
-                    فكان يرى النوع بهذا النظر على ان حقيقة الروح الحيواني، وأن سائر الأشياء التي وردت في شريعته من أمر
-                    الله عز وجل من كل ما يوصف بها دونه. وتتبع صفات النقص كلها فرآه بريئاً منها، ومنزهاً عنها؛ وكيف لا
-                    يكون منه إلا بفعل يشبه أفعال سائر الحيوان. فاتجهت عنده الأعمال التي يجب عليه من حيث هو جسم، دون أن
-                    تقترن به وصف من الأوصاف، التي هي أقل الأجسام حملاً للأوصاف فلم يرها تعرى عن أحد هذين البيتين. ثم
-                    قال: أما هذا البيت على ما أودعه هذه الاوراق فان المجال ضيق، والتحكم بالألفاظ على آمر ليس من شأنه أن
-                    يلفظ به خطر. فأقول: انه لما فني عن ذاتهوعن جميع وعن جميع ما يتبع هذا الوصف من صفات الأجسام، وتلك
-                    الذوات المفارقة بصيغة الجمع حسب لفظنا هذا، أوهم ذلك معنى الاتحاد، وهو مستحيل عليها. وكأني بمن يقف
-                    على حقيقة.
-                    <br>
-                    ثم هداه صدق الله العظيم. فلما لاح له من ذلك، أن الروح الحيواني بنوع واحد، وان عرض له التكثر بوجه ما،
-                    فكان يرى النوع بهذا النظر على ان حقيقة الروح الحيواني، وأن سائر الأشياء التي وردت في شريعته من أمر
-                    الله عز وجل من كل ما يوصف بها دونه. وتتبع صفات النقص كلها فرآه بريئاً منها، ومنزهاً عنها؛ وكيف لا
-                    يكون منه إلا بفعل يشبه أفعال سائر الحيوان. فاتجهت عنده الأعمال التي يجب عليه من حيث هو جسم، دون أن
-                    تقترن به وصف من الأوصاف، التي هي أقل الأجسام حملاً للأوصاف فلم يرها تعرى عن أحد هذين البيتين. ثم
-                    قال: أما هذا البيت على ما أودعه هذه الاوراق فان المجال ضيق، والتحكم بالألفاظ على آمر ليس من شأنه أن
-                    يلفظ به خطر. فأقول: انه لما فني عن ذاتهوعن جميع وعن جميع ما يتبع هذا الوصف من صفات الأجسام، وتلك
-                    الذوات المفارقة بصيغة الجمع حسب لفظنا هذا، أوهم ذلك معنى الاتحاد، وهو مستحيل عليها. وكأني بمن يقف
-                    على حقيقة.ثم هداه صدق الله العظيم. فلما لاح له من ذلك، أن الروح الحيواني بنوع واحد، وان عرض له
-                    التكثر بوجه ما، فكان يرى النوع بهذا النظر على ان حقيقة الروح الحيواني، وأن سائر الأشياء التي وردت في
-                    شريعته من أمر الله عز وجل من كل ما يوصف بها دونه. وتتبع صفات النقص كلها فرآه بريئاً منها، ومنزهاً
-                    عنها؛ وكيف لا يكون منه إلا بفعل يشبه أفعال سائر الحيوان. فاتجهت عنده الأعمال التي يجب عليه من حيث هو
-                    جسم، دون أن تقترن به وصف من الأوصاف، التي هي أقل الأجسام حملاً للأوصاف فلم يرها تعرى عن أحد هذين
-                    البيتين. ثم قال: أما هذا البيت على ما أودعه هذه الاوراق فان المجال ضيق، والتحكم بالألفاظ على آمر ليس
-                    من شأنه أن يلفظ به خطر. فأقول: انه لما فني عن ذاتهوعن جميع وعن جميع ما يتبع هذا الوصف من صفات
-                    الأجسام، وتلك الذوات المفارقة بصيغة الجمع حسب لفظنا هذا، أوهم ذلك معنى الاتحاد، وهو مستحيل عليها.
-                    وكأني بمن يقف على حقيقة.
-                </div>
+                <h3><?= trans('words', 'Command code') ?> <small>(<?= trans('words', 'Iran and Iraq') ?>)</small></h3>
+                <div class="code"><?= $donationSetting['ussd_code'] ?></div>
+                <div class="text"><?php
+                    if(isset($donationSetting['ussd_page'])) {
+                        $page = Page::findOne($donationSetting['ussd_page']);
+                        if($page)
+                            echo $page->getBodyStr();
+                    }
+                    ?></div>
             </div>
             <div id="donate-2" class="tab-pane fade">
-                <h3>شبكة التسارع والحسابات الدولية</h3>
-                <div class="text">
-                    ثم هداه صدق الله العظيم. فلما لاح له من ذلك، أن الروح الحيواني بنوع واحد، وان عرض له التكثر بوجه ما،
-                    فكان يرى النوع بهذا النظر على ان حقيقة الروح الحيواني، وأن سائر الأشياء التي وردت في شريعته من أمر
-                    الله عز وجل من كل ما يوصف بها دونه. وتتبع صفات النقص كلها فرآه بريئاً منها، ومنزهاً عنها؛ وكيف لا
-                    يكون منه إلا بفعل يشبه أفعال سائر الحيوان. فاتجهت عنده الأعمال التي يجب عليه من حيث هو جسم، دون أن
-                    تقترن به وصف من الأوصاف، التي هي أقل الأجسام حملاً للأوصاف فلم يرها تعرى عن أحد هذين البيتين. ثم
-                    قال: أما هذا البيت على ما أودعه هذه الاوراق فان المجال ضيق، والتحكم بالألفاظ على آمر ليس من شأنه أن
-                    يلفظ به خطر. فأقول: انه لما فني عن ذاتهوعن جميع وعن جميع ما يتبع هذا الوصف من صفات الأجسام، وتلك
-                    الذوات المفارقة بصيغة الجمع حسب لفظنا هذا، أوهم ذلك معنى الاتحاد، وهو مستحيل عليها. وكأني بمن يقف
-                    على حقيقة.
-                </div>
+                <h3><?= trans('words', 'Acceleration and International Accounts Network') ?></h3>
+                <div class="text"><?php
+                    if(isset($donationSetting['online_page'])) {
+                        $page = Page::findOne($donationSetting['online_page']);
+                        if($page)
+                            echo $page->getBodyStr();
+                    }
+                    ?></div>
                 <div class="payment-methods">
                     <h3>online payment</h3>
                     <ul>
@@ -93,7 +71,7 @@ use yii\widgets\ActiveForm;
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 </div>
                                 <div class="modal-body">
-                                    <h5>شبكة التسارع والحسابات الدولية</h5>
+                                    <h5><?= trans('words', 'Acceleration and International Accounts Network') ?></h5>
                                     <div class="text">
                                         ثم هداه صدق الله العظيم. فلما لاح له من ذلك، أن الروح الحيواني بنوع واحد، وان
                                         عرض له التكثر بوجه ما، فكان يرى النوع بهذا النظر على ان حقيقة الروح
@@ -126,51 +104,28 @@ use yii\widgets\ActiveForm;
                 </div>
             </div>
             <div id="donate-3" class="tab-pane fade">
-                <h3>رقم الحساب البنكي <small>(إيران والعراق)</small></h3>
-                <div class="text">
-                    ثم هداه صدق الله العظيم. فلما لاح له من ذلك، أن الروح الحيواني بنوع واحد، وان عرض له التكثر بوجه ما،
-                    فكان يرى النوع بهذا النظر على ان حقيقة الروح الحيواني، وأن سائر الأشياء التي وردت في شريعته من أمر
-                    الله عز وجل من كل ما يوصف بها دونه. وتتبع صفات النقص كلها فرآه بريئاً منها، ومنزهاً عنها؛ وكيف لا
-                    يكون منه إلا بفعل يشبه أفعال سائر الحيوان. فاتجهت عنده الأعمال التي يجب عليه من حيث هو جسم، دون أن
-                    تقترن به وصف من الأوصاف، التي هي أقل الأجسام حملاً للأوصاف فلم يرها تعرى عن أحد هذين البيتين. ثم
-                    قال: أما هذا البيت على ما أودعه هذه الاوراق فان المجال ضيق، والتحكم بالألفاظ على آمر ليس من شأنه أن
-                    يلفظ به خطر. فأقول: انه لما فني عن ذاتهوعن جميع وعن جميع ما يتبع هذا الوصف من صفات الأجسام، وتلك
-                    الذوات المفارقة بصيغة الجمع حسب لفظنا هذا، أوهم ذلك معنى الاتحاد، وهو مستحيل عليها. وكأني بمن يقف
-                    على حقيقة.
-                </div>
+                <h3><?= trans('words', 'Bank account number') ?> <small>(<?= trans('words', 'Iran and Iraq') ?>)</small></h3>
+                <div class="text"><?php
+                    if(isset($donationSetting['ussd_page'])) {
+                        $page = Page::findOne($donationSetting['ussd_page']);
+                        if($page)
+                            echo $page->getBodyStr();
+                    }
+                    ?></div>
                 <ul class="bank-accounts">
-                    <li>
-                        <h5>بانك ملت <small>(ايران)</small></h5>
-                        <div class="account-number">
-                            <span>رقم الحساب</span>
-                            <span class="text-left">75864579258642</span>
-                        </div>
-                    </li>
-                    <li>
-                        <h5>بانك ملي <small>(ايران)</small></h5>
-                        <div class="account-number">
-                            <span>رقم الحساب</span>
-                            <span class="text-left">854682243</span>
-                        </div>
-                    </li>
-                    <li>
-                        <h5>صرافي مركزي <small>(ايران)</small></h5>
-                        <div class="account-number">
-                            <span>رقم الحساب</span>
-                            <span class="text-left">87632482463</span>
-                        </div>
-                    </li>
-                    <li>
-                        <h5>ويزا كارد <small>(دولي)</small></h5>
-                        <div class="account-number">
-                            <span>رقم الحساب</span>
-                            <span class="text-left">8796432854</span>
-                        </div>
-                    </li>
+                    <?php foreach (Setting::get('donation.bank_numbers') as $item):?>
+                        <li>
+                            <h5><?= $item['bank_name'] ?> <small>(<?= $item['account_type'] ?>)</small></h5>
+                            <div class="account-number">
+                                <span><?= trans('words', 'Account number') ?></span>
+                                <span class="text-left"><?= $item['account_number'] ?></span>
+                            </div>
+                        </li>
+                    <?php endforeach;?>
                 </ul>
             </div>
             <div id="donate-4" class="tab-pane fade">
-                <h3>المساعدة الموضوعية</h3>
+                <h3><?= trans('words', 'Objective assistance') ?></h3>
                 <div class="text">
                     ثم هداه صدق الله العظيم. فلما لاح له من ذلك، أن الروح الحيواني بنوع واحد، وان عرض له التكثر بوجه ما،
                     فكان يرى النوع بهذا النظر على ان حقيقة الروح الحيواني، وأن سائر الأشياء التي وردت في شريعته من أمر

@@ -12,6 +12,7 @@
 use app\components\customWidgets\CustomActiveForm;
 use app\components\customWidgets\CustomCaptcha;
 use app\components\FormRendererTrait;
+use app\components\Setting;
 use app\models\Aboutus;
 use app\models\Category;
 use app\models\Comments;
@@ -164,13 +165,13 @@ $this->registerJs("
         <div class="right-side">
             <div class="right-side--header">
                 <h3 class="text-white underline-black">
-                    <b>كيف يمكنني المساعدة؟</b>
+                    <b><?= trans('words', 'how can I help?') ?></b>
                     <?= trans('words', 'Mosque of karbala') ?>
                 </h3>
-                <small class="text-white">هناك طرق مختلفة لمساعدتك<br>في توقع كيفية المساعدة</small>
+                <small class="text-white"><?= trans('words', 'There are different ways to help you<br>expect how to help') ?></small>
             </div>
             <div class="contact-alert">
-                إذا كنت ترغب في المساعدةولم تكن الطرق المتاحتة لك ممكنة، فارجع إلي قسم اتصل بنا و اتصل بنا.
+                <?= trans('words', 'If you want help and the methods available to you are not possible, refer to the Contact Us and Call Us section.') ?>
             </div>
         </div>
         <div class="left-side">
@@ -178,40 +179,36 @@ $this->registerJs("
                 <ul class="text-white mobile-carousel owl-carousel owl-theme" data-items="1" data-nav="false" data-dots="true" data-rtl="true">
                     <li>
                         <span class="num">1</span>
-                        <h2>كود القيادة
-                            <small>(ايران و العراق)</small>
+                        <h2><?= trans('words', 'Command code') ?>
+                            <small>(<?= trans('words', 'Iran and Iraq') ?>)</small>
                         </h2>
-                        <span class="left-text">*780*5#</span>
+                        <span class="left-text"><?= Setting::get('donation.ussd_code') ?></span>
                     </li>
                     <li>
                         <span class="num">2</span>
-                        <h2>شبكة التسارع والحسابات الدولية</h2>
+                        <h2><?= trans('words', 'Acceleration and International Accounts Network') ?></h2>
                         <span class="left-text">online pay</span>
                     </li>
                     <li>
                         <span class="num">3</span>
-                        <h2>رقم الحساب البنكي
-                            <small>(ايران و العراق)</small>
+                        <h2><?= trans('words', 'Bank account number') ?>
+                            <small>(<?= trans('words', 'Iran and Iraq') ?>)</small>
                         </h2>
                         <ul class="bank-accounts">
-                            <li><b>بانك ملت <span>(ايران)</span></b>رقم الحساب<span
-                                        class="account-num">75864579258642</span>
-                            </li>
-                            <li><b>بانك ملي <span>(ايران)</span></b>رقم الحساب<span
-                                        class="account-num">854682243</span></li>
-                            <li><b>صرافي مركزي <span>(ايران)</span></b>رقم الحساب<span
-                                        class="account-num">87632482463</span>
-                            </li>
-                            <li><b>ويزا كارد <span>(ايران)</span></b>رقم الحساب<span
-                                        class="account-num">8796432854</span></li>
+                            <?php foreach (Setting::get('donation.bank_numbers') as $item):if(empty($item['bank_name'])) continue; ?>
+                                <li><b><?= $item['bank_name'] ?> <span>(<?= $item['account_type'] ?>)</span></b><?= trans('words', 'Account number') ?><span
+                                            class="account-num"><?= $item['account_number'] ?></span>
+                                </li>
+                            <?php endforeach;?>
                         </ul>
                     </li>
                     <li>
                         <span class="num">4</span>
-                        <h2>رقم هاتف المعتمد</h2>
+                        <h2><?= trans('words', 'Approved phone number') ?></h2>
                         <ul class="bank-accounts">
-                            <li><b>محمدعلي حسين</b>عراق<span class="account-num">00967584625598</span></li>
-                            <li><b>ابولفضل مرعشي</b>ايران<span class="account-num">00989141584875</span></li>
+                            <?php foreach (Setting::get('donation.persons') as $item):if(empty($item['name'])) continue; ?>
+                                <li><b><?= $item['name'] ?></b><?= $item['country'] ?><span class="account-num"><?= $item['mobile'] ?></span></li>
+                            <?php endforeach;?>
                         </ul>
                     </li>
                 </ul>

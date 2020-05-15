@@ -1,1 +1,68 @@
-{"language":"ar","timeZone":"Asia/Tehran","map":{"enabled":true,"lat":"35.734","lng":"51.327"},"ar_address":"ایران / مشهد / امام خمینی / مجتمع تجاری ، اداری ماربل / ورودی 3 / طبقه 14 / واحد45","en_address":"Iran / Mashhad | Imam Khomeini Street Commercial Complex, Office of Marble | Input | 3 floors | 14 units 5","address":"ایران / مشهد / امام خمینی / مجتمع تجاری ، اداری ماربل / ورودی 3 / طبقه 14 / واحد 45","address_link":"","tell":"+98 25 3292 4051","fax":"+98 25 3292 4051","email":" ","socialNetworks":{"whatsapp":"https://instagram.com/rezvan_company?igshid=19bl319uit6c8","twitter":"https://instagram.com/rezvan_company?igshid=19bl319uit6c8","instagram":"https://instagram.com/rezvan_company?igshid=19bl319uit6c8","facebook":"https://instagram.com/rezvan_company?igshid=19bl319uit6c8","youtube":"https://instagram.com/rezvan_company?igshid=19bl319uit6c8"},"project_process_more_page_id":"20"}
+{
+  "language": "ar",
+  "timeZone": "Asia/Tehran",
+  "map": {
+    "enabled": false,
+    "lat": "35.734",
+    "lng": "51.327"
+  },
+  "ar_address": "ایران / مشهد / امام خمینی / مجتمع تجاری ، اداری ماربل / ورودی 3 / طبقه 14 / واحد45",
+  "en_address": "Iran / Mashhad | Imam Khomeini Street Commercial Complex, Office of Marble | Input | 3 floors | 14 units 5",
+  "address": "ایران / مشهد / امام خمینی / مجتمع تجاری ، اداری ماربل / ورودی 3 / طبقه 14 / واحد 45",
+  "address_link": "",
+  "tell": "+98 25 3292 4051",
+  "fax": "+98 25 3292 4051",
+  "email": " ",
+  "socialNetworks": {
+    "whatsapp": "https://instagram.com/rezvan_company?igshid=19bl319uit6c8",
+    "twitter": "https://instagram.com/rezvan_company?igshid=19bl319uit6c8",
+    "instagram": "https://instagram.com/rezvan_company?igshid=19bl319uit6c8",
+    "facebook": "https://instagram.com/rezvan_company?igshid=19bl319uit6c8",
+    "youtube": "https://instagram.com/rezvan_company?igshid=19bl319uit6c8"
+  },
+  "project_process_more_page_id": "20",
+  "donation": {
+    "ussd_code": "*780*5#",
+    "bank_numbers": [
+      {
+        "bank_name": "ملی",
+        "account_type": "ایران",
+        "account_number": "6037991758839520"
+      },
+      {
+        "bank_name": "",
+        "account_type": "",
+        "account_number": ""
+      },
+      {
+        "bank_name": "",
+        "account_type": "",
+        "account_number": ""
+      }
+    ],
+    "persons": [
+      {
+        "name": "یوسف مبشری",
+        "country": "ایران",
+        "mobile": "+989358389265"
+      },
+      {
+        "name": "",
+        "country": "",
+        "mobile": ""
+      },
+      {
+        "name": "",
+        "country": "",
+        "mobile": ""
+      }
+    ],
+    "pages": {
+      "ussd_page": "22",
+      "online_page": "",
+      "bank_page": "",
+      "person_page": "",
+      "objective_page": ""
+    }
+  }
+}

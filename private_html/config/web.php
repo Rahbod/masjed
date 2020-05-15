@@ -1,7 +1,6 @@
 <?php
 
 use app\components\gateway\PayPingGateway;
-use yii\helpers\Html;
 use \yii\web\Request;
 use app\components\Setting;
 
@@ -115,6 +114,7 @@ $config = [
             ],
         ],
         'view' => [
+            'class' => 'app\components\CustomView',
             'theme' => [
                 'basePath' => '@webroot/themes/frontend',
                 'baseUrl' => '@web/themes/frontend',

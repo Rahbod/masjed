@@ -3642,3 +3642,34 @@ h3.underline-black:after {
 .captcha-container > div {
     float: left !important;
 }
+
+.contact-us .right-side .more-info{
+    display: inline-block;
+    height: 54px;
+    line-height: 20px;
+    padding: 8px 30px 10px 70px;
+    border-radius: 15px;
+    color: #fff;
+    font-size: 1.5rem;
+    white-space: pre-line;
+    z-index: 3;
+    margin-right: 50px;
+    margin-top: 30px;
+    border:1px solid #fff;
+    position: relative;
+}
+.contact-us .right-side .more-info:hover{
+    background: rgba(255,255,255,0.3);
+}
+.contact-us .right-side .more-info:after{
+    content: "";
+    background: url(../svg/left-w.svg) no-repeat scroll center transparent;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-size: contain;
+    top: 50%;
+    left: 10px;
+    position: absolute;
+    margin-top: -15px;
+}

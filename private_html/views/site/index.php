@@ -66,7 +66,7 @@ $this->registerJs("
                                     <i class="line-icon"></i>
                                     <span><?= $process->getName() ?></span>
                                     <span class="bold"><?= $process->getDescriptionStr() ?></span>
-                                    <a href="<?= Url::to(['/process/archive', ['id' => $process->id]]) ?>"></a>
+                                    <a href="<?= Url::to(['/process/archive?id=' . $process->id]) ?>"></a>
                                 </div>
                             <?php endforeach; ?>
                         </div>

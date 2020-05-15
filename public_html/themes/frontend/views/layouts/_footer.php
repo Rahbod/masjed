@@ -10,7 +10,7 @@ use yii\web\View;
 
 $baseUrl = $this->theme->baseUrl;
 
-$processes = ProjectProcess::getLastRows(4);
+$processes = ProjectProcess::getLastRows(4, 'id', SORT_ASC);
 $processMoreLink = ProjectProcess::getMoreLink();
 ?>
 
@@ -54,7 +54,7 @@ $processMoreLink = ProjectProcess::getMoreLink();
                     <?php
                     /** @var ProjectProcess[] $processes */
                     foreach ($processes as $process): ?>
-                        <li><div><?= $process->getName() ?></div><b><?= $process->getDescriptionStr() ?></b></li>
+                        <li><div><?= $process->getName() ?></div><b><?= $process->getDescriptionStr() ?></b><a href="<?= Url::to(['/process/archive?id=' . $process->id]) ?>" class="process-link"></a></li>
                     <?php endforeach; ?>
                     <li></li>
                     <li>

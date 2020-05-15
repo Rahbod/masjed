@@ -331,13 +331,14 @@ main section {
     position: relative;
     cursor: default;
 }
-.project-intro .top-bar-info_cell a{
+
+.project-intro .top-bar-info_cell a {
     position: absolute;
     width: 100%;
     height: 100%;
     top: 0;
-    left:0;
-    z-index:3;
+    left: 0;
+    z-index: 3;
 }
 
 .project-intro .top-bar-info_cell:hover {
@@ -2242,6 +2243,15 @@ h3.underline-black:after {
     cursor: default;
 }
 
+.footer .report ul li a.process-link {
+    position: absolute;
+    z-index: 4;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
 .footer .report ul li > div,
 .footer .report ul li > b {
     padding-right: 14px;
@@ -2745,17 +2755,20 @@ h3.underline-black:after {
     background-size: 40px;
 }
 
+.inner-page .title-box .nav-tabs.right-tab-trigger,
 .inner-page .donate-page .title-box .nav-tabs {
     margin-top: 70px;
     border: none;
     width: 270px;
 }
 
+.inner-page .title-box .nav-tabs.right-tab-trigger > li,
 .inner-page .donate-page .title-box .nav-tabs > li {
     float: none;
     margin-bottom: 10px;
 }
 
+.inner-page .title-box .nav-tabs.right-tab-trigger > li > a,
 .inner-page .donate-page .title-box .nav-tabs > li > a {
     background: #f0f0f0;
     color: #393939;
@@ -2770,6 +2783,8 @@ h3.underline-black:after {
     transition: background-color 0.4s;
 }
 
+.inner-page .title-box .nav-tabs.right-tab-trigger > li.active > a,
+.inner-page .title-box .nav-tabs.right-tab-trigger > li > a:hover,
 .inner-page .donate-page .title-box .nav-tabs > li.active > a,
 .inner-page .donate-page .title-box .nav-tabs > li > a:hover {
     background: #07a146 url("../svg/left-w.svg") no-repeat 15px center;
@@ -2783,6 +2798,7 @@ h3.underline-black:after {
     padding-left: 50px;
 }
 
+.inner-page .title-box .nav-tabs.right-tab-trigger > li > a small,
 .inner-page .donate-page .title-box .nav-tabs > li > a small {
     font-weight: lighter;
 }

@@ -55,7 +55,7 @@ AppAsset::register($this);
     <?php
     $slides = Slide::find()->valid()->orderBy(['id' => SORT_ASC])->all();
 
-    $processes = ProjectProcess::getLastRows();
+    $processes = ProjectProcess::getLastRows(4, 'id', SORT_ASC);
     $processMoreLink = ProjectProcess::getMoreLink();
     ?>
     <section class="slider-container">
@@ -94,7 +94,7 @@ AppAsset::register($this);
                                         <i class="line-icon"></i>
                                         <span><?= $process->getName() ?></span>
                                         <span class="bold"><?= $process->getDescriptionStr() ?></span>
-                                        <a href="<?= Url::to(['/process/archive', ['id' => $process->id]]) ?>"></a>
+                                        <a href="<?= Url::to(['/process/archive?id=' . $process->id]) ?>"></a>
                                     </div>
                                 <?php endforeach; ?>
                             </div>

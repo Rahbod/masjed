@@ -17,15 +17,16 @@ $baseUrl = $this->theme->baseUrl;
             <small><?= trans('words', 'Mosque of karbala') ?></small>
         </h3>
         <small><?= trans('words', 'Process Archive Description') ?></small>
-    </div>
-    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-        <ul class="nav nav-tabs">
+        <ul class="nav nav-tabs right-tab-trigger">
             <?php
             $i = 0;
-            foreach ($processes as $item): ?>
+            $processesReverse = array_reverse($processes);
+            foreach ($processesReverse as $item): ?>
                 <li<?= ($id!=false && $item->id == $id) || ($id == false && $i++==0)?' class="active"':''?>><a data-toggle="tab" href="#process-tab-<?= $item->id ?>"><?= $item->getName() ?></a></li>
             <?php endforeach; ?>
         </ul>
+    </div>
+    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
         <div class="tab-content">
             <?php
             $i=0;

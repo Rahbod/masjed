@@ -177,7 +177,7 @@ class Post extends Item
                         'dictDefaultMessage' => 'جهت آپلود تصویر کلیک کنید',
                         'acceptedFiles' => 'png, jpeg, jpg',
                         'maxFiles' => 1,
-                        'maxFileSize' => 0.5,
+                        'maxFileSize' => 2,
                     ],
                 ]
             ],
@@ -188,8 +188,8 @@ class Post extends Item
                 'path' => PostController::$imageDir,
                 'filesOptions' => PostController::$imageOptions,
                 'options' => [
-                    'url' => Url::to(['upload-image']),
-                    'removeUrl' => Url::to(['delete-image']),
+                    'url' => Url::to(['upload-page-image']),
+                    'removeUrl' => Url::to(['delete-page-image']),
                     'sortable' => false, // sortable flag
                     'sortableOptions' => [], // sortable options
                     'htmlOptions' => ['class' => 'single', 'id' => Html::getInputId(new self(), 'page_image')],
@@ -202,7 +202,7 @@ class Post extends Item
                         'dictDefaultMessage' => 'جهت آپلود تصویر کلیک کنید',
                         'acceptedFiles' => 'png, jpeg, jpg',
                         'maxFiles' => 1,
-                        'maxFileSize' => 0.5,
+                        'maxFileSize' => 2,
                     ],
                 ]
             ],
@@ -227,7 +227,7 @@ class Post extends Item
                         'dictDefaultMessage' => 'جهت آپلود تصاویر کلیک کنید',
                         'acceptedFiles' => 'png, jpeg, jpg',
                         'maxFiles' => 10,
-                        'maxFileSize' => 0.5,
+                        'maxFileSize' => 2,
                     ],
                 ]
             ],

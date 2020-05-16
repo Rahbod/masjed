@@ -39,11 +39,31 @@ class PostController extends AuthController
         ];
     }
 
+    /**
+     * for attributes that is need uploader processes
+     * @return array
+     */
+    public function uploaderAttributes()
+    {
+        return [
+            'image' => [
+                'dir' => self::$imageDir,
+                'options' => self::$imageOptions
+            ],
+            'page_image' => [
+                'dir' => self::$imageDir,
+                'options' => self::$imageOptions
+            ]
+        ];
+    }
+
     public function getSystemActions()
     {
         return [
                 'upload-image',
                 'delete-image',
+                'upload-page-image',
+                'delete-page-image',
                 'upload-attachment',
                 'delete-attachment',
                 'show',
@@ -68,6 +88,22 @@ class PostController extends AuthController
                         'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
                         'model' => new Post(),
                         'attribute' => 'image',
+                        'upload' => self::$imageDir,
+                        'options' => self::$imageOptions
+                ],
+                'upload-page-image' => [
+                        'class' => UploadAction::className(),
+                        'fileName' => Html::getInputName(new Post(), 'page_image'),
+                        'rename' => UploadAction::RENAME_UNIQUE,
+                        'validateOptions' => array(
+                                'acceptedTypes' => array('png', 'jpg', 'jpeg')
+                        )
+                ],
+                'delete-page-image' => [
+                        'class' => RemoveAction::className(),
+                        'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
+                        'model' => new Post(),
+                        'attribute' => 'page_image',
                         'upload' => self::$imageDir,
                         'options' => self::$imageOptions
                 ],
@@ -122,10 +158,9 @@ class PostController extends AuthController
 
         if (Yii::$app->request->post()) {
             $model->load(Yii::$app->request->post());
-            $image = new UploadedFiles($this->tmpDir, $model->image, self::$imageOptions);
             $gallery = new UploadedFiles($this->tmpDir, $model->gallery, self::$galleryOptions);
             if ($model->save()) {
-                $image->move(self::$imageDir);
+                $this->saveUploaderAttributes($model);
                 $gallery->move(Attachment::getAttachmentPath());
                 Yii::$app->session->setFlash('alert',
                         ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
@@ -162,12 +197,12 @@ class PostController extends AuthController
         $gallery = new UploadedFiles(Attachment::$attachmentPath, $model->attachments, self::$galleryOptions);
 
         if (Yii::$app->request->post()) {
-            $oldImage = $model->image;
+            $oldUploaderValues = $this->getOldUploaderValues($model);
             $oldGallery = ArrayHelper::map($model->gallery, 'id', 'file');
             $model->load(Yii::$app->request->post());
 
             if ($model->save()) {
-                $image->update($oldImage, $model->image, $this->tmpDir);
+                $this->editUploaderAttributes($model, $oldUploaderValues);
                 $gallery->updateAll($oldGallery, $model->gallery, $this->tmpDir,
                         Attachment::getAttachmentRelativePath());
                 Yii::$app->session->setFlash('alert',
@@ -196,10 +231,7 @@ class PostController extends AuthController
     public function actionDelete($id)
     {
         $model = $this->findModel($id);
-        $image = new UploadedFiles(self::$imageDir, $model->image, self::$imageOptions);
-        $image->removeAll(true);
-        $gallery = new UploadedFiles(Attachment::$attachmentPath, $model->attachments, self::$galleryOptions);
-        $gallery->removeAll(true);
+        $this->deleteUploaderAttributes($model);
         $model->delete();
 
         return $this->redirect(['index']);

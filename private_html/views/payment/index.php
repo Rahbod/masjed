@@ -110,14 +110,14 @@ $helpItem = Yii::$app->request->getQueryParam('itm');
             <div id="donate-3" class="tab-pane fade <?= $section == 3 ? 'in active' : ''?>">
                 <h3><?= trans('words', 'Bank account number') ?> <small>(<?= trans('words', 'Iran and Iraq') ?>)</small></h3>
                 <div class="text"><?php
-                    if(isset($donationSetting['ussd_page'])) {
-                        $page = Page::findOne($donationSetting['ussd_page']);
+                    if(isset($donationSetting['bank_page'])) {
+                        $page = Page::findOne($donationSetting['bank_page']);
                         if($page)
                             echo $page->getBodyStr();
                     }
                     ?></div>
                 <ul class="bank-accounts">
-                    <?php foreach (Setting::get('donation.bank_numbers') as $item):?>
+                    <?php foreach ($donationSetting['bank_numbers'] as $item): if(empty($item['bank_name'])) continue;?>
                         <li>
                             <h5><?= $item['bank_name'] ?> <small>(<?= $item['account_type'] ?>)</small></h5>
                             <div class="account-number">

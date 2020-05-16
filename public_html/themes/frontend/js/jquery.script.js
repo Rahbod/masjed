@@ -188,10 +188,8 @@ $(function () {
 
     makeHelpBox();
 
-    if ($(window).width() < 768) {
-        var index = $('.time-line .owl-item').index($('.time-line-item.doing').parent('.owl-item'));
-        $('.time-line.owl-carousel').trigger('to.owl.carousel', [index - 1, 500, true]);
-    }
+    var index = $('.time-line .owl-item').index($('.time-line-item.doing').parent('.owl-item'));
+    $('.time-line.owl-carousel').trigger('to.owl.carousel', [index - 1, 500, true]);
 });
 // hide or show the main navbar base on page scroll : start
 // var header_height = $('header').height();

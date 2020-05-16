@@ -9,14 +9,10 @@
 
 /** @var Aboutus[] $aboutus */
 
-use app\components\customWidgets\CustomActiveForm;
-use app\components\customWidgets\CustomCaptcha;
-use app\components\FormRendererTrait;
 use app\components\Setting;
 use app\models\Aboutus;
 use app\models\Category;
 use app\models\Comments;
-use app\models\ContactForm;
 use app\models\Gallery;
 use app\models\Material;
 use app\models\Post;
@@ -25,7 +21,7 @@ use app\models\ProjectSection;
 use app\models\ProjectTimeline;
 use app\models\Slide;
 use app\models\VideoGallery;
-use yii\helpers\Html;
+use app\models\PictureGallery;
 use yii\helpers\Url;
 use yii\web\View;
 
@@ -340,7 +336,7 @@ $this->registerJs("
                         <?php
                         $i = 0;
                         foreach ($pictureCategories as $category):
-                            $photos = Gallery::getListByCategory($category->id, Gallery::TYPE_PICTURE_GALLERY);
+                            $photos = PictureGallery::getListByCategory($category->id, Gallery::TYPE_PICTURE_GALLERY);
                             ?>
                             <div id="picture-gallery-tab-<?= $category->id ?>"
                                  class="tab-pane fade<?= $i++ == 0 ? ' in active' : '' ?>">
@@ -360,7 +356,7 @@ $this->registerJs("
                             </div>
                         <?php endforeach; ?>
                     </div>
-                    <?php $lastPhotos = Gallery::getLastList(5, Gallery::TYPE_PICTURE_GALLERY);?>
+                    <?php $lastPhotos = PictureGallery::getLastList(5, Gallery::TYPE_PICTURE_GALLERY);?>
                     <div class="image-slider owl-carousel owl-theme visible-xs mobile-carousel" data-items="1"
                          data-rtl="true" data-dots="true" data-nav="false">
                         <?php foreach($lastPhotos as $photo):?>
@@ -420,13 +416,13 @@ $this->registerJs("
             </div>
             <div class="tab-content time-line-text">
                 <?php
-                $i = 0;
+                $i = 1;
                 $c = count($timelines);
                 foreach ($timelines as $timeline):?>
                     <div id="time-line-tab-<?= $timeline->id ?>"
-                         class="tab-pane fade <?= $timeline->stateClasses[$timeline->state] ?><?= $i++ == 0 ? ' active in' : '' ?>">
+                         class="tab-pane fade <?= $timeline->stateClasses[$timeline->state] ?><?= $timeline->stateClasses[$timeline->state] == 'doing' ? ' active in' : '' ?>">
                         <h2>
-                            <span class="num"><?= $c - $i + 1 ?></span>
+                            <span class="num"><?= abs($i - $c) + 1 ?></span>
                             <span><?= $timeline->getSectionNumberStr() ?></span>
                         </h2>
                         <div class="text-container">
@@ -434,7 +430,7 @@ $this->registerJs("
                             <div class="text"><?= $timeline->getDescriptionStr() ?></div>
                         </div>
                     </div>
-                <?php endforeach; ?>
+                <?php $i++; endforeach; ?>
             </div>
             <a href="<?= Url::to(['/payment']) ?>" class="btn-donate"><?= trans('words', '<b>Donate</b> now') ?><i
                         class="left-side--btn__heart svg-heart-r"><i

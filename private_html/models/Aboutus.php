@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\components\customWidgets\CustomActionColumn;
 use Yii;
 
 /**
@@ -79,5 +80,13 @@ class Aboutus extends Item
             }
         }
         return $this->description;
+    }
+
+    public function tableColumns()
+    {
+        return [
+            'name',
+            ['class' => CustomActionColumn::className()]
+        ];
     }
 }

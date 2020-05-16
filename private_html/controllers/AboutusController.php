@@ -20,6 +20,11 @@ class AboutusController extends AuthController implements CrudControllerInterfac
 {
     use CrudControllerTrait;
 
+    public $indexTitle = 'About Us';
+    public $createTitle = 'Create About';
+    public $updateTitle = 'Update About: {name}';
+    public $viewTitle = 'View About: {name}';
+
     /**
     * @return string
     */

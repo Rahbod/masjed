@@ -349,6 +349,11 @@ class MainController extends Controller implements CrudControllerInterface
                 ]
             ],
             [
+                'label' => '<i class="m-menu__link-icon fa fa-info"></i><span class="m-menu__link-text">' . trans('words', 'About Us') . '</span>',
+                'url' => ['/aboutus/index'],
+                'visible' => $permissions || app()->user->can('aboutusIndex')
+            ],
+            [
                 'label' => '<i class="m-menu__link-icon fa fa-users"></i><span class="m-menu__link-text">کاربران</span>',
                 'items' => [
                     ['label' => 'مدیریت کاربران', 'url' => ['/user/index'], 'visible' => $permissions || app()->user->can('userIndex')],

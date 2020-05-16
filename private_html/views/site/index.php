@@ -574,8 +574,8 @@ $this->registerJs("
         <div class="left-side">
             <div class="about-content-container">
                 <ul class="nav nav-tabs">
-                    <?php foreach ($aboutus as $item): ?>
-                        <li class="active"><a data-toggle="tab"
+                    <?php $i = 0; foreach ($aboutus as $item): ?>
+                        <li class="<?= $i++ == 0 ? 'active' : '' ?>"><a data-toggle="tab"
                                               href="#about-us-tab-<?= $item->id ?>"><?= $item->getName() ?></a></li>
                     <?php endforeach; ?>
                 </ul>

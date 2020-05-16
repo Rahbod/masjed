@@ -16,6 +16,8 @@ use yii\web\View;
 use yii\widgets\ActiveForm;
 
 $donationSetting = Setting::get('donation');
+$section = Yii::$app->request->getQueryParam('sec', 1);
+$helpItem = Yii::$app->request->getQueryParam('itm');
 ?>
 
 <div class="donate-page row">
@@ -25,16 +27,17 @@ $donationSetting = Setting::get('donation');
         </h3>
 <!--        <small>أخبار متعلقة بالتعاون والتقدم في مشروع مسجد كربلاء وشفافية مساهماتكم</small>-->
         <ul class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" href="#donate-1"><?= trans('words', 'Command code') ?>
+            <li class="<?= $section == 1 ? 'active' : ''?>"><a data-toggle="tab" href="#donate-1"><?= trans('words', 'Command code') ?>
                     <small>(<?= trans('words', 'Iran and Iraq') ?>)</small></a></li>
-            <li><a data-toggle="tab" href="#donate-2"><?= trans('words', 'Acceleration and International Accounts Network') ?></a></li>
-            <li><a data-toggle="tab" href="#donate-3"><?= trans('words', 'Bank account number') ?> <small>(<?= trans('words', 'Iran and Iraq') ?>)</small></a></li>
-            <li><a data-toggle="tab" href="#donate-4"><?= trans('words', 'Approved phone number') ?></a></li>
+            <li class="<?= $section == 2 ? 'active' : ''?>"><a data-toggle="tab" href="#donate-2"><?= trans('words', 'Acceleration and International Accounts Network') ?></a></li>
+            <li class="<?= $section == 3 ? 'active' : ''?>"><a data-toggle="tab" href="#donate-3"><?= trans('words', 'Bank account number') ?> <small>(<?= trans('words', 'Iran and Iraq') ?>)</small></a></li>
+            <li class="<?= $section == 4 ? 'active' : ''?>"><a data-toggle="tab" href="#donate-4"><?= trans('words', 'Approved phone number') ?></a></li>
+            <li class="<?= $section == 5 ? 'active' : ''?>"><a data-toggle="tab" href="#donate-5"><?= trans('words', 'Objective assistance') ?></a></li>
         </ul>
     </div>
     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
         <div class="tab-content donate-content">
-            <div id="donate-1" class="tab-pane fade in active">
+            <div id="donate-1" class="tab-pane fade <?= $section == 1 ? 'in active' : ''?>">
                 <h3><?= trans('words', 'Command code') ?> <small>(<?= trans('words', 'Iran and Iraq') ?>)</small></h3>
                 <div class="code"><?= $donationSetting['ussd_code'] ?></div>
                 <div class="text"><?php
@@ -45,7 +48,7 @@ $donationSetting = Setting::get('donation');
                     }
                     ?></div>
             </div>
-            <div id="donate-2" class="tab-pane fade">
+            <div id="donate-2" class="tab-pane fade <?= $section == 2 ? 'in active' : ''?>">
                 <h3><?= trans('words', 'Acceleration and International Accounts Network') ?></h3>
                 <div class="text"><?php
                     if(isset($donationSetting['online_page'])) {
@@ -104,7 +107,7 @@ $donationSetting = Setting::get('donation');
                     </div>
                 </div>
             </div>
-            <div id="donate-3" class="tab-pane fade">
+            <div id="donate-3" class="tab-pane fade <?= $section == 3 ? 'in active' : ''?>">
                 <h3><?= trans('words', 'Bank account number') ?> <small>(<?= trans('words', 'Iran and Iraq') ?>)</small></h3>
                 <div class="text"><?php
                     if(isset($donationSetting['ussd_page'])) {
@@ -125,7 +128,7 @@ $donationSetting = Setting::get('donation');
                     <?php endforeach;?>
                 </ul>
             </div>
-            <div id="donate-4" class="tab-pane fade">
+            <div id="donate-4" class="tab-pane fade <?= $section == 4 ? 'in active' : ''?>">
                 <h3><?= trans('words', 'Objective assistance') ?></h3>
                 <div class="text"><?php
                     if(isset($donationSetting['objective_page'])) {
@@ -158,6 +161,41 @@ $donationSetting = Setting::get('donation');
                             </div>
                         </div>
                     <?php endforeach; ?>
+                </div>
+            </div>
+            <div id="donate-5" class="tab-pane fade <?= $section == 5 ? 'in active' : ''?>">
+                <h3><?= trans('words', 'Objective assistance') ?></h3>
+                <div class="text"><?php
+                    if(isset($donationSetting['objective_page'])) {
+                        $page = Page::findOne($donationSetting['objective_page']);
+                        if($page)
+                            echo $page->getBodyStr();
+                    }
+                    ?></div>
+                <div class="panel-group" id="accordion">
+                    <?php
+                    /** @var Material[] $materials */
+                    $materials = Material::find()->valid()->all();
+                    $i = 0;
+                    foreach ($materials as $material): ?>
+                        <div class="panel panel-default<?= ($helpItem == $material->id || (!$helpItem && $i == 0)) ? ' -z-index' : ''?>">
+                            <div class="panel-heading">
+                                <div class="panel-title" data-toggle="collapse" data-parent="#accordion"
+                                     data-target="#collapse-<?= $material->id?>">
+                                    <?php if($material->icon):?>
+                                        <img src="<?= $material->getIconSrc() ?>" alt="<?= $material->getName() ?>">
+                                    <?php endif;?>
+                                    <h5><?= $material->getName() ?> / <small><?= $material->getRequiredAmountStr() ?></small></h5>
+                                    <span><?= $material->getDescriptionStr() ?></span>
+                                </div>
+                            </div>
+                            <div id="collapse-<?= $material->id?>" class="panel-collapse collapse <?= ($helpItem == $material->id || (!$helpItem && $i == 0)) ? 'in' : ''?>">
+                                <div class="panel-body">
+                                    <div class="text"><?= $material->getBodyStr() ?></div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php $i++; endforeach; ?>
                 </div>
             </div>
         </div>

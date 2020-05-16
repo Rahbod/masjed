@@ -508,11 +508,11 @@ $this->registerJs("
                         <small><?= $material->getRequiredAmountStr() ?></small>
                     </h3>
                     <span><?= $material->getDescriptionStr() ?></span>
-                    <a href="<?= $material->getMoreUrl() ?>"><?= trans('words', 'More<br>Information') ?><i></i></a>
+                    <a href="<?= Url::to(['/payment?sec=5&itm='.$material->id]) ?>"><?= trans('words', 'More<br>Information') ?><i></i></a>
                 </div>
             <?php endforeach; ?>
         </div>
-        <a href="<?= Url::to(['/material/archive']) ?>" class="archive-link"><?= trans('words',
+        <a href="<?= Url::to(['/payment?sec=5']) ?>" class="archive-link"><?= trans('words',
                     'More<br>Information') ?></a>
     </div>
 </section>

@@ -89,13 +89,13 @@ AppAsset::register($this);
                         <b><?= trans('words', 'Contact us') ?></b>
                         <?= trans('words', 'Mosque of karbala') ?>
                     </h3>
-                    <small>أخبار متعلقة بالتعاون والتقدم في مشروع<br>مسجد كربلاء وشفافية مساهماتكم</small>
+                    <small><?= trans('words', 'Contact us description') ?></small>
                 </div>
             </div>
             <div class="left-side">
                 <div class="contact-us-form-container">
                     <div class="text">
-                        <?= trans('words', 'contact_page_description') ?>
+                        <?= trans('words', 'contact_page_text') ?>
                     </div>
                     <div class="form">
                         <?php
@@ -157,8 +157,8 @@ AppAsset::register($this);
     <a href="#" class="logo" title="<?= app()->name ?>">
         <img src="<?= $this->theme->baseUrl.'/images/logo.png' ?>" alt="<?= app()->name ?>">
         <h2>
-            <span class="arabic">مسجد جامع <span>كربلاء</span></span>
-            <span class="english">Mosque <span>of Karbala</span></span>
+            <span class="arabic"><?= trans('words', 'Great mosque') ?> <span><?= trans('words', 'karbala') ?></span></span>
+            <span class="english"><?= trans('words', 'Great mosque') ?> <span><?= trans('words', 'of Karbala') ?></span></span>
         </h2>
     </a>
 </div>
@@ -179,8 +179,8 @@ AppAsset::register($this);
     <a href="#" class="logo" title="<?= app()->name ?>">
         <img src="<?= $this->theme->baseUrl.'/images/logo.png' ?>" alt="<?= app()->name ?>">
         <h2>
-            <span class="arabic">مسجد جامع <span>كربلاء</span></span>
-            <span class="english">Mosque <span>of Karbala</span></span>
+            <span class="arabic"><?= trans('words', 'Great mosque') ?> <span><?= trans('words', 'karbala') ?></span></span>
+            <span class="english"><?= trans('words', 'Great mosque') ?> <span><?= trans('words', 'of Karbala') ?></span></span>
         </h2>
     </a>
 </div>

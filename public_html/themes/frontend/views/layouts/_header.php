@@ -14,11 +14,11 @@ $baseUrl = $this->theme->baseUrl;
 
 <div class="logo-container">
     <div class="container">
-        <a href="<?= Url::to(['/site/index'])?>" class="logo" title="مسجد جامع كربلا">
+        <a href="<?= Url::to(['/site/index'])?>" class="logo" title="<?= trans('words', 'Mosque of karbala') ?>">
             <img src="<?= $this->theme->baseUrl.'/images/logo.png' ?>" alt="<?= app()->name ?>">
             <h1>
-                <span class="arabic">مسجد جامع <span>كربلاء</span></span>
-                <span class="english">Mosque <span>of Karbala</span></span>
+                <span class="arabic"><?= trans('words', 'Great mosque') ?> <span><?= trans('words', 'karbala') ?></span></span>
+                <span class="english"><?= trans('words', 'Great mosque') ?> <span><?= trans('words', 'of Karbala') ?></span></span>
             </h1>
         </a>
     </div>
@@ -27,8 +27,9 @@ $baseUrl = $this->theme->baseUrl;
     <div class="dropdown language-dropdown visible-xs">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">عربي</a>
         <ul class="dropdown-menu dropdown-menu-left">
-            <li><a href="#">عربي</a></li>
-            <li><a href="#">فارسي</a></li>
+            <li><a href="#"><?= trans('words', 'fa')?></a></li>
+            <li><a href="#"><?= trans('words', 'ar')?></a></li>
+            <li><a href="#"><?= trans('words', 'en')?></a></li>
         </ul>
     </div>
 <?php endif;?>

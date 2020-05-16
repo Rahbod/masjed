@@ -350,6 +350,8 @@ return [
     'Please select option' => 'یک گزینه را انتخاب کنید',
 
     'how can I help?' => 'چطور می تونم کمک کنم؟',
+    'how can I help description' => 'توضیحات روش های کمک کردن',
+    'how can I help alert' => 'متن هشدار روش های کمک کردن',
 
     /////// Material
     'Material Submitted Amount' => 'مقدار جمع آوری شده',

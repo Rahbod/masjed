@@ -163,11 +163,11 @@ $this->registerJs("
                     <b><?= trans('words', 'how can I help?') ?></b>
                     <?= trans('words', 'Mosque of karbala') ?>
                 </h3>
-                <small class="text-white"><?= trans('words', 'There are different ways to help you<br>expect how to help') ?></small>
+                <small class="text-white"><?= trans('words', 'how can I help description') ?></small>
             </div>
             <a href="<?= Url::to(['/payment'])?>" class="more-info hidden-xs"><?= trans('words', 'More<br>Information') ?></a>
             <div class="contact-alert">
-                <?= trans('words', 'If you want help and the methods available to you are not possible, refer to the Contact Us and Call Us section.') ?>
+                <?= trans('words', 'how can I help alert') ?>
             </div>
         </div>
         <div class="left-side">

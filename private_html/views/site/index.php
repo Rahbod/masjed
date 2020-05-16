@@ -165,7 +165,7 @@ $this->registerJs("
                 </h3>
                 <small class="text-white"><?= trans('words', 'There are different ways to help you<br>expect how to help') ?></small>
             </div>
-            <a href="<?= Url::to(['/payment'])?>" class="more-info"><?= trans('words', 'More<br>Information') ?></a>
+            <a href="<?= Url::to(['/payment'])?>" class="more-info hidden-xs"><?= trans('words', 'More<br>Information') ?></a>
             <div class="contact-alert">
                 <?= trans('words', 'If you want help and the methods available to you are not possible, refer to the Contact Us and Call Us section.') ?>
             </div>
@@ -208,6 +208,7 @@ $this->registerJs("
                         </ul>
                     </li>
                 </ul>
+                <a href="<?= Url::to(['/payment'])?>" class="more-info visible-xs"><?= trans('words', 'More<br>Information') ?></a>
             </div>
         </div>
     </div>
@@ -345,13 +346,14 @@ $this->registerJs("
                                     <?php
                                     $j = 0;
                                     foreach ($photos as $photo):?>
-                                        <?php if ($j % 12 == 0): ?><div class="image-item"><?php endif; ?>
+                                        <?php if ($j == 0): ?><div class="image-item"><?php endif; ?>
                                         <div class="col-lg-3 col-md-3 col-sm-3">
                                             <a href="<?= $photo->getImageSrc() ?>" data-lightbox="img-set-<?= $category->id?>" data-title="<?= $photo->getName()?>"><img src="<?= $photo->getImageSrc() ?>"
                                                              alt="<?= $photo->getName() ?>"></a>
                                         </div>
-                                        <?php if ($j % 12 == 0): ?></div><?php endif; ?>
-                                    <?php endforeach; ?>
+                                        <?php if ($j == 11): $j = -1;?></div><?php endif; ?>
+                                    <?php $j++; endforeach; ?>
+                                    <?php if ($j <= 11 and $j != 0):?></div><?php endif; ?>
                                 </div>
                             </div>
                         <?php endforeach; ?>

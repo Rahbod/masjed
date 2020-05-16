@@ -27,6 +27,13 @@ class ProcessController extends AuthController implements CrudControllerInterfac
     public $updateTitle = 'Update Process: {name}';
     public $viewTitle = 'View Process: {name}';
 
+    public function getSystemActions()
+    {
+        return [
+            'archive',
+        ];
+    }
+
     /**
      * @return string
      */

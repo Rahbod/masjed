@@ -1726,7 +1726,7 @@ h3.underline-black:after {
 }
 
 .help-container .help-content .help-item h3 {
-    padding-right: 110px;
+    padding-right: 125px;
     font-weight: bold;
     margin: 10px 0 0;
     line-height: 30px;
@@ -1745,7 +1745,7 @@ h3.underline-black:after {
     line-height: 15px;
     height: 30px;
     display: block;
-    padding-right: 110px;
+    padding-right: 125px;
     margin: 5px 0 10px;
 }
 
@@ -1758,7 +1758,7 @@ h3.underline-black:after {
     top: 0;
     background: #5bb45c;
     color: #fff;
-    padding: 55px 130px 55px 0;
+    padding: 55px 60% 55px 0;
     font-size: 18px;
     font-weight: bold;
     line-height: 20px;
@@ -2511,6 +2511,12 @@ h3.underline-black:after {
     background-color: #5bb45c;
 }
 
+.inner-page .text-page .nav-tabs.right-tab-trigger > li.active > a:after,
+.inner-page .text-page .nav-tabs.right-tab-trigger > li.active > a:focus:after,
+.inner-page .text-page .nav-tabs.right-tab-trigger > li.active > a:hover:after {
+    display: none;
+}
+
 .inner-page .news-page img,
 .inner-page .text-page .text img {
     max-width: 100%;
@@ -2703,6 +2709,11 @@ h3.underline-black:after {
     background: #000 url("../svg/video-play.svg") no-repeat center;
     background-size: 70px;
     border-radius: 10px;
+    overflow: hidden;
+}
+
+.inner-page video {
+    max-width: 100%;
 }
 
 .inner-page .video .gallery .gallery-item:hover img {
@@ -2893,6 +2904,7 @@ h3.underline-black:after {
     float: right;
     margin-left: 20px;
     position: relative;
+    max-height: 80px;
 }
 
 .inner-page .donate-page .panel-title h5 {
@@ -3643,7 +3655,7 @@ h3.underline-black:after {
     float: left !important;
 }
 
-.contact-us .right-side .more-info{
+.contact-us .more-info {
     display: inline-block;
     height: 54px;
     line-height: 20px;
@@ -3655,13 +3667,15 @@ h3.underline-black:after {
     z-index: 3;
     margin-right: 50px;
     margin-top: 30px;
-    border:1px solid #fff;
+    border: 1px solid #fff;
     position: relative;
 }
-.contact-us .right-side .more-info:hover{
-    background: rgba(255,255,255,0.3);
+
+.contact-us .more-info:hover {
+    background: rgba(255, 255, 255, 0.3);
 }
-.contact-us .right-side .more-info:after{
+
+.contact-us .more-info:after {
     content: "";
     background: url(../svg/left-w.svg) no-repeat scroll center transparent;
     display: inline-block;
@@ -3672,4 +3686,8 @@ h3.underline-black:after {
     left: 10px;
     position: absolute;
     margin-top: -15px;
+}
+
+.dir-ltr {
+    direction: ltr;
 }

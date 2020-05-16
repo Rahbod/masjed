@@ -73,6 +73,7 @@ AppAsset::register($this);
                 endif;
             endforeach; ?>
         </div>
+        <div class="visible-xs mobile-bg"></div>
     </section>
 
     <?= $content ?>

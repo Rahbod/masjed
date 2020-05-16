@@ -129,39 +129,25 @@ $helpItem = Yii::$app->request->getQueryParam('itm');
                 </ul>
             </div>
             <div id="donate-4" class="tab-pane fade <?= $section == 4 ? 'in active' : ''?>">
-                <h3><?= trans('words', 'Objective assistance') ?></h3>
+                <h3><?= trans('words', 'Approved phone number') ?></h3>
                 <div class="text"><?php
-                    if(isset($donationSetting['objective_page'])) {
-                        $page = Page::findOne($donationSetting['objective_page']);
+                    if(isset($donationSetting['phone_number_page'])) {
+                        $page = Page::findOne($donationSetting['phone_number_page']);
                         if($page)
                             echo $page->getBodyStr();
                     }
                     ?></div>
-                <div class="panel-group" id="accordion">
-                    <?php
-                    /** @var Material[] $materials */
-                    $materials = Material::find()->valid()->all();
-                    $i = 0;
-                    foreach ($materials as $material): ?>
-                        <div class="panel panel-default<?= $i++==0?' -z-index':''?>">
-                            <div class="panel-heading">
-                                <div class="panel-title" data-toggle="collapse" data-parent="#accordion"
-                                     data-target="#collapse1">
-                                    <?php if($material->icon):?>
-                                        <img src="<?= $material->getIconSrc() ?>" alt="<?= $material->getName() ?>">
-                                    <?php endif;?>
-                                    <h5><?= $material->getName() ?> / <small><?= $material->getRequiredAmountStr() ?></small></h5>
-                                    <span><?= $material->getDescriptionStr() ?></span>
-                                </div>
+                <ul class="bank-accounts">
+                    <?php foreach (Setting::get('donation.persons') as $item):?>
+                        <li>
+                            <h5><?= $item['name'] ?></h5>
+                            <div class="account-number">
+                                <span><?= $item['country'] ?></span>
+                                <span class="text-left dir-ltr"><?= $item['mobile'] ?></span>
                             </div>
-                            <div id="collapse1" class="panel-collapse collapse in">
-                                <div class="panel-body">
-                                    <div class="text"><?= $material->getBodyStr() ?></div>
-                                </div>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
+                        </li>
+                    <?php endforeach;?>
+                </ul>
             </div>
             <div id="donate-5" class="tab-pane fade <?= $section == 5 ? 'in active' : ''?>">
                 <h3><?= trans('words', 'Objective assistance') ?></h3>

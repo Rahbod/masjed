@@ -8,32 +8,48 @@ use app\models\Post;
 $this->title = strip_tags($model->getName());
 $baseUrl = $this->theme->baseUrl;
 ?>
-<div class="text-page row">
+
+<div class="news-page row">
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 title-box">
-        <h3><b><?= $model->getName() ?></b>
-<!--            <small>--><?//= $model->sh ?><!--</small>-->
+        <h3><b><?= trans('words', 'News')?></b>
+            <small><?= trans('words', 'Mosque of karbala') ?></small>
         </h3>
-        <small>أخبار متعلقة بالتعاون والتقدم في مشروع مسجد كربلاء وشفافية مساهماتكم</small>
+        <?php if($latestNews):?>
+            <div class="similar-news">
+                <ul>
+                    <?php foreach($latestNews as $news):?>
+                        <li>
+                            <?php if($src = $news->getImageSrc(true)):?>
+                                <img src="<?= $src ?>">
+                            <?php endif;?>
+                            <div class="info">
+                                <h5><?= $news->getName()?></h5>
+                                <div class="desc"><?= !empty($model->summary) ? $model->summary : mb_substr(strip_tags(nl2br($model->body)), 0, 200) ?></div>
+                            </div>
+                            <a href="<?= $model->url ?>"></a>
+                        </li>
+                    <?php endforeach;?>
+                </ul>
+            </div>
+        <?php endif;?>
     </div>
     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-        <div class="tab-content">
-            <div id="text-1" class="tab-pane fade in active">
-                <div class="text">
-                    <?php if($src = $model->getImageSrc()):?>
-                        <img src="<?= $src ?>" alt="<?= $model->getName() ?>">
-                    <?php endif;?>
-                    <br><div><?= $model->body ?></div>
-                </div>
-            </div>
-            <?php if($model->gallery):?>
-                <div class="gallery">
-                    <h5><?= trans('words', 'News related pictures') ?></h5>
-                    <?php
-                    foreach ($model->gallery as $item):?>
-                        <div class="gallery-item"><a href="#"><img src="<?= $item->getAbsoluteUrl() ?>" alt="item-<?= $item->id ?>"></a></div>
-                    <?php endforeach;?>
-                </div>
+        <div class="text">
+            <?php if($src = $model->getPageImageSrc()):?>
+                <img src="<?= $src ?>" alt="<?= $model->getName() ?>">
             <?php endif;?>
+            <h2><?= $model->getName()?><small><?= $model->getPublishDate()?></small></h2>
+            <p><?= $model->body ?></p>
         </div>
+        <?php if($model->gallery):?>
+            <div class="page-image-gallery">
+                <h5><?= trans('words', 'News related pictures') ?></h5>
+                <ul>
+                    <?php foreach ($model->gallery as $item):?>
+                        <li><a href="<?= $item->getAbsoluteUrl() ?>" data-lightbox="img-set-1"><img src="<?= $item->getAbsoluteUrl() ?>"></a></li>
+                    <?php endforeach;?>
+                </ul>
+            </div>
+        <?php endif;?>
     </div>
 </div>

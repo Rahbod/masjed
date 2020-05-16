@@ -39,6 +39,7 @@ AppAsset::register($this);
     <link href="<?= $this->theme->baseUrl . '/css/owl.carousel.min.css' ?>" rel="stylesheet">
     <link href="<?= $this->theme->baseUrl . '/css/owl.theme.default.min.css' ?>" rel="stylesheet">
     <link href="<?= $this->theme->baseUrl . '/css/svg_icons.css' ?>" rel="stylesheet">
+    <link href="<?= $this->theme->baseUrl . '/css/lightbox.min.css' ?>" rel="stylesheet">
     <link href="<?= $this->theme->baseUrl . '/css/bootstrap-theme.css' ?>" rel="stylesheet">
     <link href="<?= $this->theme->baseUrl . '/css/responsive-theme.css' ?>" rel="stylesheet">
 
@@ -183,6 +184,7 @@ AppAsset::register($this);
 <script src="<?= $this->theme->baseUrl . '/js/bootstrap.min.js' ?>"></script>
 <script src="<?= $this->theme->baseUrl . '/js/owl.carousel.min.js' ?>"></script>
 <script src="<?= $this->theme->baseUrl . '/js/jquery.nicescroll.min.js' ?>"></script>
+<script src="<?= $this->theme->baseUrl . '/js/lightbox.min.js' ?>"></script>
 <script src="<?= $this->theme->baseUrl . '/js/jquery.script.js' ?>"></script>
 </body>
 </html>

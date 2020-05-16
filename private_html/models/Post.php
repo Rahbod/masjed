@@ -59,6 +59,7 @@ class Post extends Item
         $this->dynaDefaults = array_merge($this->dynaDefaults, [
                 'body' => ['CHAR', ''],
                 'image' => ['CHAR', ''],
+                'page_image' => ['CHAR', ''],
                 'publish_date' => ['CHAR', ''],
                 'summary' => ['CHAR', ''],
                 'seen' => ['INTEGER', ''],
@@ -71,7 +72,7 @@ class Post extends Item
     public function rules()
     {
         return array_merge(parent::rules(), [
-                [['body', 'image', 'formCategories'], 'required'],
+                [['body', 'image', 'page_image', 'formCategories'], 'required'],
                 [['summary'], 'string'],
                 [['publish_date'], 'safe'],
                 ['seen', 'default', 'value' => 0],
@@ -92,6 +93,7 @@ class Post extends Item
         return array_merge(parent::attributeLabels(), [
                 'body' => trans('words', 'Body'),
                 'image' => trans('words', 'Image'),
+                'page_image' => trans('words', 'Page Image'),
                 'publish_date' => trans('words', 'Publish Date'),
                 'summary' => trans('words', 'Summary'),
         ]);
@@ -130,81 +132,105 @@ class Post extends Item
     public function formAttributes()
     {
         return array_merge(parent::formAttributes(), [
-
-                'image' => [
-                        'type' => static::FORM_FIELD_TYPE_DROP_ZONE,
-                        'containerCssClass' => 'col-sm-12',
-                        'temp' => MainController::$tempDir,
-                        'path' => PostController::$imageDir,
-                        'filesOptions' => PostController::$imageOptions,
-                        'options' => [
-                                'url' => Url::to(['upload-image']),
-                                'removeUrl' => Url::to(['delete-image']),
-                                'sortable' => false, // sortable flag
-                                'sortableOptions' => [], // sortable options
-                                'htmlOptions' => ['class' => 'single', 'id' => Html::getInputId(new self(), 'image')],
-                                'options' => [
-                                        'createImageThumbnails' => true,
-                                        'addRemoveLinks' => true,
-                                        'dictRemoveFile' => 'حذف',
-                                        'addViewLinks' => true,
-                                        'dictViewFile' => '',
-                                        'dictDefaultMessage' => 'جهت آپلود تصویر کلیک کنید',
-                                        'acceptedFiles' => 'png, jpeg, jpg',
-                                        'maxFiles' => 1,
-                                        'maxFileSize' => 0.5,
-                                ],
-                        ]
-                ],
-                'type' => [
-                        'type' => static::FORM_FIELD_TYPE_SELECT,
-                        'items' => \app\models\Post::getTypeLabels()
-                ],
-                'formCategories' => [
-                        'type' => static::FORM_FIELD_TYPE_SELECT,
-                        'items' => Category::getWithType(Category::CATEGORY_TYPE_NEWS),
-                        'options' => ['prompt' => trans('words', 'Select Category')]
-                ],
-                'publish_date' => [
-                        'type' => static::FORM_FIELD_TYPE_DATE,
-                        'options' => ['class' => 'form-control m-input m-input--solid', 'autocomplete' => 'off']
-                ],
-                'summary' => [
-                        'type' => static::FORM_FIELD_TYPE_TEXT_AREA,
-                        'containerCssClass' => 'col-sm-12',
-                ],
-                'body' => [
-                        'type' => static::FORM_FIELD_TYPE_TEXT_EDITOR,
-                        'containerCssClass' => 'col-sm-12',
-                        'options' => [
-                                'options' => ['rows' => 30]
-                        ]
-                ],
-                'gallery' => [
-                        'type' => static::FORM_FIELD_TYPE_DROP_ZONE,
-                        'containerCssClass' => 'col-sm-12',
-                        'temp' => MainController::$tempDir,
-                        'path' => Attachment::getAttachmentPath(),
-                        'filesOptions' => PostController::$galleryOptions,
-                        'options' => [
-                                'url' => Url::to(['upload-attachment']),
-                                'removeUrl' => Url::to(['delete-attachment']),
-                                'sortable' => false, // sortable flag
-                                'sortableOptions' => [], // sortable options
-                                'htmlOptions' => ['class' => '', 'id' => Html::getInputId(new self(), 'gallery')],
-                                'options' => [
-                                        'createImageThumbnails' => true,
-                                        'addRemoveLinks' => true,
-                                        'dictRemoveFile' => 'حذف',
-                                        'addViewLinks' => true,
-                                        'dictViewFile' => '',
-                                        'dictDefaultMessage' => 'جهت آپلود تصاویر کلیک کنید',
-                                        'acceptedFiles' => 'png, jpeg, jpg',
-                                        'maxFiles' => 10,
-                                        'maxFileSize' => 0.5,
-                                ],
-                        ]
-                ],
+            'type' => [
+                'type' => static::FORM_FIELD_TYPE_SELECT,
+                'items' => \app\models\Post::getTypeLabels()
+            ],
+            'formCategories' => [
+                'type' => static::FORM_FIELD_TYPE_SELECT,
+                'items' => Category::getWithType(Category::CATEGORY_TYPE_NEWS),
+                'options' => ['prompt' => trans('words', 'Select Category')]
+            ],
+            'publish_date' => [
+                'type' => static::FORM_FIELD_TYPE_DATE,
+                'options' => ['class' => 'form-control m-input m-input--solid', 'autocomplete' => 'off']
+            ],
+            'summary' => [
+                'type' => static::FORM_FIELD_TYPE_TEXT_AREA,
+                'containerCssClass' => 'col-sm-12',
+            ],
+            'body' => [
+                'type' => static::FORM_FIELD_TYPE_TEXT_EDITOR,
+                'containerCssClass' => 'col-sm-12',
+                'options' => [
+                    'options' => ['rows' => 30]
+                ]
+            ],
+            'image' => [
+                'type' => static::FORM_FIELD_TYPE_DROP_ZONE,
+                'containerCssClass' => 'col-sm-6',
+                'temp' => MainController::$tempDir,
+                'path' => PostController::$imageDir,
+                'filesOptions' => PostController::$imageOptions,
+                'options' => [
+                    'url' => Url::to(['upload-image']),
+                    'removeUrl' => Url::to(['delete-image']),
+                    'sortable' => false, // sortable flag
+                    'sortableOptions' => [], // sortable options
+                    'htmlOptions' => ['class' => 'single', 'id' => Html::getInputId(new self(), 'image')],
+                    'options' => [
+                        'createImageThumbnails' => true,
+                        'addRemoveLinks' => true,
+                        'dictRemoveFile' => 'حذف',
+                        'addViewLinks' => true,
+                        'dictViewFile' => '',
+                        'dictDefaultMessage' => 'جهت آپلود تصویر کلیک کنید',
+                        'acceptedFiles' => 'png, jpeg, jpg',
+                        'maxFiles' => 1,
+                        'maxFileSize' => 0.5,
+                    ],
+                ]
+            ],
+            'page_image' => [
+                'type' => static::FORM_FIELD_TYPE_DROP_ZONE,
+                'containerCssClass' => 'col-sm-6',
+                'temp' => MainController::$tempDir,
+                'path' => PostController::$imageDir,
+                'filesOptions' => PostController::$imageOptions,
+                'options' => [
+                    'url' => Url::to(['upload-image']),
+                    'removeUrl' => Url::to(['delete-image']),
+                    'sortable' => false, // sortable flag
+                    'sortableOptions' => [], // sortable options
+                    'htmlOptions' => ['class' => 'single', 'id' => Html::getInputId(new self(), 'page_image')],
+                    'options' => [
+                        'createImageThumbnails' => true,
+                        'addRemoveLinks' => true,
+                        'dictRemoveFile' => 'حذف',
+                        'addViewLinks' => true,
+                        'dictViewFile' => '',
+                        'dictDefaultMessage' => 'جهت آپلود تصویر کلیک کنید',
+                        'acceptedFiles' => 'png, jpeg, jpg',
+                        'maxFiles' => 1,
+                        'maxFileSize' => 0.5,
+                    ],
+                ]
+            ],
+            'gallery' => [
+                'type' => static::FORM_FIELD_TYPE_DROP_ZONE,
+                'containerCssClass' => 'col-sm-12',
+                'temp' => MainController::$tempDir,
+                'path' => Attachment::getAttachmentPath(),
+                'filesOptions' => PostController::$galleryOptions,
+                'options' => [
+                    'url' => Url::to(['upload-attachment']),
+                    'removeUrl' => Url::to(['delete-attachment']),
+                    'sortable' => false, // sortable flag
+                    'sortableOptions' => [], // sortable options
+                    'htmlOptions' => ['class' => '', 'id' => Html::getInputId(new self(), 'gallery')],
+                    'options' => [
+                        'createImageThumbnails' => true,
+                        'addRemoveLinks' => true,
+                        'dictRemoveFile' => 'حذف',
+                        'addViewLinks' => true,
+                        'dictViewFile' => '',
+                        'dictDefaultMessage' => 'جهت آپلود تصاویر کلیک کنید',
+                        'acceptedFiles' => 'png, jpeg, jpg',
+                        'maxFiles' => 10,
+                        'maxFileSize' => 0.5,
+                    ],
+                ]
+            ],
         ]);
     }
 
@@ -215,6 +241,15 @@ class Post extends Item
     public function getImageSrc($thumb = false)
     {
         return Yii::$app->request->getBaseUrl() . '/' . PostController::$imageDir . '/' . ($thumb ? 'thumbs/100x100/' : '') . $this->image;
+    }
+
+    /**
+     * @param bool $thumb
+     * @return string
+     */
+    public function getPageImageSrc($thumb = false)
+    {
+        return $this->page_image ? Yii::$app->request->getBaseUrl() . '/' . PostController::$imageDir . '/' . ($thumb ? 'thumbs/100x100/' : '') . $this->page_image : null;
     }
 
     public function getDate($timestamp = false)
@@ -240,5 +275,28 @@ class Post extends Item
         }
 
         return parent::beforeSave($insert);
+    }
+
+    public function getPublishDate()
+    {
+        if(app()->language == 'fa')
+            return \jDateTime::date('Y/m/d', $this->publish_date);
+        else
+            return date('Y/m/d', $this->publish_date);
+    }
+
+    /**
+     * @param integer $limit
+     * @param integer|null $except
+     * @return Post[]
+    */
+    public static function getLatestItems($limit = 10, $except = null)
+    {
+        $query = self::find()->limit($limit);
+
+        if($except)
+            $query->andWhere(['!=', 'id', $except]);
+
+        return $query->valid()->all();
     }
 }

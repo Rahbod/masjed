@@ -214,8 +214,11 @@ class PostController extends AuthController
         $model->seen++;
         $model->save(false);
 
+        $latestNews = Post::getLatestItems(10, $id);
+
         return $this->render('show', [
-                'model' => $model
+                'model' => $model,
+                'latestNews' => $latestNews,
         ]);
     }
 

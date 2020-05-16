@@ -347,7 +347,7 @@ $this->registerJs("
                                     foreach ($photos as $photo):?>
                                         <?php if ($j % 12 == 0): ?><div class="image-item"><?php endif; ?>
                                         <div class="col-lg-3 col-md-3 col-sm-3">
-                                            <a href="#"><img src="<?= $photo->getImageSrc() ?>"
+                                            <a href="<?= $photo->getImageSrc() ?>" data-lightbox="img-set-<?= $category->id?>" data-title="<?= $photo->getName()?>"><img src="<?= $photo->getImageSrc() ?>"
                                                              alt="<?= $photo->getName() ?>"></a>
                                         </div>
                                         <?php if ($j % 12 == 0): ?></div><?php endif; ?>
@@ -361,7 +361,7 @@ $this->registerJs("
                          data-rtl="true" data-dots="true" data-nav="false">
                         <?php foreach($lastPhotos as $photo):?>
                             <div class="image-item">
-                                <a href="#"><img src="<?= $photo->getImageSrc() ?>"
+                                <a href="<?= $photo->getImageSrc() ?>" data-lightbox="img-set-<?= $category->id?>" data-title="<?= $photo->getName()?>"><img src="<?= $photo->getImageSrc() ?>"
                                                  alt="<?= $photo->getName() ?>"></a>
                                 <h5 class="visible-xs">
                                     <?= $photo->getName() ?>

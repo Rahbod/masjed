@@ -132,7 +132,7 @@ $(function () {
     }).on('click', '.mobile-index-menu ul li a', function (e) {
         var position = $($(this).attr('href')).offset();
         $('.mobile-index-menu').removeClass('open').fadeOut(function () {
-            $("html, body").animate({ scrollTop: position.top }, 'slow');
+            $("html, body").animate({scrollTop: position.top}, 'slow');
         });
         e.preventDefault();
     }).on('click', '.mobile-index-menu .close', function () {
@@ -147,6 +147,13 @@ $(function () {
     }).on('click', '.video-overlay', function () {
         $(this).parent().find('video')[0].play();
         $(this).remove();
+    }).on('click', 'header .navbar-nav > li > a', function (e) {
+        if (!$('body').hasClass('inner-page')) {
+            e.preventDefault();
+            var secNum = $(this).attr('href');
+            secNum = secNum.substr(secNum.indexOf('#') + 1);
+            $(".content").moveTo(secNum);
+        }
     });
 
     $(window).on("load resize", function () {

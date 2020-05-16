@@ -16,9 +16,11 @@ $processMoreLink = ProjectProcess::getMoreLink();
 
 <section class="footer hidden-xs">
     <div class="body-info">
-        <a href="#" class="navbar-toggler hidden-xs">
-            <span class="bars-icon"></span>
-        </a>
+        <?php if(Yii::$app->controller->id == 'site' and Yii::$app->controller->action->id == 'index'):?>
+            <a href="#" class="navbar-toggler hidden-xs">
+                <span class="bars-icon"></span>
+            </a>
+        <?php endif;?>
         <div class="right-side">
             <div class="logo-container">
                 <a href="#" class="logo" title="<?= app()->name ?>">

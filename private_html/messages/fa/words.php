@@ -364,4 +364,7 @@ return [
     'En Material Required Amount'=> 'مقدار موردنیاز انگلیسی',
 
     'Section show page'=> 'نمایش بخش های پروژه',
+    'Acceleration and International Accounts Network'=> 'شبکه شتاب و حساب های بین المللی',
+    'Bank account number'=> 'شماره حساب بانکی',
+    'Approved phone number'=> 'شماره تماس تایید شده',
 ];

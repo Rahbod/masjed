@@ -43,7 +43,7 @@ class SectionController extends AuthController implements CrudControllerInterfac
     public function getSystemActions()
     {
         return [
-            'upload-icon', 'delete-icon', 'upload-icon-hover', 'delete-icon-hover', 'upload-image', 'delete-image', 'show'
+            'upload-icon', 'delete-icon', 'upload-icon-hover', 'delete-icon-hover', 'upload-image', 'delete-image', 'archive'
         ];
     }
 
@@ -112,14 +112,14 @@ class SectionController extends AuthController implements CrudControllerInterfac
         ];
     }
 
-    public function actionShow($id)
+    public function actionArchive($id)
     {
         $this->setTheme('frontend', ['layout' => 'inner']);
 
-        $model = ProjectSection::findOne($id);
+        $models = ProjectSection::find()->orderBy(['item.id' => SORT_ASC])->valid()->all();
 
-        return $this->render('/section/show', [
-            'model' => $model,
+        return $this->render('/section/archive', [
+            'sections' => $models,
             'id' => $id,
         ]);
     }

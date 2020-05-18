@@ -242,6 +242,8 @@ return [
     'Project related news' => 'اخبار مربوط به پروژه',
     'Project related news description' => 'توضیحات اخبار مربوط به پروژه',
     'Project<br>news archive' => 'آرشیو اخبار<br>پروژه',
+    'Donate now' => 'کمک میکنم',
+    '<b>Donate</b> now' => 'کمک میکنم',
 
     ///////// Category
     'Categories' => 'دسته بندی ها',
@@ -360,4 +362,6 @@ return [
     'Material Required Amount'=> 'مقدار موردنیاز',
     'Ar Material Required Amount'=> 'مقدار موردنیاز عربی',
     'En Material Required Amount'=> 'مقدار موردنیاز انگلیسی',
+
+    'Section show page'=> 'نمایش بخش های پروژه',
 ];

@@ -1036,6 +1036,8 @@ h3.underline-black:after {
     z-index: 2;
     opacity: 0.4;
     cursor: pointer;
+
+    display: none;
 }
 
 .video-gallery .video-slider {
@@ -1236,6 +1238,11 @@ h3.underline-black:after {
 
 .image-gallery .image-item a:last-child {
     margin-bottom: 0;
+}
+
+.image-gallery .image-item a img {
+    width: auto;
+    height: 100%;
 }
 
 .image-gallery .image-slider {
@@ -1608,6 +1615,8 @@ h3.underline-black:after {
     z-index: 2;
     opacity: 0.4;
     cursor: pointer;
+
+    display: none;
 }
 
 .media-gallery .media-item .caption {
@@ -2439,10 +2448,6 @@ h3.underline-black:after {
     background-color: #5bb45c;
 }
 
-.inner-page .title-box.line-100 h3:after {
-    width: 100%;
-}
-
 .inner-page .title-box > small {
     color: #939393;
     font-size: 1.6rem;
@@ -2900,10 +2905,16 @@ h3.underline-black:after {
     z-index: 2;
 }
 
-.inner-page .donate-page .panel-title img {
+.inner-page .donate-page .panel-title .image {
     float: right;
     margin-left: 20px;
     position: relative;
+    width: 80px;
+    height:80px;
+    text-align: center;
+}
+
+.inner-page .donate-page .panel-title img {
     max-height: 80px;
 }
 

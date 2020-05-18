@@ -179,7 +179,7 @@ $(function () {
         // });
     });
 
-    if ($.fn.onepage_scroll !== undefined && $(window).width() > 768) {
+    if ($.fn.onepage_scroll !== undefined && $(window).width() > 1024) {
         $(".content").onepage_scroll({
             sectionContainer: "section",
             easing: "ease",

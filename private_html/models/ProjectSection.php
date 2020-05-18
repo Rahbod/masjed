@@ -273,7 +273,7 @@ class ProjectSection extends Item
 
     public function getMoreUrl()
     {
-        return Url::to(['/section/show', 'id' => $this->id]);
+        return Url::to(['/section/archive', 'id' => $this->id]);
     }
 
     public function getModelImage()

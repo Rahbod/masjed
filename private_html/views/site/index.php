@@ -39,7 +39,7 @@ $timelines = ProjectTimeline::getLastRows();
 $comments = Comments::find()->valid()->orderBy(['id' => SORT_DESC])->all();
 $materials = Material::find()->valid()->all();
 $news = Post::find()->valid()->orderBy(['id' => SORT_DESC])->all();
-$aboutus = Aboutus::find()->valid()->all();
+$aboutus = Aboutus::find()->orderBy(['item.id' => SORT_ASC])->valid()->all();
 
 $this->registerJs("
     $('.captcha-container img').trigger('click');
@@ -176,7 +176,7 @@ $this->registerJs("
                     <li>
                         <span class="num">1</span>
                         <h2><?= trans('words', 'Command code') ?>
-                            <small>(<?= trans('words', 'Iran and Iraq') ?>)</small>
+<!--                            <small>(--><?//= trans('words', 'Iran and Iraq') ?><!--)</small>-->
                         </h2>
                         <span class="left-text"><?= Setting::get('donation.ussd_code') ?></span>
                     </li>
@@ -188,7 +188,7 @@ $this->registerJs("
                     <li>
                         <span class="num">3</span>
                         <h2><?= trans('words', 'Bank account number') ?>
-                            <small>(<?= trans('words', 'Iran and Iraq') ?>)</small>
+<!--                            <small>(--><?//= trans('words', 'Iran and Iraq') ?><!--)</small>-->
                         </h2>
                         <ul class="bank-accounts">
                             <?php foreach (Setting::get('donation.bank_numbers') as $item):if(empty($item['bank_name'])) continue; ?>

@@ -164,9 +164,8 @@ $(function () {
             window.location = '/site/index?sec=' + secNum;
     });
 
-    var url = window.location;
-    console.log(url);
-    if(url.indexOf('?sec=') != -1 && !$('body').hasClass('inner-page')){
+    var url = window.location.href;
+    if(url.indexOf('?sec=') != -1){
         var secNum = url.substr(url.indexOf('?sec=') + 5);
         $(".content").moveTo(secNum);
     }
@@ -276,8 +275,8 @@ $.fn.digitFormat = function () {
                 var arr = value.split('.');
                 console.log(arr);
                 value = arr[0]
-                        .replace(/\D/g, "")
-                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "." + arr[1];
+                    .replace(/\D/g, "")
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "." + arr[1];
                 return value;
             }
             return value

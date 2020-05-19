@@ -20,8 +20,8 @@ $baseUrl = $this->theme->baseUrl;
         <ul class="nav nav-tabs right-tab-trigger">
             <?php
             $i = 0;
-            $processesReverse = array_reverse($processes);
-            foreach ($processesReverse as $item): ?>
+            $processes = array_reverse($processes);
+            foreach ($processes as $item): ?>
                 <li<?= ($id!=false && $item->id == $id) || ($id == false && $i++==0)?' class="active"':''?>><a data-toggle="tab" href="#process-tab-<?= $item->id ?>"><?= $item->getName() ?></a></li>
             <?php endforeach; ?>
         </ul>
@@ -30,11 +30,10 @@ $baseUrl = $this->theme->baseUrl;
         <div class="tab-content">
             <?php
             $i=1;
+            $processes = array_reverse($processes);
             foreach ($processes as $item): ?>
                 <div id="process-tab-<?= $item->id ?>" class="tab-pane fade<?= ($id!=false && $item->id == $id) || ($id == false && $i==count($processes))?' in active':''?>">
-                    <div class="text">
-                        <div><?= $item->getTextStr() ?></div>
-                    </div>
+                    <div class="text"><?= $item->getTextStr() ?></div>
                 </div>
             <?php $i++; endforeach; ?>
         </div>

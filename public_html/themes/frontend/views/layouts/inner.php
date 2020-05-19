@@ -60,7 +60,7 @@ AppAsset::register($this);
     $processMoreLink = ProjectProcess::getMoreLink();
     ?>
     <section class="slider-container">
-        <div class="slider owl-carousel owl-theme" data-items="1" data-rtl="true">
+        <div class="slider owl-carousel owl-theme hidden-xs" data-items="1" data-rtl="true">
             <?php
             /** @var Slide $item */
             foreach ($slides as $item):
@@ -77,6 +77,7 @@ AppAsset::register($this);
                 endif;
             endforeach; ?>
         </div>
+        <div class="visible-xs mobile-bg"></div>
     </section>
     <section class="project-intro">
         <div class="top-bar-info">

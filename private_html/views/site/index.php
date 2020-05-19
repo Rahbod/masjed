@@ -39,7 +39,7 @@ $timelines = ProjectTimeline::getLastRows();
 $comments = Comments::find()->valid()->orderBy(['id' => SORT_DESC])->all();
 $materials = Material::find()->valid()->all();
 $news = Post::find()->valid()->orderBy(['id' => SORT_DESC])->all();
-$aboutus = Aboutus::find()->valid()->all();
+$aboutus = Aboutus::find()->orderBy(['item.id' => SORT_ASC])->valid()->all();
 
 $this->registerJs("
     $('.captcha-container img').trigger('click');
@@ -84,7 +84,7 @@ $this->registerJs("
                     <b><?= trans('words', 'Project sections') ?></b>
                     <?= trans('words', 'Mosque of karbala') ?>
                 </h3>
-                <small>تقديم أجزاء من الخدمات <br>المتوقعة بعد تشغيل المشروع</small>
+                <small><?= trans('words', 'Project sections description') ?></small>
             </div>
             <ul class="right-side--menu">
                 <?php
@@ -163,11 +163,11 @@ $this->registerJs("
                     <b><?= trans('words', 'how can I help?') ?></b>
                     <?= trans('words', 'Mosque of karbala') ?>
                 </h3>
-                <small class="text-white"><?= trans('words', 'There are different ways to help you<br>expect how to help') ?></small>
+                <small class="text-white"><?= trans('words', 'how can I help description') ?></small>
             </div>
-            <a href="<?= Url::to(['/payment'])?>" class="more-info"><?= trans('words', 'More<br>Information') ?></a>
+            <a href="<?= Url::to(['/payment'])?>" class="more-info hidden-xs"><?= trans('words', 'More<br>Information') ?></a>
             <div class="contact-alert">
-                <?= trans('words', 'If you want help and the methods available to you are not possible, refer to the Contact Us and Call Us section.') ?>
+                <?= trans('words', 'how can I help alert') ?>
             </div>
         </div>
         <div class="left-side">
@@ -176,7 +176,7 @@ $this->registerJs("
                     <li>
                         <span class="num">1</span>
                         <h2><?= trans('words', 'Command code') ?>
-                            <small>(<?= trans('words', 'Iran and Iraq') ?>)</small>
+<!--                            <small>(--><?//= trans('words', 'Iran and Iraq') ?><!--)</small>-->
                         </h2>
                         <span class="left-text"><?= Setting::get('donation.ussd_code') ?></span>
                     </li>
@@ -188,7 +188,7 @@ $this->registerJs("
                     <li>
                         <span class="num">3</span>
                         <h2><?= trans('words', 'Bank account number') ?>
-                            <small>(<?= trans('words', 'Iran and Iraq') ?>)</small>
+<!--                            <small>(--><?//= trans('words', 'Iran and Iraq') ?><!--)</small>-->
                         </h2>
                         <ul class="bank-accounts">
                             <?php foreach (Setting::get('donation.bank_numbers') as $item):if(empty($item['bank_name'])) continue; ?>
@@ -208,6 +208,7 @@ $this->registerJs("
                         </ul>
                     </li>
                 </ul>
+                <a href="<?= Url::to(['/payment'])?>" class="more-info visible-xs"><?= trans('words', 'More<br>Information') ?></a>
             </div>
         </div>
     </div>
@@ -224,7 +225,7 @@ $this->registerJs("
                     <b><?= trans('words', 'Video Gallery') ?></b>
                     <?= trans('words', 'Mosque of karbala') ?>
                 </h3>
-                <small>اقترب من هذا المشروع عن<br>طريق إنشاء مقاطع فيديو</small>
+                <small><?= trans('words', 'Video gallery description') ?></small>
             </div>
         </div>
         <div class="left-side">
@@ -315,7 +316,7 @@ $this->registerJs("
                     <b><?= trans('words', 'Picture Gallery') ?></b>
                     <?= trans('words', 'Mosque of karbala') ?>
                 </h3>
-                <small>اقترب من هذا المشروع عن<br>طريق إنشاء مقاطع فيديو</small>
+                <small><?= trans('words', 'Picture gallery description') ?></small>
             </div>
         </div>
         <div class="left-side">
@@ -345,13 +346,14 @@ $this->registerJs("
                                     <?php
                                     $j = 0;
                                     foreach ($photos as $photo):?>
-                                        <?php if ($j % 12 == 0): ?><div class="image-item"><?php endif; ?>
+                                        <?php if ($j == 0): ?><div class="image-item"><?php endif; ?>
                                         <div class="col-lg-3 col-md-3 col-sm-3">
                                             <a href="<?= $photo->getImageSrc() ?>" data-lightbox="img-set-<?= $category->id?>" data-title="<?= $photo->getName()?>"><img src="<?= $photo->getImageSrc() ?>"
                                                              alt="<?= $photo->getName() ?>"></a>
                                         </div>
-                                        <?php if ($j % 12 == 0): ?></div><?php endif; ?>
-                                    <?php endforeach; ?>
+                                        <?php if ($j == 11): $j = -1;?></div><?php endif; ?>
+                                    <?php $j++; endforeach; ?>
+                                    <?php if ($j <= 11 and $j != 0):?></div><?php endif; ?>
                                 </div>
                             </div>
                         <?php endforeach; ?>
@@ -388,7 +390,7 @@ $this->registerJs("
                 <b><?= trans('words', 'Construction steps') ?></b>
                 <?= trans('words', 'Mosque of karbala') ?>
             </h3>
-            <small>خطوات وكيفية تمويل تكلفة <br>بناء القطاعات بشكل منفصل</small>
+            <small><?= trans('words', 'Construction steps description') ?></small>
         </div>
         <div class="bg"></div>
         <div class="time-line-container">
@@ -450,7 +452,7 @@ $this->registerJs("
                     <b><?= trans('words', 'Quoted on') ?></b>
                     <?= trans('words', 'Mosque of karbala') ?>
                 </h3>
-                <small>ونقلت عن هذه المجموعة من<br>اللغات من الزملاء والأشخاص</small>
+                <small><?= trans('words', 'Quoted on description') ?></small>
             </div>
         </div>
         <div class="left-side">
@@ -496,7 +498,7 @@ $this->registerJs("
                 <b><?= trans('words', 'Objective assistance') ?></b>
                 <?= trans('words', 'Mosque of karbala') ?>
             </h3>
-            <small>من خلال التبرعات غير النقدية،<br>يمكنك المساعدة في بناءنا</small>
+            <small><?= trans('words', 'Objective assistance description') ?></small>
         </div>
         <div class="help-content">
             <?php foreach ($materials as $material): ?>
@@ -528,7 +530,7 @@ $this->registerJs("
                     <b><?= trans('words', 'Project related news') ?></b>
                     <?= trans('words', 'Mosque of karbala') ?>
                 </h3>
-                <small>أخبار متعلقة بالتعاون والتقدم في مشروع<br>مسجد كربلاء وشفافية مساهماتكم</small>
+                <small><?= trans('words', 'Project related news description') ?></small>
             </div>
             <a href="<?= Url::to(['/post/news']) ?>" class="archive-link hidden-xs"><?= trans('words', 'Project<br>news archive') ?></a>
         </div>
@@ -567,7 +569,7 @@ $this->registerJs("
                     <b><?= trans('words', 'About us') ?></b>
                     <?= trans('words', 'Mosque of karbala') ?>
                 </h3>
-                <small>أخبار متعلقة بالتعاون والتقدم في مشروع<br>مسجد كربلاء وشفافية مساهماتكم</small>
+                <small><?= trans('words', 'About us description') ?></small>
             </div>
             <!--            <a href="#" class="attachment-link">استلام كتيب التعريف بالمشروع</a>-->
         </div>

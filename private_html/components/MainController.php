@@ -349,7 +349,7 @@ class MainController extends Controller implements CrudControllerInterface
                 ]
             ],
             [
-                'label' => '<i class="m-menu__link-icon fa fa-info"></i><span class="m-menu__link-text">' . trans('words', 'About Us') . '</span>',
+                'label' => '<i class="m-menu__link-icon fa fa-info"></i><span class="m-menu__link-text">درباره ما</span>',
                 'url' => ['/aboutus/index'],
                 'visible' => $permissions || app()->user->can('aboutusIndex')
             ],

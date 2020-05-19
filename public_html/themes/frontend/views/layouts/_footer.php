@@ -26,8 +26,8 @@ $processMoreLink = ProjectProcess::getMoreLink();
                 <a href="#" class="logo" title="<?= app()->name ?>">
                     <img src="<?= $this->theme->baseUrl.'/images/logo.png' ?>" alt="<?= app()->name ?>">
                     <h1>
-                        <span class="arabic">مسجد جامع <span>كربلاء</span></span>
-                        <span class="english">Mosque <span>of Karbala</span></span>
+                        <span class="arabic"><?= trans('words', 'Great mosque') ?> <span><?= trans('words', 'karbala') ?></span></span>
+                        <span class="english"><?= trans('words', 'Great mosque', [], 'en') ?> <span><?= trans('words', 'of Karbala', [], 'en') ?></span></span>
                     </h1>
                 </a>
             </div>

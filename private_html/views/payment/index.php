@@ -50,8 +50,8 @@ $helpItem = Yii::$app->request->getQueryParam('itm');
                 <h3><?= trans('words', 'Command code') ?> <small>(<?= trans('words', 'Iran and Iraq') ?>)</small></h3>
                 <div class="code"><?= $donationSetting['ussd_code'] ?></div>
                 <div class="text"><?php
-                    if(isset($donationSetting['ussd_page'])) {
-                        $page = Page::findOne($donationSetting['ussd_page']);
+                    if(isset($donationSetting['pages']['ussd_page'])) {
+                        $page = Page::findOne($donationSetting['pages']['ussd_page']);
                         if($page)
                             echo $page->getBodyStr();
                     }
@@ -60,8 +60,8 @@ $helpItem = Yii::$app->request->getQueryParam('itm');
             <div id="donate-2" class="tab-pane fade <?= $section == 2 ? 'in active' : ''?>">
                 <h3><?= trans('words', 'Acceleration and International Accounts Network') ?></h3>
                 <div class="text"><?php
-                    if(isset($donationSetting['online_page'])) {
-                        $page = Page::findOne($donationSetting['online_page']);
+                    if(isset($donationSetting['pages']['online_page'])) {
+                        $page = Page::findOne($donationSetting['pages']['online_page']);
                         if($page)
                             echo $page->getBodyStr();
                     }
@@ -119,8 +119,8 @@ $helpItem = Yii::$app->request->getQueryParam('itm');
             <div id="donate-3" class="tab-pane fade <?= $section == 3 ? 'in active' : ''?>">
                 <h3><?= trans('words', 'Bank account number') ?> <small>(<?= trans('words', 'Iran and Iraq') ?>)</small></h3>
                 <div class="text"><?php
-                    if(isset($donationSetting['bank_page'])) {
-                        $page = Page::findOne($donationSetting['bank_page']);
+                    if(isset($donationSetting['pages']['bank_page'])) {
+                        $page = Page::findOne($donationSetting['pages']['bank_page']);
                         if($page)
                             echo $page->getBodyStr();
                     }
@@ -138,22 +138,25 @@ $helpItem = Yii::$app->request->getQueryParam('itm');
                 </ul>
             </div>
             <div id="donate-4" class="tab-pane fade <?= $section == 4 ? 'in active' : ''?>">
-                <h3><?= trans('words', 'Bank account number') ?> <small>(<?= trans('words', 'Iran and Iraq') ?>)</small></h3>
+                <h3><?= trans('words', 'Approved phone number') ?></h3>
                 <div class="text"><?php
-                    if(isset($donationSetting['person_page'])) {
-                        $page = Page::findOne($donationSetting['person_page']);
+                    if(isset($donationSetting['phone_number_page'])) {
+                        $page = Page::findOne($donationSetting['phone_number_page']);
                         if($page)
                             echo $page->getBodyStr();
                     }
                     ?></div>
                 <ul class="bank-accounts">
-                    <?php foreach (Setting::get('donation.persons') as $item): if(empty($item['name'])) continue;?>
-                        <li>
-                            <h5><?= $item['name'] ?> <small>(<?= $item['country'] ?>)</small></h5>
-                            <div class="account-number">
-                                <span class="text-left"><?= $item['mobile'] ?></span>
-                            </div>
-                        </li>
+                    <?php foreach (Setting::get('donation.persons') as $item):?>
+                        <?php if(!empty($item['name'])):?>
+                            <li>
+                                <h5><?= $item['name'] ?></h5>
+                                <div class="account-number">
+                                    <span><?= $item['country'] ?></span>
+                                    <span class="text-left dir-ltr"><?= $item['mobile'] ?></span>
+                                </div>
+                            </li>
+                        <?php endif;?>
                     <?php endforeach;?>
                 </ul>
             </div>
@@ -177,7 +180,9 @@ $helpItem = Yii::$app->request->getQueryParam('itm');
                                 <div class="panel-title" data-toggle="collapse" data-parent="#accordion"
                                      data-target="#collapse-<?= $material->id?>">
                                     <?php if($material->icon):?>
-                                        <img src="<?= $material->getIconSrc() ?>" alt="<?= $material->getName() ?>">
+                                        <div class="image">
+                                            <img src="<?= $material->getIconSrc() ?>" alt="<?= $material->getName() ?>">
+                                        </div>
                                     <?php endif;?>
                                     <h5><?= $material->getName() ?> / <small><?= $material->getRequiredAmountStr() ?></small></h5>
                                     <span><?= $material->getDescriptionStr() ?></span>

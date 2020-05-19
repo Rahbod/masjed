@@ -55,13 +55,15 @@ class Donation extends DynamicActiveRecord
     {
         return array_merge(parent::rules(), [
             [['name', 'amount'], 'required'],
-            [['amount', 'status'], 'number'],
+            [['status'], 'number'],
+            [['amount'], 'number', 'min' => 100],
             [['dyna'], 'string'],
-            [['invoice_id'], 'string'],
+            [['invoice_id'], 'integer'],
             [['status'], 'integer'],
             ['status', 'default', 'value' => self::STATUS_UNPAID],
             [['name', 'mobile'], 'string', 'max' => 255],
             [['create_date'], 'string', 'max' => 20],
+            ['create_date', 'default', 'value' => time()],
         ]);
     }
 

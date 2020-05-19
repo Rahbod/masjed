@@ -72,6 +72,7 @@ return [
         'Command code' => 'كود القيادة',
         'Iran and Iraq' => 'إيران والعراق',
         'Rials' => 'ريال',
+        'Tomans' => 'تومان',
         'Account number' => 'رقم الحساب',
         'how can I help?' => 'كيف يمكنني المساعدة؟',
         'There are different ways to help you<br>expect how to help' => 'هناك طرق مختلفة لمساعدتك<br>في توقع كيفية المساعدة',
@@ -79,4 +80,6 @@ return [
         'Acceleration and International Accounts Network' => 'شبكة التسارع والحسابات الدولية',
         'Bank account number' => 'رقم الحساب البنكي',
         'Approved phone number' => 'رقم هاتف المعتمد',
+        'Thanks! Payment was successful.' => 'شكر! تم الدفع بنجاح.',
+        'Oops! Unsuccessful payment, There is a problem.' => 'اوه! دفعة فاشلة، هناك مشكلة.',
 ];

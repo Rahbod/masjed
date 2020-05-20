@@ -28,6 +28,14 @@ class SmsSender
         return static::SendTemplate(static::$paymentTemplate, $phone, $name, $cash);
     }
 
+    /**
+     * @param string $template
+     * @param string $phone
+     * @param string $token
+     * @param string|bool $token2
+     * @param string|bool $token3
+     * @return bool|mixed|string
+     */
     public static function SendTemplate($template, $phone, $token, $token2 = false, $token3 = false)
     {
         $key = static::$apiKey;

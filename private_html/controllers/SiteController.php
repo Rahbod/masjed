@@ -203,4 +203,9 @@ class SiteController extends AuthController
         $this->layout = 'main';
         return $this->render('index');
     }
+
+    public function actionTest()
+    {
+        dd(SmsSender::SendPaymentSuccessful('09358389265','یوسف مبشری',number_format(15000000). 'تومان'));
+    }
 }

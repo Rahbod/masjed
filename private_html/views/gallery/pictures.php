@@ -30,8 +30,8 @@ $baseUrl = $this->theme->baseUrl;
     </div>
     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
         <ul class="nav nav-tabs">
-            <?php foreach ($categories as $category):?>
-                <li><a data-toggle="tab" href="#picture-gallery-<?= $category->id ?>"><?= $category->getName() ?></a></li>
+            <?php $i=0; foreach ($categories as $category):?>
+                <li class="<?= $i++ == 0 ? 'active' : ''?>"><a data-toggle="tab" href="#picture-gallery-<?= $category->id ?>"><?= $category->getName() ?></a></li>
             <?php endforeach; ?>
         </ul>
         <div class="tab-content">
@@ -47,7 +47,7 @@ $baseUrl = $this->theme->baseUrl;
                                 <img src="<?= $photo->getThumbImageSrc() ?>" alt="<?= $photo->getName() ?>">
                                 <h5><?= $photo->getName() ?></h5>
                                 <span><?= $photo->short_description ?></span>
-                                <a href="<?= $photo->getImageSrc() ?>"></a>
+                                <a href="<?= $photo->getImageSrc() ?>" data-lightbox="img-set-<?= $category->id?>" data-title="<?= $photo->getName()?>"></a>
                             </div>
                         <?php endforeach; ?>
                     </div>

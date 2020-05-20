@@ -53,7 +53,25 @@ $baseUrl = $this->theme->baseUrl;
                                 </div>
                                 <h5><?= $video->getName() ?></h5>
                                 <span><?= $video->short_description ?></span>
-                                <a href="<?= $video->getVideoSrc() ?>"></a>
+                                <a href="<?= $video->getVideoSrc() ?>" data-toggle="modal" data-target="#play-modal-<?= $video->id?>"></a>
+                            </div>
+
+                            <div id="play-modal-<?= $video->id?>" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <video controls preload="none" poster="<?= $video->getPosterSrc() ?>">
+                                                <source src="<?= $video->getVideoSrc() ?>" type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                            <h5><?= $video->getName() ?></h5>
+                                            <div class="text"><?= $video->short_description ?></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         <?php endforeach; ?>
                     </div>

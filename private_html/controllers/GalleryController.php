@@ -27,7 +27,7 @@ class GalleryController extends AuthController
     public $imageDir = 'uploads/gallery';
     public $videoDir = 'uploads/gallery/video';
     private $posterOptions = ['thumbnail' => ['width' => 670, 'height' => 350, 'replaceOrigin' => true]];
-    private $thumbOptions = ['thumbnail' => ['width' => 185, 'height' => 120, 'replaceOrigin' => true]];
+    private $thumbOptions = ['thumbnail' => ['width' => 400, 'height' => 300, 'replaceOrigin' => true]];
     private $fullImageOptions = ['thumbnail' => ['width' => 280, 'height' => 380]];
 
     /**

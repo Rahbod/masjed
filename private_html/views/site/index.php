@@ -373,7 +373,7 @@ $this->registerJs("
                             </div>
                         <?php endforeach;?>
                     </div>
-                    <a href="<?= Url::to(['/gallery/video']) ?>" class="archive-link"><?= trans('words', 'Picture Section<br>Archive') ?></a>
+                    <a href="<?= Url::to(['/gallery/picture']) ?>" class="archive-link"><?= trans('words', 'Picture Section<br>Archive') ?></a>
                 </div>
             </div>
         </div>

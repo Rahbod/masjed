@@ -1006,23 +1006,21 @@ h3.underline-black:after {
 .video-gallery .video-slider .video-item {
     width: 85%;
     display: block;
-    padding: 50px 0;
 }
 
 .video-gallery .video-slider .video-item video {
     height: 350px;
-    width: 100%;
     display: block;
     margin: 0 auto;
-    background: #000;
+    box-shadow: -25px 15px 20px #bfbfbf;
+    border-radius: 20px;
 }
 
 .video-gallery .video-slider .video-item .video-container {
-    border-radius: 20px;
     overflow: hidden;
     position: relative;
-    box-shadow: -25px 15px 20px #bfbfbf;
     margin-right: 1px;
+    padding: 50px 0;
 }
 
 .video-gallery .video-slider .video-item .video-overlay {
@@ -2665,6 +2663,7 @@ h3.underline-black:after {
     transition: all 0.4s;
     overflow: hidden;
     position: relative;
+    text-align: center;
 }
 
 .inner-page .gallery .gallery-item:before {
@@ -2691,11 +2690,14 @@ h3.underline-black:after {
 .inner-page .gallery .gallery-item h5 {
     margin: 15px 0 5px;
     font-weight: bold;
+    text-align: right;
 }
 
 .inner-page .gallery .gallery-item span {
     color: #777;
     font-size: 14px;
+    text-align: right;
+    display: block;
 }
 
 .inner-page .gallery .gallery-item a {
@@ -3024,27 +3026,37 @@ h3.underline-black:after {
     width: 500px;
 }
 
+.inner-page .gallery-page .modal-content,
 .inner-page .payment-methods .modal-content {
     border: none;
     box-shadow: none;
 }
 
+.inner-page .gallery-page .modal-header,
 .inner-page .payment-methods .modal-header {
     border: none;
 }
 
+.inner-page .gallery-page .modal-header .close,
 .inner-page .payment-methods .modal-header .close {
     float: right;
 }
 
+.inner-page .gallery-page .modal-body,
 .inner-page .payment-methods .modal-body {
     padding: 0 50px 50px;
 }
 
+.inner-page .gallery-page .modal-body h5,
 .inner-page .payment-methods .modal-body h5 {
     font-weight: bold;
     font-size: 16px;
     margin-bottom: 15px;
+}
+
+.inner-page .gallery-page .modal-body h5{
+    margin-top: 15px;
+    margin-bottom: 10px;
 }
 
 .inner-page .payment-methods .modal-body .form {

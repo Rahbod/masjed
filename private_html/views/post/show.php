@@ -32,6 +32,7 @@ $baseUrl = $this->theme->baseUrl;
                 </ul>
             </div>
         <?php endif;?>
+        <a href="<?= \yii\helpers\Url::to(['/post/news']) ?>" class="archive-link hidden-xs"><?= trans('words', 'Project<br>news archive') ?></a>
     </div>
     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
         <div class="text">
@@ -51,5 +52,6 @@ $baseUrl = $this->theme->baseUrl;
                 </ul>
             </div>
         <?php endif;?>
+        <a href="<?= \yii\helpers\Url::to(['/post/news']) ?>" class="archive-link visible-xs"><?= trans('words', 'Project<br>news archive') ?></a>
     </div>
 </div>

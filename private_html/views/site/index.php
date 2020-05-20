@@ -192,8 +192,10 @@ $this->registerJs("
                         </h2>
                         <ul class="bank-accounts">
                             <?php foreach (Setting::get('donation.bank_numbers') as $item):if(empty($item['bank_name'])) continue; ?>
-                                <li><b><?= $item['bank_name'] ?> <span>(<?= $item['account_type'] ?>)</span></b><?= trans('words', 'Account number') ?><span
-                                            class="account-num"><?= $item['account_number'] ?></span>
+                                <li>
+                                    <b><?= $item['bank_name'] ?> <span>(<?= $item['account_type'] ?>)</span></b>
+                                    <?= trans('words', 'Account number') ?>
+                                    <span class="account-num"><?= $item['account_number'] ?></span>
                                 </li>
                             <?php endforeach;?>
                         </ul>

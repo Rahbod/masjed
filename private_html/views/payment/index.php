@@ -126,12 +126,13 @@ $helpItem = Yii::$app->request->getQueryParam('itm');
                     }
                     ?></div>
                 <ul class="bank-accounts">
-                    <?php foreach ($donationSetting['bank_numbers'] as $item): if(empty($item['bank_name'])) continue;?>
+                    <?php foreach ($donationSetting['bank_numbers'] as $key => $item): if(empty($item['bank_name'])) continue;?>
                         <li>
                             <h5><?= $item['bank_name'] ?> <small>(<?= $item['account_type'] ?>)</small></h5>
                             <div class="account-number">
                                 <span><?= trans('words', 'Account number') ?></span>
-                                <span class="text-left"><?= $item['account_number'] ?></span>
+<!--                                <span class="text-left">--><?//= $item['account_number'] ?><!--</span>-->
+                                <input type="text" class="text-left" value="<?= $item['account_number'] ?>" id="acc-<?= $key?>">
                             </div>
                         </li>
                     <?php endforeach;?>
@@ -149,12 +150,13 @@ $helpItem = Yii::$app->request->getQueryParam('itm');
                 <ul class="bank-accounts">
                     <?php foreach (Setting::get('donation.persons') as $item):?>
                         <?php if(!empty($item['name'])):?>
-                            <li>
+                            <li class="tel-link">
                                 <h5><?= $item['name'] ?></h5>
                                 <div class="account-number">
                                     <span><?= $item['country'] ?></span>
                                     <span class="text-left dir-ltr"><?= $item['mobile'] ?></span>
                                 </div>
+                                <a href="tel:<?= $item['mobile'] ?>" class="telephone-link"></a>
                             </li>
                         <?php endif;?>
                     <?php endforeach;?>

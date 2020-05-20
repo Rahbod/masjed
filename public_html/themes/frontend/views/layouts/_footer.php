@@ -90,7 +90,7 @@ $processMoreLink = ProjectProcess::getMoreLink();
     <?php if(Yii::$app->controller->id == 'site' and Yii::$app->controller->action->id == 'index'):?>
         <a href="#" class="mobile-menu-trigger"></a>
     <?php else:?>
-        <a href="#" class="back-to-index-trigger"></a>
+        <a href="<?= Url::to(['/site/index'])?>" class="back-to-index-trigger"></a>
     <?php endif;?>
     <a href="<?= Url::to(['/payment']) ?>" class="btn-donate">
         <i class="svg-heart-white">

@@ -1099,7 +1099,7 @@ h3.underline-black:after {
 }
 
 .video-gallery .video-slider .video-item .caption {
-    margin-top: 54px;
+    /*margin-top: 54px;*/
     padding-right: 20px;
 }
 
@@ -1138,6 +1138,7 @@ h3.underline-black:after {
     left: 0;
 }
 
+.news-page .archive-link,
 .news-container .archive-link,
 .help-container .archive-link,
 .image-gallery .archive-link,
@@ -1157,6 +1158,13 @@ h3.underline-black:after {
     z-index: 3;
 }
 
+.news-page .archive-link {
+    position: relative;
+    left: auto;
+    top: auto;
+    margin-top: 50px;
+}
+
 .video-gallery .archive-link {
     left: 15%;
 }
@@ -1166,6 +1174,7 @@ h3.underline-black:after {
     top: 502px;
 }
 
+.news-page .archive-link:hover,
 .news-container .archive-link:hover,
 .help-container .archive-link:hover,
 .image-gallery .archive-link:hover,
@@ -1173,6 +1182,7 @@ h3.underline-black:after {
     background: #008439;
 }
 
+.news-page .archive-link:after,
 .news-container .archive-link:after,
 .help-container .archive-link:after,
 .image-gallery .archive-link:after,
@@ -1591,15 +1601,15 @@ h3.underline-black:after {
     height: 350px;
     position: relative;
     overflow: hidden;
-    border-radius: 20px;
-    box-shadow: 0 0 13px rgba(5, 5, 5, 0.07);
 }
 
 .media-gallery .media-item .media-container video {
     height: 350px;
-    width: 100%;
+    width: auto;
     display: block;
     margin: 0 auto;
+    border-radius: 20px;
+    box-shadow: 0 0 13px rgba(5, 5, 5, 0.07);
 }
 
 .media-gallery .media-item .media-container .video-overlay {
@@ -2543,6 +2553,7 @@ h3.underline-black:after {
     padding: 0;
     margin: 0 -10px 0;
     list-style: none;
+    overflow: hidden;
 }
 
 .inner-page .page-image-gallery ul li {
@@ -2861,6 +2872,7 @@ h3.underline-black:after {
     padding: 10px 30px;
     margin-bottom: 10px;
     line-height: 25px;
+    position: relative;
 }
 
 .inner-page .donate-page .bank-accounts li h5 {
@@ -2882,10 +2894,23 @@ h3.underline-black:after {
     overflow: hidden;
 }
 
+.inner-page .donate-page .bank-accounts li .telephone-link{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index:4;
+}
+
 .inner-page .donate-page .bank-accounts li .account-number .text-left {
     float: left;
     font-family: "Open Sans";
     font-size: 18px;
+    background: transparent;
+    border: none;
+    width: auto;
+    max-width: 160px;
 }
 
 .inner-page .donate-page .panel-group {
@@ -2912,7 +2937,7 @@ h3.underline-black:after {
     margin-left: 20px;
     position: relative;
     width: 80px;
-    height:80px;
+    height: 80px;
     text-align: center;
 }
 
@@ -3054,7 +3079,7 @@ h3.underline-black:after {
     margin-bottom: 15px;
 }
 
-.inner-page .gallery-page .modal-body h5{
+.inner-page .gallery-page .modal-body h5 {
     margin-top: 15px;
     margin-bottom: 10px;
 }
@@ -3586,6 +3611,7 @@ h3.underline-black:after {
     display: none !important;
 }
 
+.mobile-scrolled.inner-page .title-box .nav-tabs.right-tab-trigger > li > a,
 .mobile-scrolled.inner-page .gallery-page .nav-tabs > li > a,
 .mobile-scrolled.inner-page .donate-page .title-box .nav-tabs > li > a,
 .mobile-scrolled.inner-page .text-page .nav-tabs > li > a {
@@ -3642,7 +3668,6 @@ h3.underline-black:after {
 }
 
 .news-archive-items li .image img {
-    max-width: 100%;
     transform: translateX(50%);
     right: 50%;
     position: relative;

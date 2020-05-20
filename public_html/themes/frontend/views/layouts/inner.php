@@ -178,6 +178,7 @@ AppAsset::register($this);
 
     <?= $this->render('_footer'); ?>
 </main>
+<?= $this->render('_desktop_menu'); ?>
 
 <?php $this->endBody(); ?>
 

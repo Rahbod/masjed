@@ -315,6 +315,7 @@ class MainController extends Controller implements CrudControllerInterface
                     ['label' => trans('words', 'Pages'), 'url' => ['/page/index'], 'visible' => $permissions || app()->user->can('pageIndex')],
                     ['label' => trans('words', 'Post'), 'url' => ['/post/index'], 'visible' => $permissions || app()->user->can('postIndex')],
                     ['label' => trans('words', 'Lists'), 'url' => ['/list/index'], 'visible' => $permissions || app()->user->can('listIndex')],
+                    ['label' => trans('words', 'Comments'), 'url' => ['/comments/index'], 'visible' => $permissions || app()->user->can('commentsIndex')],
                 ]
             ],
             [

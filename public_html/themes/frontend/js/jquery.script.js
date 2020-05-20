@@ -1,6 +1,20 @@
 var nicescrolls = [];
 
 $(function () {
+    if ($.fn.onepage_scroll !== undefined && $(window).width() > 1024) {
+        $(".content").onepage_scroll({
+            sectionContainer: "section",
+            easing: "ease",
+            animationTime: 1000,
+            pagination: true,
+            updateURL: false,
+            loop: false,
+            keyboard: true,
+            responsiveFallback: false,
+            direction: "vertical"
+        });
+    }
+
     $('.digitFormat').digitFormat();
     $('.numberFormat').numericFormat();
     $('.dateFormat').dateFormat();
@@ -137,10 +151,26 @@ $(function () {
         e.preventDefault();
     }).on('click', '.desktop-menu .anchor-link', function (e) {
         e.preventDefault();
-        var secNum = $(this).attr('href');
-        secNum = secNum.substr(secNum.indexOf('#') + 1);
+
+        var href = $(this).attr('href'),
+            secNum = 0;
+        if (href.indexOf('#') != -1)
+            secNum = href.substr(href.indexOf('#') + 1);
+
         $('.desktop-menu').removeClass('open').fadeOut(function () {
-            $(".content").moveTo(secNum);
+            if (!$('body').hasClass('inner-page')) {
+                if ($(window).width() > 768)
+                    $(".content").moveTo(secNum);
+                else {
+                    var position = $('#section-' + secNum).offset();
+                    $("html, body").animate({scrollTop: position.top}, 'slow');
+                }
+            } else {
+                if (href.indexOf('#') != -1)
+                    window.location = '/site/index?sec=' + secNum;
+                else
+                    window.location = href;
+            }
         });
     }).on('click', '.mobile-index-menu .close', function () {
         $('.mobile-index-menu').removeClass('open').fadeOut();
@@ -149,31 +179,26 @@ $(function () {
             $(this).addClass('open')
         });
         return false;
-    }).on('click', '.bank-accounts li', function () {
+    }).on('click', '.bank-accounts li:not(.tel-link)', function () {
         copyToClipboard($(this).find('.account-number input').attr('id'));
     }).on('click', '.video-overlay', function () {
         $(this).parent().find('video')[0].play();
         $(this).remove();
     }).on('click', 'header .navbar-nav > li > a', function (e) {
         e.preventDefault();
-        var secNum = $(this).attr('href');
-        if (secNum.indexOf('#') != -1)
-            secNum = secNum.substr(secNum.indexOf('#') + 1);
+        var href = $(this).attr('href'),
+            secNum = 0;
+        if (href.indexOf('#') != -1)
+            secNum = href.substr(href.indexOf('#') + 1);
         if (!$('body').hasClass('inner-page'))
             $(".content").moveTo(secNum);
         else {
-            if (secNum.indexOf('#') != -1)
+            if (href.indexOf('#') != -1)
                 window.location = '/site/index?sec=' + secNum;
             else
-                window.location = secNum;
+                window.location = href;
         }
     });
-
-    var url = window.location.href;
-    if (url.indexOf('?sec=') != -1) {
-        var secNum = url.substr(url.indexOf('?sec=') + 5);
-        $(".content").moveTo(secNum);
-    }
 
     $(window).on("load resize", function () {
         // news carousel initialize
@@ -198,24 +223,21 @@ $(function () {
         // });
     });
 
-    if ($.fn.onepage_scroll !== undefined && $(window).width() > 1024) {
-        $(".content").onepage_scroll({
-            sectionContainer: "section",
-            easing: "ease",
-            animationTime: 1000,
-            pagination: true,
-            updateURL: false,
-            loop: false,
-            keyboard: true,
-            responsiveFallback: false,
-            direction: "vertical"
-        });
-    }
-
     makeHelpBox();
 
     var index = $('.time-line .owl-item').index($('.time-line-item.doing').parent('.owl-item'));
     $('.time-line.owl-carousel').trigger('to.owl.carousel', [index - 1, 500, true]);
+
+    var url = window.location.href;
+    if (url.indexOf('?sec=') != -1) {
+        var section = url.substr(url.indexOf('?sec=') + 5);
+        if ($(window).width() > 768)
+            $(".content").moveTo(section);
+        else {
+            var position = $('#section-' + section).offset();
+            $("html, body").animate({scrollTop: position.top}, 'slow');
+        }
+    }
 });
 // hide or show the main navbar base on page scroll : start
 // var header_height = $('header').height();

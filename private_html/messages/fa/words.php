@@ -321,6 +321,9 @@ return [
     'Command code' => 'کد فرمان',
     'Iran and Iraq' => 'ایران و عراق',
     'Rials' => 'ریال',
+    'Tomans' => 'تومان',
+    'Thanks! Payment was successful.' => 'با تشکر! پرداخت با موفقیت انجام شد.',
+    'Oops! Unsuccessful payment, There is a problem.' => 'اوه! پرداخت ناموفق، مشکلی وجود دارد.',
 
     //////// Donation
     'Donation' => 'کمک های نقدی',

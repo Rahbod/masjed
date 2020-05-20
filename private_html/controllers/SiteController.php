@@ -6,6 +6,7 @@ use app\components\AuthController;
 use app\components\customWidgets\CustomCaptchaAction;
 use app\components\MultiLangActiveRecord;
 use app\components\Setting;
+use app\components\SmsSender;
 use app\models\ContactForm;
 use app\models\Item;
 use app\models\Message;
@@ -203,8 +204,8 @@ class SiteController extends AuthController
         return $this->render('index');
     }
 
-    public function getProjects()
+    public function actionTest()
     {
-        return Project::find()->andWhere(['>', Project::columnGetString('free_count'), 0])->all();
+        dd(SmsSender::SendPaymentSuccessful('09358389265','یوسف مبشری',number_format(15000000). 'تومان'));
     }
 }

@@ -30,7 +30,7 @@ class PaymentForm extends Model implements FormRendererDefinition
         return [
             // name, email, subject and body are required
                 [['amount', 'payerName', 'payerMobile'], 'required'],
-                [['amount'], 'integer'],
+                [['amount'], 'number', 'min' => 100],
                 [['payerName', 'payerMobile', 'description'], 'string'],
                 [['filled'], 'safe'],
             // verifyCode needs to be entered correctly

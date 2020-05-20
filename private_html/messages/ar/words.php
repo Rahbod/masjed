@@ -77,4 +77,12 @@ return [
   'how can I help?' => 'كيف يمكنني المساعدة؟',
   'how can I help description' => 'هناك طرق مختلفة لمساعدتك<br>في توقع كيفية المساعدة',
   'how can I help alert' => 'إذا كنت ترغب في المساعدةولم تكن الطرق المتاحتة لك ممكنة، فارجع إلي قسم اتصل بنا و اتصل بنا.',
+  'Tomans' => 'تومان',
+    'There are different ways to help you<br>expect how to help' => 'هناك طرق مختلفة لمساعدتك<br>في توقع كيفية المساعدة',
+    'If you want help and the methods available to you are not possible, refer to the Contact Us and Call Us section.' => 'إذا كنت ترغب في المساعدةولم تكن الطرق المتاحتة لك ممكنة، فارجع إلي قسم اتصل بنا و اتصل بنا.',
+    'Acceleration and International Accounts Network' => 'شبكة التسارع والحسابات الدولية',
+    'Bank account number' => 'رقم الحساب البنكي',
+    'Approved phone number' => 'رقم هاتف المعتمد',
+    'Thanks! Payment was successful.' => 'شكر! تم الدفع بنجاح.',
+    'Oops! Unsuccessful payment, There is a problem.' => 'اوه! دفعة فاشلة، هناك مشكلة.',
 ];

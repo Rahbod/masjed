@@ -37,6 +37,15 @@ $helpItem = Yii::$app->request->getQueryParam('itm');
     </div>
     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
         <div class="tab-content donate-content">
+            <?php if($model->errors):?>
+                <div class="alert alert-danger">
+                    <?= Html::errorSummary($model);?>
+                </div>
+            <?php endif;?>
+
+            <?= $this->render('//layouts/_flash_message') ?>
+
+
             <div id="donate-1" class="tab-pane fade <?= $section == 1 ? 'in active' : ''?>">
                 <h3><?= trans('words', 'Command code') ?> <small>(<?= trans('words', 'Iran and Iraq') ?>)</small></h3>
                 <div class="code"><?= $donationSetting['ussd_code'] ?></div>
@@ -98,7 +107,7 @@ $helpItem = Yii::$app->request->getQueryParam('itm');
                                     <?= Html::activeTextInput($model, 'amount',
                                             ['placeholder' => $model->getAttributeLabel( 'amount'), 'class' => 'digitFormat']) ?>
                                     <span class="required">إلزامي *</span>
-                                    <p style="color: gray"><?= trans('words', 'Rials') ?></p>
+                                    <p style="color: gray"><?= trans('words', 'Tomans') ?></p>
                                     <?= Html::submitInput(trans('words', 'Payment')) ?>
                                     <?php ActiveForm::end(); ?>
                                 </div>

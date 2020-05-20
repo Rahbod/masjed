@@ -6,6 +6,7 @@ use app\components\AuthController;
 use app\components\customWidgets\CustomCaptchaAction;
 use app\components\MultiLangActiveRecord;
 use app\components\Setting;
+use app\components\SmsSender;
 use app\models\ContactForm;
 use app\models\Item;
 use app\models\Message;
@@ -201,10 +202,5 @@ class SiteController extends AuthController
         $this->setTheme('frontend');
         $this->layout = 'main';
         return $this->render('index');
-    }
-
-    public function getProjects()
-    {
-        return Project::find()->andWhere(['>', Project::columnGetString('free_count'), 0])->all();
     }
 }

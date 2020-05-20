@@ -86,6 +86,8 @@ class PaymentController extends MainController
                 $donate->save();
             }
 
+            SmsSender::SendPaymentSuccessful($donate->mobile,$donate->name,number_format($donate->amount). 'تومان');
+
             app()->session->setFlash('alert',
                     ['type' => 'success', 'message' => trans('words', 'Thanks! Payment was successful.')]);
 //            SmsSender::Send()

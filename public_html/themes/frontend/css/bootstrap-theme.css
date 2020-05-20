@@ -3637,10 +3637,17 @@ h3.underline-black:after {
     width: 150px;
     height: 150px;
     margin-left: 30px;
+    overflow: hidden;
+    position: relative;
 }
 
 .news-archive-items li .image img {
     max-width: 100%;
+    transform: translateX(50%);
+    right: 50%;
+    position: relative;
+    max-height: 100%;
+    display: block;
 }
 
 .news-archive-items li h4 {

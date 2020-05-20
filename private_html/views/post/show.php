@@ -24,9 +24,9 @@ $baseUrl = $this->theme->baseUrl;
                             <?php endif;?>
                             <div class="info">
                                 <h5><?= $news->getName()?></h5>
-                                <div class="desc"><?= !empty($model->summary) ? $model->summary : mb_substr(strip_tags(nl2br($model->body)), 0, 200) ?></div>
+                                <div class="desc"><?= !empty($news->summary) ? $news->summary : mb_substr(strip_tags(nl2br($news->body)), 0, 200) ?></div>
                             </div>
-                            <a href="<?= $model->url ?>"></a>
+                            <a href="<?= $news->url ?>"></a>
                         </li>
                     <?php endforeach;?>
                 </ul>

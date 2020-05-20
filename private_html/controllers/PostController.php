@@ -194,7 +194,7 @@ class PostController extends AuthController
         }
 
         $image = new UploadedFiles(self::$imageDir, $model->image, self::$imageOptions);
-        $gallery = new UploadedFiles(Attachment::$attachmentPath, $model->attachments, self::$galleryOptions);
+        $gallery = new UploadedFiles(Attachment::$attachmentPath, $model->gallery, self::$galleryOptions);
 
         if (Yii::$app->request->post()) {
             $oldUploaderValues = $this->getOldUploaderValues($model);
@@ -204,20 +204,20 @@ class PostController extends AuthController
             if ($model->save()) {
                 $this->editUploaderAttributes($model, $oldUploaderValues);
                 $gallery->updateAll($oldGallery, $model->gallery, $this->tmpDir,
-                        Attachment::getAttachmentRelativePath());
+                    Attachment::getAttachmentRelativePath());
                 Yii::$app->session->setFlash('alert',
-                        ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
+                    ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
                 return $this->redirect(['index']);
             } else {
                 Yii::$app->session->setFlash('alert',
-                        ['type' => 'danger', 'message' => trans('words', 'base.dangerMsg')]);
+                    ['type' => 'danger', 'message' => trans('words', 'base.dangerMsg')]);
             }
         }
 
         return $this->render('update', [
-                'model' => $model,
-                'image' => $image,
-                'gallery' => $gallery,
+            'model' => $model,
+            'image' => $image,
+            'gallery' => $gallery,
         ]);
     }
 

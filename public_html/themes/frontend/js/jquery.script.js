@@ -157,15 +157,20 @@ $(function () {
     }).on('click', 'header .navbar-nav > li > a', function (e) {
         e.preventDefault();
         var secNum = $(this).attr('href');
-        secNum = secNum.substr(secNum.indexOf('#') + 1);
+        if (secNum.indexOf('#') != -1)
+            secNum = secNum.substr(secNum.indexOf('#') + 1);
         if (!$('body').hasClass('inner-page'))
             $(".content").moveTo(secNum);
-        else
-            window.location = '/site/index?sec=' + secNum;
+        else {
+            if (secNum.indexOf('#') != -1)
+                window.location = '/site/index?sec=' + secNum;
+            else
+                window.location = secNum;
+        }
     });
 
     var url = window.location.href;
-    if(url.indexOf('?sec=') != -1){
+    if (url.indexOf('?sec=') != -1) {
         var secNum = url.substr(url.indexOf('?sec=') + 5);
         $(".content").moveTo(secNum);
     }
@@ -275,8 +280,8 @@ $.fn.digitFormat = function () {
                 var arr = value.split('.');
                 console.log(arr);
                 value = arr[0]
-                    .replace(/\D/g, "")
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "." + arr[1];
+                        .replace(/\D/g, "")
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "." + arr[1];
                 return value;
             }
             return value

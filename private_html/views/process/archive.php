@@ -13,7 +13,7 @@ $baseUrl = $this->theme->baseUrl;
 ?>
 <div class="text-page row">
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 title-box">
-        <h3><b><?= trans('words', 'Process') ?></b>
+        <h3><b><?= trans('words', 'Project implementation process') ?></b>
             <small><?= trans('words', 'Mosque of karbala') ?></small>
         </h3>
         <small><?= trans('words', 'Process Archive Description') ?></small>

@@ -255,6 +255,8 @@ return [
     'Update Category: {name}' => 'ویرایش دسته بندی: {name}',
 
     ///////// Post
+    'News' => 'اخبار',
+    'News Archive' => 'آرشیو اخبار',
     'Post' => 'مطالب',
     'Posts' => 'مطالب',
     'Create Post' => 'افزودن مطلب',

@@ -16,10 +16,17 @@ $baseUrl = $this->theme->baseUrl;
     <div class="container">
         <a href="<?= Url::to(['/site/index'])?>" class="logo" title="<?= trans('words', 'Mosque of karbala') ?>">
             <img src="<?= $this->theme->baseUrl.'/images/logo.png' ?>" alt="<?= app()->name ?>">
-            <h1>
-                <span class="arabic"><?= trans('words', 'Great mosque') ?> <span><?= trans('words', 'karbala') ?></span></span>
-                <span class="english"><?= trans('words', 'Great mosque', [], 'en') ?> <span><?= trans('words', 'of Karbala', [], 'en') ?></span></span>
-            </h1>
+            <?php if(app()->language == 'en'):?>
+                <h1>
+                    <span class="arabic"><?= trans('words', 'karbala') ?> <span><?= trans('words', 'Great mosque') ?></span></span>
+                    <span class="english"><?= trans('words', 'english_logo_desc') ?></span>
+                </h1>
+            <?php else:?>
+                <h1>
+                    <span class="arabic"><?= trans('words', 'Great mosque') ?> <span><?= trans('words', 'karbala') ?></span></span>
+                    <span class="english"><?= trans('words', 'Great mosque', [], 'en') ?> <span><?= trans('words', 'of Karbala', [], 'en') ?></span></span>
+                </h1>
+            <?php endif;?>
         </a>
     </div>
 </div>

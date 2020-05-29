@@ -373,4 +373,6 @@ return [
     'Acceleration and International Accounts Network'=> 'شبکه شتاب و حساب های بین المللی',
     'Bank account number'=> 'شماره حساب بانکی',
     'Approved phone number'=> 'شماره تماس تایید شده',
+
+    'english_logo_desc' => 'توضیحات لوگو در زبان انگلیسی',
 ];

@@ -34,7 +34,12 @@ AppAsset::register($this);
     <?php endif; ?>
     <link href="<?= $this->theme->baseUrl . '/css/bootstrap-4-classes.css' ?>" rel="stylesheet">
     <link href="<?= $this->theme->baseUrl . '/css/font-awesome.css' ?>" rel="stylesheet">
-    <link href="<?= $this->theme->baseUrl . '/css/hacen-maghreb.css' ?>" rel="stylesheet">
+    <?php if(app()->language == 'fa'):?>
+        <link href="<?= $this->theme->baseUrl . '/css/fontiran.css' ?>" rel="stylesheet">
+    <?php endif;?>
+    <?php if(app()->language == 'ar'):?>
+        <link href="<?= $this->theme->baseUrl . '/css/hacen-maghreb.css' ?>" rel="stylesheet">
+    <?php endif;?>
     <link href="<?= $this->theme->baseUrl . '/css/open-sans.css' ?>" rel="stylesheet">
     <link href="<?= $this->theme->baseUrl . '/css/owl.carousel.min.css' ?>" rel="stylesheet">
     <link href="<?= $this->theme->baseUrl . '/css/owl.theme.default.min.css' ?>" rel="stylesheet">
@@ -43,6 +48,9 @@ AppAsset::register($this);
     <link href="<?= $this->theme->baseUrl . '/css/bootstrap-theme.css' ?>" rel="stylesheet">
     <?php if(app()->language == 'en'):?>
         <link href="<?= $this->theme->baseUrl . '/css/bootstrap-theme-ltr.css' ?>" rel="stylesheet">
+    <?php endif;?>
+    <?php if(app()->language == 'fa'):?>
+        <link href="<?= $this->theme->baseUrl . '/css/bootstrap-theme-fa.css' ?>" rel="stylesheet">
     <?php endif;?>
     <link href="<?= $this->theme->baseUrl . '/css/responsive-theme.css' ?>" rel="stylesheet">
     <?php if(app()->language == 'en'):?>

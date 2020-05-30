@@ -375,4 +375,8 @@ return [
     'Approved phone number'=> 'شماره تماس تایید شده',
 
     'english_logo_desc' => 'توضیحات لوگو در زبان انگلیسی',
+    'home' => 'صفحه اصلی',
+    'Required' => 'الزامی',
+    'payment_modal_desc' => 'متن مودال پرداخت',
+    'Shetab Network' => 'شبکه شتاب',
 ];

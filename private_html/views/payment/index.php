@@ -73,7 +73,7 @@ $helpItem = Yii::$app->request->getQueryParam('itm');
                             <div class="image">
                                 <img src="<?= $this->theme->baseUrl ?>/images/shetab.png">
                             </div>
-                            شبكة التسريع
+                            <?= trans('words', 'Shetab Network')?>
                         </li>
                     </ul>
 
@@ -86,8 +86,7 @@ $helpItem = Yii::$app->request->getQueryParam('itm');
                                 <div class="modal-body">
                                     <h5><?= trans('words', 'Acceleration and International Accounts Network') ?></h5>
                                     <div class="text">
-                                        ثم هداه صدق الله العظيم. فلما لاح له من ذلك، أن الروح الحيواني بنوع واحد، وان
-                                        عرض له التكثر بوجه ما، فكان يرى النوع بهذا النظر على ان حقيقة الروح
+                                        <?= trans('words', 'payment_modal_desc')?>
                                     </div>
                                     <?php $form = ActiveForm::begin([
                                             'id' => 'payment-form',
@@ -99,14 +98,14 @@ $helpItem = Yii::$app->request->getQueryParam('itm');
 
                                     <?= Html::activeTextInput($model, 'payerName',
                                             ['placeholder' => $model->getAttributeLabel( 'payerName')]) ?>
-                                    <span class="required">إلزامي *</span>
+                                    <span class="required"><?= trans('words', 'Required')?> *</span>
                                     <?= Html::error($model, 'payerName')?>
                                     <?= Html::activeTextInput($model, 'payerMobile',
                                             ['placeholder' => $model->getAttributeLabel( 'payerMobile')]) ?>
 
                                     <?= Html::activeTextInput($model, 'amount',
                                             ['placeholder' => $model->getAttributeLabel( 'amount'), 'class' => 'digitFormat']) ?>
-                                    <span class="required">إلزامي *</span>
+                                    <span class="required"><?= trans('words', 'Required')?> *</span>
                                     <p style="color: gray"><?= trans('words', 'Tomans') ?></p>
                                     <?= Html::submitInput(trans('words', 'Payment')) ?>
                                     <?php ActiveForm::end(); ?>

@@ -483,58 +483,128 @@ body {
 .about-container .body-info {
     background: url(../images/about-bg.png) no-repeat right bottom;
 }
-.contact-form-container .button-container .input-group-addon{
+
+.contact-form-container .button-container .input-group-addon {
     border-radius: 10px 0 0 10px;
 }
-.contact-form-container .button-container .captcha-control{
+
+.contact-form-container .button-container .captcha-control {
     border-right: none;
     border-left: 1px solid #777;
     border-radius: 0 10px 10px 0;
 }
+
 .contact-form-container .phone::placeholder,
 .contact-form-container .email::placeholder {
     text-align: left;
 }
-.contact-form-container select{
+
+.contact-form-container select {
     background: #fff url(../svg/bottom-arrow.svg) no-repeat calc(100% - 10px) center;
     background-size: 15px;
 }
-.footer .copyright{
+
+.footer .copyright {
     padding-left: 45px;
     padding-right: 0;
 }
-.footer .report{
+
+.footer .report {
     right: -50px;
     left: auto;
     border-radius: 20px 0 0 20px;
 }
-.footer .report h3 i{
+
+.footer .report h3 i {
     margin-left: 0;
     margin-right: 10px;
 }
-.footer .report ul{
+
+.footer .report ul {
     padding: 0 0 0 23px;
 }
-.footer .report ul li{
+
+.footer .report ul li {
     float: left;
 }
+
 .footer .report ul li > div,
-.footer .report ul li > b{
+.footer .report ul li > b {
     padding-left: 14px;
     padding-right: 0;
 }
-.footer .report ul li > div:before{
+
+.footer .report ul li > div:before {
     right: auto;
     left: 0;
 }
-.footer .btn-donate{
+
+.footer .btn-donate {
     padding: 10px 100px 10px 30px;
     border-radius: 10px 10px 4px 10px;
     margin-left: 30px;
     margin-right: 0;
 }
-.footer .btn-donate .left-side--btn__heart{
+
+.footer .btn-donate .left-side--btn__heart {
     right: 0;
     left: auto;
     transform: translateX(46%);
+}
+
+.inner-page .title-box h3:after {
+    left: 0;
+    right: auto;
+}
+
+.inner-page .title-box .nav-tabs.right-tab-trigger > li.active > a,
+.inner-page .title-box .nav-tabs.right-tab-trigger > li > a:hover,
+.inner-page .donate-page .title-box .nav-tabs > li.active > a,
+.inner-page .donate-page .title-box .nav-tabs > li > a:hover {
+    background: #07a146 url(../svg/right-w.svg) no-repeat calc(100% - 15px) center;
+    background-size: 25px;
+    padding-left: 15px;
+    padding-right: 50px;
+}
+
+.inner-page-content {
+    background: url(../images/about-bg.png) no-repeat bottom right;
+}
+
+.inner-page-content:after {
+    border-top: 100px solid transparent;
+    border-right: none;
+    border-left: 100vw solid #07a146;
+    border-bottom: 0 solid transparent;
+}
+
+.inner-page .payment-methods .modal-body .form .required {
+    float: right;
+    padding-left: 0;
+    padding-right: 10px;
+}
+
+.inner-page .donate-page .bank-accounts li h5 {
+    float: left;
+}
+
+.inner-page .donate-page .bank-accounts li .account-number {
+    float: right;
+    width: 320px;
+}
+
+.inner-page .donate-page .bank-accounts li .account-number .text-left {
+    float: right;
+    max-width: 170px;
+}
+
+.inner-page .donate-page .panel-title .image {
+    float: left;
+    margin-left: 0;
+    margin-right: 20px;
+}
+
+.inner-page .donate-page .panel-default > .panel-heading + .panel-collapse > .panel-body {
+    padding-right: 0;
+    padding-left: 115px;
 }

@@ -2,119 +2,257 @@
     .logo-container .logo h1 {
         padding: 10px 0 10px 32px;
     }
+
     .logo-container .logo h1 .arabic span,
-    .logo-container .logo h1 .arabic{
+    .logo-container .logo h1 .arabic {
         font-size: 16px;
     }
+
     .logo-container .logo h1 .english,
-    .logo-container .logo h1 .english span{
+    .logo-container .logo h1 .english span {
         font-size: 12px;
     }
-    .project-intro .top-bar-info_cell.with-icon span{
+
+    .project-intro .top-bar-info_cell.with-icon span {
         padding-left: 10px;
         padding-right: 0;
     }
+
     .project-intro .top-bar-info_cell {
         padding-left: 70px;
         padding-right: 20px;
     }
-    .project-intro .top-bar-info--inner{
+
+    .project-intro .top-bar-info--inner {
         border-radius: 15px;
     }
+
     .project-intro .top-bar-info_cell.with-icon {
         padding: 15px 20px !important;
     }
-    .project-intro .top-bar-info_cell .info-icon{
+
+    .project-intro .top-bar-info_cell .info-icon {
         float: left;
     }
-    .project-intro .top-bar-info_cell i{
+
+    .project-intro .top-bar-info_cell i {
         left: 70px;
         right: 20px;
     }
+
     .project-intro .top-bar-info_btn:after {
         right: 10px;
         left: auto;
         background: url(../svg/right-w.svg) no-repeat center right;
         background-size: 20px;
     }
+
     .project-intro .top-bar-info_btn {
         padding: 0 40px 0 10px;
         text-align: right;
     }
-    .project-intro .right-side--menu li{
+
+    .project-intro .right-side--menu li {
         margin-left: 0;
         margin-right: 10px;
     }
+
     .project-intro .left-side--info {
         right: auto;
         left: auto;
     }
-    .project-intro .left-side--btn:nth-child(3){
+
+    .project-intro .left-side--btn:nth-child(3) {
         padding-left: 30px;
         padding-right: 5px;
         right: auto;
         left: 0;
     }
-    .project-intro .left-side--btn{
+
+    .project-intro .left-side--btn {
         padding-left: 0;
         padding-right: 30px;
         left: auto;
         right: 0;
     }
+
     .project-intro .left-side--btn__btn-donate {
         padding: 0 0 0 15px;
         background: #c52828 url(../svg/right-w.svg) no-repeat calc(100% - 10px) center;
         background-size: 20px;
     }
+
     .project-intro .left-side--btn__heart {
         left: auto;
         right: 55px;
     }
+
     .project-intro .left-side--btn__btn-more {
         padding: 4px 0 4px 15px;
     }
+
     .project-intro .left-side--btn__btn-more:after {
         background: url(../svg/right-b.svg) no-repeat center;
     }
+
     .project-intro:after {
         border-top: 60px solid transparent;
         border-right: none;
         border-left: 100vw solid #2B8ACE;
         border-bottom: 40px solid #2B8ACE;
     }
+
     .news-container .archive-link,
     .help-container .archive-link,
     .image-gallery .archive-link,
-    .video-gallery .archive-link{
+    .video-gallery .archive-link {
         padding-right: 50px;
         padding-left: 10px;
     }
+
     .news-container .archive-link:after,
     .help-container .archive-link:after,
-    .video-gallery .archive-link:after{
+    .video-gallery .archive-link:after {
         background: url(../svg/right-b.svg) no-repeat scroll center;
         background-size: 25px;
     }
+
     .image-gallery .archive-link:after {
         background: url(../svg/right-w.svg) no-repeat scroll center;
         background-size: 25px;
     }
+
     .time-line-box .right-side--header {
         padding-right: 0;
         padding-left: 15px;
     }
+
     .time-line-container .btn-donate {
         padding: 0 0 0 15px;
         background: #c52828 url(../svg/right-w.svg) no-repeat calc(100% - 10px) center;
         background-size: 20px;
         left: auto;
     }
+
     .time-line-container .btn-donate .left-side--btn__heart {
         right: calc(50% - 60px);
         left: auto;
     }
-    .help-container .archive-link{
+
+    .help-container .archive-link {
         right: auto;
+    }
+
+    .contact-us .left-side li .bank-accounts li {
+        text-align: left;
+    }
+
+    .help-container .help-content .help-item span,
+    .help-container .help-content .help-item h3 {
+        padding-right: 0;
+        padding-left: 80px;
+    }
+
+    .help-container .help-content .help-item a {
+        padding: 25px 0 25px 80px;
+    }
+
+    .news-container .news-slider .news-item .info {
+        padding-left: 15px;
+    }
+
+    .mobile-footer-menu .btn-donate {
+        right: 15px;
+        left: auto;
+    }
+
+    .mobile-index-menu .logo h2,
+    .desktop-menu .logo h2 {
+        padding: 0 10px 0 32px;
+    }
+
+    .mobile-index-menu .logo img,
+    .desktop-menu .logo img {
+        float: left;
+    }
+
+    .mobile-index-menu .logo,
+    .desktop-menu .logo {
+        right: auto;
+        left: 50%;
+        margin-right: 0;
+        margin-left: -135px;
+        width: 270px;
+    }
+
+    .mobile-index-menu ul li a {
+        right: auto;
+        left: 10%;
+        text-align: left;
+        background: #fff url(../svg/right-b.svg) no-repeat calc(100% - 10px) center;
+        background-size: 25px;
+    }
+
+    .inner-page .logo-container .logo {
+        left: auto;
+        right: auto;
+    }
+
+    .inner-page .logo-container .logo h1 {
+        padding: 0 0 0 32px;
+    }
+
+    .inner-page .title-box .nav-tabs.right-tab-trigger > li.active > a,
+    .inner-page .title-box .nav-tabs.right-tab-trigger > li > a:hover {
+        padding-right: 15px;
+    }
+
+    .inner-page .title-box .nav-tabs.right-tab-trigger > li > a {
+        font-size: 16px;
+    }
+
+    .inner-page .gallery-page .nav-tabs > li.active > a,
+    .inner-page .gallery-page .nav-tabs > li > a:hover,
+    .inner-page .text-page .nav-tabs > li.active > a,
+    .inner-page .text-page .nav-tabs > li > a:hover,
+    .inner-page .donate-page .title-box .nav-tabs > li.active > a,
+    .inner-page .donate-page .title-box .nav-tabs > li > a:hover {
+        padding-right: 15px;
+        padding-left: 0;
+    }
+
+    .inner-page .title-box .nav-tabs.right-tab-trigger > li.active > a:after,
+    .inner-page .gallery-page .nav-tabs > li.active > a:after,
+    .inner-page .text-page .nav-tabs > li.active > a:after,
+    .inner-page .donate-page .title-box .nav-tabs > li.active > a:after {
+        left: 0;
+        right: auto;
+    }
+
+    .inner-page .gallery-page .nav-tabs > li,
+    .inner-page .text-page .nav-tabs > li,
+    .inner-page .donate-page .title-box .nav-tabs > li {
+        margin-right: 10px;
+        margin-left: 0;
+    }
+
+    .inner-page .gallery-page .nav-tabs > li > a,
+    .inner-page .text-page .nav-tabs > li > a,
+    .inner-page .donate-page .title-box .nav-tabs > li > a {
+        font-size: 16px;
+    }
+
+    .inner-page .donate-page .payment-methods li {
+        text-align: left;
+    }
+
+    .inner-page .donate-page .bank-accounts li .account-number .text-left {
+        font-size: 16px;
+        max-width: 150px;
+    }
+
+    .inner-page .donate-page .bank-accounts li .account-number {
+        width: 100%;
     }
 }
 

@@ -154,24 +154,31 @@ AppAsset::register($this);
 <?= $this->render('_desktop_menu'); ?>
 <div class="mobile-index-menu">
     <button type="button" class="close">&times;</button>
-    <span class="title">الصفحــة الرئيسـية</span>
+    <span class="title"><?= trans('words', 'Home')?></span>
     <ul>
-        <li><a href="#project-intro-info">عملية تنفيذ المشروع</a></li>
-        <li><a href="#project-intro">أجزاء من المشروع</a></li>
-        <li><a href="#contact-us">كيف يمكنني المساعدة؟</a></li>
-        <li><a href="#video-gallery">معرض الفيديو</a></li>
-        <li><a href="#image-gallery">معرض الصور</a></li>
-        <li><a href="#timeline">خطوات البناء</a></li>
-        <li><a href="#media-gallery">ونقلت عن</a></li>
-        <li><a href="#help">المساعدة الموضوعية</a></li>
-        <li><a href="#news">أخبار متعلقة بمشروع</a></li>
+        <li><a href="#project-intro-info"><?= trans('words', 'Project implementation process')?></a></li>
+        <li><a href="#project-intro"><?= trans('words', 'Project sections')?></a></li>
+        <li><a href="#contact-us"><?= trans('words', 'how can I help?')?></a></li>
+        <li><a href="#video-gallery"><?= trans('words', 'Video Gallery')?></a></li>
+        <li><a href="#image-gallery"><?= trans('words', 'Picture Gallery')?></a></li>
+        <li><a href="#timeline"><?= trans('words', 'Construction steps')?></a></li>
+        <li><a href="#media-gallery"><?= trans('words', 'Comments')?></a></li>
+        <li><a href="#help"><?= trans('words', 'Objective assistance')?></a></li>
+        <li><a href="#news"><?= trans('words', 'News')?></a></li>
     </ul>
     <a href="#" class="logo" title="<?= app()->name ?>">
         <img src="<?= $this->theme->baseUrl.'/images/logo.png' ?>" alt="<?= app()->name ?>">
-        <h2>
-            <span class="arabic"><?= trans('words', 'Great mosque') ?> <span><?= trans('words', 'karbala') ?></span></span>
-            <span class="english"><?= trans('words', 'Great mosque') ?> <span><?= trans('words', 'of Karbala') ?></span></span>
-        </h2>
+        <?php if(app()->language == 'en'):?>
+            <h2>
+                <span class="arabic"><?= trans('words', 'karbala') ?> <span><?= trans('words', 'Great mosque') ?></span></span>
+                <span class="english"><?= trans('words', 'english_logo_desc') ?></span>
+            </h2>
+        <?php else:?>
+            <h2>
+                <span class="arabic"><?= trans('words', 'Great mosque') ?> <span><?= trans('words', 'karbala') ?></span></span>
+                <span class="english"><?= trans('words', 'Great mosque', [], 'en') ?> <span><?= trans('words', 'of Karbala', [], 'en') ?></span></span>
+            </h2>
+        <?php endif;?>
     </a>
 </div>
 

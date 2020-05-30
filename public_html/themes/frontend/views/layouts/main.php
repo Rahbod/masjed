@@ -46,6 +46,9 @@ AppAsset::register($this);
         <link href="<?= $this->theme->baseUrl . '/css/bootstrap-theme-ltr.css' ?>" rel="stylesheet">
     <?php endif;?>
     <link href="<?= $this->theme->baseUrl . '/css/responsive-theme.css' ?>" rel="stylesheet">
+    <?php if(app()->language == 'en'):?>
+        <link href="<?= $this->theme->baseUrl . '/css/responsive-theme-ltr.css' ?>" rel="stylesheet">
+    <?php endif;?>
 
     <?php if (app()->language != 'en'): ?>
 

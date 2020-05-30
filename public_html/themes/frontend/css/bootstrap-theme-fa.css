@@ -1,0 +1,10 @@
+body {
+    font-family: IRANSans;
+    font-size: 14px;
+}
+.time-line-container .btn-donate{
+    padding-left: 50px;
+}
+.time-line .time-line-item .date b{
+    font-family: IRANSans;
+}

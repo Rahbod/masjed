@@ -25,10 +25,17 @@ $processMoreLink = ProjectProcess::getMoreLink();
             <div class="logo-container">
                 <a href="#" class="logo" title="<?= app()->name ?>">
                     <img src="<?= $this->theme->baseUrl.'/images/logo.png' ?>" alt="<?= app()->name ?>">
-                    <h1>
-                        <span class="arabic"><?= trans('words', 'Great mosque') ?> <span><?= trans('words', 'karbala') ?></span></span>
-                        <span class="english"><?= trans('words', 'Great mosque', [], 'en') ?> <span><?= trans('words', 'of Karbala', [], 'en') ?></span></span>
-                    </h1>
+                    <?php if(app()->language == 'en'):?>
+                        <h1>
+                            <span class="arabic"><?= trans('words', 'karbala') ?> <span><?= trans('words', 'Great mosque') ?></span></span>
+                            <span class="english"><?= trans('words', 'english_logo_desc') ?></span>
+                        </h1>
+                    <?php else:?>
+                        <h1>
+                            <span class="arabic"><?= trans('words', 'Great mosque') ?> <span><?= trans('words', 'karbala') ?></span></span>
+                            <span class="english"><?= trans('words', 'Great mosque', [], 'en') ?> <span><?= trans('words', 'of Karbala', [], 'en') ?></span></span>
+                        </h1>
+                    <?php endif;?>
                 </a>
             </div>
             <nav class="navbar">
@@ -45,7 +52,7 @@ $processMoreLink = ProjectProcess::getMoreLink();
                 </div>
             </nav>
             <div class="copyright">
-                <div><b>All Rights Reserved</b> masjed jame karbala</div>
+                <div><b>All Rights Reserved</b> Karbala great mosque</div>
                 <div><b>Design by</b> <a href="https://tarsiminc.com/">Tarsim.inc</a></div>
             </div>
         </div>

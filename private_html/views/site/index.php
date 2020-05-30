@@ -172,7 +172,7 @@ $this->registerJs("
         </div>
         <div class="left-side">
             <div class="container-fluid">
-                <ul class="text-white mobile-carousel owl-carousel owl-theme" data-items="1" data-nav="false" data-dots="true" data-rtl="true">
+                <ul class="text-white mobile-carousel owl-carousel owl-theme" data-items="1" data-nav="false" data-dots="true" <?php if(app()->language != 'en'):?>data-rtl="true"<?php endif;?>>
                     <li>
                         <span class="num">1</span>
                         <h2><?= trans('words', 'Command code') ?>
@@ -252,7 +252,7 @@ $this->registerJs("
                             ?>
                             <div id="video-gallery-tab-<?= $category->id ?>"
                                  class="tab-pane fade<?= $i++ == 0 ? ' in active' : '' ?>">
-                                <div class="video-slider owl-carousel owl-theme" data-items="1" data-rtl="true"
+                                <div class="video-slider owl-carousel owl-theme" data-items="1" <?php if(app()->language != 'en'):?>data-rtl="true"<?php endif;?>
                                      data-dots="true" data-nav="true">
                                     <?php foreach ($videos as $video): if (!$video->getVideoSrc()) {
                                         continue;
@@ -279,7 +279,7 @@ $this->registerJs("
                         <?php endforeach; ?>
                     </div>
                     <?php $lastVideos = VideoGallery::getLastList(5, Gallery::TYPE_VIDEO_GALLERY);?>
-                    <div class="video-slider owl-carousel owl-theme mobile-carousel visible-xs" data-items="1" data-rtl="true"
+                    <div class="video-slider owl-carousel owl-theme mobile-carousel visible-xs" data-items="1" <?php if(app()->language != 'en'):?>data-rtl="true"<?php endif;?>
                          data-dots="true" data-nav="false">
                         <?php foreach($lastVideos as $video):?>
                             <?php if (!$video->getVideoSrc()) continue;?>
@@ -344,7 +344,7 @@ $this->registerJs("
                             <div id="picture-gallery-tab-<?= $category->id ?>"
                                  class="tab-pane fade<?= $i++ == 0 ? ' in active' : '' ?>">
                                 <div class="image-slider owl-carousel owl-theme" data-margin="15" data-items="1"
-                                     data-rtl="true" data-dots="true" data-nav="false">
+                                     <?php if(app()->language != 'en'):?>data-rtl="true"<?php endif;?> data-dots="true" data-nav="false">
                                     <?php
                                     $j = 0;
                                     foreach ($photos as $photo):?>
@@ -362,7 +362,7 @@ $this->registerJs("
                     </div>
                     <?php $lastPhotos = PictureGallery::getLastList(5, Gallery::TYPE_PICTURE_GALLERY);?>
                     <div class="image-slider owl-carousel owl-theme visible-xs mobile-carousel" data-items="1"
-                         data-rtl="true" data-dots="true" data-nav="false">
+                         <?php if(app()->language != 'en'):?>data-rtl="true"<?php endif;?> data-dots="true" data-nav="false">
                         <?php foreach($lastPhotos as $photo):?>
                             <div class="image-item">
                                 <a href="<?= $photo->getImageSrc() ?>" data-lightbox="img-set-<?= $category->id?>" data-title="<?= $photo->getName()?>"><img src="<?= $photo->getImageSrc() ?>"
@@ -396,7 +396,7 @@ $this->registerJs("
         </div>
         <div class="bg"></div>
         <div class="time-line-container">
-            <div class="time-line owl-carousel owl-theme" data-items="5" data-rtl="ltr" data-dots="false"
+            <div class="time-line owl-carousel owl-theme" data-items="5" <?php if(app()->language != 'en'):?>data-rtl="ltr"<?php endif;?> data-dots="false"
                  data-nav="true" data-responsive='{"0":{"items":3}}'>
                 <?php foreach ($timelines as $timeline): ?>
                     <div class="time-line-item <?= $timeline->stateClasses[$timeline->state] ?>">
@@ -460,7 +460,7 @@ $this->registerJs("
         <div class="left-side">
             <div class="container-fluid">
                 <div class="media-gallery-container">
-                    <div class="media-slider owl-carousel owl-theme" data-items="1" data-rtl="true" data-dots="true"
+                    <div class="media-slider owl-carousel owl-theme" data-items="1" <?php if(app()->language != 'en'):?>data-rtl="true"<?php endif;?> data-dots="true"
                          data-nav="false">
                         <?php foreach ($comments as $comment): ?>
                             <div class="media-item">
@@ -537,7 +537,7 @@ $this->registerJs("
             <a href="<?= Url::to(['/post/news']) ?>" class="archive-link hidden-xs"><?= trans('words', 'Project<br>news archive') ?></a>
         </div>
         <div class="left-side">
-            <div class="news-slider owl-carousel owl-theme" data-items="1" data-rtl="true" data-dots="true"
+            <div class="news-slider owl-carousel owl-theme" data-items="1" <?php if(app()->language != 'en'):?>data-rtl="true"<?php endif;?> data-dots="true"
                  data-nav="true">
                 <?php foreach ($news as $item): ?>
                     <div class="news-item">

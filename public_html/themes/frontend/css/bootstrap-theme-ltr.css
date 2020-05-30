@@ -284,61 +284,256 @@ body {
     padding-left: 70px;
     padding-right: 0;
 }
-.contact-us .left-side li h2{
+
+.contact-us .left-side li h2 {
     margin: 0 0 0 15px;
 }
-.contact-us .left-side li .left-text{
+
+.contact-us .left-side li .left-text {
     float: right;
     text-align: right;
 }
-.contact-us .left-side li .bank-accounts b{
+
+.contact-us .left-side li .bank-accounts b {
     right: auto;
     left: 0;
     text-align: left;
 }
-.contact-us .left-side li .bank-accounts .account-num{
+
+.contact-us .left-side li .bank-accounts .account-num {
     left: auto;
     right: 0;
     text-align: right;
 }
-.contact-us .left-side li .bank-accounts{
+
+.contact-us .left-side li .bank-accounts {
     padding-right: 0;
     padding-left: 61px;
 }
-.video-gallery .body-info{
+
+.video-gallery .body-info {
     background: url("../images/video-bg-mobile.png") no-repeat left center;
     background-size: 35vh auto;
 }
-.image-gallery .body-info{
+
+.image-gallery .body-info {
     background: #dfdfdf url(../images/image-bg-ltr.png) no-repeat right bottom;
     background-size: contain;
 }
-.time-line-box .right-side--header{
+
+.time-line-box .right-side--header {
     padding-left: 0;
 }
-.time-line-text h2{
+
+.time-line-text h2 {
     float: left;
     margin-left: 0;
     margin-right: 15px;
     padding-left: 0;
     padding-right: 19px;
 }
-.time-line-text h2 .num{
+
+.time-line-text h2 .num {
     float: left;
     margin-right: 10px;
     margin-left: 0;
 }
-.time-line-text h2:after{
+
+.time-line-text h2:after {
     left: auto;
     right: 0;
 }
-.time-line-container .btn-donate{
+
+.time-line-container .btn-donate {
     padding: 15px 70px 15px 30px;
     border-radius: 15px 0 4px 15px;
     left: 270px;
     right: auto;
 }
-.time-line-container .btn-donate .left-side--btn__heart{
+
+.time-line-container .btn-donate .left-side--btn__heart {
+    right: 0;
+    left: auto;
+    transform: translateX(46%);
+}
+
+.project-intro .right-side--menu > li > a .right-side--menu__icon {
+    float: left;
+    margin-left: 0;
+    margin-right: 15px;
+}
+
+.contact-form-container .right-side,
+.about-container .right-side,
+.news-container .right-side,
+.media-gallery .right-side,
+.video-gallery .right-side,
+.image-gallery .right-side {
+    padding: 10vh 0 10vh 50px;
+}
+
+.media-gallery .body-info {
+    background: #303030 url(../images/media-bg-ltr.png) no-repeat right bottom;
+    background-size: contain;
+}
+
+.help-container .right-side--header {
+    padding-left: 0;
+}
+
+.help-container .help-content .help-column.third {
+    padding-top: 0;
+}
+
+.help-container .help-content .help-column.first {
+    padding-top: 150px;
+}
+
+.help-container .help-content .help-item span,
+.help-container .help-content .help-item h3 {
+    padding-left: 125px;
+    padding-right: 0;
+}
+
+.help-container .help-content .help-item a {
+    padding: 55px 0 55px 60%;
+}
+
+.help-container .help-content .help-item a i {
+    margin-left: 15px;
+    margin-right: 0;
+    background: url(../svg/right-w.svg) no-repeat center;
+    background-size: 30px;
+}
+
+.help-container .archive-link {
+    right: 100px;
+    left: auto;
+    padding: 8px 70px 10px 30px
+}
+
+.news-page .archive-link:after,
+.news-container .archive-link:after,
+.help-container .archive-link:after,
+.image-gallery .archive-link:after,
+.video-gallery .archive-link:after {
+    background: url('../svg/right-w.svg') no-repeat scroll center transparent;
+    background-size: contain;
+    left: auto;
+    right: 10px;
+}
+
+.news-container .news-slider .news-item .image {
+    float: left;
+}
+
+.news-container .news-slider .news-item .info {
+    float: left;
+    padding-left: 50px;
+    padding-right: 0;
+}
+
+.news-container .news-slider .news-item .info h3:after {
+    right: auto;
+    left: 0;
+}
+
+.news-container .news-slider .news-item .more-details {
+    float: right;
+}
+
+.image-gallery .archive-link {
+    right: 0;
+    left: auto;
+    padding: 8px 70px 10px 30px;
+}
+
+.news-container .archive-link {
+    right: auto;
+    left: 100px;
+}
+
+.news-page .archive-link,
+.news-container .archive-link,
+.help-container .archive-link,
+.image-gallery .archive-link,
+.video-gallery .archive-link {
+    padding: 8px 70px 10px 30px;
+}
+
+.time-line.owl-theme .owl-nav .owl-prev {
+    right: auto;
+    left: 0;
+}
+
+.time-line.owl-theme .owl-nav [class*=owl-] .svg-arrow-right {
+    background-image: url(../svg/left.svg);
+}
+
+.time-line.owl-theme .owl-nav [class*=owl-] .svg-arrow-left {
+    background-image: url(../svg/right.svg);
+}
+
+.about-container .rectangle {
+    border-top: 100px solid transparent;
+    border-left: 100vw solid #07a146;
+    border-bottom: 0 solid transparent;
+}
+
+.about-container .body-info {
+    background: url(../images/about-bg.png) no-repeat right bottom;
+}
+.contact-form-container .button-container .input-group-addon{
+    border-radius: 10px 0 0 10px;
+}
+.contact-form-container .button-container .captcha-control{
+    border-right: none;
+    border-left: 1px solid #777;
+    border-radius: 0 10px 10px 0;
+}
+.contact-form-container .phone::placeholder,
+.contact-form-container .email::placeholder {
+    text-align: left;
+}
+.contact-form-container select{
+    background: #fff url(../svg/bottom-arrow.svg) no-repeat calc(100% - 10px) center;
+    background-size: 15px;
+}
+.footer .copyright{
+    padding-left: 45px;
+    padding-right: 0;
+}
+.footer .report{
+    right: -50px;
+    left: auto;
+    border-radius: 20px 0 0 20px;
+}
+.footer .report h3 i{
+    margin-left: 0;
+    margin-right: 10px;
+}
+.footer .report ul{
+    padding: 0 0 0 23px;
+}
+.footer .report ul li{
+    float: left;
+}
+.footer .report ul li > div,
+.footer .report ul li > b{
+    padding-left: 14px;
+    padding-right: 0;
+}
+.footer .report ul li > div:before{
+    right: auto;
+    left: 0;
+}
+.footer .btn-donate{
+    padding: 10px 100px 10px 30px;
+    border-radius: 10px 10px 4px 10px;
+    margin-left: 30px;
+    margin-right: 0;
+}
+.footer .btn-donate .left-side--btn__heart{
     right: 0;
     left: auto;
     transform: translateX(46%);

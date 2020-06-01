@@ -72,7 +72,6 @@ class Gallery extends Item
                 [['short_description'], 'string', 'max' => 255],
                 [['body', 'ar_body', 'en_body', ], 'string', 'max' => 1024],
                 ['modelID', 'default', 'value' => Model::findOne(['name' => self::$modelName])->id],
-                ['lang', 'default', 'value' => 'fa'],
 //            [['catID'], 'exist', 'skipOnError' => false, 'targetClass' => Category::className(), 'targetAttribute' => ['catID' => 'id']],
         ]);
     }

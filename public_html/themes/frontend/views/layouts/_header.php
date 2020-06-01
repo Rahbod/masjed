@@ -32,7 +32,7 @@ $baseUrl = $this->theme->baseUrl;
 </div>
 <?php if(Yii::$app->controller->id == 'site' and Yii::$app->controller->action->id == 'index'):?>
     <div class="dropdown language-dropdown visible-xs">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">عربي</a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?= trans('words', app()->language)?></a>
         <ul class="dropdown-menu dropdown-menu-left">
             <li><a href="<?= Url::to(['/fa'])?>"><?= trans('words', 'fa')?></a></li>
             <li><a href="<?= Url::to(['/ar'])?>"><?= trans('words', 'ar')?></a></li>

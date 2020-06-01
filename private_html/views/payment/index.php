@@ -146,6 +146,16 @@ $helpItem = Yii::$app->request->getQueryParam('itm');
                             echo $page->getBodyStr();
                     }
                     ?></div>
+                <ul class="bank-accounts">
+                    <?php foreach (Setting::get('donation.persons') as $item): if(empty($item[app()->language]['name'])) continue;?>
+                        <li>
+                            <h5><?= $item[app()->language]['name'] ?> <small>(<?= $item[app()->language]['country'] ?>)</small></h5>
+                            <div class="account-number">
+                                <span class="text-left"><?= $item[app()->language]['mobile'] ?></span>
+                            </div>
+                        </li>
+                    <?php endforeach;?>
+                </ul>
             </div>
             <div id="donate-5" class="tab-pane fade <?= $section == 5 ? 'in active' : ''?>">
                 <h3><?= trans('words', 'Objective assistance') ?></h3>

@@ -1,6 +1,7 @@
 @media screen and (max-width: 767px) {
     .logo-container .logo h1 {
-        padding: 10px 0 10px 32px;
+        padding: 20px 0 20px 32px;
+        line-height: 20px;
     }
 
     .logo-container .logo h1 .arabic span,
@@ -10,7 +11,7 @@
 
     .logo-container .logo h1 .english,
     .logo-container .logo h1 .english span {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .project-intro .top-bar-info_cell.with-icon span {
@@ -80,6 +81,7 @@
         padding: 0 0 0 15px;
         background: #c52828 url(../svg/right-w.svg) no-repeat calc(100% - 10px) center;
         background-size: 20px;
+        font-size: 12px;
     }
 
     .project-intro .left-side--btn__heart {
@@ -89,6 +91,7 @@
 
     .project-intro .left-side--btn__btn-more {
         padding: 4px 0 4px 15px;
+        line-height: 32px;
     }
 
     .project-intro .left-side--btn__btn-more:after {
@@ -108,6 +111,10 @@
     .video-gallery .archive-link {
         padding-right: 50px;
         padding-left: 10px;
+    }
+
+    .video-gallery .archive-link {
+        right: auto;
     }
 
     .news-container .archive-link:after,
@@ -253,6 +260,35 @@
 
     .inner-page .donate-page .bank-accounts li .account-number {
         width: 100%;
+    }
+
+    .inner-page .logo-container .logo h1 .english,
+    .inner-page .logo-container .logo h1 .english span {
+        font-size: 10px;
+    }
+
+    .news-archive-items li .image img {
+        left: auto;
+    }
+
+    .project-intro .top-bar-info_cell.with-icon span {
+        line-height: 20px;
+    }
+
+    .inner-page .donate-page .panel-default > .panel-heading + .panel-collapse > .panel-body {
+        padding-left: 15px;
+    }
+
+    .mobile-scrolled.inner-page .title-box .nav-tabs.right-tab-trigger > li > a, .mobile-scrolled.inner-page .gallery-page .nav-tabs > li > a, .mobile-scrolled.inner-page .donate-page .title-box .nav-tabs > li > a, .mobile-scrolled.inner-page .text-page .nav-tabs > li > a {
+        line-height: 20px;
+    }
+
+    .time-line-text h2 .num {
+        line-height: 40px;
+    }
+
+    .time-line-text h2 span {
+        line-height: 20px;
     }
 }
 

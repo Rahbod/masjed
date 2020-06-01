@@ -808,3 +808,8 @@ body {
     left: 50%;
     right: auto;
 }
+
+.mobile-scrolled.inner-page .logo-container .logo {
+    right: 30px;
+    left: auto;
+}

@@ -1438,6 +1438,7 @@
         width: auto;
     }
 
+    .media-gallery .media-item .media-container img,
     .media-gallery .media-item .media-container video {
         height: auto;
         width: 100%;
@@ -1541,6 +1542,12 @@
 
     .project-intro .top-bar-info_cell.with-icon span {
         width: 70px;
+    }
+
+    .inner-page .news-page h2 small {
+        float: none;
+        display: block;
+        margin-top: 10px;
     }
 }
 

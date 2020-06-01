@@ -78,6 +78,7 @@ $this->registerJs("
         <a href="#" class="navbar-toggler hidden-xs">
             <span class="bars-icon"></span>
         </a>
+        <?= $this->render('_language_dropdown'); ?>
         <div class="right-side">
             <div class="right-side--header">
                 <h3>
@@ -157,6 +158,7 @@ $this->registerJs("
         <a href="#" class="navbar-toggler hidden-xs">
             <span class="bars-icon"></span>
         </a>
+        <?= $this->render('_language_dropdown'); ?>
         <div class="right-side">
             <div class="right-side--header">
                 <h3 class="text-white underline-black">
@@ -221,6 +223,7 @@ $this->registerJs("
         <a href="#" class="navbar-toggler hidden-xs">
             <span class="bars-icon"></span>
         </a>
+        <?= $this->render('_language_dropdown'); ?>
         <div class="right-side">
             <div class="right-side--header">
                 <h3>
@@ -312,6 +315,7 @@ $this->registerJs("
         <a href="#" class="navbar-toggler hidden-xs">
             <span class="bars-icon"></span>
         </a>
+        <?= $this->render('_language_dropdown'); ?>
         <div class="right-side">
             <div class="right-side--header">
                 <h3>
@@ -387,6 +391,7 @@ $this->registerJs("
         <a href="#" class="navbar-toggler hidden-xs">
             <span class="bars-icon"></span>
         </a>
+        <?= $this->render('_language_dropdown'); ?>
         <div class="title right-side--header">
             <h3>
                 <b><?= trans('words', 'Construction steps') ?></b>
@@ -448,6 +453,7 @@ $this->registerJs("
         <a href="#" class="navbar-toggler hidden-xs">
             <span class="bars-icon"></span>
         </a>
+        <?= $this->render('_language_dropdown'); ?>
         <div class="right-side">
             <div class="right-side--header">
                 <h3>
@@ -495,6 +501,7 @@ $this->registerJs("
         <a href="#" class="navbar-toggler hidden-xs">
             <span class="bars-icon"></span>
         </a>
+        <?= $this->render('_language_dropdown'); ?>
         <div class="right-side--header">
             <h3>
                 <b><?= trans('words', 'Objective assistance') ?></b>
@@ -526,6 +533,7 @@ $this->registerJs("
         <a href="#" class="navbar-toggler hidden-xs">
             <span class="bars-icon"></span>
         </a>
+        <?= $this->render('_language_dropdown'); ?>
         <div class="right-side">
             <div class="right-side--header">
                 <h3>
@@ -565,6 +573,7 @@ $this->registerJs("
         <a href="#" class="navbar-toggler hidden-xs">
             <span class="bars-icon"></span>
         </a>
+        <?= $this->render('_language_dropdown'); ?>
         <div class="right-side">
             <div class="right-side--header">
                 <h3>

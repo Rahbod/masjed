@@ -34,9 +34,9 @@ $baseUrl = $this->theme->baseUrl;
     <div class="dropdown language-dropdown visible-xs">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">عربي</a>
         <ul class="dropdown-menu dropdown-menu-left">
-            <li><a href="#"><?= trans('words', 'fa')?></a></li>
-            <li><a href="#"><?= trans('words', 'ar')?></a></li>
-            <li><a href="#"><?= trans('words', 'en')?></a></li>
+            <li><a href="<?= Url::to(['/site/index/fa'])?>"><?= trans('words', 'fa')?></a></li>
+            <li><a href="<?= Url::to(['/site/index/ar'])?>"><?= trans('words', 'ar')?></a></li>
+            <li><a href="<?= Url::to(['/site/index/en'])?>"><?= trans('words', 'en')?></a></li>
         </ul>
     </div>
 <?php endif;?>

@@ -104,7 +104,8 @@ body {
 .logo-container .logo h1,
 .mobile-index-menu .logo h2,
 .desktop-menu .logo h2 {
-    padding: 10px 10px 10px 32px;
+    padding: 20px 10px 20px 32px;
+    line-height: 30px;
 }
 
 .logo-container .logo h1::before,
@@ -153,7 +154,7 @@ body {
 }
 
 .project-intro .top-bar-info_cell.with-icon {
-    padding: 0 0 0 45px !important;
+    padding: 0 0 0 55px !important;
 }
 
 .project-intro .top-bar-info_cell .info-icon {
@@ -167,6 +168,9 @@ body {
 
 .project-intro .top-bar-info_btn {
     text-align: left;
+    width: 100%;
+    height: 100%;
+    line-height: 32px;
 }
 
 .onepage-pagination {
@@ -200,6 +204,9 @@ body {
     border-right: 1px solid #d9d7d7;
 }
 
+.right-side--header h3{
+    font-size: 2rem;
+}
 .right-side--header h3:after {
     right: auto;
     left: 0;
@@ -252,7 +259,7 @@ body {
 }
 
 .project-intro .left-side--btn__btn-more {
-    padding: 8px 70px 10px 30px;
+    padding: 17px 70px 17px 30px;
 }
 
 .contact-form-container .right-side,
@@ -264,7 +271,7 @@ body {
 }
 
 .contact-us .more-info {
-    padding: 8px 70px 10px 30px;
+    padding: 17px 70px 17px 30px;
     margin-right: 0;
     margin-left: 50px;
 }
@@ -349,6 +356,7 @@ body {
     border-radius: 15px 0 4px 15px;
     left: 270px;
     right: auto;
+    width: 205px;
 }
 
 .time-line-container .btn-donate .left-side--btn__heart {
@@ -396,7 +404,7 @@ body {
 }
 
 .help-container .help-content .help-item a {
-    padding: 55px 0 55px 60%;
+    padding: 65px 0 65px 60%;
 }
 
 .help-container .help-content .help-item a i {
@@ -458,7 +466,7 @@ body {
 .help-container .archive-link,
 .image-gallery .archive-link,
 .video-gallery .archive-link {
-    padding: 8px 70px 10px 30px;
+    padding: 17px 70px 17px 30px;
 }
 
 .time-line.owl-theme .owl-nav .owl-prev {
@@ -607,4 +615,9 @@ body {
 .inner-page .donate-page .panel-default > .panel-heading + .panel-collapse > .panel-body {
     padding-right: 0;
     padding-left: 115px;
+}
+
+.project-intro .top-bar-info_cell i{
+    right: auto;
+    left: 0;
 }

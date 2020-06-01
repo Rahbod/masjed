@@ -3415,7 +3415,7 @@ h3.underline-black:after {
     width: 100%;
 }
 
-.language-dropdown {
+.language-dropdown.visible-xs {
     float: left;
     position: relative;
     z-index: 3;
@@ -3423,7 +3423,7 @@ h3.underline-black:after {
     left: 15px;
 }
 
-.language-dropdown .dropdown-toggle {
+.language-dropdown.visible-xs .dropdown-toggle {
     color: #fff;
     font-size: 14px;
     background: url("../svg/dots.svg") no-repeat right center;
@@ -3745,4 +3745,36 @@ h3.underline-black:after {
 
 .dir-ltr {
     direction: ltr;
+}
+.language-dropdown.hidden-xs {
+    position: absolute;
+    top: 31px;
+    left: 31px;
+    z-index: 2;
+}
+.language-dropdown.hidden-xs .dropdown-toggle{
+    color: #393939;
+    font-size: 14px;
+    line-height: 22px;
+}
+.language-dropdown.hidden-xs .dropdown-toggle i{
+    background: url("../svg/dots-b.svg") no-repeat right center;
+    background-size: 13px;
+    display: inline-block;
+    width: 15px;
+    height: 22px;
+    vertical-align: middle;
+}
+.contact-us .language-dropdown.hidden-xs .dropdown-toggle,
+.media-gallery .language-dropdown.hidden-xs .dropdown-toggle,
+.contact-form-container .language-dropdown.hidden-xs .dropdown-toggle,
+.footer .language-dropdown.hidden-xs .dropdown-toggle{
+    color: #fff;
+}
+.contact-us .language-dropdown.hidden-xs .dropdown-toggle i,
+.media-gallery .language-dropdown.hidden-xs .dropdown-toggle i,
+.contact-form-container .language-dropdown.hidden-xs .dropdown-toggle i,
+.footer .language-dropdown.hidden-xs .dropdown-toggle i{
+    background: url("../svg/dots.svg") no-repeat right center;
+    background-size: 13px;
 }

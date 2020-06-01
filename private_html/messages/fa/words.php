@@ -383,4 +383,5 @@ return [
     'Shetab Network' => 'شبکه شتاب',
     'image_gallery_archive_description' => 'توضیحات صفحه آرشیو عکس',
     'video_gallery_archive_description' => 'توضیحات صفحه آرشیو فیلم',
+    'news_archive_description' => 'توضیحات صفحه آرشیو اخبار',
 ];

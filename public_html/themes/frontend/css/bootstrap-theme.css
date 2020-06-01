@@ -2644,6 +2644,7 @@ h3.underline-black:after {
 .inner-page .news-page .similar-news li .desc {
     color: #818181;
     font-size: 14px;
+    line-height: 18px;
 }
 
 .inner-page .news-page .similar-news li a {
@@ -2896,13 +2897,13 @@ h3.underline-black:after {
     overflow: hidden;
 }
 
-.inner-page .donate-page .bank-accounts li .telephone-link{
+.inner-page .donate-page .bank-accounts li .telephone-link {
     position: absolute;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    z-index:4;
+    z-index: 4;
 }
 
 .inner-page .donate-page .bank-accounts li .account-number .text-left {
@@ -3748,18 +3749,21 @@ h3.underline-black:after {
 .dir-ltr {
     direction: ltr;
 }
+
 .language-dropdown.hidden-xs {
     position: absolute;
     top: 31px;
     left: 31px;
     z-index: 2;
 }
-.language-dropdown.hidden-xs .dropdown-toggle{
+
+.language-dropdown.hidden-xs .dropdown-toggle {
     color: #393939;
     font-size: 14px;
     line-height: 22px;
 }
-.language-dropdown.hidden-xs .dropdown-toggle i{
+
+.language-dropdown.hidden-xs .dropdown-toggle i {
     background: url("../svg/dots-b.svg") no-repeat right center;
     background-size: 13px;
     display: inline-block;
@@ -3767,16 +3771,18 @@ h3.underline-black:after {
     height: 22px;
     vertical-align: middle;
 }
+
 .contact-us .language-dropdown.hidden-xs .dropdown-toggle,
 .media-gallery .language-dropdown.hidden-xs .dropdown-toggle,
 .contact-form-container .language-dropdown.hidden-xs .dropdown-toggle,
-.footer .language-dropdown.hidden-xs .dropdown-toggle{
+.footer .language-dropdown.hidden-xs .dropdown-toggle {
     color: #fff;
 }
+
 .contact-us .language-dropdown.hidden-xs .dropdown-toggle i,
 .media-gallery .language-dropdown.hidden-xs .dropdown-toggle i,
 .contact-form-container .language-dropdown.hidden-xs .dropdown-toggle i,
-.footer .language-dropdown.hidden-xs .dropdown-toggle i{
+.footer .language-dropdown.hidden-xs .dropdown-toggle i {
     background: url("../svg/dots.svg") no-repeat right center;
     background-size: 13px;
 }

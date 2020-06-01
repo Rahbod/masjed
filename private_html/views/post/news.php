@@ -8,6 +8,7 @@
         <h3><b><?= trans('words', 'News Archive')?></b>
             <small><?= trans('words', 'Mosque of karbala') ?></small>
         </h3>
+        <small><?= trans('words', 'news_archive_description') ?></small>
     </div>
     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
         <ul class="news-archive-items">

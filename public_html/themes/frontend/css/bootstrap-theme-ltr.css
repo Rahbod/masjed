@@ -343,10 +343,14 @@ body {
     padding-right: 19px;
 }
 
+.time-line-text h2 span {
+    line-height: 30px;
+}
 .time-line-text h2 .num {
     float: left;
     margin-right: 10px;
     margin-left: 0;
+    line-height: 60px;
 }
 
 .time-line-text h2:after {
@@ -360,6 +364,7 @@ body {
     left: 270px;
     right: auto;
     width: 205px;
+    font-size: 1.5rem;
 }
 
 .time-line-container .btn-donate .left-side--btn__heart {
@@ -465,16 +470,22 @@ body {
 }
 
 .news-page .archive-link,
-.news-container .archive-link,
 .help-container .archive-link,
 .image-gallery .archive-link,
 .video-gallery .archive-link {
     padding: 17px 70px 17px 30px;
 }
+.news-container .archive-link{
+    padding: 7px 70px 7px 30px;
+}
 
 .time-line.owl-theme .owl-nav .owl-prev {
     right: auto;
     left: 0;
+}
+.time-line.owl-theme .owl-nav .owl-next {
+    left: auto;
+    right: 0;
 }
 
 .time-line.owl-theme .owl-nav [class*=owl-] .svg-arrow-right {
@@ -656,4 +667,14 @@ body {
 
 .project-intro .right-side--menu li {
     padding: 18px 15px;
+}
+.navbar-nav > li > a:focus,
+.navbar-nav > li > a{
+    font-size: 12px;
+}
+.time-line-text .text{
+    font-size: 12px;
+}
+.contact-form-container .text{
+    line-height: 20px;
 }

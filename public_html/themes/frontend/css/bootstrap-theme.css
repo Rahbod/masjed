@@ -863,6 +863,7 @@ main section {
     right: 100px;
     bottom: 10vh;
     width: 350px;
+    min-height: 60px;
     color: #fff;
     text-align: justify;
     padding-right: 70px;

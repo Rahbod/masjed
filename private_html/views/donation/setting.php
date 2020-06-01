@@ -74,22 +74,52 @@ $this->registerJs('
             <div class="form-group m-form__group row">
                 <?php echo Html::label(trans('words', 'First account'), '', ['class' => 'col-lg-2 col-form-label']) ?>
                 <div class="col-lg-3">
-                    <?php echo Html::textInput('Setting[donation][bank_numbers][0][bank_name]',
-                            isset($settings['donation']['bank_numbers'][0]['bank_name'])?$settings['donation']['bank_numbers'][0]['bank_name']:'', [
+                    <?php echo Html::textInput('Setting[donation][bank_numbers][0][fa][bank_name]',
+                            isset($settings['donation']['bank_numbers'][0]['fa']['bank_name'])?$settings['donation']['bank_numbers'][0]['fa']['bank_name']:'', [
                         'class' => 'form-control m-input m-input__solid',
-                        'placeholder' => trans('words', 'Bank name')
+                        'placeholder' => trans('words', 'Bank name').' - فارسی'
+                    ]); ?>
+                    <?php echo Html::textInput('Setting[donation][bank_numbers][0][ar][bank_name]',
+                            isset($settings['donation']['bank_numbers'][0]['ar']['bank_name'])?$settings['donation']['bank_numbers'][0]['ar']['bank_name']:'', [
+                        'class' => 'form-control m-input m-input__solid',
+                        'placeholder' => trans('words', 'Bank name').' - عربی'
+                    ]); ?>
+                    <?php echo Html::textInput('Setting[donation][bank_numbers][0][en][bank_name]',
+                            isset($settings['donation']['bank_numbers'][0]['en']['bank_name'])?$settings['donation']['bank_numbers'][0]['en']['bank_name']:'', [
+                        'class' => 'form-control m-input m-input__solid',
+                        'placeholder' => trans('words', 'Bank name').' - انگلیسی'
                     ]); ?>
                 </div>
                 <div class="col-lg-3">
-                    <?php echo Html::textInput('Setting[donation][bank_numbers][0][account_type]',
-                            isset($settings['donation']['bank_numbers'][0]['account_type'])?$settings['donation']['bank_numbers'][0]['account_type']:'', [
+                    <?php echo Html::textInput('Setting[donation][bank_numbers][0][fa][account_type]',
+                            isset($settings['donation']['bank_numbers'][0]['fa']['account_type'])?$settings['donation']['bank_numbers'][0]['fa']['account_type']:'', [
+                        'class' => 'form-control m-input m-input__solid',
+                        'placeholder' => trans('words', 'Account type')
+                    ]); ?>
+                    <?php echo Html::textInput('Setting[donation][bank_numbers][0][ar][account_type]',
+                            isset($settings['donation']['bank_numbers'][0]['ar']['account_type'])?$settings['donation']['bank_numbers'][0]['ar']['account_type']:'', [
+                        'class' => 'form-control m-input m-input__solid',
+                        'placeholder' => trans('words', 'Account type')
+                    ]); ?>
+                    <?php echo Html::textInput('Setting[donation][bank_numbers][0][en][account_type]',
+                            isset($settings['donation']['bank_numbers'][0]['en']['account_type'])?$settings['donation']['bank_numbers'][0]['en']['account_type']:'', [
                         'class' => 'form-control m-input m-input__solid',
                         'placeholder' => trans('words', 'Account type')
                     ]); ?>
                 </div>
                 <div class="col-lg-3">
-                    <?php echo Html::textInput('Setting[donation][bank_numbers][0][account_number]',
-                            isset($settings['donation']['bank_numbers'][0]['account_number'])?$settings['donation']['bank_numbers'][0]['account_number']:'', [
+                    <?php echo Html::textInput('Setting[donation][bank_numbers][0][fa][account_number]',
+                            isset($settings['donation']['bank_numbers'][0]['fa']['account_number'])?$settings['donation']['bank_numbers'][0]['fa']['account_number']:'', [
+                        'class' => 'form-control m-input m-input__solid',
+                        'placeholder' => trans('words', 'Account number')
+                    ]); ?>
+                    <?php echo Html::textInput('Setting[donation][bank_numbers][0][ar][account_number]',
+                            isset($settings['donation']['bank_numbers'][0]['ar']['account_number'])?$settings['donation']['bank_numbers'][0]['ar']['account_number']:'', [
+                        'class' => 'form-control m-input m-input__solid',
+                        'placeholder' => trans('words', 'Account number')
+                    ]); ?>
+                    <?php echo Html::textInput('Setting[donation][bank_numbers][0][en][account_number]',
+                            isset($settings['donation']['bank_numbers'][0]['en']['account_number'])?$settings['donation']['bank_numbers'][0]['en']['account_number']:'', [
                         'class' => 'form-control m-input m-input__solid',
                         'placeholder' => trans('words', 'Account number')
                     ]); ?>
@@ -99,50 +129,110 @@ $this->registerJs('
             <div class="form-group m-form__group row">
                 <?php echo Html::label(trans('words', 'Second account'), '', ['class' => 'col-lg-2 col-form-label']) ?>
                 <div class="col-lg-3">
-                    <?php echo Html::textInput('Setting[donation][bank_numbers][1][bank_name]',
-                            isset($settings['donation']['bank_numbers'][1]['bank_name'])?$settings['donation']['bank_numbers'][1]['bank_name']:'', [
-                        'class' => 'form-control m-input m-input__solid',
-                        'placeholder' => trans('words', 'Bank name')
-                    ]); ?>
+                    <?php echo Html::textInput('Setting[donation][bank_numbers][1][fa][bank_name]',
+                        isset($settings['donation']['bank_numbers'][1]['fa']['bank_name'])?$settings['donation']['bank_numbers'][1]['fa']['bank_name']:'', [
+                            'class' => 'form-control m-input m-input__solid',
+                            'placeholder' => trans('words', 'Bank name').' - فارسی'
+                        ]); ?>
+                    <?php echo Html::textInput('Setting[donation][bank_numbers][1][ar][bank_name]',
+                        isset($settings['donation']['bank_numbers'][1]['ar']['bank_name'])?$settings['donation']['bank_numbers'][1]['ar']['bank_name']:'', [
+                            'class' => 'form-control m-input m-input__solid',
+                            'placeholder' => trans('words', 'Bank name').' - عربی'
+                        ]); ?>
+                    <?php echo Html::textInput('Setting[donation][bank_numbers][1][en][bank_name]',
+                        isset($settings['donation']['bank_numbers'][1]['en']['bank_name'])?$settings['donation']['bank_numbers'][1]['en']['bank_name']:'', [
+                            'class' => 'form-control m-input m-input__solid',
+                            'placeholder' => trans('words', 'Bank name').' - انگلیسی'
+                        ]); ?>
                 </div>
                 <div class="col-lg-3">
-                    <?php echo Html::textInput('Setting[donation][bank_numbers][1][account_type]',
-                            isset($settings['donation']['bank_numbers'][1]['account_type'])?$settings['donation']['bank_numbers'][1]['account_type']:'', [
-                        'class' => 'form-control m-input m-input__solid',
-                        'placeholder' => trans('words', 'Account type')
-                    ]); ?>
+                    <?php echo Html::textInput('Setting[donation][bank_numbers][1][fa][account_type]',
+                        isset($settings['donation']['bank_numbers'][1]['fa']['account_type'])?$settings['donation']['bank_numbers'][1]['fa']['account_type']:'', [
+                            'class' => 'form-control m-input m-input__solid',
+                            'placeholder' => trans('words', 'Account type')
+                        ]); ?>
+                    <?php echo Html::textInput('Setting[donation][bank_numbers][1][ar][account_type]',
+                        isset($settings['donation']['bank_numbers'][1]['ar']['account_type'])?$settings['donation']['bank_numbers'][1]['ar']['account_type']:'', [
+                            'class' => 'form-control m-input m-input__solid',
+                            'placeholder' => trans('words', 'Account type')
+                        ]); ?>
+                    <?php echo Html::textInput('Setting[donation][bank_numbers][1][en][account_type]',
+                        isset($settings['donation']['bank_numbers'][1]['en']['account_type'])?$settings['donation']['bank_numbers'][1]['en']['account_type']:'', [
+                            'class' => 'form-control m-input m-input__solid',
+                            'placeholder' => trans('words', 'Account type')
+                        ]); ?>
                 </div>
                 <div class="col-lg-3">
-                    <?php echo Html::textInput('Setting[donation][bank_numbers][1][account_number]',
-                            isset($settings['donation']['bank_numbers'][1]['account_number'])?$settings['donation']['bank_numbers'][1]['account_number']:'', [
-                        'class' => 'form-control m-input m-input__solid',
-                        'placeholder' => trans('words', 'Account number')
-                    ]); ?>
+                    <?php echo Html::textInput('Setting[donation][bank_numbers][1][fa][account_number]',
+                        isset($settings['donation']['bank_numbers'][1]['fa']['account_number'])?$settings['donation']['bank_numbers'][1]['fa']['account_number']:'', [
+                            'class' => 'form-control m-input m-input__solid',
+                            'placeholder' => trans('words', 'Account number')
+                        ]); ?>
+                    <?php echo Html::textInput('Setting[donation][bank_numbers][1][ar][account_number]',
+                        isset($settings['donation']['bank_numbers'][1]['ar']['account_number'])?$settings['donation']['bank_numbers'][1]['ar']['account_number']:'', [
+                            'class' => 'form-control m-input m-input__solid',
+                            'placeholder' => trans('words', 'Account number')
+                        ]); ?>
+                    <?php echo Html::textInput('Setting[donation][bank_numbers][1][en][account_number]',
+                        isset($settings['donation']['bank_numbers'][1]['en']['account_number'])?$settings['donation']['bank_numbers'][1]['en']['account_number']:'', [
+                            'class' => 'form-control m-input m-input__solid',
+                            'placeholder' => trans('words', 'Account number')
+                        ]); ?>
                 </div>
             </div>
 
             <div class="form-group m-form__group row">
                 <?php echo Html::label(trans('words', 'Third account'), '', ['class' => 'col-lg-2 col-form-label']) ?>
                 <div class="col-lg-3">
-                    <?php echo Html::textInput('Setting[donation][bank_numbers][2][bank_name]',
-                            isset($settings['donation']['bank_numbers'][2]['bank_name'])?$settings['donation']['bank_numbers'][2]['bank_name']:'', [
-                        'class' => 'form-control m-input m-input__solid',
-                        'placeholder' => trans('words', 'Bank name')
-                    ]); ?>
+                    <?php echo Html::textInput('Setting[donation][bank_numbers][2][fa][bank_name]',
+                        isset($settings['donation']['bank_numbers'][2]['fa']['bank_name'])?$settings['donation']['bank_numbers'][2]['fa']['bank_name']:'', [
+                            'class' => 'form-control m-input m-input__solid',
+                            'placeholder' => trans('words', 'Bank name').' - فارسی'
+                        ]); ?>
+                    <?php echo Html::textInput('Setting[donation][bank_numbers][2][ar][bank_name]',
+                        isset($settings['donation']['bank_numbers'][2]['ar']['bank_name'])?$settings['donation']['bank_numbers'][2]['ar']['bank_name']:'', [
+                            'class' => 'form-control m-input m-input__solid',
+                            'placeholder' => trans('words', 'Bank name').' - عربی'
+                        ]); ?>
+                    <?php echo Html::textInput('Setting[donation][bank_numbers][2][en][bank_name]',
+                        isset($settings['donation']['bank_numbers'][2]['en']['bank_name'])?$settings['donation']['bank_numbers'][2]['en']['bank_name']:'', [
+                            'class' => 'form-control m-input m-input__solid',
+                            'placeholder' => trans('words', 'Bank name').' - انگلیسی'
+                        ]); ?>
                 </div>
                 <div class="col-lg-3">
-                    <?php echo Html::textInput('Setting[donation][bank_numbers][2][account_type]',
-                            isset($settings['donation']['bank_numbers'][2]['account_type'])?$settings['donation']['bank_numbers'][2]['account_type']:'', [
-                        'class' => 'form-control m-input m-input__solid',
-                        'placeholder' => trans('words', 'Account type')
-                    ]); ?>
+                    <?php echo Html::textInput('Setting[donation][bank_numbers][2][fa][account_type]',
+                        isset($settings['donation']['bank_numbers'][2]['fa']['account_type'])?$settings['donation']['bank_numbers'][2]['fa']['account_type']:'', [
+                            'class' => 'form-control m-input m-input__solid',
+                            'placeholder' => trans('words', 'Account type')
+                        ]); ?>
+                    <?php echo Html::textInput('Setting[donation][bank_numbers][2][ar][account_type]',
+                        isset($settings['donation']['bank_numbers'][2]['ar']['account_type'])?$settings['donation']['bank_numbers'][2]['ar']['account_type']:'', [
+                            'class' => 'form-control m-input m-input__solid',
+                            'placeholder' => trans('words', 'Account type')
+                        ]); ?>
+                    <?php echo Html::textInput('Setting[donation][bank_numbers][2][en][account_type]',
+                        isset($settings['donation']['bank_numbers'][2]['en']['account_type'])?$settings['donation']['bank_numbers'][2]['en']['account_type']:'', [
+                            'class' => 'form-control m-input m-input__solid',
+                            'placeholder' => trans('words', 'Account type')
+                        ]); ?>
                 </div>
                 <div class="col-lg-3">
-                    <?php echo Html::textInput('Setting[donation][bank_numbers][2][account_number]',
-                            isset($settings['donation']['bank_numbers'][2]['account_number'])?$settings['donation']['bank_numbers'][2]['account_number']:'', [
-                        'class' => 'form-control m-input m-input__solid',
-                        'placeholder' => trans('words', 'Account number')
-                    ]); ?>
+                    <?php echo Html::textInput('Setting[donation][bank_numbers][2][fa][account_number]',
+                        isset($settings['donation']['bank_numbers'][2]['fa']['account_number'])?$settings['donation']['bank_numbers'][2]['fa']['account_number']:'', [
+                            'class' => 'form-control m-input m-input__solid',
+                            'placeholder' => trans('words', 'Account number')
+                        ]); ?>
+                    <?php echo Html::textInput('Setting[donation][bank_numbers][2][ar][account_number]',
+                        isset($settings['donation']['bank_numbers'][2]['ar']['account_number'])?$settings['donation']['bank_numbers'][2]['ar']['account_number']:'', [
+                            'class' => 'form-control m-input m-input__solid',
+                            'placeholder' => trans('words', 'Account number')
+                        ]); ?>
+                    <?php echo Html::textInput('Setting[donation][bank_numbers][2][en][account_number]',
+                        isset($settings['donation']['bank_numbers'][2]['en']['account_number'])?$settings['donation']['bank_numbers'][2]['en']['account_number']:'', [
+                            'class' => 'form-control m-input m-input__solid',
+                            'placeholder' => trans('words', 'Account number')
+                        ]); ?>
                 </div>
             </div>
 
@@ -155,22 +245,54 @@ $this->registerJs('
             <div class="form-group m-form__group row">
                 <?php echo Html::label(trans('words', 'First person'), '', ['class' => 'col-lg-2 col-form-label']) ?>
                 <div class="col-lg-3">
-                    <?php echo Html::textInput('Setting[donation][persons][0][name]',
-                            isset($settings['donation']['persons'][0]['name'])?$settings['donation']['persons'][0]['name']:'', [
+                    <?php echo Html::textInput('Setting[donation][persons][0][fa][name]',
+                            isset($settings['donation']['persons'][0]['fa']['name'])?$settings['donation']['persons'][0]['fa']['name']:'', [
                         'class' => 'form-control m-input m-input__solid',
-                        'placeholder' => trans('words', 'Person name')
+                        'placeholder' => trans('words', 'Person name').' - فارسی'
+                    ]); ?>
+                    <?php echo Html::textInput('Setting[donation][persons][0][ar][name]',
+                            isset($settings['donation']['persons'][0]['ar']['name'])?$settings['donation']['persons'][0]['ar']['name']:'', [
+                        'class' => 'form-control m-input m-input__solid',
+                        'placeholder' => trans('words', 'Person name').' - عربی'
+                    ]); ?>
+                    <?php echo Html::textInput('Setting[donation][persons][0][en][name]',
+                            isset($settings['donation']['persons'][0]['en']['name'])?$settings['donation']['persons'][0]['en']['name']:'', [
+                        'class' => 'form-control m-input m-input__solid',
+                        'placeholder' => trans('words', 'Person name').' - انگلیسی'
                     ]); ?>
                 </div>
                 <div class="col-lg-3">
-                    <?php echo Html::textInput('Setting[donation][persons][0][country]',
-                            isset($settings['donation']['persons'][0]['country'])?$settings['donation']['persons'][0]['country']:'', [
+                    <?php echo Html::textInput('Setting[donation][persons][0][fa][country]',
+                            isset($settings['donation']['persons'][0]['fa']['country'])?$settings['donation']['persons'][0]['fa']['country']:'', [
+                        'class' => 'form-control m-input m-input__solid',
+                        'placeholder' => trans('words', 'Person country')
+                    ]); ?>
+                    <?php echo Html::textInput('Setting[donation][persons][0][ar][country]',
+                            isset($settings['donation']['persons'][0]['ar']['country'])?$settings['donation']['persons'][0]['ar']['country']:'', [
+                        'class' => 'form-control m-input m-input__solid',
+                        'placeholder' => trans('words', 'Person country')
+                    ]); ?>
+                    <?php echo Html::textInput('Setting[donation][persons][0][en][country]',
+                            isset($settings['donation']['persons'][0]['en']['country'])?$settings['donation']['persons'][0]['en']['country']:'', [
                         'class' => 'form-control m-input m-input__solid',
                         'placeholder' => trans('words', 'Person country')
                     ]); ?>
                 </div>
                 <div class="col-lg-3">
-                    <?php echo Html::textInput('Setting[donation][persons][0][mobile]',
-                            isset($settings['donation']['persons'][0]['mobile'])?$settings['donation']['persons'][0]['mobile']:'', [
+                    <?php echo Html::textInput('Setting[donation][persons][0][fa][mobile]',
+                            isset($settings['donation']['persons'][0]['fa']['mobile'])?$settings['donation']['persons'][0]['fa']['mobile']:'', [
+                        'class' => 'form-control m-input m-input__solid text-left',
+                        'dir' => 'ltr',
+                        'placeholder' => trans('words', 'Person mobile')
+                    ]); ?>
+                    <?php echo Html::textInput('Setting[donation][persons][0][ar][mobile]',
+                            isset($settings['donation']['persons'][0]['ar']['mobile'])?$settings['donation']['persons'][0]['ar']['mobile']:'', [
+                        'class' => 'form-control m-input m-input__solid text-left',
+                        'dir' => 'ltr',
+                        'placeholder' => trans('words', 'Person mobile')
+                    ]); ?>
+                    <?php echo Html::textInput('Setting[donation][persons][0][en][mobile]',
+                            isset($settings['donation']['persons'][0]['en']['mobile'])?$settings['donation']['persons'][0]['en']['mobile']:'', [
                         'class' => 'form-control m-input m-input__solid text-left',
                         'dir' => 'ltr',
                         'placeholder' => trans('words', 'Person mobile')
@@ -181,52 +303,116 @@ $this->registerJs('
             <div class="form-group m-form__group row">
                 <?php echo Html::label(trans('words', 'Second person'), '', ['class' => 'col-lg-2 col-form-label']) ?>
                 <div class="col-lg-3">
-                    <?php echo Html::textInput('Setting[donation][persons][1][name]',
-                            isset($settings['donation']['persons'][1]['name'])?$settings['donation']['persons'][1]['name']:'', [
-                        'class' => 'form-control m-input m-input__solid',
-                        'placeholder' => trans('words', 'Person name')
-                    ]); ?>
+                    <?php echo Html::textInput('Setting[donation][persons][1][fa][name]',
+                        isset($settings['donation']['persons'][1]['fa']['name'])?$settings['donation']['persons'][1]['fa']['name']:'', [
+                            'class' => 'form-control m-input m-input__solid',
+                            'placeholder' => trans('words', 'Person name').' - فارسی'
+                        ]); ?>
+                    <?php echo Html::textInput('Setting[donation][persons][1][ar][name]',
+                        isset($settings['donation']['persons'][1]['ar']['name'])?$settings['donation']['persons'][1]['ar']['name']:'', [
+                            'class' => 'form-control m-input m-input__solid',
+                            'placeholder' => trans('words', 'Person name').' - عربی'
+                        ]); ?>
+                    <?php echo Html::textInput('Setting[donation][persons][1][en][name]',
+                        isset($settings['donation']['persons'][1]['en']['name'])?$settings['donation']['persons'][1]['en']['name']:'', [
+                            'class' => 'form-control m-input m-input__solid',
+                            'placeholder' => trans('words', 'Person name').' - انگلیسی'
+                        ]); ?>
                 </div>
                 <div class="col-lg-3">
-                    <?php echo Html::textInput('Setting[donation][persons][1][country]',
-                            isset($settings['donation']['persons'][1]['country'])?$settings['donation']['persons'][1]['country']:'', [
-                        'class' => 'form-control m-input m-input__solid',
-                        'placeholder' => trans('words', 'Person country')
-                    ]); ?>
+                    <?php echo Html::textInput('Setting[donation][persons][1][fa][country]',
+                        isset($settings['donation']['persons'][1]['fa']['country'])?$settings['donation']['persons'][1]['fa']['country']:'', [
+                            'class' => 'form-control m-input m-input__solid',
+                            'placeholder' => trans('words', 'Person country')
+                        ]); ?>
+                    <?php echo Html::textInput('Setting[donation][persons][1][ar][country]',
+                        isset($settings['donation']['persons'][1]['ar']['country'])?$settings['donation']['persons'][1]['ar']['country']:'', [
+                            'class' => 'form-control m-input m-input__solid',
+                            'placeholder' => trans('words', 'Person country')
+                        ]); ?>
+                    <?php echo Html::textInput('Setting[donation][persons][1][en][country]',
+                        isset($settings['donation']['persons'][1]['en']['country'])?$settings['donation']['persons'][1]['en']['country']:'', [
+                            'class' => 'form-control m-input m-input__solid',
+                            'placeholder' => trans('words', 'Person country')
+                        ]); ?>
                 </div>
                 <div class="col-lg-3">
-                    <?php echo Html::textInput('Setting[donation][persons][1][mobile]',
-                            isset($settings['donation']['persons'][1]['mobile'])?$settings['donation']['persons'][1]['mobile']:'', [
-                        'class' => 'form-control m-input m-input__solid text-left',
-                        'dir' => 'ltr',
-                        'placeholder' => trans('words', 'Person mobile')
-                    ]); ?>
+                    <?php echo Html::textInput('Setting[donation][persons][1][fa][mobile]',
+                        isset($settings['donation']['persons'][1]['fa']['mobile'])?$settings['donation']['persons'][1]['fa']['mobile']:'', [
+                            'class' => 'form-control m-input m-input__solid text-left',
+                            'dir' => 'ltr',
+                            'placeholder' => trans('words', 'Person mobile')
+                        ]); ?>
+                    <?php echo Html::textInput('Setting[donation][persons][1][ar][mobile]',
+                        isset($settings['donation']['persons'][1]['ar']['mobile'])?$settings['donation']['persons'][1]['ar']['mobile']:'', [
+                            'class' => 'form-control m-input m-input__solid text-left',
+                            'dir' => 'ltr',
+                            'placeholder' => trans('words', 'Person mobile')
+                        ]); ?>
+                    <?php echo Html::textInput('Setting[donation][persons][1][en][mobile]',
+                        isset($settings['donation']['persons'][1]['en']['mobile'])?$settings['donation']['persons'][1]['en']['mobile']:'', [
+                            'class' => 'form-control m-input m-input__solid text-left',
+                            'dir' => 'ltr',
+                            'placeholder' => trans('words', 'Person mobile')
+                        ]); ?>
                 </div>
             </div>
 
             <div class="form-group m-form__group row">
                 <?php echo Html::label(trans('words', 'Third person'), '', ['class' => 'col-lg-2 col-form-label']) ?>
                 <div class="col-lg-3">
-                    <?php echo Html::textInput('Setting[donation][persons][2][name]',
-                            isset($settings['donation']['persons'][2]['name'])?$settings['donation']['persons'][2]['name']:'', [
-                        'class' => 'form-control m-input m-input__solid',
-                        'placeholder' => trans('words', 'Person name')
-                    ]); ?>
+                    <?php echo Html::textInput('Setting[donation][persons][2][fa][name]',
+                        isset($settings['donation']['persons'][2]['fa']['name'])?$settings['donation']['persons'][2]['fa']['name']:'', [
+                            'class' => 'form-control m-input m-input__solid',
+                            'placeholder' => trans('words', 'Person name').' - فارسی'
+                        ]); ?>
+                    <?php echo Html::textInput('Setting[donation][persons][2][ar][name]',
+                        isset($settings['donation']['persons'][2]['ar']['name'])?$settings['donation']['persons'][2]['ar']['name']:'', [
+                            'class' => 'form-control m-input m-input__solid',
+                            'placeholder' => trans('words', 'Person name').' - عربی'
+                        ]); ?>
+                    <?php echo Html::textInput('Setting[donation][persons][2][en][name]',
+                        isset($settings['donation']['persons'][2]['en']['name'])?$settings['donation']['persons'][2]['en']['name']:'', [
+                            'class' => 'form-control m-input m-input__solid',
+                            'placeholder' => trans('words', 'Person name').' - انگلیسی'
+                        ]); ?>
                 </div>
                 <div class="col-lg-3">
-                    <?php echo Html::textInput('Setting[donation][persons][2][country]',
-                            isset($settings['donation']['persons'][2]['country'])?$settings['donation']['persons'][2]['country']:'', [
-                        'class' => 'form-control m-input m-input__solid',
-                        'placeholder' => trans('words', 'Person country')
-                    ]); ?>
+                    <?php echo Html::textInput('Setting[donation][persons][2][fa][country]',
+                        isset($settings['donation']['persons'][2]['fa']['country'])?$settings['donation']['persons'][2]['fa']['country']:'', [
+                            'class' => 'form-control m-input m-input__solid',
+                            'placeholder' => trans('words', 'Person country')
+                        ]); ?>
+                    <?php echo Html::textInput('Setting[donation][persons][2][ar][country]',
+                        isset($settings['donation']['persons'][2]['ar']['country'])?$settings['donation']['persons'][2]['ar']['country']:'', [
+                            'class' => 'form-control m-input m-input__solid',
+                            'placeholder' => trans('words', 'Person country')
+                        ]); ?>
+                    <?php echo Html::textInput('Setting[donation][persons][2][en][country]',
+                        isset($settings['donation']['persons'][2]['en']['country'])?$settings['donation']['persons'][2]['en']['country']:'', [
+                            'class' => 'form-control m-input m-input__solid',
+                            'placeholder' => trans('words', 'Person country')
+                        ]); ?>
                 </div>
                 <div class="col-lg-3">
-                    <?php echo Html::textInput('Setting[donation][persons][2][mobile]',
-                            isset($settings['donation']['persons'][2]['mobile'])?$settings['donation']['persons'][2]['mobile']:'', [
-                        'class' => 'form-control m-input m-input__solid text-left',
-                        'dir' => 'ltr',
-                        'placeholder' => trans('words', 'Person mobile')
-                    ]); ?>
+                    <?php echo Html::textInput('Setting[donation][persons][2][fa][mobile]',
+                        isset($settings['donation']['persons'][2]['fa']['mobile'])?$settings['donation']['persons'][2]['fa']['mobile']:'', [
+                            'class' => 'form-control m-input m-input__solid text-left',
+                            'dir' => 'ltr',
+                            'placeholder' => trans('words', 'Person mobile')
+                        ]); ?>
+                    <?php echo Html::textInput('Setting[donation][persons][2][ar][mobile]',
+                        isset($settings['donation']['persons'][2]['ar']['mobile'])?$settings['donation']['persons'][2]['ar']['mobile']:'', [
+                            'class' => 'form-control m-input m-input__solid text-left',
+                            'dir' => 'ltr',
+                            'placeholder' => trans('words', 'Person mobile')
+                        ]); ?>
+                    <?php echo Html::textInput('Setting[donation][persons][2][en][mobile]',
+                        isset($settings['donation']['persons'][2]['en']['mobile'])?$settings['donation']['persons'][2]['en']['mobile']:'', [
+                            'class' => 'form-control m-input m-input__solid text-left',
+                            'dir' => 'ltr',
+                            'placeholder' => trans('words', 'Person mobile')
+                        ]); ?>
                 </div>
             </div>
         </div>

@@ -171,6 +171,8 @@ return [
     'News pictures' => 'تصاویر خبری',
     'En Status' => 'وضعیت در انگلیسی',
     'Ar Status' => 'وضعیت در عربی',
+    'Ar Short Description' => 'عنوان کوتاه عربی',
+    'En Short Description' => 'عنوان کوتاه انگلیسی',
     'Translate Management' => 'مدیریت ترجمه ها',
     'Deleted' => 'حذف شده',
     'Disabled' => 'غیرفعال',

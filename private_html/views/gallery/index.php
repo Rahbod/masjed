@@ -58,13 +58,6 @@ $this->params['breadcrumbs'][] = $this->title;
                             'filter' => Category::getWithType(Category::CATEGORY_TYPE_PICTURE_GALLERY)
                         ],
                         [
-                            'attribute' => 'lang',
-                            'value' => function($model){
-                                return \app\models\Gallery::$langArray[$model->lang];
-                            },
-                            'filter'=>\app\models\Gallery::$langArray
-                        ],
-                        [
                             'attribute' => 'userID',
                             'value' => function($model){
                                 return $model->user->username;

@@ -63,7 +63,7 @@ class GallerySearch extends Gallery
             'id' => $this->id,
             'userID' => $this->userID,
             'modelID' => $this->modelID,
-            'item.type' => $this->type,
+            'type' => $this->type,
             'status' => $this->status,
         ]);
 

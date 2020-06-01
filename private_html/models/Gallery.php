@@ -16,6 +16,7 @@ class Gallery extends Item
     const TYPE_VIDEO_GALLERY = 2;
 
     public static $modelName = 'gallery';
+    public static $multiLanguage = false;
 
     public static $typeLabels = [
             self::TYPE_PICTURE_GALLERY => 'Picture Gallery',
@@ -52,7 +53,11 @@ class Gallery extends Item
         parent::init();
         $this->dynaDefaults = array_merge($this->dynaDefaults, [
                 'short_description' => ['CHAR', ''],
+                'ar_short_description' => ['CHAR', ''],
+                'en_short_description' => ['CHAR', ''],
                 'body' => ['CHAR', ''],
+                'ar_body' => ['CHAR', ''],
+                'en_body' => ['CHAR', ''],
                 'catID' => ['INTEGER', ''],
         ]);
     }
@@ -63,10 +68,11 @@ class Gallery extends Item
     public function rules()
     {
         return array_merge(parent::rules(), [
-                [['short_description', 'formCategories'], 'required'],
+                [['short_description', 'ar_short_description', 'en_short_description', 'formCategories'], 'required'],
                 [['short_description'], 'string', 'max' => 255],
-                [['body'], 'string', 'max' => 1024],
+                [['body', 'ar_body', 'en_body', ], 'string', 'max' => 1024],
                 ['modelID', 'default', 'value' => Model::findOne(['name' => self::$modelName])->id],
+                ['lang', 'default', 'value' => 'fa'],
 //            [['catID'], 'exist', 'skipOnError' => false, 'targetClass' => Category::className(), 'targetAttribute' => ['catID' => 'id']],
         ]);
     }
@@ -78,7 +84,11 @@ class Gallery extends Item
     {
         return array_merge(parent::attributeLabels(), [
                 'short_description' => Yii::t('words', 'Short Description'),
+                'ar_short_description' => Yii::t('words', 'Ar Short Description'),
+                'en_short_description' => Yii::t('words', 'En Short Description'),
                 'body' => Yii::t('words', 'Description'),
+                'ar_body' => Yii::t('words', 'Ar Description'),
+                'en_body' => Yii::t('words', 'En Description'),
                 'catID' => Yii::t('words', 'Category'),
         ]);
     }

@@ -61,23 +61,60 @@ use \yii\helpers\Url;
             ],
         ]) ?>
 
-        <?= \app\components\MultiLangActiveRecord::renderSelectLangInput($form, $model) ?>
+        <?//= \app\components\MultiLangActiveRecord::renderSelectLangInput($form, $model) ?>
+
+        <div class="row">
+            <div class="col-sm-4">
+                <?= $form->field($model, 'formCategories')->dropDownList(Category::getWithType(Category::CATEGORY_TYPE_PICTURE_GALLERY), ['prompt' => Yii::t('words', 'Select Category')]) ?>
+            </div>
+        </div>
 
         <div class="row">
             <div class="col-sm-4">
                 <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
             </div>
             <div class="col-sm-4">
+                <?= $form->field($model, 'ar_name')->textInput(['maxlength' => true]) ?>
+            </div>
+            <div class="col-sm-4">
+                <?= $form->field($model, 'en_name')->textInput(['maxlength' => true]) ?>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
                 <?= $form->field($model, 'short_description')->textInput() ?>
             </div>
             <div class="col-sm-4">
-                <?= $form->field($model, 'formCategories')->dropDownList(Category::getWithType(Category::CATEGORY_TYPE_PICTURE_GALLERY), ['prompt' => Yii::t('words', 'Select Category')]) ?>
+                <?= $form->field($model, 'ar_short_description')->textInput() ?>
+            </div>
+            <div class="col-sm-4">
+                <?= $form->field($model, 'en_short_description')->textInput() ?>
             </div>
         </div>
 
-        <?= $form->field($model, 'body')->textarea(['rows' => 6]) ?>
+        <div class="row">
+            <div class="col-sm-4">
+                <?= $form->field($model, 'body')->textarea(['rows' => 6]) ?>
+            </div>
+            <div class="col-sm-4">
+                <?= $form->field($model, 'ar_body')->textarea(['rows' => 6]) ?>
+            </div>
+            <div class="col-sm-4">
+                <?= $form->field($model, 'en_body')->textarea(['rows' => 6]) ?>
+            </div>
+        </div>
 
-        <?php echo $form->field($model, 'status', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox([], false) ?>
+        <div class="row">
+            <div class="col-sm-4">
+                <?php echo $form->field($model, 'status', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox([], false) ?>
+            </div>
+            <div class="col-sm-4">
+                <?php echo $form->field($model, 'ar_status', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox([], false) ?>
+            </div>
+            <div class="col-sm-4">
+                <?php echo $form->field($model, 'en_status', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox([], false) ?>
+            </div>
+        </div>
 
     </div>
     <div class="m-portlet__foot m-portlet__foot--fit">

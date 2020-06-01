@@ -204,9 +204,11 @@ body {
     border-right: 1px solid #d9d7d7;
 }
 
-.right-side--header h3{
+.right-side--header h3 {
     font-size: 2rem;
+    font-weight: 400;
 }
+
 .right-side--header h3:after {
     right: auto;
     left: 0;
@@ -221,12 +223,12 @@ body {
     right: 15px;
 }
 
-.project-intro .right-side--menu li.active .svg-arrow-left-w {
-    background-image: url("../svg/right-w.svg");
-}
-
 .project-intro .right-side--menu li:hover .svg-arrow-left-w {
     background-image: url("../svg/right.svg");
+}
+
+.project-intro .right-side--menu li.active .svg-arrow-left-w {
+    background-image: url("../svg/right-w.svg");
 }
 
 .project-intro .left-side {
@@ -617,7 +619,40 @@ body {
     padding-left: 115px;
 }
 
-.project-intro .top-bar-info_cell i{
+.project-intro .top-bar-info_cell i {
     right: auto;
     left: 0;
+    top: 15px;
+}
+
+.language-dropdown.hidden-xs {
+    left: auto;
+    right: 31px;
+}
+
+.project-intro .top-bar-info_cell {
+    line-height: 16px;
+    padding: 19px 15px;
+}
+
+.project-intro .left-side--info__text * {
+    line-height: 25px;
+}
+
+.right-side--header h3 b {
+    font-size: 2.6rem;
+}
+
+.right-side--header small {
+    font-size: 1.3rem;
+    font-weight: 300;
+}
+
+.project-intro .right-side--menu small,
+.project-intro .right-side--menu b {
+    line-height: 14px;
+}
+
+.project-intro .right-side--menu li {
+    padding: 18px 15px;
 }

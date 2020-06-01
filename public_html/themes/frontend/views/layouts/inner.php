@@ -137,13 +137,13 @@ AppAsset::register($this);
                         <b><?= trans('words', 'Contact us') ?></b>
                         <?= trans('words', 'Mosque of karbala') ?>
                     </h3>
-                    <small>أخبار متعلقة بالتعاون والتقدم في مشروع<br>مسجد كربلاء وشفافية مساهماتكم</small>
+                    <small><?= trans('words', 'Contact us description') ?></small>
                 </div>
             </div>
             <div class="left-side">
                 <div class="contact-us-form-container">
-                    <div class="text">لا تتردد في الاتصال بنا عبر النموذج أدناه إذا كنت ترغب في الاتصال بمجموعة مسجد جامع
-                        الكربلاء ، أو إذا كان لديك أي نقد أو اقتراحات.
+                    <div class="text">
+                        <?= trans('words', 'contact_page_text') ?>
                     </div>
                     <div class="form">
                         <?php

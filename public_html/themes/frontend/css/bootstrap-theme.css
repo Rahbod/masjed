@@ -1604,6 +1604,7 @@ h3.underline-black:after {
     overflow: hidden;
 }
 
+.media-gallery .media-item .media-container img,
 .media-gallery .media-item .media-container video {
     height: 350px;
     width: auto;

@@ -27,7 +27,7 @@ $baseUrl = $this->theme->baseUrl;
         <h3><b><?= trans('words', 'Video Gallery') ?></b>
             <small><?= trans('words', 'Mosque of karbala') ?></small>
         </h3>
-        <small>اقترب من هذا المشروع عن طريق إنشاء مقاطع صور</small>
+        <small><?= trans('words', 'video_gallery_archive_description') ?></small>
     </div>
     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
         <ul class="nav nav-tabs">
@@ -52,7 +52,7 @@ $baseUrl = $this->theme->baseUrl;
                                     </video>
                                 </div>
                                 <h5><?= $video->getName() ?></h5>
-                                <span><?= $video->short_description ?></span>
+                                <span><?= $video->getDescriptionStr() ?></span>
                                 <a href="<?= $video->getVideoSrc() ?>" data-toggle="modal" data-target="#play-modal-<?= $video->id?>"></a>
                             </div>
 

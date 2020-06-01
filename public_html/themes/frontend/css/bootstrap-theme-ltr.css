@@ -470,11 +470,11 @@ body {
 }
 
 .news-page .archive-link,
-.help-container .archive-link,
-.image-gallery .archive-link,
-.video-gallery .archive-link {
+.help-container .archive-link{
     padding: 17px 70px 17px 30px;
 }
+.image-gallery .archive-link,
+.video-gallery .archive-link,
 .news-container .archive-link{
     padding: 7px 70px 7px 30px;
 }
@@ -627,7 +627,7 @@ body {
 }
 
 .inner-page .donate-page .panel-default > .panel-heading + .panel-collapse > .panel-body {
-    padding-right: 0;
+    padding-right: 15px;
     padding-left: 115px;
 }
 
@@ -677,4 +677,71 @@ body {
 }
 .contact-form-container .text{
     line-height: 20px;
+}
+.inner-page .donate-page .donate-content .text{
+    line-height: 20px;
+}
+.inner-page .title-box > small{
+    line-height: 20px;
+}
+.footer .logo-container .logo h1{
+    text-align: left;
+    padding-left: 0;
+}
+.footer .logo-container .logo img{
+    margin: 0;
+}
+.footer .navbar-nav>li>a{
+    padding-top: 0;
+}
+.news-container .news-slider .news-item .info h3{
+    margin-top: 0;
+}
+.video-gallery .video-slider .video-item .caption{
+    padding-left: 20px;
+    padding-right: 0;
+}
+.video-gallery .video-slider .video-item .caption i{
+    float: left;
+    margin-right: 10px;
+    margin-left: 0;
+    background: url(../svg/camera.svg) no-repeat center left;
+    background-size: 40px;
+}
+.video-gallery .video-slider .video-item .caption i:after {
+    left: auto;
+    right: 0;
+}
+.video-gallery .archive-link {
+    right: 15%;
+    left: auto;
+}
+.video-gallery .owl-theme .owl-nav .owl-next {
+    left: -100px;
+    right: auto;
+}
+.video-gallery .owl-theme .owl-nav .owl-prev {
+    right: calc(15% - 100px);
+    left: auto;
+}
+.video-gallery .owl-theme .owl-nav .owl-next .svg-arrow-left,
+.video-gallery .owl-theme .owl-nav .owl-prev .svg-arrow-right {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background-size: 30px;
+}
+.inner-page .gallery .gallery-item span,
+.inner-page .gallery .gallery-item h5{
+    text-align: left;
+}
+.inner-page .title-box h3{
+    font-size: 2.7rem;
+}
+.inner-page .title-box h3 small{
+    font-size: 2rem;
+    font-weight: 400;
+}
+.inner-page .title-box > small{
+    font-weight: 300;
 }

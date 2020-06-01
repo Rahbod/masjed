@@ -271,7 +271,7 @@ $this->registerJs("
                                             <div class="caption">
                                                 <i></i>
                                                 <h5><?= $video->name ?>
-                                                    <small><?= $video->short_description ?>
+                                                    <small><?= $video->getDescriptionStr() ?>
                                                     </small>
                                                 </h5>
                                             </div>
@@ -297,7 +297,7 @@ $this->registerJs("
                                 <div class="caption">
                                     <i></i>
                                     <h5><?= $video->name ?>
-                                        <small><?= $video->short_description ?></small>
+                                        <small><?= $video->getDescriptionStr() ?></small>
                                     </h5>
                                 </div>
                             </div>

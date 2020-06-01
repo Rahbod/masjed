@@ -26,7 +26,7 @@ $baseUrl = $this->theme->baseUrl;
         <h3><b><?= trans('words', 'Picture Gallery') ?></b>
             <small><?= trans('words', 'Mosque of karbala') ?></small>
         </h3>
-        <small>اقترب من هذا المشروع عن طريق إنشاء مقاطع صور</small>
+        <small><?= trans('words', 'image_gallery_archive_description') ?></small>
     </div>
     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
         <ul class="nav nav-tabs">
@@ -46,7 +46,7 @@ $baseUrl = $this->theme->baseUrl;
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 gallery-item">
                                 <img src="<?= $photo->getThumbImageSrc() ?>" alt="<?= $photo->getName() ?>">
                                 <h5><?= $photo->getName() ?></h5>
-                                <span><?= $photo->short_description ?></span>
+                                <span><?= $photo->getDescriptionStr() ?></span>
                                 <a href="<?= $photo->getImageSrc() ?>" data-lightbox="img-set-<?= $category->id?>" data-title="<?= $photo->getName()?>"></a>
                             </div>
                         <?php endforeach; ?>

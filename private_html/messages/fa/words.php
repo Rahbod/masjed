@@ -381,4 +381,6 @@ return [
     'Required' => 'الزامی',
     'payment_modal_desc' => 'متن مودال پرداخت',
     'Shetab Network' => 'شبکه شتاب',
+    'image_gallery_archive_description' => 'توضیحات صفحه آرشیو عکس',
+    'video_gallery_archive_description' => 'توضیحات صفحه آرشیو فیلم',
 ];

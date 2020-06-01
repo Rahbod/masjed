@@ -135,4 +135,28 @@ class Gallery extends Item
 
         return parent::beforeSave($insert);
     }
+
+    public function getBodyStr()
+    {
+        if (!static::$multiLanguage) {
+            if (Yii::$app->language == 'fa') {
+                return $this->body;
+            } else {
+                return $this->{Yii::$app->language . '_body'} ?: $this->body;
+            }
+        }
+        return $this->body;
+    }
+
+    public function getDescriptionStr()
+    {
+        if (!static::$multiLanguage) {
+            if (Yii::$app->language == 'fa') {
+                return $this->short_description;
+            } else {
+                return $this->{Yii::$app->language . '_short_description'} ?: $this->short_description;
+            }
+        }
+        return $this->short_description;
+    }
 }

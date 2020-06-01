@@ -290,6 +290,10 @@
     .time-line-text h2 span {
         line-height: 20px;
     }
+
+    .help-container .help-content .help-item h3{
+        line-height:20px;
+    }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {

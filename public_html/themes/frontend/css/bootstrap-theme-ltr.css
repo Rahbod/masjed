@@ -786,20 +786,19 @@ body {
     float: left;
 }
 
-.news-archive-items li .image {
-    float: left;
-    margin-right: 30px;
-    margin-left: 0;
+.news-archive-items li h4{
+    padding-right: 30px;
+    padding-left: 180px;
 }
 
 .news-archive-items li .text {
     padding-right: 30px;
-    padding-left: 0;
+    padding-left: 180px;
 }
 
 .news-archive-items li .date {
     padding-right: 30px;
-    padding-left: 0;
+    padding-left: 180px;
     text-align: right;
 }
 

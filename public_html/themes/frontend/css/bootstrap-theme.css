@@ -1250,8 +1250,8 @@ h3.underline-black:after {
 }
 
 .image-gallery .image-item a img {
-    width: auto;
-    height: 100%;
+    width: 100%;
+    height: auto;
 }
 
 .image-gallery .image-slider {
@@ -3662,12 +3662,10 @@ h3.underline-black:after {
 }
 
 .news-archive-items li .image {
-    float: right;
+    position: absolute;
     width: 150px;
-    height: 150px;
-    margin-left: 30px;
+    height: 100%;
     overflow: hidden;
-    position: relative;
 }
 
 .news-archive-items li .image img {
@@ -3682,12 +3680,14 @@ h3.underline-black:after {
     font-weight: bold;
     margin-top: 30px;
     margin-bottom: 15px;
+    padding-right: 180px;
 }
 
 .news-archive-items li .text {
     color: #818181;
     font-size: 14px;
     padding-left: 30px;
+    padding-right: 180px;
 }
 
 .news-archive-items li .date {
@@ -3695,6 +3695,7 @@ h3.underline-black:after {
     font-weight: bold;
     font-size: 14px;
     padding-left: 30px;
+    padding-right: 180px;
     text-align: left;
     margin-top: 10px;
     margin-bottom: 15px;

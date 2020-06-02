@@ -164,10 +164,6 @@
         padding: 25px 0 25px 80px;
     }
 
-    .news-container .news-slider .news-item .info {
-        padding-left: 15px;
-    }
-
     .mobile-footer-menu .btn-donate {
         right: 15px;
         left: auto;
@@ -293,6 +289,18 @@
 
     .help-container .help-content .help-item h3{
         line-height:20px;
+    }
+
+    .media-gallery .media-item .caption h5 small{
+        font-size: 16px;
+    }
+
+    .media-gallery .media-item .caption .text{
+        font-size: 14px;
+    }
+
+    .project-intro .top-bar-info_cell .line-icon{
+        top: auto;
     }
 }
 

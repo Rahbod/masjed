@@ -241,8 +241,7 @@ $this->registerJs("
                         <?php
                         $i = 0;
                         foreach ($videoCategories as $category):?>
-                            <li<?= $i++ == 0 ? ' class="active"' : '' ?>><a data-toggle="tab"
-                                                                            href="#video-gallery-tab-<?= $category->id ?>"><?= $category->getName() ?>
+                            <li<?= $i++ == 0 ? ' class="active"' : '' ?>><a data-toggle="tab" href="#video-gallery-tab-<?= $category->id ?>"><?= $category->getName() ?>
                                     <?php if ($str = $category->getDescriptionStr()): echo '<small>(' . $str . ')</small>';endif; ?></a>
                             </li>
                         <?php endforeach; ?>
@@ -270,7 +269,7 @@ $this->registerJs("
                                             </div>
                                             <div class="caption">
                                                 <i></i>
-                                                <h5><?= $video->name ?>
+                                                <h5><?= $video->getName() ?>
                                                     <small><?= $video->getDescriptionStr() ?>
                                                     </small>
                                                 </h5>

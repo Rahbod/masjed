@@ -704,6 +704,7 @@ main section {
 .project-intro .left-side--image img {
     object-fit: cover;
     max-width: 100%;
+    border-radius: 10px;
 }
 
 .project-intro .left-side--btn {
@@ -2191,12 +2192,16 @@ h3.underline-black:after {
 
 .footer .logo-container .logo img {
     float: none;
-    margin: 0 auto;
+    margin: 0 32px 0 0;
     display: block;
 }
 
+.footer .navbar-nav > li{
+    padding-right: 0;
+}
+
 .footer .logo-container .logo h1 {
-    text-align: center;
+    text-align: right;
 }
 
 .footer .logo-container .logo h1:before {
@@ -2987,9 +2992,7 @@ h3.underline-black:after {
 
 .inner-page .donate-page .panel-default > .panel-heading + .panel-collapse > .panel-body {
     border: none;
-    padding-right: 115px;
-    padding-bottom: 30px;
-    padding-top: 30px;
+    padding: 30px 115px 30px 40px;
 }
 
 .inner-page .donate-page .-z-index .panel-title span,

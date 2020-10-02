@@ -44,34 +44,38 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
             <!--begin: Datatable -->
             <div id="m_table_1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                <?= CustomGridView::widget([
-                    'dataProvider' => $dataProvider,
-                    'filterModel' => $searchModel,
-                    'columns' => [
-                        'name',
-                        'tel',
-                        'subject',
-                        [
-                            'attribute' => 'status',
-                            'value' => function ($model) {
-                                return \app\models\Message::getStatusLabels($model->status, true);
-                            },
-                            'format' => 'raw',
-                            'filter' => \app\models\Message::getStatusLabels()
-                        ],
+                <?php echo Html::beginForm('multiple-delete')?>
+                    <?= CustomGridView::widget([
+                        'dataProvider' => $dataProvider,
+                        'filterModel' => $searchModel,
+                        'columns' => [
+                            ['class' => 'yii\grid\CheckboxColumn'],
+                            'name',
+                            'tel',
+                            'subject',
+                            [
+                                'attribute' => 'status',
+                                'value' => function ($model) {
+                                    return \app\models\Message::getStatusLabels($model->status, true);
+                                },
+                                'format' => 'raw',
+                                'filter' => \app\models\Message::getStatusLabels()
+                            ],
 
-                        [
-                            'attribute' => 'created',
-                            'value' => function($model){
-                                return jDateTime::date('Y/m/d', $model->created);
-                            }
+                            [
+                                'attribute' => 'created',
+                                'value' => function($model){
+                                    return jDateTime::date('Y/m/d', $model->created);
+                                }
+                            ],
+                            [
+                                'class' => 'app\components\customWidgets\CustomActionColumn',
+                                'template' => '{view} {delete}'
+                            ]
                         ],
-                        [
-                            'class' => 'app\components\customWidgets\CustomActionColumn',
-                            'template' => '{view} {delete}'
-                        ]
-                    ],
-                ]); ?>
+                    ]); ?>
+                    <input type="submit" class="btn btn-danger" value="حذف دسته جمعی" style="margin-top: 15px;">
+                <?php echo Html::endForm();?>
             </div>
         </div>
     </div>

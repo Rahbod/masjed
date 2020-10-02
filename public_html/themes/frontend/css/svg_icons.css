@@ -39,16 +39,20 @@
 
 .svg-heart-r {
     background-image: url("../svg/heart-outline-r.svg");
+    background-repeat: no-repeat;
 }
 
 .svg-heart-filled-r {
     background-image: url("../svg/heart-filled-r.svg");
+    background-repeat: no-repeat;
 }
 
 .svg-heart-white {
     background-image: url("../svg/heart-outline-white.svg");
+    background-repeat: no-repeat;
 }
 
 .svg-heart-filled-white {
     background-image: url("../svg/heart-filled-white.svg");
+    background-repeat: no-repeat;
 }

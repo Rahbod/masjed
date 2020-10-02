@@ -135,6 +135,7 @@ class Comments extends Item
     {
         return array_merge(parent::formAttributes(), [
             [['description', 'ar_description', 'en_description'], self::FORM_FIELD_TYPE_TEXT_AREA],
+
             [['body', 'ar_body', 'en_body'], [
                 'type' => static::FORM_FIELD_TYPE_TEXT_EDITOR,
                 'containerCssClass' => 'col-sm-12',

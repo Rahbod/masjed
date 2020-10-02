@@ -680,6 +680,7 @@ main section {
     width: 65px;
     height: 65px;
     z-index: 1;
+    background-size: 65px;
 }
 
 .project-intro .left-side--btn__heart-inner {
@@ -1560,6 +1561,7 @@ h3.underline-black:after {
     width: 65px;
     height: 65px;
     z-index: 1;
+    background-size: 65px;
 }
 
 .time-line-container .btn-donate .left-side--btn__heart-inner {
@@ -2331,6 +2333,7 @@ h3.underline-black:after {
     width: 50px;
     height: 50px;
     z-index: 1;
+    background-size: 50px;
 }
 
 .footer .btn-donate .left-side--btn__heart-inner {

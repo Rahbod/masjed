@@ -196,7 +196,12 @@ AppAsset::register($this);
 
 <?php $this->endBody(); ?>
 
-
+<script src="https://www.google.com/recaptcha/api.js"></script>
+<script>
+    function onSubmit(token) {
+        document.getElementById("contact-us-form").submit();
+    }
+</script>
 <script src="<?= $this->theme->baseUrl . '/js/bootstrap.min.js' ?>"></script>
 <script src="<?= $this->theme->baseUrl . '/js/owl.carousel.min.js' ?>"></script>
 <script src="<?= $this->theme->baseUrl . '/js/jquery.nicescroll.min.js' ?>"></script>

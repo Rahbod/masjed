@@ -79,7 +79,7 @@ class Donation extends DynamicActiveRecord
             'amount' => Yii::t('words', 'Amount'),
             'dyna' => Yii::t('words', 'Dyna'),
             'status' => Yii::t('words', 'Status'),
-            'create_date' => Yii::t('words', 'Create Date'),
+            'create_date' => Yii::t('words', 'Date'),
             'invoice_id' => Yii::t('words', 'Invoice ID'),
         ]);
     }

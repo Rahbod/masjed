@@ -326,7 +326,7 @@ return [
     'Iran and Iraq' => 'ایران و عراق',
     'Rials' => 'ریال',
     'Tomans' => 'تومان',
-    'Thanks! Payment was successful.' => 'با تشکر! پرداخت با موفقیت انجام شد.',
+    'Thanks! Payment was successful. <a href="{href}" target="_blank">Download Receipt</a>' => 'با تشکر! پرداخت با موفقیت انجام شد. <a href="{href}" target="_blank">دانلود رسید</a>',
     'Oops! Unsuccessful payment, There is a problem.' => 'اوه! پرداخت ناموفق، مشکلی وجود دارد.',
 
     //////// Donation
@@ -357,6 +357,8 @@ return [
     'Trusted persons page' => 'صفحه اشخاص معتمد',
     'Objective assistance page' => 'صفحه کمک های غیرنقدی',
     'Please select option' => 'یک گزینه را انتخاب کنید',
+    'Invoice ID' => 'کد تراکنش',
+    'Mobile' => 'موبایل',
 
     'how can I help?' => 'چطور می تونم کمک کنم؟',
     'how can I help description' => 'توضیحات روش های کمک کردن',

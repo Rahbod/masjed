@@ -144,8 +144,8 @@ AppAsset::register($this);
                                 <?= $this->render('//layouts/_socials') ?>
                             </div>
                             <div class="pull-left captcha-container">
-                                <input type="submit" value="<?= trans('words', 'Send') ?>">
-                                <?= $form->field($model, 'verifyCode')->widget(CustomCaptcha::className(), [
+                                <input type="button" value="<?= trans('words', 'Send') ?>" onclick="onClick()">
+                                <?/*= $form->field($model, 'verifyCode')->widget(CustomCaptcha::className(), [
                                         'captchaAction' => ['/site/captcha'],
                                         'template' => '<div class="input-group"><span class="input-group-addon">{image}</span>{input}</div>',
                                         'options' => [
@@ -155,7 +155,7 @@ AppAsset::register($this);
                                                 'autocomplete' => 'off',
                                                 'placeholder' => trans('words', 'Captcha Code'),
                                         ],
-                                ])->label(false)->hint(false) ?>
+                                ])->label(false)->hint(false) */?>
                             </div>
                         </div>
                         <?php CustomActiveForm::end(); ?>
@@ -200,7 +200,16 @@ AppAsset::register($this);
 
 <?php $this->endBody(); ?>
 
-
+<script src="https://www.google.com/recaptcha/api.js?render=6LeV-tYZAAAAABACs2z_R5A7HatIXZ6LX7qQMyGl"></script>
+<script>
+    function onClick() {
+        grecaptcha.ready(function() {
+            grecaptcha.execute('6LeV-tYZAAAAABACs2z_R5A7HatIXZ6LX7qQMyGl', {action: 'submit'}).then(function(token) {
+                document.getElementById("contact-us-form").submit();
+            });
+        });
+    }
+</script>
 <script src="<?= $this->theme->baseUrl . '/js/bootstrap.min.js' ?>"></script>
 <script src="<?= $this->theme->baseUrl . '/js/owl.carousel.min.js' ?>"></script>
 <script src="<?= $this->theme->baseUrl . '/js/jquery.nicescroll.min.js' ?>"></script>

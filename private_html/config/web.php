@@ -4,7 +4,7 @@ use app\components\gateway\PayPingGateway;
 use \yii\web\Request;
 use app\components\Setting;
 
-Yii::setAlias('@webapp', rtrim(str_replace("public_html", "", (new Request)->getBaseUrl()),'/'));
+Yii::setAlias('@webapp', rtrim(str_replace("public_html", "", (new Request)->getBaseUrl()), '/'));
 
 $baseUrl = (new Request)->getBaseUrl();
 
@@ -21,7 +21,7 @@ $config = [
     'timeZone' => Setting::get('timeZone'),
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
-        '@npm'   => '@vendor/npm-asset',
+        '@npm' => '@vendor/npm-asset',
     ],
     'components' => [
         'assetManager' => [
@@ -50,8 +50,29 @@ $config = [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'j5stjE4_Z4MGofmiwRkw0mxmR2Do2RNE',
             'baseUrl' => $baseUrl,
-            'enableCsrfValidation'=>true,
-            'enableCookieValidation'=>true,
+            'enableCsrfValidation' => true,
+            'enableCookieValidation' => true,
+        ],
+        'response' => [
+            'formatters' => [
+                'pdf' => [
+                    'class' => 'robregonm\pdf\PdfResponseFormatter',
+                    'options' => [
+                        'fontDir' => __DIR__ . '/../../public_html/themes/frontend/fonts/IranSans/ttf',
+                        'fontdata' => [
+                            'iransans' => [
+                                'R' => 'IRANSansWeb.ttf',
+                                'B' => 'IRANSansWeb_Bold.ttf',
+                                'useOTL' => 0xFF,
+                                'useKashida' => 75,
+                            ]
+                        ],
+                        'autoScriptToLang' => true,
+                        'autoLangToFont' => true,
+                    ],
+                    'defaultFont' => 'iransans',
+                ],
+            ]
         ],
         'gateway' => [
             'class' => PayPingGateway::className(),
@@ -63,7 +84,7 @@ $config = [
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => false,
-            'authTimeout' =>3600,
+            'authTimeout' => 3600,
             'identityCookie' => ['name' => '_identity', 'httpOnly' => true],
         ],
         'errorHandler' => [
@@ -100,9 +121,9 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'dashboard'=>'user/dashboard',
-                'contact'=>'site/contact',
-                '<language:\w{2}>'=>'site/change-lang',
+                'dashboard' => 'user/dashboard',
+                'contact' => 'site/contact',
+                '<language:\w{2}>' => 'site/change-lang',
                 '<language:\w{2}>/<controller:\w+>' => 'site/change-lang',
                 '<language:\w+>/<controller:\w+>/<action:\w+>' => 'site/change-lang',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',

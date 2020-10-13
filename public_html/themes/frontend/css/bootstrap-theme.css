@@ -2081,7 +2081,7 @@ h3.underline-black:after {
     height: 40px;
 }
 
-.contact-form-container input[type="submit"] {
+.contact-form-container input[type="button"] {
     width: 100px;
     color: #fff;
     text-align: center;
@@ -2090,7 +2090,7 @@ h3.underline-black:after {
     float: left;
 }
 
-.contact-form-container input[type="submit"]:hover {
+.contact-form-container input[type="button"]:hover {
     background: #057433;
 }
 
@@ -3792,4 +3792,38 @@ h3.underline-black:after {
 .footer .language-dropdown.hidden-xs .dropdown-toggle i {
     background: url("../svg/dots.svg") no-repeat right center;
     background-size: 13px;
+}
+
+.pdf-box {
+    width: 70%;
+    margin: 100px auto;
+}
+
+.pdf-box .image {
+    text-align: center;
+}
+
+.pdf-box h2 {
+    margin-top: 50px;
+}
+
+.pdf-box .donation-message {
+    margin: 20px 0 50px;
+}
+
+.pdf-box .table th,
+.pdf-box .table td{
+    border-bottom: 1px solid #eee;
+    border-top: 1px solid #eee;
+    padding: 15px;
+}
+
+.pdf-box .table .first-child th,
+.pdf-box .table .first-child td{
+    border-top: none;
+}
+
+.pdf-box .table .odd th,
+.pdf-box .table .odd td{
+    background: #fafafa;
 }

@@ -10,9 +10,9 @@ class ComposerStaticInitb6e2e5fcbedc0ea6a91859b1c014a8a7
         '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
+        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
-        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         'abede361264e2ae69ec1eee813a101af' => __DIR__ . '/..' . '/markbaker/complex/classes/src/functions/abs.php',
@@ -95,9 +95,14 @@ class ComposerStaticInitb6e2e5fcbedc0ea6a91859b1c014a8a7
         array (
             'voime\\GoogleMaps\\' => 17,
         ),
+        's' => 
+        array (
+            'setasign\\Fpdi\\' => 14,
+        ),
         'r' => 
         array (
             'ruskid\\csvimporter\\' => 19,
+            'robregonm\\pdf\\' => 14,
             'richardfan\\sortable\\' => 20,
         ),
         'p' => 
@@ -162,6 +167,7 @@ class ComposerStaticInitb6e2e5fcbedc0ea6a91859b1c014a8a7
         ),
         'M' => 
         array (
+            'Mpdf\\' => 5,
             'Matrix\\' => 7,
         ),
         'G' => 
@@ -228,9 +234,17 @@ class ComposerStaticInitb6e2e5fcbedc0ea6a91859b1c014a8a7
         array (
             0 => __DIR__ . '/..' . '/voime/yii2-google-maps',
         ),
+        'setasign\\Fpdi\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/setasign/fpdi/src',
+        ),
         'ruskid\\csvimporter\\' => 
         array (
             0 => __DIR__ . '/..' . '/ruskid/yii2-csv-importer',
+        ),
+        'robregonm\\pdf\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/robregonm/yii2-pdf',
         ),
         'richardfan\\sortable\\' => 
         array (
@@ -345,6 +359,10 @@ class ComposerStaticInitb6e2e5fcbedc0ea6a91859b1c014a8a7
         'PayPing\\' => 
         array (
             0 => __DIR__ . '/..' . '/flotfeali/payping-client/src',
+        ),
+        'Mpdf\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mpdf/mpdf/src',
         ),
         'Matrix\\' => 
         array (

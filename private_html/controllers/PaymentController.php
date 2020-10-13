@@ -16,11 +16,11 @@ class PaymentController extends MainController
     public function actions()
     {
         return [
-                'captcha' => [
-                        'class' => CustomCaptchaAction::className(),
-                        'width' => 130,
-                        'height' => 40,
-                ]
+            'captcha' => [
+                'class' => CustomCaptchaAction::className(),
+                'width' => 130,
+                'height' => 40,
+            ]
         ];
     }
 
@@ -54,11 +54,11 @@ class PaymentController extends MainController
 
                 $returnUrl = Url::to('/payment/verify', true);
                 $gateway->setPayArguments(
-                        $model->amount,
-                        $model->payerName,
-                        $model->description,
-                        $returnUrl,
-                        $invoiceNumber);
+                    $model->amount,
+                    $model->payerName,
+                    $model->description,
+                    $returnUrl,
+                    $invoiceNumber);
 
                 if ($gateway->pay()) {
                     $this->redirect($gateway->payUrl());
@@ -86,18 +86,26 @@ class PaymentController extends MainController
                 $donate->save();
             }
 
-            SmsSender::SendPaymentSuccessful($donate->mobile,$donate->name,number_format($donate->amount). 'تومان');
+            SmsSender::SendPaymentSuccessful($donate->mobile, $donate->name, number_format($donate->amount) . 'تومان');
 
             app()->session->setFlash('alert',
-                    ['type' => 'success', 'message' => trans('words', 'Thanks! Payment was successful.')]);
-//            SmsSender::Send()
+                ['type' => 'success', 'message' => trans('words', 'Thanks! Payment was successful. <a href="{href}" target="_blank">Download Receipt</a>', ['href' => Url::to(['/payment/receipt?id='.$donate->id])])]);
         } else {
             app()->session->setFlash('alert', [
-                    'type' => 'danger',
-                    'message' => trans('words', 'Oops! Unsuccessful payment, There is a problem.')
+                'type' => 'danger',
+                'message' => trans('words', 'Oops! Unsuccessful payment, There is a problem.')
             ]);
         }
 
         return $this->redirect(['index']);
+    }
+
+    public function actionReceipt($id)
+    {
+        $this->setTheme('frontend', ['layout' => 'pdf']);
+        $model = Donation::findOne($id);
+
+        app()->response->format = 'pdf';
+        return $this->render('receipt', ['model' => $model]);
     }
 }

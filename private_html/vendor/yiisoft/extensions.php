@@ -129,4 +129,13 @@ return array (
       '@moonland/phpexcel' => $vendorDir . '/moonlandsoft/yii2-phpexcel',
     ),
   ),
+  'robregonm/yii2-pdf' => 
+  array (
+    'name' => 'robregonm/yii2-pdf',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@robregonm/pdf' => $vendorDir . '/robregonm/yii2-pdf',
+    ),
+  ),
 );
